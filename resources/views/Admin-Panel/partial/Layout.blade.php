@@ -285,7 +285,7 @@
         ***********************************-- --}}
         <div class="footer">
             <div class="copyright">
-                <p>Copyright © 2024. &amp; Developed by <a href="#" target="_blank">Teamx Technologies</a> </p>
+                <p>Copyright © 2024. &amp; Developed by <a href="#" target="_blank">Coder de Dhaka</a> </p>
             </div>
         </div>
         {{-- --**********************************
