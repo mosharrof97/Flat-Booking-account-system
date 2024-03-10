@@ -14,5 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('Admin-Panel.page.dashboard');
+    return view('Admin-Panel.page.Investment.create_investor');
+});
+Route::get('/create_investment', function () {
+    return view('Admin-Panel.page.Investment.create_investment');
 });
