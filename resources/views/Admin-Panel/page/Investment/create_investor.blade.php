@@ -8,7 +8,8 @@
                     <h3>Investor Information</h3>
                 </div>
                 <div class="card-body">
-                    <form class="row g-3">
+                    <form class="row g-3" action="" method="POST" enctype="multipart/form-data">
+                        @csrf
                         <div class="col-md-12">
                             <label for="name" class="form-label">Full Name</label>
                             <input type="text" class="form-control" id="name" name="name">
@@ -40,15 +41,15 @@
                         <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
                     </div> --}}
                         <div class="col-md-6">
-                            <label for="inputCity" class="form-label">City</label>
-                            <input type="text" class="form-control" id="inputCity" name="inputCity">
+                            <label for="city" class="form-label">City</label>
+                            <input type="text" class="form-control" id="city" name="city">
                         </div>
                         <div class="col-md-4">
                             <label for="district" class="form-label">District</label>
                             <div class="mr-1 ">
-                                <input class="form-control bg-light" list="dmoOptions" id="dmoDataList"
-                                    placeholder="Select DMO">
-                                <datalist id="dmoOptions">
+                                <input class="form-control bg-light" list="districtOptions" id="district"
+                                    placeholder="Select District" name="district">
+                                <datalist id="districtOptions">
                                     <option value="PRITOM SARKER"> </option>
                                     <option value="Joy Roy 2"></option>
                                     <option value="Labib Kumar"></option>
@@ -74,6 +75,11 @@
                         <div class="col-md-2">
                             <label for="zipCode" class="form-label">Zip Code</label>
                             <input type="text" class="form-control" id="zipCode" name="zipCode">
+                        </div>
+
+                        <div class="col-md-12">
+                            <label for="image" class="form-label">Image</label>
+                            <input type="file" class="form-control" id="image" name="image">
                         </div>
                         {{-- <div class="col-12">
                         <div class="form-check">

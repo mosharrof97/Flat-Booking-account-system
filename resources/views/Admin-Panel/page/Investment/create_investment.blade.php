@@ -8,12 +8,13 @@
                 <h3>Investment Information</h3>
             </div>
             <div class="card-body">
-                <form class="">
+                <form class="" action="" method="POST" enctype="multipart/form-data">
+                    @csrf
                     <div class="row g-3">
                         <div class="col-md-6">
-                            <label for="phoneList" class="form-label">Phone</label>
+                            <label for="phone" class="form-label">Phone</label>
                             <div class="mr-1 ">
-                                <input class="form-control bg-light" list="phoneOptions" id="phoneList" placeholder="Select phone">
+                                <input class="form-control bg-light" list="phoneOptions" id="phone" placeholder="Select phone" name="phone">
                                 <datalist id="phoneOptions">
                                     <option value="PRITOM SARKER"> </option>
                                     <option value="Joy Roy 2"></option>
@@ -39,37 +40,34 @@
                         </div>
                         <div class="col-md-6">
                             <label for="name" class="form-label">Full Name</label>
-                            <input type="text" class="form-control" id="name" name="name">
+                            <input type="text" class="form-control" id="name" name="name" value="" disabled>
 
                         </div>
                         <div class="col-md-6">
                             <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" name="email">
+                            <input type="email" class="form-control" id="email" name="email" value="" disabled>
                         </div>
                         <div class="col-md-6">
                             <label for="password" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="password" name="password">
+                            <input type="password" class="form-control" id="password" name="password" value="" disabled>
                         </div>
-                        <div class="col-md-6">
-                            <label for="password_confirmation" class="form-label">Confirmation Password</label>
-                            <input type="password" class="form-control" id="password_confirmation" name="password_confirmation">
-                        </div>
+
                         <div class="col-12">
                             <label for="address" class="form-label">Address</label>
-                            <input type="text" class="form-control" id="address" placeholder="1234 Main St" name="address">
+                            <input type="text" class="form-control" id="address" placeholder="1234 Main St" name="address" value="" disabled>
                         </div>
                         <div class="col-md-6">
-                            <label for="inputCity" class="form-label">City</label>
-                            <input type="text" class="form-control" id="inputCity" name="inputCity">
+                            <label for="city" class="form-label">City</label>
+                            <input type="text" class="form-control" id="city" name="city" value="" disabled>
                         </div>
                         <div class="col-md-4">
                             <label for="district" class="form-label">District</label>
-                            <input type="text" class="form-control" id="district" name="district">
+                            <input type="text" class="form-control" id="district" name="district" value="" disabled>
 
                         </div>
                         <div class="col-md-2">
                             <label for="zipCode" class="form-label">Zip Code</label>
-                            <input type="text" class="form-control" id="zipCode" name="zipCode">
+                            <input type="text" class="form-control" id="zipCode" name="zipCode" value="" disabled>
                         </div>
 
                         {{-- Project details & Investment--}}
@@ -80,11 +78,11 @@
                         </div>
 
                         <div class="col-md-6">
-                            <label for="name" class="form-label">Project Name</label>
+                            <label for="project_id" class="form-label">Project Name</label>
                             {{-- <input type="text" class="form-control" id="name" name="name"> --}}
                             <div class="mr-1 ">
-                                <input class="form-control bg-light" list="phoneOptions" id="phoneList" placeholder="Select Project Name.....">
-                                <datalist id="phoneOptions">
+                                <input class="form-control bg-light" list="projectList" id="project_id" name="project_id" placeholder="Select Project Name.....">
+                                <datalist id="projectList">
                                     <option value="PRITOM SARKER"> </option>
                                     <option value="Joy Roy 2"></option>
                                     <option value="Labib Kumar"></option>
@@ -111,37 +109,47 @@
                             <label for="total_Investment" class="form-label">Investment Total Amount</label>
                             <input type="text" class="form-control" id="total_Investment" name="total_Investment">
                         </div>
-                        <div class="col-md-12">
-                            <label for="invest_type" class="form-label">Investment Type</label>
-                            <select name="invest_type" id="invest_type" class="form-select">
-                                <option value="">Select Investment Type.....</option>
+                        <div class="col-md-6">
+                            <label for="installment_type" class="form-label">Installment Type</label>
+                            <select id="installment_type" class="form-select" name="installment_type">
+                                <option value="">Select Installment Type.....</option>
+                                <option value="fullPaid">Full Paid</option>
+                                <option value="installment">Installment</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="profit_type" class="form-label">Profit Type</label>
+                            <select  id="profit_type" class="form-select" name="profit_type">
+                                <option value="">Select Profit Type.....</option>
                                 <option value="percentage">percentage</option>
                                 <option value="fixed">fixed</option>
                                 <option value="flat">flat</option>
                             </select>
                         </div>
+                        <div class="col-md-6">
+                            <label for="profit" class="form-label">Profit</label>
+                            <input type="text" class="form-control" id="profit" name="profit" placeholder="profit...">
+                        </div>
+
 
                          {{-- Project Investment Installment--}}
                         <hr>
                         <div class="col-md-12">
                             <h2> Project Investment </h2>
                         </div>
-                        <div class="col-md-6">
-                            <label for="installment" class="form-label">Installment</label>
-                            <select name="installment" id="installment" class="form-select">
-                                <option value="1st">1st</option>
-                                <option value="2nd">2nd</option>
-                                <option value="3th">3th</option>
-                                <option value="4th">4th</option>
-                                <option value="5th">5th</option>
-                            </select>
-                        </div>
+
+
                         <div class="col-md-6">
                             <label for="installment_amount" class="form-label">Installment Amount</label>
                             <input type="text" class="form-control" id="installment_amount" placeholder="Installment amount" name="installment_amount">
                         </div>
+
                         <hr>
                         <div class="col-md-12">
+                            <div class="my-2">
+                                <h3>Installment Details</h3>
+                            </div>
                             <table class="table">
                                 <thead>
                                     <tr>

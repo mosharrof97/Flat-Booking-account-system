@@ -176,16 +176,35 @@
                     </li>
 
                     <li>
-                        <a class="has-arrow" href="x" aria-expanded="false">
+                        <a class="has-arrow" href="{{ route('new.project') }}" aria-expanded="false">
                             <i class="fa-solid fa-store"></i>
-                            <span class="nav-text">Employee List</span>
+                            <span class="nav-text">New Project</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="has-arrow" href="{{ route('investor.list') }}" aria-expanded="false">
+                            <i class="fa-solid fa-store"></i>
+                            <span class="nav-text">Investor List</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="has-arrow" href="{{ route('create.investor') }}" aria-expanded="false">
+                            <i class="fa-solid fa-store"></i>
+                            <span class="nav-text">Create Investor </span>
                         </a>
                     </li>
 
                     <li>
-                        <a class="has-arrow" href="c" aria-expanded="false">
+                        <a class="has-arrow" href="{{ route('investment.list') }}" aria-expanded="false">
                             <i class="fa-solid fa-store"></i>
-                            <span class="nav-text">Appointment List</span>
+                            <span class="nav-text">Investment List</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="has-arrow" href="{{ route('create.investment') }}" aria-expanded="false">
+                            <i class="fa-solid fa-store"></i>
+                            <span class="nav-text">Create Investment</span>
                         </a>
                     </li>
 
@@ -283,7 +302,7 @@
         {{-- --**********************************
             Footer start
         ***********************************-- --}}
-        <div class="footer">
+        <div class="footer align-self-end">
             <div class="copyright">
                 <p>Copyright © 2024. &amp; Developed by <a href="#" target="_blank">Coder de Dhaka</a> </p>
             </div>
