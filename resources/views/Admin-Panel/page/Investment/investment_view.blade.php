@@ -7,7 +7,7 @@
                 <h3>Installment Information</h3>
             </div>
             <div class="card-body">
-                <div class="">
+                <div class="table-responsive">
                     <style>
                         .table-information {
                             width: 100%;

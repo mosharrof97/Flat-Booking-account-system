@@ -11,33 +11,6 @@
                 <form class="" action="" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="row g-3">
-                        {{-- <div class="col-md-6">
-                            <label for="phone" class="form-label">Phone</label>
-                            <div class="mr-1 ">
-                                <input class="form-control bg-light" list="phoneOptions" id="phone" placeholder="Select phone" name="phone">
-                                <datalist id="phoneOptions">
-                                    <option value="PRITOM SARKER"> </option>
-                                    <option value="Joy Roy 2"></option>
-                                    <option value="Labib Kumar"></option>
-                                    <option value="Joy Roy"></option>
-                                    <option value="Indrajit debnath"></option>
-                                    <option value="MEHEDI HASAN"></option>
-                                    <option value="DELUARA HOSEN"></option>
-                                    <option value="Shahedul Islam"></option>
-                                    <option value="Md Ruhul Amin"></option>
-                                    <option value="Kanoc Roy"></option>
-                                    <option value="Golam Rabbani"></option>
-                                    <option value="Joy Karmokar"></option>
-                                    <option value="Md.Sabbir Sheikh"></option>
-                                    <option value="Md Rasheduzaman"></option>
-                                    <option value="Md Mehedi Hasan"></option>
-                                    <option value="Zafor Iqbal"></option>
-                                    <option value="Md Iqbal Hossain"></option>
-                                    <option value="Arifur Rahman Hamza"></option>
-                                    <option value="Md shozib hossen"></option>
-                                </datalist>
-                            </div>
-                        </div> --}}
                         <div class="col-md-6">
                             <label for="projectName" class="form-label">Project Name</label>
                             <input type="text" class="form-control" id="projectName" name="projectName" value="" >
@@ -130,6 +103,8 @@
                             <input type="text" class="form-control" id="zipCode" name="zipCode" value="" >
                         </div>
 
+                        <input   type = "number"  min="1" max="10"   value = "1" onclick="Dosmothing()"   />
+
                         <hr>
                         <div class="col-12">
                             <div class="form-check">
@@ -150,4 +125,16 @@
         </div>
     </div>
 </div>
+
+<script>
+    var currentValue = 1;
+function doSomething() {
+      if (parseInt($(this).val()) > currentValue) {
+            alert("Incremented");
+      } else {
+            alert("Deccremented");
+      }
+      currentValue = parseInt($(this).val());
+}
+</script>
 @endsection

@@ -120,7 +120,7 @@
 
                         <div class="col-md-6">
                             <label for="profit_type" class="form-label">Profit Type</label>
-                            <select  id="profit_type" class="form-select" name="profit_type">
+                            <select id="profit_type" class="form-select" name="profit_type">
                                 <option value="">Select Profit Type.....</option>
                                 <option value="percentage">percentage</option>
                                 <option value="fixed">fixed</option>
@@ -133,7 +133,7 @@
                         </div>
 
 
-                         {{-- Project Investment Installment--}}
+                        {{-- Project Investment Installment--}}
                         <hr>
                         <div class="col-md-12">
                             <h2> Project Investment </h2>
@@ -177,6 +177,13 @@
                             </table>
                         </div>
 
+                        <div class="col-12">
+                            <div id="dynamic-field-container">
+                                <!-- Dynamic fields will be added here -->
+                            </div>
+                            <button type="button" id="add-field">Add Field</button>
+
+                        </div>
                         <hr>
 
                         <div class="col-12">
@@ -198,4 +205,28 @@
         </div>
     </div>
 </div>
+
+{{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --}}
+<script>
+    $(document).ready(function() {
+        var maxFields = 10;
+        var addButton = $('#add-field');
+        var container = $('#dynamic-field-container');
+        var fieldHTML = '<div><input type="text" name="dynamic_fields[]" class="form-control" /><button type="button" class="remove-field">Remove</button></div>';
+
+        var x = 1;
+        $(addButton).click(function() {
+            if (x < maxFields) {
+                x++;
+                $(container).append(fieldHTML);
+            }
+        });
+
+        $(container).on('click', '.remove-field', function() {
+            $(this).parent('div').remove();
+            x--;
+        });
+    });
+
+</script>
 @endsection

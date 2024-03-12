@@ -164,7 +164,7 @@
         ***********************************-- --}}
         <div class="quixnav">
             <div class="quixnav-scroll">
-                <ul class="metismenu" id="menu">
+                <ul class="metismenu"  id="menu">
 
                     <li class="nav-label first">Main Menu</li>
 
@@ -209,9 +209,16 @@
                     </li>
 
                     <li>
-                        <a class="has-arrow" href="v" aria-expanded="false">
+                        <a class="has-arrow" href="{{ route('new.project') }}" aria-expanded="false">
                             <i class="fa-solid fa-store"></i>
-                            <span class="nav-text">Marketing Report</span>
+                            <span class="nav-text">Add new Project</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="has-arrow" href="{{ route('project.list') }}" aria-expanded="false">
+                            <i class="fa-solid fa-store"></i>
+                            <span class="nav-text">Project List</span>
                         </a>
                     </li>
 

@@ -37,3 +37,15 @@ Route::get('/investment_view', function () {
 Route::get('/new_project', function () {
     return view('Admin-Panel.page.Project.New_project');
 })->name('new.project');
+
+Route::get('/project_list', function () {
+    return view('Admin-Panel.page.Project.Project_List');
+})->name('project.list');
+
+Route::get('/project_view', function () {
+    return view('Admin-Panel.page.Project.Project_view');
+})->name('project.view');
+
+Route::get('/project_edit', function () {
+    return view('Admin-Panel.page.Project.edit_project');
+})->name('project.edit');

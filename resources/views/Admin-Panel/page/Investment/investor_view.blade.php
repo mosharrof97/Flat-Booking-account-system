@@ -68,7 +68,7 @@
                 <div class="">
                     <hr>
                     <div class="">
-                        <h3>Project Name: Coder de Dhaka</h3>
+                        <h3>Project Name: Coder de Dhaka (<span class="text-info">On Going</span>)</h3>
                     </div>
                     <table class="table">
                         <thead>
@@ -101,7 +101,7 @@
 
                     <hr>
                     <div class="">
-                        <h3>Project Name: Coder de Dhaka</h3>
+                        <h3>Project Name: Coder de Dhaka (<span class="text-info">On Going</span>)</h3>
                     </div>
                     <table class="table">
                         <thead>
@@ -134,7 +134,7 @@
 
                     <hr>
                     <div class="">
-                        <h3>Project Name: Coder de Dhaka</h3>
+                        <h3>Project Name: Coder de Dhaka (<span class="text-success">Complete</span>)</h3>
                     </div>
                     <table class="table">
                         <thead>
