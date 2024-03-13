@@ -49,3 +49,41 @@ Route::get('/project_view', function () {
 Route::get('/project_edit', function () {
     return view('Admin-Panel.page.Project.edit_project');
 })->name('project.edit');
+
+
+Route::get('/add_expense', function () {
+    return view('Admin-Panel.page.Expanse.Add_Expense');
+})->name('add.expense');
+
+Route::get('/expense_list', function () {
+    return view('Admin-Panel.page.Expanse.Expense_List');
+})->name('expense.list');
+
+Route::get('/expense_view', function () {
+    return view('Admin-Panel.page.Expanse.Expense_View');
+})->name('expense.view');
+
+
+Route::get('/employee', function () {
+    return view('Admin-Panel.page.Employee.employee');
+})->name('employee');
+
+Route::get('/employee_list', function () {
+    return view('Admin-Panel.page.Employee.employee_list');
+})->name('employee.list');
+
+Route::get('/employee_details', function () {
+    return view('Admin-Panel.page.Employee.employee_details');
+})->name('employee.details');
+
+Route::get('/customer', function () {
+    return view('Admin-Panel.page.Customer.customer');
+})->name('customer');
+
+Route::get('/customer_list', function () {
+    return view('Admin-Panel.page.Customer.customer_list');
+})->name('customer.list');
+
+Route::get('/customer_details', function () {
+    return view('Admin-Panel.page.Customer.customer_details');
+})->name('customer.details');

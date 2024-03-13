@@ -29,6 +29,11 @@
                             <td colspan="3" style="width: 77%">Coder De Dkaka</td>
                         </tr>
                         <tr>
+                            <th scope="row" style="width: 20%">Project Status </th>
+                            <td colspan="" style="width: 3%">:</td>
+                            <td colspan="3" style="width: 77%">On Going</td>
+                        </tr>
+                        <tr>
                             <th scope="row" style="width: 20%">Project Budget</th>
                             <td colspan="" style="width: 3%">:</td>
                             <td colspan="3" style="width: 77%">500000000 TK</td>
@@ -42,7 +47,7 @@
                         <tr>
                             <th scope="row" style="width: 20%">Investor</th>
                             <td colspan="" style="width: 3%">:</td>
-                            <td colspan="3" style="width: 77%">1</td>
+                            <td colspan="3" style="width: 77%">1 </td>
                         </tr>
 
                         <tr>

@@ -43,6 +43,11 @@
                             <td colspan="3" style="width: 77%">Coder de Dhaka</td>
                         </tr>
                         <tr>
+                            <th scope="row" style="width: 20%">Project Status </th>
+                            <td colspan="" style="width: 3%">:</td>
+                            <td colspan="3" style="width: 77%">On Going</td>
+                        </tr>
+                        <tr>
                             <th scope="row" style="width: 20%">Investment Total Amount</th>
                             <td colspan="" style="width: 3%">:</td>
                             <td colspan="3" style="width: 77%">5000000</td>

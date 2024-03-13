@@ -1,112 +1,64 @@
 @extends('Admin-Panel.partial.Layout')
 @section('content')
 <div class="row justify-content-center">
-    <div class="col-lg-10 col-sm-12">
+    <div class="col-lg-11 col-sm-12">
 
         <div class="card p-4">
             <div class="card-header">
-                <h3>Add New Project</h3>
+                <h3>Expense Form</h3>
             </div>
             <div class="card-body">
                 <form class="" action="" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="row g-3">
-                        <div class="col-md-6">
-                            <label for="projectName" class="form-label">Project Name</label>
-                            <input type="text" class="form-control" id="projectName" name="projectName" value="" >
-                        </div>
-
-                        <div class="col-md-6">
-                            <label for="land_area" class="form-label">Land Area</label>
-                            <input type="text" class="form-control" id="land_area" name="land_area" value="" >
-                        </div>
-
-                        <div class="col-md-6">
-                            <label for="budget" class="form-label">Project Budget</label>
-                            <input type="text" class="form-control" id="budget" name="budget" value="" >
-                        </div>
-
-                        <div class="col-md-6">
-                            <label for="duration" class="form-label">Project Duration</label>
-                            <input type="text" class="form-control" id="duration" name="duration" value="" >
-                        </div>
-
-                        <div class="col-md-6">
-                            <label for="floor" class="form-label">Floor</label>
-                            <input type="text" class="form-control" id="floor" name="floor" value="" >
-                        </div>
-
-                        <div class="col-md-6">
-                            <label for="flat" class="form-label">Flat</label>
-                            <input type="text" class="form-control" id="flat" name="flat" value="" >
-                        </div>
-
-                        <div class="col-md-6">
-                            <label for="flat_area" class="form-label">Flat Area</label>
-                            <input type="text" class="form-control" id="flat_area" name="flat_area" value="" >
-                        </div>
-
-                        <div class="col-md-6">
-                            <label for="start_date" class="form-label">Project Start Date</label>
-                            <input type="date" class="form-control" id="start_date" name="start_date" value="" >
-                        </div>
-
-                        <div class="col-md-6">
-                            <label for="end_date" class="form-label">Project End Date</label>
-                            <input type="month" class="form-control" id="end_date" name="end_date" value="" >
-                        </div>
-
-
-                        <div class="col-12">
-                            <hr>
-                            <h4>Location</h4>
-                            <hr>
-                        </div>
-                        <div class="col-12">
-                            <label for="address" class="form-label">Address</label>
-                            <input type="text" class="form-control" id="address" placeholder="1234 Main St" name="address" value="" >
-                        </div>
-                        <div class="col-md-6">
-                            <label for="city" class="form-label">City</label>
-                            <input type="text" class="form-control" id="city" name="city" value="" >
-                        </div>
                         <div class="col-md-4">
-                            <label for="district" class="form-label">District</label>
-                            <div class="mr-1 ">
-                                <input class="form-control bg-light" list="districtOptions" id="district"
-                                    placeholder="Select District" name="district">
-                                <datalist id="districtOptions">
-                                    <option value="PRITOM SARKER"> </option>
-                                    <option value="Joy Roy 2"></option>
-                                    <option value="Labib Kumar"></option>
-                                    <option value="Joy Roy"></option>
-                                    <option value="Indrajit debnath"></option>
-                                    <option value="MEHEDI HASAN"></option>
-                                    <option value="DELUARA HOSEN"></option>
-                                    <option value="Shahedul Islam"></option>
-                                    <option value="Md Ruhul Amin"></option>
-                                    <option value="Kanoc Roy"></option>
-                                    <option value="Golam Rabbani"></option>
-                                    <option value="Joy Karmokar"></option>
-                                    <option value="Md.Sabbir Sheikh"></option>
-                                    <option value="Md Rasheduzaman"></option>
-                                    <option value="Md Mehedi Hasan"></option>
-                                    <option value="Zafor Iqbal"></option>
-                                    <option value="Md Iqbal Hossain"></option>
-                                    <option value="Arifur Rahman Hamza"></option>
-                                    <option value="Md shozib hossen"></option>
-                                </datalist>
+                            <label for="date" class="form-label">date</label>
+                            <input type="date" class="form-control" id="date" name="date" value="" >
+                        </div>
+
+                        <div class="col-md-12">
+                            <div id="dynamic-field-container">
+                                <div class="mt-3 row align-items-end parentDiv">
+                                    <div class="col-md-4 col-12">
+                                        <label for="name" class="form-label">Material Name</label>
+                                        <input type="text" name="name[]" class="form-control" id="name" />
+                                    </div>
+                                    <div class="col-md-1 col-3">
+                                        <label for="quantity" class="form-label">Quantity</label>
+                                        <input type="text" name="quantity[]" class="form-control quantity" id="quantity" />
+                                    </div>
+                                    <div class="col-md-2 col-4">
+                                        <label for="unit" class="form-label">Unit</label>
+                                        <select name="unit[]" class="form-select unit" id="unit">
+                                            <option value="">Unit.....</option>
+                                            <option value="pc">PC</option>
+                                            <option value="kg">KG</option>
+                                            <option value="liter">Liter</option>
+                                            <option value="miter">miter</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-1 col-3">
+                                        <label for="price" class="form-label">Price</label>
+                                        <input type="decimal" name="price[]" class="form-control price" id="price" />
+                                    </div>
+
+                                    <div class="col-md-2 col-6">
+                                        <label for="totalPrice" class="form-label">Total Price</label>
+                                        <input type="decimal" name="totalPrice[]" class="form-control totalPrice" id="totalPrice" />
+                                    </div>
+                                    <div class="col-md-2 col-6">
+                                        <button type="button" class="btn btn-primary" id="add-field">Add Field</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-2">
-                            <label for="zipCode" class="form-label">Zip Code</label>
-                            <input type="text" class="form-control" id="zipCode" name="zipCode" value="" >
+                        <div class="mt-3">
+                            <label for="total" class="form-label">Total</label>
+                            <input type="decimal" class="form-control" id="total" name="total" value="" >
+
                         </div>
-
-                        <input   type = "number"  min="1" max="10"   value = "1" onclick="Dosmothing()"   />
-
                         <hr>
-                        <div class="col-12">
+                        <div class="col-md-12">
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" id="gridCheck">
                                 <label class="form-check-label" for="gridCheck">
@@ -127,14 +79,76 @@
 </div>
 
 <script>
-    var currentValue = 1;
-function doSomething() {
-      if (parseInt($(this).val()) > currentValue) {
-            alert("Incremented");
-      } else {
-            alert("Deccremented");
-      }
-      currentValue = parseInt($(this).val());
-}
+    $(document).ready(function() {
+        var maxFields = 10;
+        var addButton = $('#add-field');
+        var container = $('#dynamic-field-container');
+        var fieldHTML = `<div class="mt-3 row align-items-end remove-div parentDiv ">
+                            <div class="col-md-4 col-12">
+                                <label for="name" class="form-label">Material Name</label>
+                                <input type="text" name="name[]" class="form-control" id="name" />
+                            </div>
+                            <div class="col-md-1 col-3">
+                                <label for="quantity" class="form-label">Quantity</label>
+                                <input type="text" name="quantity[]" class="form-control quantity" id="quantity" />
+                            </div>
+                            <div class="col-md-2 col-4">
+                                <label for="unit" class="form-label">Unit</label>
+                                <select name="unit[]" class="form-select unit" id="unit">
+                                    <option value="">Unit....</option>
+                                    <option value="pc">PC</option>
+                                    <option value="kg">KG</option>
+                                    <option value="liter">Liter</option>
+                                    <option value="miter">miter</option>
+                                </select>
+                            </div>
+                            <div class="col-md-1 col-3">
+                                <label for="price" class="form-label">price</label>
+                                <input type="decimal" name="price[]" class="form-control price" id="price" />
+                            </div>
+
+                            <div class="col-md-2 col-6">
+                                <label for="totalPrice" class="form-label">Total Price</label>
+                                <input type="decimal" name="totalPrice[]" class="form-control totalPrice" id="totalPrice" />
+                            </div>
+                            <div class="col-md-2 col-6">
+                                <button type="button"  class="remove-field btn btn-danger">Remove</button>
+                            </div>
+                        </div>`;
+        var x = 1;
+
+        $(container).on('keyup', '.price, .quantity', function() {
+            var parentDiv = $(this).closest('.parentDiv');
+            var quantity = parseFloat(parentDiv.find('.quantity').val()) || 0;
+            var price = parseFloat(parentDiv.find('.price').val()) || 0;
+            parentDiv.find('.totalPrice').val(quantity * price);
+            $('#total').val(sumTotalPrices());
+        });
+
+        function sumTotalPrices() {
+            var total = 0;
+            $('.totalPrice').each(function() {
+                total = total + parseFloat($(this).val()) || 0;
+            });
+            return total;
+        }
+
+        $(addButton).click(function() {
+            if (x < maxFields) {
+                x++;
+                $(container).append(fieldHTML);
+            }
+        });
+
+        $(container).on('click', '.remove-field', function() {
+            $(this).closest('.remove-div').remove();
+            x--;
+        });
+    });
+
 </script>
+
+
+
+
 @endsection
