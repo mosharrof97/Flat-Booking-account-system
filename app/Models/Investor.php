@@ -16,6 +16,7 @@ class Investor extends Model
         'phone',
         'email',
         'password',
+        'role',
         'address',
         'city',
         'district',
