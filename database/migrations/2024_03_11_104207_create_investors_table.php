@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('investors', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('phone');
+            $table->integer('phone',15);
             $table->string('email');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

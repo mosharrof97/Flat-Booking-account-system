@@ -69,6 +69,7 @@
                     <div class="signin-form">
                         <h2 class="form-title">Login</h2>
                         <form method="POST" action="{{ route('login') }}" class="w-100" id="login-form">
+                            @csrf
                             <div class="form-group">
                                 <label for="email"><i class="zmdi zmdi-account material-icons-name"></i></label>
                                 <input type="text" name="email" id="email" required autofocus autocomplete="username" placeholder="Email..."/>

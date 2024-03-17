@@ -8,33 +8,51 @@
                     <h3>Investor Information</h3>
                 </div>
                 <div class="card-body">
-                    <form class="row g-3" action="" method="POST" enctype="multipart/form-data">
+                    <form class="row g-3" action="{{ route('store_investor') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="col-md-12">
                             <label for="name" class="form-label">Full Name</label>
                             <input type="text" class="form-control" id="name" name="name">
+                            @error('name')
+                                <span id="" class="form-text text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
                         <div class="col-md-6">
                             <label for="phone" class="form-label">Phone</label>
                             <input type="phone" class="form-control" id="phone" name="phone">
+                            @error('phone')
+                                <span id="" class="form-text text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
                         <div class="col-md-6">
                             <label for="email" class="form-label">Email</label>
                             <input type="email" class="form-control" id="email" name="email">
+                            @error('email')
+                                <span class="form-text text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
                         <div class="col-md-6">
                             <label for="password" class="form-label">Password</label>
                             <input type="password" class="form-control" id="password" name="password">
+                            @error('password')
+                                <span class="form-text text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
                         <div class="col-md-6">
                             <label for="password_confirmation" class="form-label">Confirmation Password</label>
                             <input type="password" class="form-control" id="password_confirmation"
                                 name="password_confirmation">
+                            @error('password_confirmation')
+                                <span class="form-text text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
                         <div class="col-12">
                             <label for="address" class="form-label">Address</label>
                             <input type="text" class="form-control" id="address" placeholder="1234 Main St"
                                 name="address">
+                            @error('address')
+                                <span class="form-text text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
                         {{-- <div class="col-12">
                         <label for="inputAddress2" class="form-label">Address 2</label>
@@ -43,6 +61,10 @@
                         <div class="col-md-6">
                             <label for="city" class="form-label">City</label>
                             <input type="text" class="form-control" id="city" name="city">
+
+                            @error('city')
+                                <span class="form-text text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
                         <div class="col-md-4">
                             <label for="district" class="form-label">District</label>
@@ -70,16 +92,28 @@
                                     <option value="Arifur Rahman Hamza"></option>
                                     <option value="Md shozib hossen"></option>
                                 </datalist>
+
+                                @error('district')
+                                    <span class="form-text text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
                         </div>
                         <div class="col-md-2">
                             <label for="zipCode" class="form-label">Zip Code</label>
                             <input type="text" class="form-control" id="zipCode" name="zipCode">
+
+                            @error('zipCode')
+                                <span class="form-text text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
 
                         <div class="col-md-12">
                             <label for="image" class="form-label">Image</label>
                             <input type="file" class="form-control" id="image" name="image">
+
+                            @error('image')
+                                <span class="form-text text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
                         {{-- <div class="col-12">
                         <div class="form-check">

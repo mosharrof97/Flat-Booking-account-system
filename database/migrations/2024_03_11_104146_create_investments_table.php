@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('investments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('investor_id')->constrained('investors');
+            $table->foreignId('investor_id');
             $table->foreignId('project_id');
             $table->decimal('total_Investment');
             $table->string('installment_type');
@@ -23,7 +23,7 @@ return new class extends Migration
             $table->timestamps();
         });
     }
-
+//$table->foreignId('investor_id')->constrained('investors');
     /**
      * Reverse the migrations.
      */

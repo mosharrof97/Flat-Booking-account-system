@@ -40,6 +40,19 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'admin ' => [
+            'driver' => 'session',
+            'provider' => 'admins',
+        ],
+        'accountant' => [
+            'driver' => 'session',
+            'provider' => 'accountants',
+        ],
+        'investor' => [
+            'driver' => 'session',
+            'provider' => 'investors',
+        ],
+
     ],
 
     /*
@@ -64,6 +77,7 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\Admin::class,
         ],
+
         'investors' => [
             'driver' => 'eloquent',
             'model' => App\Models\Investor::class,
@@ -100,13 +114,19 @@ return [
 
     'passwords' => [
         'admins' => [
-            'provider' => 'users',
+            'provider' => 'admins',
+            'table' => 'password_reset_tokens',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'accountants' => [
+            'provider' => 'admins',
             'table' => 'password_reset_tokens',
             'expire' => 60,
             'throttle' => 60,
         ],
         'investors' => [
-            'provider' => 'users',
+            'provider' => 'investors',
             'table' => 'password_reset_tokens',
             'expire' => 60,
             'throttle' => 60,

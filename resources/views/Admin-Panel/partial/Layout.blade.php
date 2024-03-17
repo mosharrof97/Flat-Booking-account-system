@@ -175,7 +175,7 @@
                         </a>
                     </li>
 
-                    <li>
+                    {{-- <li>
                         <a class="has-arrow" href="{{ route('new.project') }}" aria-expanded="false">
                             <i class="fa-solid fa-store"></i>
                             <span class="nav-text">New Project</span>
@@ -262,7 +262,7 @@
                             <i class="fa-solid fa-store"></i>
                             <span class="nav-text">Customer List</span>
                         </a>
-                    </li>
+                    </li> --}}
 
                     <li>
                         <a class="has-arrow" href="#" aria-expanded="false">

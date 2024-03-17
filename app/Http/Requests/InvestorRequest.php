@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+use app\Models\Investor;
 
 class InvestorRequest extends FormRequest
 {
@@ -25,13 +26,14 @@ class InvestorRequest extends FormRequest
         return [
             'name'=>'required|string',
             'phone'=>'required|numeric',
-            'email'=>['required','email',Rule::unique(User::class,'email')],
+            'email'=>['required','email'],
             'password'=>'required|min:6|confirmed',
             'address'=>'required|string',
             'city'=>'required|string',
             'district'=>'required|string',
             'zipCode'=>'required|numeric',
-            'image'=>['required', 'image','mimes:jpg,png,jpeg,gif,svg', 'dimensions:min_width=100,min_height=100,max_width=1000,max_height=1000','max:2048'] ,
+            'image'=>['required', 'image','mimes:jpg,png,jpeg,gif,svg'] ,
+            // 'image'=>['required', 'image','mimes:jpg,png,jpeg,gif,svg', 'dimensions:min_width=100,min_height=100,max_width=1000,max_height=1000','max:2048'] ,
         ];
     }
 }

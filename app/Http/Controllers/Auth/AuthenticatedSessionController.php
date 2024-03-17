@@ -33,19 +33,19 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        $url = '';
-        if ($request->user()->role == 'admin') {
-            $url=route('adminDashboard');
-        }
-        elseif($request->user()->role == 'user' ){
-            $url = route('userDashboard');
-        }
-        else{
-            $url = '/login';
-        }
-        return redirect()->intended($url );
+        // $url = '';
+        // if ($request->user()->role == 'admin') {
+        //     $url=view('dashboard');
+        // }
+        // elseif($request->user()->role == 'user' ){
+        //     $url = view('userDashboard');
+        // }
+        // else{
+        //     $url = '/login';
+        // }
+        // return redirect()->intended($url );
 
-        // return redirect()->intended(RouteServiceProvider::HOME);
+        return redirect()->intended(RouteServiceProvider::HOME);
     }
 
     /**

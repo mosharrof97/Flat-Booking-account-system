@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Invest\InvestorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,8 +15,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+
+
+
+Route::prefix('admin')->group(function () {
+    Route::get('/investor/create', [InvestorController::class, 'create'])->name('create_investor');
+    Route::post('/investor/create', [InvestorController::class, 'store'])->name('store_investor');
+});
+
 Route::get('/', function () {
-    return view('welcome');
+    return view('Admin-Panel.page.dashboard');
 });
 
 Route::get('/dashboard', function () {
