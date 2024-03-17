@@ -107,6 +107,7 @@
                             @enderror
                         </div>
 
+
                         <div class="col-md-12">
                             <label for="image" class="form-label">Image</label>
                             <input type="file" class="form-control" id="image" name="image">
@@ -121,6 +122,7 @@
                             <label class="form-check-label" for="gridCheck">
                                 Check me out
                             </label>
+
                         </div>
                     </div> --}}
                         <div class="col-12 text-end">
