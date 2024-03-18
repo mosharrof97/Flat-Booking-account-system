@@ -7,64 +7,67 @@
                 <h3>Investor Information</h3>
             </div>
             <div class="card-body">
-                <div class="">
-                    <style>
-                        .table-information {
-                            width: 100%;
-                            margin-bottom: 1rem;
-                            color: #BDBDC7;
-                        }
+                <div class="row ">
+                    <div class="col-lg-8 col-sm-9 col-12">
+                        <style>
+                            .table-information {
+                                width: 100%;
+                                margin-bottom: 1rem;
+                                color: #BDBDC7;
+                            }
 
-                        .table-information th,
-                        .table-information td {
-                            padding: 0.2rem !important;
-                        }
+                            .table-information th,
+                            .table-information td {
+                                padding: 0.2rem !important;
+                            }
 
-                    </style>
-                    <table class="table-information table table-borderless">
-                        <tr>
-                            <th scope="row" style="width: 20%">Name </th>
-                            <td colspan="" style="width: 3%">:</td>
-                            <td colspan="3" style="width: 77%">Md. Rakid Hasan</td>
-                        </tr>
-                        <tr>
-                            <th scope="row" style="width: 20%">Phone</th>
-                            <td colspan="" style="width: 3%">:</td>
-                            <td colspan="3" style="width: 77%">0214587842</td>
-                        </tr>
-                        <tr>
-                            <th scope="row" style="width: 20%">Email</th>
-                            <td colspan="" style="width: 3%">:</td>
-                            <td colspan="3" style="width: 77%">Rakid@mdo.com</td>
-                        </tr>
-                        <tr>
-                            <th scope="row" style="width: 20%">Project Name</th>
-                            <td colspan="" style="width: 3%">:</td>
-                            <td colspan="3" style="width: 77%">Coder de Dhaka</td>
-                        </tr>
-                        <tr>
-                            <th scope="row" style="width: 20%">Investment Total Amount</th>
-                            <td colspan="" style="width: 3%">:</td>
-                            <td colspan="3" style="width: 77%">5000000</td>
-                        </tr>
-                        <tr>
-                            <th scope="row" style="width: 20%">Installment</th>
-                            <td colspan="" style="width: 3%">:</td>
-                            <td colspan="3" style="width: 77%">3</td>
-                        </tr>
-                        <tr>
-                            <th scope="row" style="width: 20%">Paid Amount</th>
-                            <td colspan="" style="width: 3%">:</td>
-                            <td colspan="3" style="width: 77%">3000000</td>
-                        </tr>
-                        <tr>
-                            <th scope="row" style="width: 20%">Due Amount</th>
-                            <td colspan="" style="width: 3%">:</td>
-                            <td colspan="3" style="width: 77%">2000000</td>
-                        </tr>
+                        </style>
+                        <table class="table-information table table-borderless">
+                            <tr>
+                                <th scope="row" style="width: 20%">Name </th>
+                                <td colspan="" style="width: 3%">:</td>
+                                <td colspan="3" style="width: 77%">{{ $data->name }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" style="width: 20%">Phone</th>
+                                <td colspan="" style="width: 3%">:</td>
+                                <td colspan="3" style="width: 77%">{{ $data->phone }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" style="width: 20%">Email</th>
+                                <td colspan="" style="width: 3%">:</td>
+                                <td colspan="3" style="width: 77%">{{ $data->email }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" style="width: 20%">Address</th>
+                                <td colspan="" style="width: 3%">:</td>
+                                <td colspan="3" style="width: 77%">{{ $data->address }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" style="width: 20%">City</th>
+                                <td colspan="" style="width: 3%">:</td>
+                                <td colspan="3" style="width: 77%">{{ $data->city }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" style="width: 20%">District</th>
+                                <td colspan="" style="width: 3%">:</td>
+                                <td colspan="3" style="width: 77%">{{ $data->district }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" style="width: 20%">Zip Code</th>
+                                <td colspan="" style="width: 3%">:</td>
+                                <td colspan="3" style="width: 77%">{{ $data->zipCode }}</td>
+                            </tr>
 
-                    </table>
+                        </table>
+                    </div>
+
+                    <div class="col-lg-4 col-sm-3 col-12">
+                        <img src="{{ asset('upload/Investor/'.$data->image) }}" alt="" width="80">
+
+                    </div>
                 </div>
+
                 <div class="">
                     <hr>
                     <div class="">
@@ -165,7 +168,7 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
+            </>
         </div>
     </div>
 </div>

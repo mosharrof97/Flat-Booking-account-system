@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('investors', function (Blueprint $table) {
+       Schema::create('investors', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('phone',15);
-            $table->string('email');
+            $table->string('phone', 15);
+            $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('address');
@@ -27,7 +27,9 @@ return new class extends Migration
             $table->integer('status')->default(0);
             $table->rememberToken();
             $table->timestamps();
-        });
+       });
+
+
     }
 
 

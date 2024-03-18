@@ -11,33 +11,35 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th scope="col" class="text-wrap">SL</th>
-                                <th scope="col" class="text-wrap">Name</th>
-                                <th scope="col" class="text-wrap">Phone</th>
-                                <th scope="col" class="text-wrap">Email</th>
-                                <th scope="col" class="text-wrap">Total Invest Project</th>
-                                <th scope="col" class="text-wrap">Investment Total Amount</th>
-                                <th scope="col" class="text-wrap">Total Installment</th>
-                                <th scope="col" class="text-wrap">Total Paid Amount</th>
-                                <th scope="col" class="text-wrap">Total Due Amount</th>
-                                <th scope="col" class="text-wrap">Action</th>
+                                <th scope="col" class="text-nowrap">SL</th>
+                                <th scope="col" class="text-nowrap">Name</th>
+                                <th scope="col" class="text-nowrap">Phone</th>
+                                <th scope="col" class="text-nowrap">Email</th>
+                                <th scope="col" class="text-nowrap">Total Invest Project</th>
+                                <th scope="col" class="text-nowrap">Investment Total Amount</th>
+                                <th scope="col" class="text-nowrap">Total Installment</th>
+                                <th scope="col" class="text-nowrap">Total Paid Amount</th>
+                                <th scope="col" class="text-nowrap">Total Due Amount</th>
+                                <th scope="col" class="text-nowrap">Action</th>
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ( $datas as $data )
                             <tr>
                                 <th scope="row">1</th>
-                                <td>Md. Rakid Hasan</td>
-                                <td>0214587842</td>
-                                <td>Rakid@mdo.com</td>
-                                <td>2 Project</td>
-                                <td>5000000Tk</td>
+                                <td>{{ $data->name }}</td>
+                                <td>{{ $data->phone }}</td>
+                                <td>{{ $data->email }}</td>
+                                <td>{{ $data->phone }} TK</td>
+                                <td>{{ $data->phone }} TK</td>
                                 <td>3</td>
-                                <td>3000000</td>
-                                <td>2000000</td>
+                                <td>3000000 TK</td>
+                                <td>2000000 TK</td>
                                 <td>
-                                    <a href="{{route('investor.view')}}" class="btn btn-success">View</a>
+                                    <a href="{{route('investor.view',$data->id)}}" class="btn btn-success">View</a>
                                 </td>
                             </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

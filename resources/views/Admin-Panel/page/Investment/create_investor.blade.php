@@ -8,6 +8,15 @@
                     <h3>Investor Information</h3>
                 </div>
                 <div class="card-body">
+                    <div>
+                        @if (Session::has('success'))
+                            <p class="text-success">{{ Session::get('success') }}</p>
+                        @endif
+
+                        @if (Session::has('error'))
+                            <p class="text-danger">{{ Session::get('error') }}</p>
+                        @endif
+                    </div>
                     <form class="row g-3" action="{{ route('store_investor') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="col-md-12">

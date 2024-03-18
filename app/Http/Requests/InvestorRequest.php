@@ -32,7 +32,7 @@ class InvestorRequest extends FormRequest
             'city'=>'required|string',
             'district'=>'required|string',
             'zipCode'=>'required|numeric',
-            'image'=>['required', 'image','mimes:jpg,png,jpeg,gif,svg'] ,
+            'image'=>['required', 'image'] ,
             // 'image'=>['required', 'image','mimes:jpg,png,jpeg,gif,svg', 'dimensions:min_width=100,min_height=100,max_width=1000,max_height=1000','max:2048'] ,
         ];
     }
