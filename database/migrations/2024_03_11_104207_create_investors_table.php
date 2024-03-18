@@ -14,21 +14,30 @@ return new class extends Migration
        Schema::create('investors', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('father_name');
+            $table->string('mother_name');
             $table->string('phone', 15);
+            $table->string('nid', 20);
+            $table->string('tin', 20);
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('address');
-            $table->string('city');
-            $table->string('district');
-            $table->integer('zipCode');
+            $table->string('pre_address');
+            $table->string('pre_city');
+            $table->string('pre_district');
+            $table->integer('pre_zipCode');
+
+            $table->string('per_address');
+            $table->string('per_city');
+            $table->string('per_district');
+            $table->integer('per_zipCode');
+
             $table->string('image');
             $table->string('role');
             $table->integer('status')->default(0);
             $table->rememberToken();
             $table->timestamps();
        });
-
 
     }
 

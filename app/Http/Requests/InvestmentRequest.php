@@ -24,23 +24,23 @@ class InvestmentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name'=>'required|string',
-            'phone'=>'required|numeric',
-            'email'=>'required|email',
-            'password'=>'required|min:6|confirmed',
-            'address'=>'required|string',
-            'city'=>'required|string',
-            'district'=>'required|string',
-            'zipCode'=>'required|numeric',
-            'image'=>'required',
+            // 'name'=>'required|string',
+            // 'phone'=>'required|numeric',
+            // 'email'=>'required|email',
+            // 'password'=>'required|min:6|confirmed',
+            // 'address'=>'required|string',
+            // 'city'=>'required|string',
+            // 'district'=>'required|string',
+            // 'zipCode'=>'required|numeric',
+            // 'image'=>'required',
 
+            'investor_id'=>'required',
             'project_id'=>'required',
             'total_Investment'=>'required',
             'installment_type'=>'required',
             'profit_type'=>'required',
             'profit'=>'required',
             'installment_amount'=>'required',
-
         ];
     }
 }

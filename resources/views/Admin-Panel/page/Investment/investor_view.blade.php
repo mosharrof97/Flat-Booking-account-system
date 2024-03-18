@@ -34,37 +34,96 @@
                                 <td colspan="3" style="width: 77%">{{ $data->phone }}</td>
                             </tr>
                             <tr>
+                                <th scope="row" style="width: 20%">Phone</th>
+                                <td colspan="" style="width: 3%">:</td>
+                                <td colspan="3" style="width: 77%">{{ $data->nid }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" style="width: 20%">Phone</th>
+                                <td colspan="" style="width: 3%">:</td>
+                                <td colspan="3" style="width: 77%">{{ $data->tin }}</td>
+                            </tr>
+                            <tr>
                                 <th scope="row" style="width: 20%">Email</th>
                                 <td colspan="" style="width: 3%">:</td>
                                 <td colspan="3" style="width: 77%">{{ $data->email }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row" style="width: 20%">Address</th>
-                                <td colspan="" style="width: 3%">:</td>
-                                <td colspan="3" style="width: 77%">{{ $data->address }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row" style="width: 20%">City</th>
-                                <td colspan="" style="width: 3%">:</td>
-                                <td colspan="3" style="width: 77%">{{ $data->city }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row" style="width: 20%">District</th>
-                                <td colspan="" style="width: 3%">:</td>
-                                <td colspan="3" style="width: 77%">{{ $data->district }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row" style="width: 20%">Zip Code</th>
-                                <td colspan="" style="width: 3%">:</td>
-                                <td colspan="3" style="width: 77%">{{ $data->zipCode }}</td>
                             </tr>
 
                         </table>
                     </div>
 
-                    <div class="col-lg-4 col-sm-3 col-12">
-                        <img src="{{ asset('upload/Investor/'.$data->image) }}" alt="" width="80">
+                    <div class="col-lg-4 col-sm-3 col-12 text-end">
+                        <img src="{{ asset('upload/Investor/'.$data->image) }}" alt="" width="50%">
 
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="row mt-3">
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <div class="card-header bg-info">
+                                        <h4 class="text-light text-center">Present Address</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <table class="table-information table table-borderless">
+                                            <tr>
+                                                <th scope="row" style="width: 20%">Address </th>
+                                                <td colspan="" style="width: 3%">:</td>
+                                                <td colspan="3" style="width: 77%">{{ $data->pre_address }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row" style="width: 20%">City</th>
+                                                <td colspan="" style="width: 3%">:</td>
+                                                <td colspan="3" style="width: 77%">{{ $data->pre_city }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row" style="width: 20%">District</th>
+                                                <td colspan="" style="width: 3%">:</td>
+                                                <td colspan="3" style="width: 77%">{{ $data->pre_district }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row" style="width: 20%">Phone</th>
+                                                <td colspan="" style="width: 3%">:</td>
+                                                <td colspan="3" style="width: 77%">{{ $data->pre_zipCode }}</td>
+                                            </tr>
+
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <div class="card-header bg-info">
+                                        <h4 class="text-light text-center">Present Address</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <table class="table-information table table-borderless">
+                                            <tr>
+                                                <th scope="row" style="width: 20%">Address </th>
+                                                <td colspan="" style="width: 3%">:</td>
+                                                <td colspan="3" style="width: 77%">{{ $data->per_address }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row" style="width: 20%">City</th>
+                                                <td colspan="" style="width: 3%">:</td>
+                                                <td colspan="3" style="width: 77%">{{ $data->per_city }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row" style="width: 20%">District</th>
+                                                <td colspan="" style="width: 3%">:</td>
+                                                <td colspan="3" style="width: 77%">{{ $data->per_district }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row" style="width: 20%">Phone</th>
+                                                <td colspan="" style="width: 3%">:</td>
+                                                <td colspan="3" style="width: 77%">{{ $data->per_zipCode }}</td>
+                                            </tr>
+
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -168,9 +227,9 @@
                         </tbody>
                     </table>
                 </div>
-            </>
+                </>
+            </div>
         </div>
     </div>
-</div>
 
-@endsection
+    @endsection

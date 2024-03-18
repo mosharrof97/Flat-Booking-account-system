@@ -19,7 +19,7 @@ class InvestorController extends Controller
     }
 
     public function store(InvestorRequest $request){
-        dd($request->image);
+        // dd($request->image);
         if($request->hasFile('image')){
             $imageName = 'Investor_'. time() .'_'. mt_rand(100000, 10000000000) .'.'.$request->file('image')->extension();
             $request->file('image')->move(public_path('upload/Investor'), $imageName);
@@ -27,15 +27,24 @@ class InvestorController extends Controller
 // dd($request->hasFile('image'));
         $data=[
             'name'=>$request->name,
+            'father_name'=>$request->father_name,
+            'mother_name'=>$request->mother_name,
             'phone'=>$request->phone,
             'email'=>$request->email,
-            'role'=>'investor',
+            'nid'=>$request->nid,
+            'tin'=>$request->tin,
             'password'=>$request->password,
-            'address'=>$request->address,
-            'city'=>$request->city,
-            'district'=>$request->district,
-            'zipCode'=>$request->zipCode,
-            'image'=>$imageName
+            'pre_address'=>$request->pre_address,
+            'pre_city'=>$request->pre_city,
+            'pre_district'=>$request->pre_district,
+            'pre_zipCode'=>$request->pre_zipCode,
+
+            'per_address'=>$request->per_address,
+            'per_city'=>$request->per_city,
+            'per_district'=>$request->per_district,
+            'per_zipCode'=>$request->per_zipCode,
+            'role'=>'investor',
+            'image'=>$imageName,
         ];
         Investor::create($data);
         return back()->with('success','Investor Create Successful.');

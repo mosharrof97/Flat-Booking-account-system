@@ -13,14 +13,24 @@ class Investor extends Model
     use HasApiTokens, HasFactory, Notifiable;
     protected $fillable = [
         'name',
+        'father_name',
+        'mother_name',
         'phone',
         'email',
+        'nid',
+        'tin',
         'password',
         'role',
-        'address',
-        'city',
-        'district',
-        'zipCode',
+        'status',
+        'pre_address',
+        'pre_city',
+        'pre_district',
+        'pre_zipCode',
+
+        'per_address',
+        'per_city',
+        'per_district',
+        'per_zipCode',
         'image',
     ];
 
