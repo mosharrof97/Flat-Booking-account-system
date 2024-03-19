@@ -20,11 +20,14 @@ use App\Http\Controllers\Invest\InvestorController;
 
 
 Route::prefix('admin')->group(function () {
-    Route::get('/investor/list', [InvestorController::class,'index'])->name('list_investor');
-    Route::get('/investor/create', [InvestorController::class, 'create'])->name('create_investor');
-    Route::post('/investor/create', [InvestorController::class, 'store'])->name('store_investor');
-    Route::get('/investor/view/{id}', [InvestorController::class,'view'])->name('investor.view');
 
+    // Investor
+    Route::prefix('investor')->group(function () {
+        Route::get('/list', [InvestorController::class,'index'])->name('list_investor');
+        Route::get('/create', [InvestorController::class, 'create'])->name('create_investor');
+        Route::post('/create', [InvestorController::class, 'store'])->name('store_investor');
+        Route::get('/view/{id}', [InvestorController::class,'view'])->name('investor.view');
+    });
 });
 
 Route::get('/', function () {

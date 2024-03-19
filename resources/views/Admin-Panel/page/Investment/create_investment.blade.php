@@ -12,62 +12,18 @@
                     @csrf
                     <div class="row g-3">
                         <div class="col-md-6">
-                            <label for="phone" class="form-label">Phone</label>
+                            <label for="investor" class="form-label">Investor</label>
+                            <select name="investor_id" id="investor" class="form-select bg-light">
+                                <option value="">Select Investor.......</option>
+                                @foreach ( $investors as $investor)
+                                <option value="{{ $investor->id }}">{{ $investor->name }}</option>
+                                @endforeach
+                            </select>
                             <div class="mr-1 ">
-                                <input class="form-control bg-light" list="phoneOptions" id="phone" placeholder="Select phone" name="phone">
-                                <datalist id="phoneOptions">
-                                    <option value="PRITOM SARKER"> </option>
-                                    <option value="Joy Roy 2"></option>
-                                    <option value="Labib Kumar"></option>
-                                    <option value="Joy Roy"></option>
-                                    <option value="Indrajit debnath"></option>
-                                    <option value="MEHEDI HASAN"></option>
-                                    <option value="DELUARA HOSEN"></option>
-                                    <option value="Shahedul Islam"></option>
-                                    <option value="Md Ruhul Amin"></option>
-                                    <option value="Kanoc Roy"></option>
-                                    <option value="Golam Rabbani"></option>
-                                    <option value="Joy Karmokar"></option>
-                                    <option value="Md.Sabbir Sheikh"></option>
-                                    <option value="Md Rasheduzaman"></option>
-                                    <option value="Md Mehedi Hasan"></option>
-                                    <option value="Zafor Iqbal"></option>
-                                    <option value="Md Iqbal Hossain"></option>
-                                    <option value="Arifur Rahman Hamza"></option>
-                                    <option value="Md shozib hossen"></option>
-                                </datalist>
+                                @error('investor_id')
+                                <span class="form-text text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="name" class="form-label">Full Name</label>
-                            <input type="text" class="form-control" id="name" name="name" value="" disabled>
-
-                        </div>
-                        <div class="col-md-6">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" name="email" value="" disabled>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="password" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="password" name="password" value="" disabled>
-                        </div>
-
-                        <div class="col-12">
-                            <label for="address" class="form-label">Address</label>
-                            <input type="text" class="form-control" id="address" placeholder="1234 Main St" name="address" value="" disabled>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="city" class="form-label">City</label>
-                            <input type="text" class="form-control" id="city" name="city" value="" disabled>
-                        </div>
-                        <div class="col-md-4">
-                            <label for="district" class="form-label">District</label>
-                            <input type="text" class="form-control" id="district" name="district" value="" disabled>
-
-                        </div>
-                        <div class="col-md-2">
-                            <label for="zipCode" class="form-label">Zip Code</label>
-                            <input type="text" class="form-control" id="zipCode" name="zipCode" value="" disabled>
                         </div>
 
                         {{-- Project details & Investment--}}
@@ -78,36 +34,25 @@
                         </div>
 
                         <div class="col-md-6">
-                            <label for="project_id" class="form-label">Project Name</label>
-                            {{-- <input type="text" class="form-control" id="name" name="name"> --}}
+                            <label for="project" class="form-label">Project Name</label>
+                            <select name="project_id" id="project" class="form-select bg-light">
+                                <option value="">Select Project Name.......</option>
+                                @foreach ( $projects as $project)
+                                    <option value="{{ $project->id }}">{{ $project->name }}</option>
+                                @endforeach
+                            </select>
                             <div class="mr-1 ">
-                                <input class="form-control bg-light" list="projectList" id="project_id" name="project_id" placeholder="Select Project Name.....">
-                                <datalist id="projectList">
-                                    <option value="PRITOM SARKER"> </option>
-                                    <option value="Joy Roy 2"></option>
-                                    <option value="Labib Kumar"></option>
-                                    <option value="Joy Roy"></option>
-                                    <option value="Indrajit debnath"></option>
-                                    <option value="MEHEDI HASAN"></option>
-                                    <option value="DELUARA HOSEN"></option>
-                                    <option value="Shahedul Islam"></option>
-                                    <option value="Md Ruhul Amin"></option>
-                                    <option value="Kanoc Roy"></option>
-                                    <option value="Golam Rabbani"></option>
-                                    <option value="Joy Karmokar"></option>
-                                    <option value="Md.Sabbir Sheikh"></option>
-                                    <option value="Md Rasheduzaman"></option>
-                                    <option value="Md Mehedi Hasan"></option>
-                                    <option value="Zafor Iqbal"></option>
-                                    <option value="Md Iqbal Hossain"></option>
-                                    <option value="Arifur Rahman Hamza"></option>
-                                    <option value="Md shozib hossen"></option>
-                                </datalist>
+                                @error('project_id')
+                                <span class="form-text text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
                         </div>
                         <div class="col-md-6">
                             <label for="total_Investment" class="form-label">Investment Total Amount</label>
-                            <input type="text" class="form-control" id="total_Investment" name="total_Investment">
+                            <input type="" class="form-control" id="total_Investment" name="total_Investment">
+                            @error('total_Investment')
+                                <span class="form-text text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
                         <div class="col-md-6">
                             <label for="installment_type" class="form-label">Installment Type</label>
@@ -116,6 +61,9 @@
                                 <option value="fullPaid">Full Paid</option>
                                 <option value="installment">Installment</option>
                             </select>
+                            @error('installment_type')
+                                <span class="form-text text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
 
                         <div class="col-md-6">
@@ -126,10 +74,16 @@
                                 <option value="fixed">fixed</option>
                                 <option value="flat">flat</option>
                             </select>
+                            @error('profit_type')
+                                <span class="form-text text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
                         <div class="col-md-6">
                             <label for="profit" class="form-label">Profit</label>
                             <input type="text" class="form-control" id="profit" name="profit" placeholder="profit...">
+                            @error('profit')
+                                <span class="form-text text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
 
 
@@ -138,7 +92,6 @@
                         <div class="col-md-12">
                             <h2> Project Investment </h2>
                         </div>
-
 
                         <div class="col-md-6">
                             <label for="installment_amount" class="form-label">Installment Amount</label>

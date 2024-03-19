@@ -8,12 +8,10 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
     {{-- -- Favicon icon -- --}}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/favicon.png') }}">
 
-    <link href="{{ asset('asset/css/bootstrap.min.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('asset/css/bootstrap.min.css') }}" rel="stylesheet" />
 
     <link href="{{ asset('vendor/pg-calendar/css/pignose.calendar.min.css') }}" rel="stylesheet">
     <link href="{{ asset('vendor/chartist/css/chartist.min.css') }}" rel="stylesheet">
@@ -62,8 +60,7 @@
             <a href="" class="brand-logo">
                 {{-- <img class="logo-abbr" style="max-width: 52px;" src="{{ asset('images/logo.png') }}" alt="">
                 <img class="logo-compact" src="{{ asset('images/logo-text.png') }}" alt=""> --}}
-                <img class="brand-title  " style="max-width:100px" src="{{ asset('images/logo-text.png') }}"
-                    alt="">
+                <img class="brand-title  " style="max-width:100px" src="{{ asset('images/logo-text.png') }}" alt="">
             </a>
 
             <div class="nav-control">
@@ -90,8 +87,7 @@
                                 </span>
                                 <div class="dropdown-menu p-0 m-0">
                                     <form>
-                                        <input class="form-control" type="search" placeholder="Search"
-                                            aria-label="Search">
+                                        <input class="form-control" type="search" placeholder="Search" aria-label="Search">
                                     </form>
                                 </div>
                             </div>
@@ -118,8 +114,7 @@
                                         </li>
 
                                     </ul>
-                                    <a class="all-notification" href="#">See all notifications <i
-                                            class="fa-solid fa-arrow-right"></i></a>
+                                    <a class="all-notification" href="#">See all notifications <i class="fa-solid fa-arrow-right"></i></a>
                                 </div>
                             </li>
                             <li class="nav-item dropdown header-profile">
@@ -137,15 +132,13 @@
                                     </a>
 
                                     {{-- <form method="POST" action="{{ route('logout') }}">
-                                        @csrf
-                                        <a class="dropdown-item" href="{{ route('logout') }}"
-                                            onclick="event.preventDefault(); this.closest('form').submit();">Log
-                                            out</a>
+                                    @csrf
+                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();">Log
+                                        out</a>
                                     </form> --}}
                                     <form method="POST" action="">
                                         @csrf
-                                        <a class="dropdown-item" href=""
-                                            onclick="event.preventDefault(); this.closest('form').submit();">Log
+                                        <a class="dropdown-item" href="" onclick="event.preventDefault(); this.closest('form').submit();">Log
                                             out</a>
                                     </form>
                                 </div>
@@ -164,7 +157,7 @@
         ***********************************-- --}}
         <div class="quixnav">
             <div class="quixnav-scroll">
-                <ul class="metismenu"  id="menu">
+                <ul class="metismenu" id="menu">
 
                     <li class="nav-label first">Main Menu</li>
 
@@ -177,9 +170,9 @@
 
                     {{-- <li>
                         <a class="has-arrow" href="{{ route('new.project') }}" aria-expanded="false">
-                            <i class="fa-solid fa-store"></i>
-                            <span class="nav-text">New Project</span>
-                        </a>
+                    <i class="fa-solid fa-store"></i>
+                    <span class="nav-text">New Project</span>
+                    </a>
                     </li>
                     <li>
                         <a class="has-arrow" href="{{ route('investor.list') }}" aria-expanded="false">
@@ -271,60 +264,53 @@
                         </a>
                     </li>
 
-                    <li>
-                        <a class="has-arrow" href="##" aria-expanded="false">
+                    {{-- Customer --}}
+                    {{-- <li id="customer-parent">
+                        <a class="has-arrow" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#customer" aria-expanded="false" aria-controls="customer">
                             <i class="fa-solid fa-store"></i>
-                            <span class="nav-text">Manage Role </span>
+                            <span class="nav-text">Customer </span>
                         </a>
-                    </li>
-
-                    <li class="">
-                        <a href="javascript:void(0);" class="has-arrow d-flex menu-toggle">
-                            <i class="fa-solid fa-store"></i>
-                            <div data-i18n="Account Settings">Address Manage</div>
-                        </a>
-                        <ul class="menu-sub">
-                            <li class="menu-item">
-                                <a href="n" class="menu-link">
-                                    <div data-i18n="Account">District</div>
-                                </a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="b" class="menu-link">
-                                    <div data-i18n="Notifications">Upazila</div>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="">
-                        <div class="accordion accordion-flush " id="accordionFlushExample" style="background-color: rgba(240, 248, 255, 0)">
-                            <div class="accordion-item">
-                              <h2 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                                  Accordion Item #1
-                                </button>
-                              </h2>
-                              <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                                <div class="accordion-body">
-                                    <ul class="menu-sub">
-                                        <li class="menu-item">
-                                            <a href="n" class="menu-link">
-                                                <div data-i18n="Account">District</div>
-                                            </a>
-                                        </li>
-                                        <li class="menu-item">
-                                            <a href="b" class="menu-link">
-                                                <div data-i18n="Notifications">Upazila</div>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                              </div>
-                            </div>
+                        <div id="customer" class="accordion-collapse collapse" style="background-color: #1c0f54" data-bs-parent="#customer-parent">
+                            <ul class=" metismenu" >
+                                <li>
+                                    <a class="has-arrow" href="{{ route('customer.list') }}" >
+                                        <i class="fa-solid fa-store"></i>
+                                        <span class="nav-text">All Customer</span>
+                                    </a>
+                                </li>
+                                <li  >
+                                    <a class="has-arrow" href="{{ route('customer') }}">
+                                        <i class="fa-solid fa-store"></i>
+                                        <span class="nav-text">Add New Customer</span>
+                                    </a>
+                                </li>
+                            </ul>
                         </div>
+                    </li> --}}
 
+                    {{-- Investor --}}
+                    <li id="investor-parent">
+                        <a class="has-arrow" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#investor" aria-expanded="false" aria-controls="investor">
+                            <i class="fa-solid fa-store"></i>
+                            <span class="nav-text">Investor </span>
+                        </a>
+                        <div id="investor" class="accordion-collapse collapse" style="background-color: #1c0f54" data-bs-parent="#investor-parent">
+                            <ul class=" metismenu" >
+                                <li>
+                                    <a class="has-arrow" href="{{ route('list_investor') }}" >
+                                        <i class="fa-solid fa-store"></i>
+                                        <span class="nav-text">All Investor</span>
+                                    </a>
+                                </li>
+                                <li  >
+                                    <a class="has-arrow" href="{{ route('create_investor') }}">
+                                        <i class="fa-solid fa-store"></i>
+                                        <span class="nav-text">Add New Investor</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </li>
-
                 </ul>
             </div>
         </div>

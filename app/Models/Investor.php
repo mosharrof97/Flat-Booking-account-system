@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Investor extends Model
 {
@@ -26,7 +28,6 @@ class Investor extends Model
         'pre_city',
         'pre_district',
         'pre_zipCode',
-
         'per_address',
         'per_city',
         'per_district',
@@ -53,4 +54,9 @@ class Investor extends Model
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function district(): BelongsTo
+    {
+        return $this->belongsTo(District::class );
+    }
 }

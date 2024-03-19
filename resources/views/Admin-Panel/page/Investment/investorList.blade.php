@@ -38,8 +38,8 @@
                                 <td>{{ $data->nid }}</td>
                                 <td>{{ $data->tin }}</td>
                                 <td>{{ $data->email }}</td>
-                                <td>{{ $data->pre_address }}, {{ $data->pre_city }}, {{ $data->pre_district }},-{{ $data->pre_zipCode }} </td>
-                                <td>{{ $data->per_address }}, {{ $data->per_city }}, {{ $data->per_district }},-{{ $data->per_zipCode }} </td>
+                                <td>{{ $data->pre_address }}, {{ $data->pre_city }}, {{ $data->pre_district }} -{{ $data->pre_zipCode }} </td>
+                                <td>{{ $data->per_address }}, {{ $data->per_city }}, {{ $data->per_district }} -{{ $data->per_zipCode }} </td>
                                 <td>3 Project</td>
                                 <td>
                                     <a href="{{route('investor.view',$data->id)}}" class="btn btn-success">View</a>

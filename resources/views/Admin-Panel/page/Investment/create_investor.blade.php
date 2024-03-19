@@ -125,30 +125,14 @@
 
                                                 <div class="mt-3">
                                                     <label for="pre_district" class="form-label">District</label>
-                                                    <div class="mr-1 ">
-                                                        <input class="form-control bg-light" list="pre_districtOptions" id="pre_district" placeholder="Select District" name="pre_district">
-                                                        <datalist id="pre_districtOptions">
-                                                            <option value="PRITOM SARKER"> </option>
-                                                            <option value="Joy Roy 2"></option>
-                                                            <option value="Labib Kumar"></option>
-                                                            <option value="Joy Roy"></option>
-                                                            <option value="Indrajit debnath"></option>
-                                                            <option value="MEHEDI HASAN"></option>
-                                                            <option value="DELUARA HOSEN"></option>
-                                                            <option value="Shahedul Islam"></option>
-                                                            <option value="Md Ruhul Amin"></option>
-                                                            <option value="Kanoc Roy"></option>
-                                                            <option value="Golam Rabbani"></option>
-                                                            <option value="Joy Karmokar"></option>
-                                                            <option value="Md.Sabbir Sheikh"></option>
-                                                            <option value="Md Rasheduzaman"></option>
-                                                            <option value="Md Mehedi Hasan"></option>
-                                                            <option value="Zafor Iqbal"></option>
-                                                            <option value="Md Iqbal Hossain"></option>
-                                                            <option value="Arifur Rahman Hamza"></option>
-                                                            <option value="Md shozib hossen"></option>
-                                                        </datalist>
+                                                    <select name="pre_district" id="pre_district" class="form-select bg-light">
+                                                        <option value="">Select Dristrict.......</option>
+                                                        @foreach ( $districts as $district)
+                                                            <option value="{{ $district->name }}">{{ $district->name }}</option>
+                                                        @endforeach
+                                                    </select>
 
+                                                    <div class="mr-1 ">
                                                         @error('pre_district')
                                                         <span class="form-text text-danger">{{ $message }}</span>
                                                         @enderror
@@ -191,30 +175,13 @@
 
                                                 <div class="mt-3">
                                                     <label for="per_district" class="form-label">District</label>
+                                                    <select name="per_district" id="per_district" class="form-select bg-light">
+                                                        <option value="">Select Dristrict.......</option>
+                                                        @foreach ( $districts as $district)
+                                                            <option value="{{ $district->name }}">{{ $district->name }}</option>
+                                                        @endforeach
+                                                    </select>
                                                     <div class="mr-1 ">
-                                                        <input class="form-control bg-light" list="per_districtOptions" id="per_district" placeholder="Select per_District" name="per_district">
-                                                        <datalist id="per_districtOptions">
-                                                            <option value="PRITOM SARKER"> </option>
-                                                            <option value="Joy Roy 2"></option>
-                                                            <option value="Labib Kumar"></option>
-                                                            <option value="Joy Roy"></option>
-                                                            <option value="Indrajit debnath"></option>
-                                                            <option value="MEHEDI HASAN"></option>
-                                                            <option value="DELUARA HOSEN"></option>
-                                                            <option value="Shahedul Islam"></option>
-                                                            <option value="Md Ruhul Amin"></option>
-                                                            <option value="Kanoc Roy"></option>
-                                                            <option value="Golam Rabbani"></option>
-                                                            <option value="Joy Karmokar"></option>
-                                                            <option value="Md.Sabbir Sheikh"></option>
-                                                            <option value="Md Rasheduzaman"></option>
-                                                            <option value="Md Mehedi Hasan"></option>
-                                                            <option value="Zafor Iqbal"></option>
-                                                            <option value="Md Iqbal Hossain"></option>
-                                                            <option value="Arifur Rahman Hamza"></option>
-                                                            <option value="Md shozib hossen"></option>
-                                                        </datalist>
-
                                                         @error('per_district')
                                                         <span class="form-text text-danger">{{ $message }}</span>
                                                         @enderror
@@ -237,7 +204,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-12">
+                    <div class="col-md-12 m-0">
                         <label for="image" class="form-label">Image</label>
                         <input type="file" class="form-control" id="image" name="image">
 

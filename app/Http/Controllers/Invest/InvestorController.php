@@ -6,16 +6,23 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\InvestorRequest;
 use App\Models\Investor;
+use App\Models\District;
 
 class InvestorController extends Controller
 {
     public function index(){
+        //  $datas = Investor::join('districts as per_districts', 'investors.per_district', '=', 'per_districts.id')
+        // ->select('investors.*', 'per_districts.name as per_district_name')
+        // ->join('districts as pre_districts', 'investors.pre_district', '=', 'pre_districts.id')
+        // ->select('investors.*', 'pre_districts.name as pre_district_name')
+        // ->paginate(15);
         $datas = Investor::paginate(15);
         return view('Admin-Panel.page.Investment.investorList', compact('datas') );
     }
 
     public function create(){
-        return view('Admin-Panel.page.Investment.create_investor');
+        $districts = District::all();
+        return view('Admin-Panel.page.Investment.create_investor', compact('districts'));
     }
 
     public function store(InvestorRequest $request){
