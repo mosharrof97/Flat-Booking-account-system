@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Invest;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Investment;
+use App\Models\Investor;
+use App\Models\District;
+use App\Models\Project;
 
 
 class InvestmentController extends Controller
@@ -16,8 +19,12 @@ class InvestmentController extends Controller
     }
 
     public function create(){
-
-        return view('Admin-Panel.page.Investment.create_investment');
+        $data = [
+            'investors' => Investor::get(),
+            'districts' => District::get(),
+            // 'projects'=> Project::get(),
+        ];
+        return view('Admin-Panel.page.Investment.create_investment', $data);
     }
 
     public function store(){

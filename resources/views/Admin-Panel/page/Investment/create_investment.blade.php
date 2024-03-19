@@ -37,7 +37,7 @@
                             <label for="project" class="form-label">Project Name</label>
                             <select name="project_id" id="project" class="form-select bg-light">
                                 <option value="">Select Project Name.......</option>
-                                @foreach ( $projects as $project)
+                                @foreach ( $districts as $project)
                                     <option value="{{ $project->id }}">{{ $project->name }}</option>
                                 @endforeach
                             </select>
@@ -49,7 +49,7 @@
                         </div>
                         <div class="col-md-6">
                             <label for="total_Investment" class="form-label">Investment Total Amount</label>
-                            <input type="" class="form-control" id="total_Investment" name="total_Investment">
+                            <input type="decimal" class="form-control" id="total_Investment" name="total_Investment" placeholder="0.00">
                             @error('total_Investment')
                                 <span class="form-text text-danger">{{ $message }}</span>
                             @enderror
@@ -80,7 +80,7 @@
                         </div>
                         <div class="col-md-6">
                             <label for="profit" class="form-label">Profit</label>
-                            <input type="text" class="form-control" id="profit" name="profit" placeholder="profit...">
+                            <input type="decimal" class="form-control" id="profit" name="profit" placeholder="0.00">
                             @error('profit')
                                 <span class="form-text text-danger">{{ $message }}</span>
                             @enderror

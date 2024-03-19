@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Invest\InvestorController;
+use App\Http\Controllers\Invest\InvestmentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +21,13 @@ use App\Http\Controllers\Invest\InvestorController;
 
 
 Route::prefix('admin')->group(function () {
+    //Investment
+    Route::prefix('investment')->group(function () {
+        Route::get('/list', [InvestmentController::class,'index'])->name('list.investment');
+        Route::get('/create', [InvestmentController::class, 'create'])->name('create.investment');
+        Route::post('/create', [InvestmentController::class, 'store'])->name('store.investment');
+        Route::get('/view/{id}', [InvestmentController::class,'view'])->name('view.investment');
+    });
 
     // Investor
     Route::prefix('investor')->group(function () {

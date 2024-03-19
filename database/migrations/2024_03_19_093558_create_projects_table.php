@@ -23,7 +23,7 @@ return new class extends Migration
             $table->date('end_date');
             $table->string('address');
             $table->string('city');
-            $table->string('district_id');
+            $table->foreignId('district_id');
             $table->integer('zipCode');
             $table->string('image');
             $table->integer('status')->default(0);
