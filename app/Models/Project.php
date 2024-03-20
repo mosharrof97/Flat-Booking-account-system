@@ -19,6 +19,7 @@ class Project extends Model
         'budget',
         'land_area',
         'duration',
+        'floor',
         'flat',
         'flat_area',
         'start_date',
@@ -30,4 +31,9 @@ class Project extends Model
         'image',
         'status',
     ];
+
+    public function district(): BelongsTo
+    {
+        return $this->BelongsTo(District::class, 'district_id');
+    }
 }

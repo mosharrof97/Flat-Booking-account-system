@@ -7,105 +7,115 @@
                 <h3>Project Details Information</h3>
             </div>
             <div class="card-body">
-                <div class="">
-                    <style>
-                        .table-information {
-                            width: 100%;
-                            margin-bottom: 1rem;
-                            color: #BDBDC7;
-                        }
+                <div class="row">
+                    <div class="col-md-8 col-12">
+                        <style>
+                            .table-information {
+                                width: 100%;
+                                margin-bottom: 1rem;
+                                color: #BDBDC7;
+                            }
 
-                        .table-information th,
-                        .table-information td {
-                            padding: 0.2rem !important;
-                        }
+                            .table-information th,
+                            .table-information td {
+                                padding: 0.2rem !important;
+                            }
 
-                    </style>
-                    <table class="table-information table table-borderless">
+                        </style>
+                        <table class="table-information table table-borderless">
 
-                        <tr>
-                            <th scope="row" style="width: 20%">Project Name </th>
-                            <td colspan="" style="width: 3%">:</td>
-                            <td colspan="3" style="width: 77%">Coder De Dkaka</td>
-                        </tr>
-                        <tr>
-                            <th scope="row" style="width: 20%">Project Status </th>
-                            <td colspan="" style="width: 3%">:</td>
-                            <td colspan="3" style="width: 77%">On Going</td>
-                        </tr>
-                        <tr>
-                            <th scope="row" style="width: 20%">Project Budget</th>
-                            <td colspan="" style="width: 3%">:</td>
-                            <td colspan="3" style="width: 77%">500000000 TK</td>
-                        </tr>
-                        <tr>
-                            <th scope="row" style="width: 20%">Land Area</th>
-                            <td colspan="" style="width: 3%">:</td>
-                            <td colspan="3" style="width: 77%">30000 Squer Fit</td>
-                        </tr>
+                            <tr>
+                                <th scope="row" style="width: 20%">Project Name </th>
+                                <td colspan="" style="width: 3%">:</td>
+                                <td colspan="3" style="width: 77%">{{ $project->projectName }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" style="width: 20%">Project Status </th>
+                                <td colspan="" style="width: 3%">:</td>
+                                @if ($project->status === 0)
+                                <td colspan="3" style="width: 77%">On Going</td>
+                                @elseif ($project->status === 1)
+                                <td colspan="3" class="text-success" style="width: 77%">completed</td>
+                                @endif
 
-                        <tr>
-                            <th scope="row" style="width: 20%">Investor</th>
-                            <td colspan="" style="width: 3%">:</td>
-                            <td colspan="3" style="width: 77%">1 </td>
-                        </tr>
+                            </tr>
+                            <tr>
+                                <th scope="row" style="width: 20%">Project Budget</th>
+                                <td colspan="" style="width: 3%">:</td>
+                                <td colspan="3" style="width: 77%">{{ $project->budget }} TK</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" style="width: 20%">Land Area</th>
+                                <td colspan="" style="width: 3%">:</td>
+                                <td colspan="3" style="width: 77%">{{ $project->land_area }} Squer Fit</td>
+                            </tr>
 
-                        <tr>
-                            <th scope="row" style="width: 20%">Investment Amount</th>
-                            <td colspan="" style="width: 3%">:</td>
-                            <td colspan="3" style="width: 77%">25000000 TK</td>
-                        </tr>
+                            <tr>
+                                <th scope="row" style="width: 20%">Investor</th>
+                                <td colspan="" style="width: 3%">:</td>
+                                <td colspan="3" style="width: 77%">1 </td>
+                            </tr>
 
-                        <tr>
-                            <th scope="row" style="width: 20%">Floor</th>
-                            <td colspan="" style="width: 3%">:</td>
-                            <td colspan="3" style="width: 77%">10 Floor</td>
-                        </tr>
-                        <tr>
-                            <th scope="row" style="width: 20%">flat</th>
-                            <td colspan="" style="width: 3%">:</td>
-                            <td colspan="3" style="width: 77%">28 flat</td>
-                        </tr>
-                        <tr>
-                            <th scope="row" style="width: 20%">Flat</th>
-                            <td colspan="" style="width: 3%">:</td>
-                            <td colspan="3" style="width: 77%">9000 Squer Fit</td>
-                        </tr>
-                        <tr>
-                            <th scope="row" style="width: 20%">Start Date</th>
-                            <td colspan="" style="width: 3%">:</td>
-                            <td colspan="3" style="width: 77%">02-03-2024</td>
-                        </tr>
+                            <tr>
+                                <th scope="row" style="width: 20%">Investment Amount</th>
+                                <td colspan="" style="width: 3%">:</td>
+                                <td colspan="3" style="width: 77%">25000000 TK</td>
+                            </tr>
 
-                        <tr>
-                            <th scope="row" style="width: 20%">End Date</th>
-                            <td colspan="" style="width: 3%">:</td>
-                            <td colspan="3" style="width: 77%">02-03-2025</td>
-                        </tr>
+                            <tr>
+                                <th scope="row" style="width: 20%">Floor</th>
+                                <td colspan="" style="width: 3%">:</td>
+                                <td colspan="3" style="width: 77%">{{ $project->floor }} Floor</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" style="width: 20%">Flat </th>
+                                <td colspan="" style="width: 3%">:</td>
+                                <td colspan="3" style="width: 77%">{{ $project->flat }} flat</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" style="width: 20%">Flat Area</th>
+                                <td colspan="" style="width: 3%">:</td>
+                                <td colspan="3" style="width: 77%">{{ $project->flat_area }} Squer Fit</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" style="width: 20%">Start Date</th>
+                                <td colspan="" style="width: 3%">:</td>
+                                <td colspan="3" style="width: 77%">{{ $project->start_date }}</td>
+                            </tr>
 
-                        <tr>
-                            <th scope="row" style="width: 20%">Address</th>
-                            <td colspan="" style="width: 3%">:</td>
-                            <td colspan="3" style="width: 77%">Dhaka-1205</td>
-                        </tr>
+                            <tr>
+                                <th scope="row" style="width: 20%">End Date</th>
+                                <td colspan="" style="width: 3%">:</td>
+                                <td colspan="3" style="width: 77%">{{ $project->end_date }}</td>
+                            </tr>
 
-                        <tr>
-                            <th scope="row" style="width: 20%">City</th>
-                            <td colspan="" style="width: 3%">:</td>
-                            <td colspan="3" style="width: 77%">Dhaka</td>
-                        </tr>
-                        <tr>
-                            <th scope="row" style="width: 20%">District</th>
-                            <td colspan="" style="width: 3%">:</td>
-                            <td colspan="3" style="width: 77%">Dhaka</td>
-                        </tr>
-                        <tr>
-                            <th scope="row" style="width: 20%">Postal Code</th>
-                            <td colspan="" style="width: 3%">:</td>
-                            <td colspan="3" style="width: 77%">1205</td>
-                        </tr>
+                            <tr>
+                                <th scope="row" style="width: 20%">Address</th>
+                                <td colspan="" style="width: 3%">:</td>
+                                <td colspan="3" style="width: 77%">{{ $project->address }}</td>
+                            </tr>
 
-                    </table>
+                            <tr>
+                                <th scope="row" style="width: 20%">City</th>
+                                <td colspan="" style="width: 3%">:</td>
+                                <td colspan="3" style="width: 77%">{{ $project->city }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" style="width: 20%">District</th>
+                                <td colspan="" style="width: 3%">:</td>
+                                <td colspan="3" style="width: 77%">{{ $project->district->name }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" style="width: 20%">Postal Code</th>
+                                <td colspan="" style="width: 3%">:</td>
+                                <td colspan="3" style="width: 77%">{{ $project->zipCode }}</td>
+                            </tr>
+
+                        </table>
+                    </div>
+                    <div class="col-md-4 col-12 text-end">
+                        <img src="{{ asset('upload/Project/'.$project->image) }}" alt="No Image" width="300px" height="">
+                    </div>
                 </div>
                 <div class="">
                     <div class="table-responsive">

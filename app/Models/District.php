@@ -20,4 +20,9 @@ class District extends Model
     {
         return $this->hasMany(Investor::class, 'pre_district');
     }
+
+    public function project(): HasMany
+    {
+        return $this->hasMany(Project::class, 'district_id');
+    }
 }

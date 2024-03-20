@@ -9,23 +9,22 @@
             </div>
             <div class="card-body">
                 <div>
-                    @if (Session::has('success'))
-                    <p class="text-success">{{ Session::get('success') }}</p>
+                    @if (Session::has('message'))
+                        <h4 class="text-success">{{ Session::get('message') }}</h4>
                     @endif
 
                     @if (Session::has('error'))
-                    <p class="text-danger">{{ Session::get('error') }}</p>
+                        <h4 class="text-danger">{{ Session::get('error') }}</h4>
                     @endif
                 </div>
                 <form class="" action="" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="row g-3">
-
                         <div class="col-md-6">
                             <label for="projectName" class="form-label">Project Name</label>
                             <input type="text" class="form-control" id="projectName" name="projectName" value="">
                             @error('projectName')
-                            <span class="form-text text-danger">{{ $message }}</span>
+                                <span class="form-text text-danger">{{ $message }}</span>
                             @enderror
                         </div>
 
@@ -33,7 +32,7 @@
                             <label for="budget" class="form-label">Project Budget</label>
                             <input type="text" class="form-control" id="budget" name="budget" value="">
                             @error('budget')
-                            <span class="form-text text-danger">{{ $message }}</span>
+                                <span class="form-text text-danger">{{ $message }}</span>
                             @enderror
                         </div>
 
@@ -42,7 +41,7 @@
                             <input type="text" class="form-control" id="land_area" name="land_area" value="">
 
                             @error('land_area')
-                            <span class="form-text text-danger">{{ $message }}</span>
+                                <span class="form-text text-danger">{{ $message }}</span>
                             @enderror
                         </div>
 
@@ -51,7 +50,7 @@
                             <input type="text" class="form-control" id="duration" name="duration" value="">
 
                             @error('duration')
-                            <span class="form-text text-danger">{{ $message }}</span>
+                                <span class="form-text text-danger">{{ $message }}</span>
                             @enderror
                         </div>
 
@@ -60,7 +59,7 @@
                             <input type="text" class="form-control" id="floor" name="floor" value="">
 
                             @error('floor')
-                            <span class="form-text text-danger">{{ $message }}</span>
+                                <span class="form-text text-danger">{{ $message }}</span>
                             @enderror
                         </div>
 
@@ -69,7 +68,7 @@
                             <input type="text" class="form-control" id="flat" name="flat" value="">
 
                             @error('flat')
-                            <span class="form-text text-danger">{{ $message }}</span>
+                                <span class="form-text text-danger">{{ $message }}</span>
                             @enderror
                         </div>
 
@@ -78,7 +77,7 @@
                             <input type="text" class="form-control" id="flat_area" name="flat_area" value="">
 
                             @error('flat_area')
-                            <span class="form-text text-danger">{{ $message }}</span>
+                                <span class="form-text text-danger">{{ $message }}</span>
                             @enderror
                         </div>
 
@@ -87,16 +86,16 @@
                             <input type="date" class="form-control" id="start_date" name="start_date" value="">
 
                             @error('start_date')
-                            <span class="form-text text-danger">{{ $message }}</span>
+                                <span class="form-text text-danger">{{ $message }}</span>
                             @enderror
                         </div>
 
                         <div class="col-md-6">
                             <label for="end_date" class="form-label">Project End Date</label>
-                            <input type="month" class="form-control" id="end_date" name="end_date" value="">
+                            <input type="date" class="form-control" id="end_date" name="end_date" value="">
 
                             @error('end_date')
-                            <span class="form-text text-danger">{{ $message }}</span>
+                                <span class="form-text text-danger">{{ $message }}</span>
                             @enderror
                         </div>
 
@@ -111,7 +110,7 @@
                             <input type="text" class="form-control" id="address" placeholder="1234 Main St" name="address" value="">
 
                             @error('address')
-                            <span class="form-text text-danger">{{ $message }}</span>
+                                <span class="form-text text-danger">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="col-md-6">
@@ -119,7 +118,7 @@
                             <input type="text" class="form-control" id="city" name="city" value="">
 
                             @error('city')
-                            <span class="form-text text-danger">{{ $message }}</span>
+                                <span class="form-text text-danger">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="col-md-4">
@@ -127,12 +126,12 @@
                             <select name="district_id" id="district" class="form-select bg-light">
                                 <option value="">Select Dristrict.......</option>
                                 @foreach ( $districts as $district)
-                                <option value="{{ $district->id }}">{{ $district->name }}</option>
+                                    <option value="{{ $district->id }}">{{ $district->name }}</option>
                                 @endforeach
                             </select>
                             <div class="mr-1 ">
                                 @error('district_id')
-                                <span class="form-text text-danger">{{ $message }}</span>
+                                    <span class="form-text text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
                         </div>

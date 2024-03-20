@@ -17,6 +17,7 @@ return new class extends Migration
             $table->decimal('budget');
             $table->integer('land_area');
             $table->string('duration');
+            $table->integer('floor');
             $table->integer('flat');
             $table->integer('flat_area');
             $table->date('start_date');
