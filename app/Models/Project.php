@@ -27,6 +27,7 @@ class Project extends Model
         'city',
         'district_id',
         'zipCode',
+        'image',
         'status',
     ];
 }

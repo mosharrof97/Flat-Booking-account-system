@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Invest\InvestorController;
 use App\Http\Controllers\Invest\InvestmentController;
+use App\Http\Controllers\Project\ProjectController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +36,17 @@ Route::prefix('admin')->group(function () {
         Route::get('/create', [InvestorController::class, 'create'])->name('create_investor');
         Route::post('/create', [InvestorController::class, 'store'])->name('store_investor');
         Route::get('/view/{id}', [InvestorController::class,'view'])->name('investor.view');
+    });
+
+    // Project
+    Route::prefix('project')->group(function () {
+    Route::get('/list', [ProjectController::class,'index'])->name('list.project');
+    Route::get('/create', [ProjectController::class, 'create'])->name('create.project');
+    Route::post('/create', [ProjectController::class, 'store'])->name('store.project');
+    Route::get('/view/{id}', [ProjectController::class,'view'])->name('project.view');
+    Route::get('/update/{id}', [ProjectController::class,'edit'])->name('project.edit');
+    Route::put('/update/{id}', [ProjectController::class,'update'])->name('project.update');
+    Route::delete('/delete/{id}', [ProjectController::class,'delete'])->name('project.delete');
     });
 });
 

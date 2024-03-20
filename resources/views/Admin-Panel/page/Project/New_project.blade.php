@@ -8,6 +8,15 @@
                 <h3>Add New Project</h3>
             </div>
             <div class="card-body">
+                <div>
+                    @if (Session::has('success'))
+                    <p class="text-success">{{ Session::get('success') }}</p>
+                    @endif
+
+                    @if (Session::has('error'))
+                    <p class="text-danger">{{ Session::get('error') }}</p>
+                    @endif
+                </div>
                 <form class="" action="" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="row g-3">
@@ -131,6 +140,13 @@
                             <label for="zipCode" class="form-label">Zip Code</label>
                             <input type="text" class="form-control" id="zipCode" name="zipCode" value="">
                             @error('zipCode')
+                                <span class="form-text text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="col-md-12">
+                            <label for="image" class="form-label">Image</label>
+                            <input type="file" class="form-control" id="image" name="image" value="">
+                            @error('image')
                                 <span class="form-text text-danger">{{ $message }}</span>
                             @enderror
                         </div>

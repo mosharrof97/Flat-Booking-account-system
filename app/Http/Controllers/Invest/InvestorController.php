@@ -26,7 +26,7 @@ class InvestorController extends Controller
     }
 
     public function store(InvestorRequest $request){
-        // dd($request->image);
+        // dd($request->all());
         if($request->hasFile('image')){
             $imageName = 'Investor_'. time() .'_'. mt_rand(100000, 10000000000) .'.'.$request->file('image')->extension();
             $request->file('image')->move(public_path('upload/Investor'), $imageName);

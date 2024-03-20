@@ -13,9 +13,6 @@ class District extends Model
     protected $fillable = [
         'name',
         'bn_name',
-        'lat',
-        'lon',
-        'url',
     ];
 
 
@@ -24,6 +21,3 @@ class District extends Model
         return $this->hasMany(Investor::class, 'pre_district');
     }
 }
-
-
-
