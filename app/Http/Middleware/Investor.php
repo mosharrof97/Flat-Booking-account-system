@@ -16,7 +16,7 @@ class Investor
     public function handle(Request $request, Closure $next): Response
     {
         if(!Auth::guard('investor')->check()){
-            return redirect()->route('investor_login')->with('error','you do not have access');
+            return redirect()->route('investor.login')->with('error','you do not have access');
         }
         return $next($request);
     }

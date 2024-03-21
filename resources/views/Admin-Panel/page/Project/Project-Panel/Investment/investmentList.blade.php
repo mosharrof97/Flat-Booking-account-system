@@ -1,4 +1,4 @@
-@extends('Admin-Panel.partial.Layout')
+@extends('Admin-Panel.page.Project.Project-Panel.Partial.Layout')
 @section('content')
 <div class="row justify-content-center">
     <div class="col-lg-10 col-sm-12">
@@ -35,7 +35,7 @@
                                 <td>3000000</td>
                                 <td>2000000</td>
                                 <td>
-                                    <a href="{{route('investment.view')}} " class="btn btn-success">View</a>
+                                    <a href="#" class="btn btn-success">View</a>
                                 </td>
                             </tr>
                         </tbody>

@@ -37,7 +37,7 @@
                                 <th rowspan="" class="text-nowrap">City</th>
                                 <th rowspan="" class="text-nowrap">District</th>
                                 <th rowspan="" class="text-nowrap">Zip Code</th>
-                                <th colspan="2" class="text-nowrap">Action</th>
+                                <th colspan="4" class="text-nowrap">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -67,8 +67,15 @@
                                 <td>{{ $project->district->name }}</td>
                                 <td>1{{ $project->zipCode }}</td>
                                 <td>
+                                    <a href="{{route('project.dashboard',['name' => $project->projectName, 'id' => $project->id])}} " class="btn btn-success me-2">Dashboard</a>
+                                    {{-- <a href="{{ route('project.dashboard', ['name' => $project->projectName, 'id' => $project->id]) }}" class="btn btn-success me-2">Dashboard</a> --}}
+
+                                </td>
+
+                                <td>
                                     <a href="{{route('project.view',$project->id)}} " class="btn btn-success me-2">View</a>
                                 </td>
+
                                 <td>
                                     <a href="{{route('project.edit',$project->id)}} " class="btn btn-success me-2">edit</a>
                                 </td>

@@ -48,6 +48,10 @@ return [
             'driver' => 'session',
             'provider' => 'accountants',
         ],
+        'project' => [
+            'driver' => 'session',
+            'provider' => 'projects',
+        ],
         'investor' => [
             'driver' => 'session',
             'provider' => 'investors',
@@ -78,10 +82,21 @@ return [
             'model' => App\Models\Admin::class,
         ],
 
+        'accountants' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Admin::class,
+        ],
+
         'investors' => [
             'driver' => 'eloquent',
             'model' => App\Models\Investor::class,
         ],
+
+        'projects' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Project::class,
+        ],
+
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
@@ -121,6 +136,12 @@ return [
         ],
         'accountants' => [
             'provider' => 'admins',
+            'table' => 'password_reset_tokens',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'projects' => [
+            'provider' => 'projects',
             'table' => 'password_reset_tokens',
             'expire' => 60,
             'throttle' => 60,

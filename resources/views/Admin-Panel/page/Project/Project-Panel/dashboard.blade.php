@@ -1,5 +1,13 @@
-@extends('Admin-Panel.partial.Layout')
+@extends('Admin-Panel.page.Project.Project-Panel.Partial.Layout')
 @section('content')
+<div class="row mx-0 mb-4">
+    <div class="col-12 p-md-0">
+        <div class=" bg-info p-2">
+            <h4 class="m-0">Project Name: {{ $project->projectName }} </h4>
+        </div>
+
+    </div>
+</div>
  {{-- Total Report Summary  --}}
  <div class="row page-titles mx-0">
     <div class="col-12 p-md-0">
