@@ -8,6 +8,7 @@ use App\Http\Controllers\Project\ProjectController;
 use App\Http\Controllers\Project\ProjectDashboardController;
 use App\Http\Controllers\Project\ProjectExpanseController;
 use App\Http\Controllers\Project\ProjectInvestmentController;
+use App\Http\Controllers\Project\ProjectAuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -68,6 +69,12 @@ Route::prefix('admin')->group(function () {
     });
 
 });
+
+Route::prefix('project')->group(function () {
+    Route::get('/login', [ProjectAuthController::class, 'create']) ->name('project_login');
+    Route::post('/login', [ProjectAuthController::class, 'store']);
+});
+
 
 Route::get('/', function () {
     return view('Admin-Panel.page.dashboard');

@@ -19,37 +19,35 @@ class AdminController extends Controller
     }
 
 
-    public function login(){
-        return view('AdminLogin');
-    }
+    // public function login(){
+    //     return view('AdminLogin');
+    // }
 
-    public function login_submit(Request $request){
+    // public function login_submit(Request $request){
 
-    $request ->validate([
-            'email' =>'required|email',
-            'password'=>'required',
+    //     $request ->validate([
+    //             'email' =>'required|email',
+    //             'password'=>'required',
 
-    ]);
+    //     ]);
 
-    $credentials = $request ->only('email','password');
+    //     $credentials = $request ->only('email','password');
 
-    if(Auth::guard('admin')->attempt($credentials)){
+    //     if(Auth::guard('admin')->attempt($credentials)){
 
-        $user = Admin::where('email',$request->input('email'))->first();
-        Auth::guard('admin')->login($user);
-        return redirect()->route('admin_dashboard')->with('success','Login Successful');
-    }else{
-        return redirect()->route('admin_login')->with('error','Login unsuccessful');
-    }
+    //         $user = Admin::where('email',$request->input('email'))->first();
+    //         Auth::guard('admin')->login($user);
+    //         return redirect()->route('admin_dashboard')->with('success','Login Successful');
+    //     }else{
+    //         return redirect()->route('admin_login')->with('error','Login unsuccessful');
+    //     }
+    // }
 
+    // public function logout(){
 
-    }
-
-    public function logout(){
-
-        Auth::guard('admin')->logout();
-        return redirect()->route('admin_login')->with('Success','Logout successfully');
-    }
+    //     Auth::guard('admin')->logout();
+    //     return redirect()->route('admin_login')->with('Success','Logout successfully');
+    // }
 
 
     public function createAdmin(Request $request){
