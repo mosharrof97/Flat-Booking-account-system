@@ -1,4 +1,4 @@
-@extends('Admin-Panel.partial.Layout')
+@extends('Project-Panel.Partial.Layout')
 @section('content')
 <div class="row justify-content-center">
     <div class="col-lg-10 col-sm-12">
@@ -8,7 +8,7 @@
                 <h3>Investment Information</h3>
             </div>
             <div class="card-body">
-                <form class="" action="" method="POST" enctype="multipart/form-data">
+                <form class="" action="{{ route('store.project.investment') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="row g-3">
                         <div class="col-md-6">
@@ -29,11 +29,11 @@
                         {{-- Project details & Investment--}}
                         <hr>
                         <div class="col-md-12">
-                            <h4>Project details</h4>
+                            <h4>Investment details</h4>
 
                         </div>
 
-                        <div class="col-md-6">
+                        {{-- <div class="col-md-6">
                             <label for="project" class="form-label">Project Name</label>
                             <select name="project_id" id="project" class="form-select bg-light">
                                 <option value="">Select Project Name.......</option>
@@ -46,7 +46,7 @@
                                 <span class="form-text text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="col-md-6">
                             <label for="total_Investment" class="form-label">Investment Total Amount</label>
                             <input type="decimal" class="form-control" id="total_Investment" name="total_Investment" placeholder="0.00">

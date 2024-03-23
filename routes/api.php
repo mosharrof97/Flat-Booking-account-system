@@ -2,6 +2,9 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Project\ProjectAuthController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -16,4 +19,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::prefix('project')->group(function () {
+    Route::get('/login', [ProjectAuthController::class, 'create']) ->name('project_login-api');
+    Route::post('/login_project', [ProjectAuthController::class, 'store']);
 });

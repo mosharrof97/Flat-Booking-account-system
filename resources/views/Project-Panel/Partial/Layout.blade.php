@@ -130,17 +130,10 @@
                                         <i class="icon-envelope-open"></i>
                                         <span class="ml-2">Inbox </span>
                                     </a>
-
-                                    {{-- <form method="POST" action="{{ route('logout') }}">
-                                    @csrf
-                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();">Log
-                                        out</a>
-                                    </form> --}}
-                                    <form method="POST" action="">
-                                        @csrf
-                                        <a class="dropdown-item" href="" onclick="event.preventDefault(); this.closest('form').submit();">Log
-                                            out</a>
-                                    </form>
+                                    <a class="dropdown-item" href="{{ route('project.sessionDelete') }}">
+                                        <i class="icon-envelope-open"></i>
+                                        <span class="ml-2">Log Out </span>
+                                    </a>
                                 </div>
                             </li>
                         </ul>
@@ -162,7 +155,7 @@
                     <li class="nav-label first">Main Menu</li>
 
                     <li>
-                        <a class="has-arrow" href="" aria-expanded="false">
+                        <a class="has-arrow" href="#" aria-expanded="false">
                             <i class="fa-solid fa-gauge"></i>
                             <span class="nav-text">Dashboard</span>
                         </a>
@@ -177,13 +170,13 @@
                         <div id="investment" class="accordion-collapse collapse" style="background-color: #1c0f54" data-bs-parent="#investment-parent">
                             <ul class="metismenu">
                                 <li>
-                                    <a class="has-arrow" href="{{ route('project.investment.list') }}">
+                                    <a class="has-arrow" href="{{ route('project.investment.list')}}">
                                         <i class="fa-solid fa-store"></i>
                                         <span class="nav-text">All Investment</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="has-arrow" href="{{ route('project.investment.list') }}">
+                                    <a class="has-arrow" href="{{ route('create.project.investment') }}">
                                         <i class="fa-solid fa-store"></i>
                                         <span class="nav-text">New Invest</span>
                                     </a>

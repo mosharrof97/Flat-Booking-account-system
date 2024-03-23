@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Invest\InvestorController;
@@ -53,13 +54,16 @@ Route::prefix('admin')->group(function () {
         Route::delete('/delete/{id}', [ProjectController::class,'delete'])->name('project.delete');
 
         // Project Panel
-        Route::prefix('{name}')->group(function () {
+        Route::prefix('name')->group(function () {
             // Project Dashboard
-            Route::get('/dashboard/{id}', [ProjectDashboardController::class,'index'])->name('project.dashboard');
-
+            Route::get('/dashboard/{id}', [ProjectDashboardController::class, 'index'])->name('project.dashboard');
+            Route::get('/logout', [ProjectDashboardController::class, 'sessionDelete'])->name('project.sessionDelete');
             // Project Investment
             Route::prefix('investment')->group(function () {
-                Route::get('/list/{id}', [ProjectInvestmentController::class,'index'])->name('project.investment.list');
+                Route::get('/list', [ProjectInvestmentController::class, 'index'])->name('project.investment.list');
+                Route::get('/create', [ProjectInvestmentController::class, 'create'])->name('create.project.investment');
+                Route::post('/create', [ProjectInvestmentController::class, 'store'])->name('store.project.investment');
+                Route::get('/view', [ProjectInvestmentController::class, 'view'])->name('project.investment.view');
             });
         });
 
@@ -72,12 +76,12 @@ Route::prefix('admin')->group(function () {
 
 Route::prefix('project')->group(function () {
     Route::get('/login', [ProjectAuthController::class, 'create']) ->name('project_login');
-    Route::post('/login', [ProjectAuthController::class, 'store']);
+    Route::post('/login_project', [ProjectAuthController::class, 'store']);
 });
 
 
 Route::get('/', function () {
-    return view('Admin-Panel.page.dashboard');
+    return view('Admin-Panel.dashboard');
 });
 
 Route::get('/dashboard', function () {

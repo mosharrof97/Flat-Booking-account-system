@@ -67,7 +67,7 @@
                                 <td>{{ $project->district->name }}</td>
                                 <td>1{{ $project->zipCode }}</td>
                                 <td>
-                                    <a href="{{route('project.dashboard',['name' => $project->projectName, 'id' => $project->id])}} " class="btn btn-success me-2">Dashboard</a>
+                                    <a href="{{route('project.dashboard', $project->id)}} " class="btn btn-success me-2">Dashboard</a>
                                     {{-- <a href="{{ route('project.dashboard', ['name' => $project->projectName, 'id' => $project->id]) }}" class="btn btn-success me-2">Dashboard</a> --}}
 
                                 </td>
