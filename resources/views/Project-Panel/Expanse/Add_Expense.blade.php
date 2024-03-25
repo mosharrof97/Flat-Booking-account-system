@@ -1,4 +1,4 @@
-@extends('Admin-Panel.partial.Layout')
+@extends('Project-Panel.Partial.Layout')
 @section('content')
 <div class="row justify-content-center">
     <div class="col-lg-11 col-sm-12">
@@ -44,7 +44,7 @@
 
                                     <div class="col-md-2 col-6">
                                         <label for="totalPrice" class="form-label">Total Price</label>
-                                        <input type="decimal" name="totalPrice[]" class="form-control totalPrice" id="totalPrice" />
+                                        <input type="decimal" name="total_price[]" class="form-control totalPrice" id="totalPrice" />
                                     </div>
                                     <div class="col-md-2 col-6">
                                         <button type="button" class="btn btn-primary" id="add-field">Add Field</button>
@@ -109,7 +109,7 @@
 
                             <div class="col-md-2 col-6">
                                 <label for="totalPrice" class="form-label">Total Price</label>
-                                <input type="decimal" name="totalPrice[]" class="form-control totalPrice" id="totalPrice" />
+                                <input type="decimal" name="total_price[]" class="form-control totalPrice" id="totalPrice" />
                             </div>
                             <div class="col-md-2 col-6">
                                 <button type="button"  class="remove-field btn btn-danger">Remove</button>

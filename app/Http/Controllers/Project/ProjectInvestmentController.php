@@ -18,9 +18,9 @@ class ProjectInvestmentController extends Controller
         if($project_id !== null){
 
             $data = [
-                'investment' => Investment::where('project_id',$project_id)->first(),
+                'invest' => Investment::where('project_id',$project_id)->get(),
             ];
-            return view('Project-Panel.Investment.investmentList');
+            return view('Project-Panel.Investment.investmentList',$data);
         }else{
             return redirect()->route('list.project')-> with('error','Project Id Is Null');
         }
@@ -62,12 +62,15 @@ class ProjectInvestmentController extends Controller
                     'profit_type'=> $request->profit_type,
                     'profit'=> $request->profit,
                 ];
-                $investmentId = Investment::create($data)->id;
 
-                InvestInstallment::create([
+                $investmentId = Investment::create($data)->id;
+                // dd($investmentId);
+                $InvestInstallment = [
                     'investment_id'=> $investmentId,
                     'installment_amount'=> $request->installment_amount,
-                ]);
+                ];
+                // dd($InvestInstallment);
+                InvestInstallment::create($InvestInstallment);
 
                 DB::commit();
 
@@ -78,21 +81,21 @@ class ProjectInvestmentController extends Controller
                 // Optionally, handle the exception
             }
 
-            return redirect()->route('project.investment.view')->with('success','Investment Successful');
+            return redirect()->route('project.investment.list')->with('success','Investment Successful');
         }else{
             return redirect()->route('list.project')-> with('error','Project Id Is Null');
         }
     }
 
-    public function view(){
+    public function view($id){
         $project_id = Session::get('project_id');
         if($project_id !== null){
-            $investment = Investment::where('project_id', $project_id)->first();
-            dd($investment);
+            $investment = Investment::where('project_id', $project_id)->where('id',$id)->first();
+            // dd($investment);
             if($investment){
                 $data =[
                     'investment'=> $investment,
-                    'investInstallment'=> InvestInstallment::where('investment_id', $investment->id)->get(),
+                    'installment'=> InvestInstallment::where('investment_id', $investment->id)->get(),
                 ];
 
                 return view('Project-Panel.Investment.investment_view', $data);
@@ -103,4 +106,6 @@ class ProjectInvestmentController extends Controller
             return redirect()->route('list.project')->with('error', 'Project Id Is Null');
         }
     }
+
+
 }

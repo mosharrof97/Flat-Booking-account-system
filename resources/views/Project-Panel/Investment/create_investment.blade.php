@@ -8,7 +8,7 @@
                 <h3>Investment Information</h3>
             </div>
             <div class="card-body">
-                <form class="" action="{{ route('store.project.investment') }}" method="POST" enctype="multipart/form-data">
+                <form class="" action="" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="row g-3">
                         <div class="col-md-6">

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
             $table->string('projectName');
-            $table->decimal('budget');
+            $table->decimal('budget',15,2);
             $table->integer('land_area');
             $table->string('duration');
             $table->integer('floor');

@@ -200,7 +200,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="has-arrow" href="#">
+                                    <a class="has-arrow" href="{{ route('project.expense') }}">
                                         <i class="fa-solid fa-store"></i>
                                         <span class="nav-text">New Expanse</span>
                                     </a>

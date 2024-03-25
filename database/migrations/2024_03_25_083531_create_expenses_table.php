@@ -11,24 +11,26 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('investments', function (Blueprint $table) {
+        Schema::create('expenses', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('investor_id');
             $table->foreignId('project_id');
-            $table->decimal('total_Investment',15,2);
-            $table->string('installment_type');
-            $table->string('profit_type');
-            $table->string('profit');
-            $table->rememberToken();
+            $table->date('data');
+            $table->string('name')->nullable();
+            $table->integer('quantity')->nullable();
+            $table->string('unit',40)->nullable();
+            $table->decimal('price',15,2)->nullable();
+            $table->decimal('total_price',15,2)->nullable();
+            $table->decimal('total',15,2);
             $table->timestamps();
         });
     }
-//$table->foreignId('investor_id')->constrained('investors');
+
+
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('investments');
+        Schema::dropIfExists('expenses');
     }
 };

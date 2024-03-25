@@ -10,6 +10,8 @@ use App\Http\Controllers\Project\ProjectDashboardController;
 use App\Http\Controllers\Project\ProjectExpanseController;
 use App\Http\Controllers\Project\ProjectInvestmentController;
 use App\Http\Controllers\Project\ProjectAuthController;
+use App\Http\Controllers\Project\InstallmentController;
+use App\Http\Controllers\Project\ProjectExpenseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,8 +65,23 @@ Route::prefix('admin')->group(function () {
                 Route::get('/list', [ProjectInvestmentController::class, 'index'])->name('project.investment.list');
                 Route::get('/create', [ProjectInvestmentController::class, 'create'])->name('create.project.investment');
                 Route::post('/create', [ProjectInvestmentController::class, 'store'])->name('store.project.investment');
-                Route::get('/view', [ProjectInvestmentController::class, 'view'])->name('project.investment.view');
+                Route::get('/view/{id}', [ProjectInvestmentController::class, 'view'])->name('project.investment.view');
             });
+
+             // Project Investment Installment
+            Route::prefix('installment')->group(function () {
+                Route::get('/create/{id}', [InstallmentController::class, 'create'])->name('project.installment');
+                Route::post('/create', [InstallmentController::class, 'store'])->name('store.project.installment');
+            });
+
+              // Project Expense
+            Route::prefix('expense')->group(function () {
+                Route::get('/create', [ProjectExpenseController::class, 'create'])->name('project.expense');
+                Route::post('/create', [ProjectExpenseController::class, 'store'])->name('store.project.expense');
+            });
+
+
+
         });
 
         // Route::prefix('investment')->group(function () {

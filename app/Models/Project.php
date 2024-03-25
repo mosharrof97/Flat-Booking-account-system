@@ -40,6 +40,10 @@ class Project extends AuthenticatableUser implements Authenticatable
 
     public function district(): BelongsTo
     {
-        return $this->BelongsTo(District::class, 'district_id');
+        return $this->BelongsTo(District::class);
+    }
+
+    public function investment(){
+        return $this->HasMany(Investment::class, 'project_id');
     }
 }

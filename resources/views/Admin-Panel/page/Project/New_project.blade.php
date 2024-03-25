@@ -30,7 +30,7 @@
 
                         <div class="col-md-6">
                             <label for="budget" class="form-label">Project Budget</label>
-                            <input type="text" class="form-control" id="budget" name="budget" value="">
+                            <input type="decimal" class="form-control" id="budget" name="budget" value="">
                             @error('budget')
                                 <span class="form-text text-danger">{{ $message }}</span>
                             @enderror

@@ -2,9 +2,10 @@
 @section('content')
 <div class="row justify-content-center">
     <div class="col-lg-10 col-sm-12">
+
         <div class="card p-4">
             <div class="card-header">
-                <h3>Installment Information</h3>
+                <h3>Investment Information</h3>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -125,9 +126,43 @@
                         </tbody>
                     </table>
                 </div>
+
+                <hr>
+                <form class="" action="{{ route('store.project.installment') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                        {{-- Project Investment Installment--}}
+                        <hr>
+                        <div class="col-md-12 bg-info py-2 mb-2">
+                            <h4 class="m-0"> Project Investment </h4>
+                        </div>
+                        {{-- Investment Id --}}
+                            <input type="hidden" class="form-control" id="" name="investment_id" value="{{ $investment->id }}">
+                        {{-- Investment Id --}}
+
+                        <div class="col-md-12">
+                            <label for="installment_amount" class="form-label">Installment Amount</label>
+                            <input type="text" class="form-control" id="installment_amount" placeholder="Installment amount" name="installment_amount">
+                        </div>
+                        <hr>
+                        <div class="col-12">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="gridCheck">
+                                <label class="form-check-label" for="gridCheck">
+                                    Check me out
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="col-12 text-end">
+                            <button type="submit " class="btn btn-primary ">Submit</button>
+                        </div>
+
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 </div>
+
 
 @endsection
