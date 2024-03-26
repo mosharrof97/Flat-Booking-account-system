@@ -64,4 +64,8 @@ class Investor extends Model
     public function investment(){
         return $this->HasMany(Investment::class, 'investor_id');
     }
+
+    public function role(){
+        return $this->BelongsTo(Role::class);
+    }
 }

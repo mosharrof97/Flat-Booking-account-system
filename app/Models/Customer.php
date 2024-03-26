@@ -53,4 +53,8 @@ class Customer extends Model
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function role(){
+    return $this->BelongsTo(Role::class);
+    }
 }
