@@ -257,12 +257,12 @@
                         </a>
                     </li> --}}
 
-                    <li>
+                    {{-- <li>
                         <a class="has-arrow" href="#" aria-expanded="false">
                             <i class="fa-solid fa-store"></i>
                             <span class="nav-text">TA & DA Bill</span>
                         </a>
-                    </li>
+                    </li> --}}
 
                     {{-- Customer --}}
                     {{-- <li id="customer-parent">
@@ -330,6 +330,24 @@
                                     <a class="has-arrow" href="{{ route('create.project') }}">
                                         <i class="fa-solid fa-store"></i>
                                         <span class="nav-text">Add New Project</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    {{-- Role --}}
+                    <li id="role-parent">
+                        <a class="has-arrow" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#role" aria-expanded="false" aria-controls="role">
+                            <i class="fa-solid fa-store"></i>
+                            <span class="nav-text">Role </span>
+                        </a>
+                        <div id="role" class="accordion-collapse collapse" style="background-color: #1c0f54" data-bs-parent="#role-parent">
+                            <ul class=" metismenu" >
+                                <li>
+                                    <a class="has-arrow" href="{{ route('role.list') }}" >
+                                        <i class="fa-solid fa-store"></i>
+                                        <span class="nav-text">Role add & list</span>
                                     </a>
                                 </li>
                             </ul>

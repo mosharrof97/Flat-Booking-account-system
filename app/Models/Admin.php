@@ -22,7 +22,8 @@ class Admin extends Model
         'phone',
         'email',
         'nid',
-        'role',
+        'role_id',
+        'active_status',
         'status',
         'password',
     ];

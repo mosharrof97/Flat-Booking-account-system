@@ -27,7 +27,8 @@ class Customer extends Model
         'district',
         'zipCode',
         'image',
-        'role',
+        'role_id',
+        'active_status',
         'status',
         'password',
     ];

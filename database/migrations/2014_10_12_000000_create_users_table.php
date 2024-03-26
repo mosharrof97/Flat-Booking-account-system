@@ -17,10 +17,14 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->foreignId('role_id')->default('inactive');
+            $table->enum('active_status',['active', 'inactive'])->default('inactive');
+            $table->string('status')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });
     }
+
 
     /**
      * Reverse the migrations.

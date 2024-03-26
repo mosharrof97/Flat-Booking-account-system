@@ -33,8 +33,9 @@ return new class extends Migration
             $table->integer('per_zipCode');
 
             $table->string('image');
-            $table->string('role');
-            $table->integer('status')->default(0);
+            $table->foreignId('role_id')->default('inactive');
+            $table->enum('active_status',['active', 'inactive'])->default('inactive');
+            $table->string('status')->default(0);
             $table->rememberToken();
             $table->timestamps();
        });

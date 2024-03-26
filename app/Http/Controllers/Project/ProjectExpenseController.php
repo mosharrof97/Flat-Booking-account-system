@@ -64,7 +64,7 @@ class ProjectExpenseController extends Controller
             ];
 
             $expenses = Expense::create($expensesData);
-            return $expenses;
+            return redirect()->route('project.expense.list')-> with('success','Expense Add Successful.');
         }else{
             return redirect()->route('list.project')-> with('error','Project Id Is Null');
         }
@@ -78,6 +78,5 @@ class ProjectExpenseController extends Controller
         }else{
         return redirect()->route('list.project')-> with('error','Project Id Is Null');
         }
-
     }
 }

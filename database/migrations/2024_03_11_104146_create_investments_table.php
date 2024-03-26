@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('investments', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->nullable();
             $table->foreignId('investor_id');
             $table->foreignId('project_id');
             $table->decimal('total_Investment',15,2);

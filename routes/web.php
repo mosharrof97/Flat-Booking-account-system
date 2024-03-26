@@ -3,8 +3,11 @@
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+// invest File
 use App\Http\Controllers\Invest\InvestorController;
 use App\Http\Controllers\Invest\InvestmentController;
+
+//Project File
 use App\Http\Controllers\Project\ProjectController;
 use App\Http\Controllers\Project\ProjectDashboardController;
 use App\Http\Controllers\Project\ProjectExpanseController;
@@ -12,6 +15,11 @@ use App\Http\Controllers\Project\ProjectInvestmentController;
 use App\Http\Controllers\Project\ProjectAuthController;
 use App\Http\Controllers\Project\InstallmentController;
 use App\Http\Controllers\Project\ProjectExpenseController;
+
+// Admin File
+use App\Http\Controllers\Admin\RoleController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -44,6 +52,12 @@ Route::prefix('admin')->group(function () {
         Route::post('/create', [InvestorController::class, 'store'])->name('store_investor');
         Route::get('/view/{id}', [InvestorController::class,'view'])->name('investor.view');
     });
+
+     Route::prefix('role')->group(function () {
+        Route::get('/list', [RoleController::class,'index'])->name('role.list');
+        Route::post('/create', [RoleController::class, 'store'])->name('store.role');
+        Route::get('/view/{id}', [RoleController::class,'view'])->name('role.view');
+     });
 
     // Project
     Route::prefix('project')->group(function () {
