@@ -56,7 +56,6 @@ return [
             'driver' => 'session',
             'provider' => 'investors',
         ],
-
     ],
 
     /*

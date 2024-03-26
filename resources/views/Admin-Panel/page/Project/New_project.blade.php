@@ -17,7 +17,7 @@
                         <h4 class="text-danger">{{ Session::get('error') }}</h4>
                     @endif
                 </div>
-                <form class="" action="" method="POST" enctype="multipart/form-data">
+                <form class="" action="{{ route('store.project') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="row g-3">
                         <div class="col-md-6">
@@ -145,6 +145,7 @@
                         <div class="col-md-12">
                             <label for="image" class="form-label">Image</label>
                             <input type="file" class="form-control" id="image" name="image" value="">
+
                             @error('image')
                                 <span class="form-text text-danger">{{ $message }}</span>
                             @enderror

@@ -26,7 +26,7 @@ class ProjectController extends Controller
     // }
 
     public function store(Request $request){
-        $request->validate([
+        $test = $request->validate([
             'projectName' =>[ 'required','string'],
             'budget' =>[ 'required'],
             'land_area' =>[ 'required'],
@@ -40,15 +40,16 @@ class ProjectController extends Controller
             'city' =>[ 'required','string'],
             'district_id' =>[ 'required'],
             'zipCode' =>[ 'required'],
-            'image' =>[ 'required'],
+            // 'image' =>[ 'required','image'],
         ]);
 
-        if($request->hasFile('image')){
-            $imageName = 'Project_' . time().'-'.mt_rand(1000000,10000000000).'.'.$request->image->extension();
-            $request->image->move(public_path('upload/Project'), $imageName);
+        // dd($request->image);
 
-            // $request->file('image')->move(public_path('upload/Investor'), $imageName);
+        if($request->hasFile('image')){
+            $imageName = 'Project_' . time().'-'.mt_rand(1000000,10000000000).'.'.$request->file('image')->extension();
+            $request->image->move(public_path('upload/Project'), $imageName);
         }
+        // dd( $imageName);
 
         $data=[
             'projectName' =>$request->projectName,
@@ -64,8 +65,10 @@ class ProjectController extends Controller
             'city' =>$request->city,
             'district_id' =>$request->district_id,
             'zipCode' =>$request->zipCode,
-            'image' =>$imageName,
+            'image' =>$imageName ?? 'No Image',
         ];
+
+        // dd($data);
 
         Project::create($data);
         return back()->with('message','Create Project Successful');

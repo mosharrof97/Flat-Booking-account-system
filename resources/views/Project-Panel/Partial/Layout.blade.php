@@ -194,7 +194,7 @@
                         <div id="investor" class="accordion-collapse collapse" style="background-color: #1c0f54" data-bs-parent="#investor-parent">
                             <ul class=" metismenu">
                                 <li>
-                                    <a class="has-arrow" href="#">
+                                    <a class="has-arrow" href="{{ route('project.expense.list') }}">
                                         <i class="fa-solid fa-store"></i>
                                         <span class="nav-text">All Expanse</span>
                                     </a>

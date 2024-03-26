@@ -29,6 +29,8 @@ class Expense extends Model
         'price' => 'array',
         'total_price' => 'array',
     ];
+
+    public function project() {
+       return $this->BelongsTo(Project::class);
+    }
 }
-
-

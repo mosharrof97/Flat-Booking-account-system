@@ -76,8 +76,11 @@ Route::prefix('admin')->group(function () {
 
               // Project Expense
             Route::prefix('expense')->group(function () {
+                Route::get('/list', [ProjectExpenseController::class, 'index'])->name('project.expense.list');
                 Route::get('/create', [ProjectExpenseController::class, 'create'])->name('project.expense');
                 Route::post('/create', [ProjectExpenseController::class, 'store'])->name('store.project.expense');
+                Route::get('/view/{id}', [ProjectExpenseController::class, 'view'])->name('project.expense.view');
+
             });
 
 

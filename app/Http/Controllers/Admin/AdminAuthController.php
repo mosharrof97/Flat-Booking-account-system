@@ -17,7 +17,6 @@ class AdminAuthController extends Controller
         $request ->validate([
                 'email' =>'required|email',
                 'password'=>'required',
-
         ]);
 
         $credentials = $request ->only('email','password');

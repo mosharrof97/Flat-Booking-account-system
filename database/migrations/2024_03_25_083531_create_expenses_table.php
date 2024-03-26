@@ -16,10 +16,10 @@ return new class extends Migration
             $table->foreignId('project_id');
             $table->date('data');
             $table->string('name')->nullable();
-            $table->integer('quantity')->nullable();
-            $table->string('unit',40)->nullable();
-            $table->decimal('price',15,2)->nullable();
-            $table->decimal('total_price',15,2)->nullable();
+            $table->string('quantity')->nullable();
+            $table->string('unit')->nullable();
+            $table->string('price')->nullable();
+            $table->string('total_price')->nullable();
             $table->decimal('total',15,2);
             $table->timestamps();
         });

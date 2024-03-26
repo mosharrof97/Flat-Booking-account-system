@@ -46,4 +46,10 @@ class Project extends AuthenticatableUser implements Authenticatable
     public function investment(){
         return $this->HasMany(Investment::class, 'project_id');
     }
+
+    public function expense() {
+        return $this->HasMany(Expense::class, 'project_id');
+    }
+
+
 }

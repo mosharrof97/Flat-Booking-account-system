@@ -3,93 +3,81 @@
 namespace App\Http\Controllers\Project;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
+use App\Models\Project;
 use App\Models\Expense;
 
 class ProjectExpenseController extends Controller
 {
     public function index(){
+        $projectId = Session::get('project_id');
+        if($projectId){
+             $expenses = Expense::where('project_id',$projectId)->get();
 
+             // dd($expenses);
+             return view('Project-Panel.Expanse.Expense_List', compact('expenses' ));
+        }else{
+            return redirect()->route('list.project')-> with('error','Project Id Is Null');
+        }
     }
 
     public function create(){
-
-        return view('Project-Panel.Expanse.Add_Expense');
+        if(Session::get('project_id')){
+            return view('Project-Panel.Expanse.Add_Expense');
+        }else{
+            return redirect()->route('list.project')-> with('error','Project Id Is Null');
+        }
     }
+
 
     public function store(Request $request)
-{
-    $names = $request->input('name');
-    $quantities = $request->input('quantity');
-    $units = $request->input('unit');
-    $prices = $request->input('price');
-    $total_prices = $request->input('total_price');
+    {
+        $projectId = Session::get('project_id');
+         if($projectId){
+            $names = $request->input('name');
+            $quantities = $request->input('quantity');
+            $units = $request->input('unit');
+            $prices = $request->input('price');
+            $total_prices = $request->input('total_price');
 
-    $expensesData = [
-        'project_id' => 1,
-        'date' => $request->date,
-        'total' => $request->total,
-    ];
-    foreach ($names as $key => $name) {
-        $expensesData[] = [
-            'name' => $name,
-            'quantity' => $quantities[$key],
-            'unit' => $units[$key],
-            'price' => $prices[$key],
-            'total_price' => $total_prices[$key],
-        ];
+
+            $expensesData = [
+                'project_id' => $projectId,
+                'date' => $request->date,
+                'total' => $request->total,
+
+                // ---------Use json_encode---------//
+                'name' =>json_encode($names),
+                'quantity' => json_encode($quantities),
+                'unit' =>json_encode( $units),
+                'price' => json_encode($prices),
+                'total_price' => json_encode($total_prices),
+                // ---------Use json_encode---------//
+                //--------Use implode Method-------//
+                // 'name' =>implode("**",$names),
+                // 'quantity' => implode("**",$quantities),
+                // 'unit' =>implode( "**",$units),
+                // 'price' => implode("**",$prices),
+                // 'total_price' => implode("**",$total_prices),
+                //--------Use implode Method-------//
+            ];
+
+            $expenses = Expense::create($expensesData);
+            return $expenses;
+        }else{
+            return redirect()->route('list.project')-> with('error','Project Id Is Null');
+        }
     }
+    public function view($id){
+        $projectId = Session::get('project_id');
+        if($projectId){
+            $expense = Expense::where('id',$id)->where('project_id',$projectId)->first();
 
-    // dd($expensesData);
+            return view('Project-Panel.Expanse.Expense_View', compact('expense'));
+        }else{
+        return redirect()->route('list.project')-> with('error','Project Id Is Null');
+        }
 
-
-    $expenses = Expense::insert($expensesData);
-
-    return $expenses;
-}
-    // public function store(Request $request){
-
-    //     // dd($request->all());
-
-    //     $name = [];
-    //     foreach($request->input('name') as $key => $value) {
-    //         $data =$value;
-    //     }
-    //     $quantity = [];
-    //     foreach($request->input('quantity') as $key => $value) {
-    //         $quantity =$value;
-    //     }
-    //     $unit = [];
-    //     foreach($request->input('unit') as $key => $value) {
-    //         $unit =$value;
-    //     }
-    //     $price = [];
-    //     foreach($request->input('price') as $key => $value) {
-    //         $price =$value;
-    //     }
-
-    //     $total_price = [];
-    //     foreach($request->input('total_price') as $key => $value) {
-    //         $total_price =$value;
-    //     }
-
-
-    //     $request->validate([
-
-    //     ]);
-
-    //     $data = Expense::create([
-    //         'project_id'=>1,
-    //         'date'=>$request->date,
-    //         'name'=>$name,
-    //         'quantity'=>$quantity,
-    //         'unit'=>$unit,
-    //         'price'=>$price,
-    //         'total_price'=>$total_price,
-    //         'total'=>$request->total,
-    //     ]);
-
-    //     return $data;
-    //     // return redirect()->route()->with('success','Expense Add Successful.');
-    // }
+    }
 }
