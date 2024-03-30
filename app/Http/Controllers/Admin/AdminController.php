@@ -14,8 +14,9 @@ use Illuminate\Auth\Events\Registered;
 class AdminController extends Controller
 {
     public function dashboard(){
+        // dd(auth()->user());
 
-        return view('AdminDashboard');
+        return view('Admin-Panel.dashboard');
     }
 
 

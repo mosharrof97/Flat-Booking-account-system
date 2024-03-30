@@ -29,7 +29,6 @@ class InvestorController extends Controller
         // dd($request->all());
         if($request->hasFile('image')){
             $imageName = 'Investor_'. time() .'_'. mt_rand(100000, 10000000000) .'.'.$request->file('image')->extension();
-            $request->file('image')->move(public_path('upload/Investor'), $imageName);
         };
 // dd($request->hasFile('image'));
         $data=[
@@ -50,10 +49,13 @@ class InvestorController extends Controller
             'per_city'=>$request->per_city,
             'per_district'=>$request->per_district,
             'per_zipCode'=>$request->per_zipCode,
-            'role'=>'investor',
+            'role_id'=>4,
             'image'=>$imageName,
         ];
+
         Investor::create($data);
+        $request->file('image')->move(public_path('upload/Investor'), $imageName);
+
         return back()->with('success','Investor Create Successful.');
     }
 

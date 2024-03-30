@@ -3,6 +3,12 @@
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+//Admin File
+use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\RegisteredAminController;
+use App\Http\Controllers\Admin\AdminAuthController;
+use App\Http\Controllers\Admin\AdminController;
+
 // invest File
 use App\Http\Controllers\Invest\InvestorController;
 use App\Http\Controllers\Invest\InvestmentController;
@@ -16,8 +22,6 @@ use App\Http\Controllers\Project\ProjectAuthController;
 use App\Http\Controllers\Project\InstallmentController;
 use App\Http\Controllers\Project\ProjectExpenseController;
 
-// Admin File
-use App\Http\Controllers\Admin\RoleController;
 
 
 
@@ -34,9 +38,20 @@ use App\Http\Controllers\Admin\RoleController;
 
 
 
-
+//Auth
+Route::prefix('admin')->group(function () {
+    Route::get('/', [AdminController::class, 'dashboard'])->name('admin.dashboard')->middleware('admin');
+    // Route::get('/list', [RegisteredAminController::class,'index'])->name('list.investment');
+    Route::get('/create', [RegisteredAminController::class, 'create'])->name('create.admin');
+    Route::post('/create', [RegisteredAminController::class, 'store'])->name('store.admin');
+    // Route::get('/view/{id}', [RegisteredAminController::class,'view'])->name('view.investment');
+    Route::get('login', [AdminAuthController::class, 'login'])->name('admin.login');
+    Route::post('login', [AdminAuthController::class, 'store'])->name('admin.login.store');
+    Route::post('logout', [AdminAuthController::class, 'destroy'])->name('admin.logout');
+});
 
 Route::prefix('admin')->group(function () {
+
     //Investment
     Route::prefix('investment')->group(function () {
         Route::get('/list', [InvestmentController::class,'index'])->name('list.investment');
@@ -108,15 +123,13 @@ Route::prefix('admin')->group(function () {
 
 });
 
-Route::prefix('project')->group(function () {
-    Route::get('/login', [ProjectAuthController::class, 'create']) ->name('project_login');
-    Route::post('/login_project', [ProjectAuthController::class, 'store']);
-});
+// Route::prefix('project')->group(function () {
+//     Route::get('/login', [ProjectAuthController::class, 'create']) ->name('project_login');
+//     Route::post('/login_project', [ProjectAuthController::class, 'store']);
+// });
 
 
-Route::get('/', function () {
-    return view('Admin-Panel.dashboard');
-});
+Route::get('/', function () { return view('Admin-Panel.dashboard'); });
 
 Route::get('/dashboard', function () {
     return view('dashboard');

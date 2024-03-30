@@ -40,7 +40,7 @@ class ProjectController extends Controller
             'city' =>[ 'required','string'],
             'district_id' =>[ 'required'],
             'zipCode' =>[ 'required'],
-            // 'image' =>[ 'required','image'],
+            'image' =>[ 'required','image'],
         ]);
 
         // dd($request->image);

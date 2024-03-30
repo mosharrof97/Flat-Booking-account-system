@@ -11,6 +11,7 @@
 
     <!-- Main css -->
     <link rel="stylesheet" href="{{ asset('asset/css/login.style.css')}}">
+    <link rel="stylesheet" href="{{ asset('asset/css/bootstrap.min.css')}}">
     <script src="{{ asset('asset/js/jquery.min.js') }}"></script>
 </head>
 <body>
@@ -67,8 +68,16 @@
                     </div>
 
                     <div class="signin-form">
-                        <h2 class="form-title">Login</h2>
-                        <form method="POST" action="{{ route('login') }}" class="w-100" id="login-form">
+                        <h2 class="form-title">Admin Login</h2>
+
+                        @if(Session::has('error'))
+                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                <strong>{{ session::get('error') }} !</strong>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        @endif
+
+                        <form method="POST" action="{{ route('admin.login.store') }}" class="w-100" id="login-form">
                             @csrf
                             <div class="form-group">
                                 <label for="email"><i class="zmdi zmdi-account material-icons-name"></i></label>
@@ -101,6 +110,6 @@
 
     </div>
 
-
+    <script src="{{ asset('asset/js/bootstrap.bundle.min.js') }}"></script>
 </body>
 </html>

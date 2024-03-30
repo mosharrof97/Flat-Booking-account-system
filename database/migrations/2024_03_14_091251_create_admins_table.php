@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('admins', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('nid')->unique();
-            $table->integer('phone')->unique();
-            $table->foreignId('role_id')->default('inactive');
+            $table->integer('nid',20)->unique();
+            $table->integer('phone',15)->unique();
+            $table->foreignId('role_id');
             $table->enum('active_status',['active', 'inactive'])->default('inactive');
             $table->string('status')->default(0);
             $table->string('email')->unique();
