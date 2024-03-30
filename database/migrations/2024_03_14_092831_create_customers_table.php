@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('customers', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('phone',15)->unique();
+            $table->string('phone',15)->unique();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->integer('nid',20)->unique();
+            $table->string('nid',20)->unique();
             $table->string('address');
             $table->string('city');
             $table->string('district');
