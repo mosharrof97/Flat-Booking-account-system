@@ -15,7 +15,12 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->nullable();
             $table->foreignId('investment_id');
-            $table->decimal('installment_amount',15,2);;
+            $table->decimal('installment_amount',15,2);
+
+            $table->string('created_by')->nullable();
+            $table->string('updated_by')->nullable();
+            $table->string('deleted_by')->nullable();
+
             $table->rememberToken();
             $table->timestamps();
         });

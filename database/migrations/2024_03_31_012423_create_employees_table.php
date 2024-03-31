@@ -22,10 +22,15 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
             $table->string('image')->nullable();
-            $table->foreignId('role_id');
+            $table->foreignId('role_id')->nullable();
             $table->string('designation');
             $table->enum('active_status',['active', 'inactive'])->default('inactive');
             $table->string('status')->default(0);
+
+            $table->string('created_by')->nullable();
+            $table->string('updated_by')->nullable();
+            $table->string('deleted_by')->nullable();
+
             $table->timestamps();
         });
     }

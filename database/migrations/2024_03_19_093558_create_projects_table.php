@@ -29,6 +29,11 @@ return new class extends Migration
             $table->integer('zipCode');
             $table->string('image');
             $table->integer('status')->default(0);
+
+            $table->string('created_by')->nullable();
+            $table->string('updated_by')->nullable();
+            $table->string('deleted_by')->nullable();
+
             $table->rememberToken();
             $table->timestamps();
         });

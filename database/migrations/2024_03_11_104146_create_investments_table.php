@@ -20,6 +20,11 @@ return new class extends Migration
             $table->string('installment_type');
             $table->string('profit_type');
             $table->string('profit');
+
+            $table->string('created_by')->nullable();
+            $table->string('updated_by')->nullable();
+            $table->string('deleted_by')->nullable();
+
             $table->rememberToken();
             $table->timestamps();
         });

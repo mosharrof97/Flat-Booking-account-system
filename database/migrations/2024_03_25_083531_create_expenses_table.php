@@ -22,6 +22,11 @@ return new class extends Migration
             $table->string('price')->nullable();
             $table->string('total_price')->nullable();
             $table->decimal('total',15,2);
+
+            $table->string('created_by')->nullable();
+            $table->string('updated_by')->nullable();
+            $table->string('deleted_by')->nullable();
+
             $table->timestamps();
         });
     }
