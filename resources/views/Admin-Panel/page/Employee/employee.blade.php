@@ -3,21 +3,41 @@
     <div class="row justify-content-center">
         <div class="col-lg-10 col-sm-12">
 
+            @if ($errors->any())
+                <ul class="alert alert-warning">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            @endif
+
             <div class="card p-4">
                 <div class="card-header">
-                    <h3>Investor Information</h3>
+                    <h3>Employee Information</h3>
                 </div>
                 <div class="card-body">
                     <form class="row g-3" action="" method="POST" enctype="multipart/form-data">
                         @csrf
-                        <div class="col-md-6">
-                            <label for="firstName" class="form-label">First Name</label>
-                            <input type="text" class="form-control" id="firstName" name="firstName">
+                        <div class="col-md-12">
+                            <label for="name" class="form-label">Full Name</label>
+                            <input type="text" class="form-control" id="name" name="name">
                         </div>
                         <div class="col-md-6">
-                            <label for="lastName" class="form-label">Last Name</label>
-                            <input type="text" class="form-control" id="lastName" name="lastName">
+                            <label for="father_name" class="form-label">Father Name</label>
+                            <input type="text" class="form-control" id="father_name" name="father_name">
+                            @error('father_name')
+                                <span id="" class="form-text text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
+
+                        <div class="col-md-6">
+                            <label for="mother_name" class="form-label">Mother Name</label>
+                            <input type="text" class="form-control" id="mother_name" name="mother_name">
+                            @error('mother_name')
+                                <span id="" class="form-text text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+
                         <div class="col-md-6">
                             <label for="phone" class="form-label">Phone</label>
                             <input type="phone" class="form-control" id="phone" name="phone">
@@ -30,6 +50,17 @@
                             <label for="nid" class="form-label">NID Number</label>
                             <input type="number" class="form-control" id="nid" name="nid">
                         </div>
+                        {{-- Role --}}
+                        <div class="mb-3">
+                            <label for="">Roles</label>
+                            <select name="roles[]" class="form-control" multiple>
+                                <option value="">Select Role</option>
+                                @foreach ($roles as $role)
+                                    <option value="{{ $role }}">{{ $role }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        {{-- Role --}}
 
                         <div class="col-md-6">
                             <label for="designation" class="form-label">Designation</label>
@@ -41,46 +72,125 @@
 
                         </div>
 
-                        <div class="col-12">
-                            <label for="address" class="form-label">Address</label>
-                            <input type="text" class="form-control" id="address" placeholder="1234 Main St"
-                                name="address">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="city" class="form-label">City</label>
-                            <input type="text" class="form-control" id="city" name="city">
-                        </div>
-                        <div class="col-md-4">
-                            <label for="district" class="form-label">District</label>
-                            <div class="mr-1 ">
-                                <input class="form-control bg-light" list="districtOptions" id="district"
-                                    placeholder="Select District" name="district">
-                                <datalist id="districtOptions">
-                                    <option value="PRITOM SARKER"> </option>
-                                    <option value="Joy Roy 2"></option>
-                                    <option value="Labib Kumar"></option>
-                                    <option value="Joy Roy"></option>
-                                    <option value="Indrajit debnath"></option>
-                                    <option value="MEHEDI HASAN"></option>
-                                    <option value="DELUARA HOSEN"></option>
-                                    <option value="Shahedul Islam"></option>
-                                    <option value="Md Ruhul Amin"></option>
-                                    <option value="Kanoc Roy"></option>
-                                    <option value="Golam Rabbani"></option>
-                                    <option value="Joy Karmokar"></option>
-                                    <option value="Md.Sabbir Sheikh"></option>
-                                    <option value="Md Rasheduzaman"></option>
-                                    <option value="Md Mehedi Hasan"></option>
-                                    <option value="Zafor Iqbal"></option>
-                                    <option value="Md Iqbal Hossain"></option>
-                                    <option value="Arifur Rahman Hamza"></option>
-                                    <option value="Md shozib hossen"></option>
-                                </datalist>
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header bg-primary">
+                                    <h4 class="text-light text-center">Address</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="card shadow-none border">
+                                                <div class="card-header bg-info">
+                                                    <h4 class="text-light text-center">Present Address</h4>
+                                                </div>
+                                                <div class="card-body">
+                                                    <div class="mt-3">
+                                                        <label for="pre_address" class="form-label">Address</label>
+                                                        <input type="text" class="form-control" id="pre_address"
+                                                            placeholder="1234 Main St" name="pre_address">
+                                                        @error('pre_address')
+                                                            <span class="form-text text-danger">{{ $message }}</span>
+                                                        @enderror
+                                                    </div>
+
+                                                    <div class="mt-3">
+                                                        <label for="pre_city" class="form-label">City</label>
+                                                        <input type="text" class="form-control" id="pre_city"
+                                                            name="pre_city">
+
+                                                        @error('pre_city')
+                                                            <span class="form-text text-danger">{{ $message }}</span>
+                                                        @enderror
+                                                    </div>
+
+                                                    <div class="mt-3">
+                                                        <label for="pre_district" class="form-label">District</label>
+                                                        <select name="pre_district" id="pre_district"
+                                                            class="form-select bg-light">
+                                                            <option value="">Select Dristrict.......</option>
+                                                            @foreach ($districts as $district)
+                                                                <option value="{{ $district->name }}">{{ $district->name }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+
+                                                        <div class="mr-1 ">
+                                                            @error('pre_district')
+                                                                <span class="form-text text-danger">{{ $message }}</span>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                    <div class="mt-3">
+                                                        <label for="pre_zipCode" class="form-label">Zip Code</label>
+                                                        <input type="text" class="form-control" id="pre_zipCode"
+                                                            name="pre_zipCode">
+
+                                                        @error('pre_zipCode')
+                                                            <span class="form-text text-danger">{{ $message }}</span>
+                                                        @enderror
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="card shadow-none border">
+                                                <div class="card-header bg-info">
+                                                    <h4 class="text-light text-center">Permanent address</h4>
+                                                </div>
+                                                <div class="card-body">
+                                                    <div class="mt-3">
+                                                        <label for="per_address" class="form-label">Address</label>
+                                                        <input type="text" class="form-control" id="per_address"
+                                                            placeholder="1234 Main St" name="per_address">
+                                                        @error('per_address')
+                                                            <span class="form-text text-danger">{{ $message }}</span>
+                                                        @enderror
+                                                    </div>
+
+                                                    <div class="mt-3">
+                                                        <label for="per_city" class="form-label">City</label>
+                                                        <input type="text" class="form-control" id="per_city"
+                                                            name="per_city">
+
+                                                        @error('per_city')
+                                                            <span class="form-text text-danger">{{ $message }}</span>
+                                                        @enderror
+                                                    </div>
+
+                                                    <div class="mt-3">
+                                                        <label for="per_district" class="form-label">District</label>
+                                                        <select name="per_district" id="per_district"
+                                                            class="form-select bg-light">
+                                                            <option value="">Select Dristrict.......</option>
+                                                            @foreach ($districts as $district)
+                                                                <option value="{{ $district->name }}">
+                                                                    {{ $district->name }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                        <div class="mr-1 ">
+                                                            @error('per_district')
+                                                                <span class="form-text text-danger">{{ $message }}</span>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                    <div class="mt-3">
+                                                        <label for="per_zipCode" class="form-label">Zip Code</label>
+                                                        <input type="text" class="form-control" id="per_zipCode"
+                                                            name="per_zipCode">
+
+                                                        @error('per_zipCode')
+                                                            <span class="form-text text-danger">{{ $message }}</span>
+                                                        @enderror
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-2">
-                            <label for="zipCode" class="form-label">Zip Code</label>
-                            <input type="text" class="form-control" id="zipCode" name="zipCode">
                         </div>
 
                         <div class="col-md-12">

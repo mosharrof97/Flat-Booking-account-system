@@ -14,11 +14,11 @@
                     {{-- @php
                         dd(auth()->guard('admin')->user());
                     @endphp --}}
-                    @if (auth()->guard('admin')->user())
-                        @if (auth()->guard('admin')->user()->role_id == 2)
-                            <p>{{ auth()->guard('admin')->user()->name }} are User logged in! </p>
-                        @elseif (auth()->guard('admin')->user()->role_id == 1)
-                            <p>{{ auth()->guard('admin')->user()->name }} are Admin logged in! </p>
+                    @if (auth()->user())
+                        @if (auth()->user()->role_id == 2)
+                            <p>{{ auth()->user()->name }} are User logged in! </p>
+                        @elseif (auth()->user()->role_id == 1)
+                            <p>{{ auth()->user()->name }} are Admin logged in! </p>
                         @else
                             {{ __("You're logged in! -- ok") }}
                         @endif

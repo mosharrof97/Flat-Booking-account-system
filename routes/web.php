@@ -22,6 +22,9 @@ use App\Http\Controllers\Project\ProjectAuthController;
 use App\Http\Controllers\Project\InstallmentController;
 use App\Http\Controllers\Project\ProjectExpenseController;
 
+use App\Http\Controllers\Role_permission\PermissionController;
+use App\Http\Controllers\Employee\EmployeeController;
+
 
 
 
@@ -68,11 +71,11 @@ Route::prefix('admin')->group(function () {
         Route::get('/view/{id}', [InvestorController::class,'view'])->name('investor.view');
     });
 
-     Route::prefix('role')->group(function () {
-        Route::get('/list', [RoleController::class,'index'])->name('role.list');
-        Route::post('/create', [RoleController::class, 'store'])->name('store.role');
-        Route::get('/view/{id}', [RoleController::class,'view'])->name('role.view');
-     });
+    //  Route::prefix('role')->group(function () {
+    //     Route::get('/list', [RoleController::class,'index'])->name('role.list');
+    //     Route::post('/create', [RoleController::class, 'store'])->name('store.role');
+    //     Route::get('/view/{id}', [RoleController::class,'view'])->name('role.view');
+    //  });
 
     // Project
     Route::prefix('project')->group(function () {
@@ -122,6 +125,21 @@ Route::prefix('admin')->group(function () {
     });
 
 });
+
+// Route::prefix('permissions')->group(['middleware' => ['role:super-admin|admin']], function() {
+
+    Route::resource('permissions', PermissionController::class);
+    Route::get('permissions/{permissionId}/delete', [PermissionController::class, 'destroy']);
+
+    Route::resource('roles', RoleController::class);
+    Route::get('roles/{roleId}/delete', [RoleController::class, 'destroy']);
+    Route::get('roles/{roleId}/give-permissions', [RoleController::class, 'addPermissionToRole']);
+    Route::put('roles/{roleId}/give-permissions', [RoleController::class, 'givePermissionToRole']);
+
+    Route::resource('users', EmployeeController::class);
+    Route::get('users/{userId}/delete', [EmployeeController::class, 'destroy']);
+
+// });
 
 // Route::prefix('project')->group(function () {
 //     Route::get('/login', [ProjectAuthController::class, 'create']) ->name('project_login');

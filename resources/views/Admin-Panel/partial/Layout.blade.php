@@ -345,7 +345,8 @@
                         <div id="role" class="accordion-collapse collapse" style="background-color: #1c0f54" data-bs-parent="#role-parent">
                             <ul class=" metismenu" >
                                 <li>
-                                    <a class="has-arrow" href="{{ route('role.list') }}" >
+                                    {{-- <a class="has-arrow" href="{{ route('role.list') }}" > --}}
+                                    <a class="has-arrow" href="#" >
                                         <i class="fa-solid fa-store"></i>
                                         <span class="nav-text">Role add & list</span>
                                     </a>

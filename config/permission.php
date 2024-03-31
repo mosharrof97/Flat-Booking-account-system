@@ -120,8 +120,8 @@ return [
      * (view the latest version of this package's migration file)
      */
 
-    // 'teams' => false,
-    'teams' => true,
+    'teams' => false,
+    // 'teams' => true,
 
     /*
      * Passport Client Credentials Grant
