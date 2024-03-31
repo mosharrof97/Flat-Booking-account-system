@@ -17,10 +17,10 @@ class RolePermissionSeeder extends Seeder
     public function run(): void
     {
         // Create Permissions
-        // Permission::create(['name' => 'view']);
-        // Permission::create(['name' => 'create']);
-        // Permission::create(['name' => 'update']);
-        // Permission::create(['name' => 'delete']);
+        Permission::create(['name' => 'view']);
+        Permission::create(['name' => 'create']);
+        Permission::create(['name' => 'update']);
+        Permission::create(['name' => 'delete']);
 
         Permission::create(['name' => 'view role', 'guard_name' => 'web',]);
         Permission::create(['name' => 'create role', 'guard_name' => 'web',]);
