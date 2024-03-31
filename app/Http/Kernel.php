@@ -68,8 +68,11 @@ class Kernel extends HttpKernel
         'admin' => \App\Http\Middleware\Admin::class,
         'accountant' => \App\Http\Middleware\Accountant::class,
         'investor' => \App\Http\Middleware\Investor::class,
+
+        /*------------ permission -----------*/
         'role' => \Spatie\Permission\Middleware\RoleMiddleware::class,
         'permission' => \Spatie\Permission\Middleware\PermissionMiddleware::class,
         'role_or_permission' => \Spatie\Permission\Middleware\RoleOrPermissionMiddleware::class,
+        /*------------ permission ----------*/
     ];
 }
