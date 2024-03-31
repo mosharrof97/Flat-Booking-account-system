@@ -5,14 +5,18 @@
             <div class="col-md-12">
 
                 @if (session('status'))
-                    <div class="alert alert-success">{{ session('status') }}</div>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>{{ session('status') }} !</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
                 @endif
 
                 <div class="card">
                     <div class="card-header">
-                        <h4>Role : {{ $role->name }}
+                        <h4>Role : {{ $role->name }} </h4>
+                        <div class="">
                             <a href="{{ url('roles') }}" class="btn btn-danger float-end">Back</a>
-                        </h4>
+                        </div>
                     </div>
                     <div class="card-body">
 

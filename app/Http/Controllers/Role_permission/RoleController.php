@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Role_permission;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -50,11 +50,11 @@ class RoleController extends Controller
 
    public function update(Request $request, Role $role){
         $request->validate([
-        'name' => [
-            'required',
-            'string',
-            'unique:roles,name,'.$role->id
-        ]
+            'name' => [
+                'required',
+                'string',
+                'unique:roles,name,'.$role->id
+            ]
         ]);
 
         $role->update([

@@ -11,17 +11,18 @@
             <div class="col-md-12">
 
                 @if (session('status'))
-                    <div class="alert alert-success">{{ session('status') }}</div>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>{{ session('status') }} !</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
                 @endif
 
                 <div class="card mt-3">
                     <div class="card-header">
-                        <h4>
-                            Roles
-                            @can('create role')
-                            <a href="{{ url('roles/create') }}" class="btn btn-primary float-end">Add Role</a>
-                            @endcan
-                        </h4>
+                        <h4> Roles </h4>
+                        {{-- @can('create role') --}}
+                        <a href="{{ url('roles/create') }}" class="btn btn-primary float-end">Add Role</a>
+                        {{-- @endcan --}}
                     </div>
                     <div class="card-body">
 
@@ -43,17 +44,17 @@
                                             Add / Edit Role Permission
                                         </a>
 
-                                        @can('update role')
+                                        {{-- @can('update role') --}}
                                         <a href="{{ url('roles/'.$role->id.'/edit') }}" class="btn btn-success">
                                             Edit
                                         </a>
-                                        @endcan
+                                        {{-- @endcan --}}
 
-                                        @can('delete role')
+                                        {{-- @can('delete role') --}}
                                         <a href="{{ url('roles/'.$role->id.'/delete') }}" class="btn btn-danger mx-2">
                                             Delete
                                         </a>
-                                        @endcan
+                                        {{-- @endcan --}}
                                     </td>
                                 </tr>
                                 @endforeach

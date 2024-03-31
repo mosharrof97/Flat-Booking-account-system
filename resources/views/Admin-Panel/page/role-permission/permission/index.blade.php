@@ -2,7 +2,7 @@
 @section('content')
     <div class="container mt-5">
         <a href="{{ url('roles') }}" class="btn btn-primary mx-1">Roles</a>
-        <a href="{{ url('permissions') }}" class="btn btn-info mx-1">Permissions</a>
+        <a href="{{ url('permissions/create') }}" class="btn btn-info mx-1">Permissions</a>
         <a href="{{ url('users') }}" class="btn btn-warning mx-1">Users</a>
     </div>
 
@@ -11,16 +11,22 @@
             <div class="col-md-12">
 
                 @if (session('status'))
-                    <div class="alert alert-success">{{ session('status') }}</div>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>{{ session('status') }} !</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
                 @endif
 
                 <div class="card mt-3">
                     <div class="card-header">
                         <h4>Permissions
-                            @can('create permission')
-                            <a href="{{ url('permissions/create') }}" class="btn btn-primary float-end">Add Permission</a>
-                            @endcan
+
                         </h4>
+                        <div class="">
+                            {{-- @can('create permission') --}}
+                            <a href="{{ url('permissions/create') }}" class="btn btn-primary float-end">Add Permission</a>
+                            {{-- @endcan --}}
+                        </div>
                     </div>
                     <div class="card-body">
 
@@ -38,13 +44,15 @@
                                     <td>{{ $permission->id }}</td>
                                     <td>{{ $permission->name }}</td>
                                     <td>
-                                        @can('update permission')
+                                        {{-- @can('update permission')
                                         <a href="{{ url('permissions/'.$permission->id.'/edit') }}" class="btn btn-success">Edit</a>
                                         @endcan
 
                                         @can('delete permission')
                                         <a href="{{ url('permissions/'.$permission->id.'/delete') }}" class="btn btn-danger mx-2">Delete</a>
-                                        @endcan
+                                        @endcan --}}
+                                        <a href="{{ url('permissions/'.$permission->id.'/edit') }}" class="btn btn-success">Edit</a>
+                                        <a href="{{ url('permissions/'.$permission->id.'/delete') }}" class="btn btn-danger mx-2">Delete</a>
                                     </td>
                                 </tr>
                                 @endforeach

@@ -32,15 +32,15 @@ class RolePermissionSeeder extends Seeder
         Permission::create(['name' => 'update permission', 'guard_name' => 'web',]);
         Permission::create(['name' => 'delete permission', 'guard_name' => 'web',]);
 
-        Permission::create(['name' => 'view employee', 'guard_name' => 'web',]);
-        Permission::create(['name' => 'create employee', 'guard_name' => 'web',]);
-        Permission::create(['name' => 'update employee', 'guard_name' => 'web',]);
-        Permission::create(['name' => 'delete employee', 'guard_name' => 'web',]);
+        Permission::create(['name' => 'view user', 'guard_name' => 'web',]);
+        Permission::create(['name' => 'create user', 'guard_name' => 'web',]);
+        Permission::create(['name' => 'update user', 'guard_name' => 'web',]);
+        Permission::create(['name' => 'delete user', 'guard_name' => 'web',]);
 
-        Permission::create(['name' => 'view project', 'guard_name' => 'web',]);
-        Permission::create(['name' => 'create project', 'guard_name' => 'web',]);
-        Permission::create(['name' => 'update project', 'guard_name' => 'web',]);
-        Permission::create(['name' => 'delete project', 'guard_name' => 'web',]);
+        Permission::create(['name' => 'view product', 'guard_name' => 'web',]);
+        Permission::create(['name' => 'create product', 'guard_name' => 'web',]);
+        Permission::create(['name' => 'update product', 'guard_name' => 'web',]);
+        Permission::create(['name' => 'delete product', 'guard_name' => 'web',]);
 
 
         // Create Roles
@@ -67,7 +67,7 @@ class RolePermissionSeeder extends Seeder
                     'email' => 'superadmin@gmail.com',
                 ], [
                     'name' => 'Super Admin',
-                    'phone' => '01774656830',
+                    'phone' => '01774656835',
                     'email' => 'superadmin@gmail.com',
                     'designation' => 'Super Admin',
                     'password' => Hash::make ('12345678'),

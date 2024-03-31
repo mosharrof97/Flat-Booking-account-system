@@ -10,6 +10,7 @@
                         <li>{{$error}}</li>
                     @endforeach
                 </ul>
+
                 @endif
 
                 <div class="card">

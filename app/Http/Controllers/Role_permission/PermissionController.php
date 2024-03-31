@@ -24,7 +24,7 @@ class PermissionController extends Controller
 
     public function create()
     {
-        return view('role-permission.permission.create');
+        return view('Admin-Panel.page.role-permission.permission.create');
     }
 
     public function store(Request $request)
@@ -46,7 +46,7 @@ class PermissionController extends Controller
 
     public function edit(Permission $permission)
     {
-        return view('role-permission.permission.edit', ['permission' => $permission]);
+        return view('Admin-Panel.page.role-permission.permission.edit', ['permission' => $permission]);
     }
 
     public function update(Request $request, Permission $permission)

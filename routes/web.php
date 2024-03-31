@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 //Admin File
-use App\Http\Controllers\Admin\RoleController;
+// use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\RegisteredAminController;
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\AdminController;
@@ -23,6 +23,8 @@ use App\Http\Controllers\Project\InstallmentController;
 use App\Http\Controllers\Project\ProjectExpenseController;
 
 use App\Http\Controllers\Role_permission\PermissionController;
+use App\Http\Controllers\Role_permission\RoleController;
+use App\Http\Controllers\Role_permission\UserController;
 use App\Http\Controllers\Employee\EmployeeController;
 
 
@@ -92,6 +94,7 @@ Route::prefix('admin')->group(function () {
             // Project Dashboard
             Route::get('/dashboard/{id}', [ProjectDashboardController::class, 'index'])->name('project.dashboard');
             Route::get('/logout', [ProjectDashboardController::class, 'sessionDelete'])->name('project.sessionDelete');
+
             // Project Investment
             Route::prefix('investment')->group(function () {
                 Route::get('/list', [ProjectInvestmentController::class, 'index'])->name('project.investment.list');
@@ -128,7 +131,7 @@ Route::prefix('admin')->group(function () {
 
 // Route::prefix('permissions')->group(['middleware' => ['role:super-admin|admin']], function() {
 
-    Route::resource('permissions', PermissionController::class);
+    Route::resource('permissions',PermissionController::class);
     Route::get('permissions/{permissionId}/delete', [PermissionController::class, 'destroy']);
 
     Route::resource('roles', RoleController::class);
@@ -136,8 +139,8 @@ Route::prefix('admin')->group(function () {
     Route::get('roles/{roleId}/give-permissions', [RoleController::class, 'addPermissionToRole']);
     Route::put('roles/{roleId}/give-permissions', [RoleController::class, 'givePermissionToRole']);
 
-    Route::resource('users', EmployeeController::class);
-    Route::get('users/{userId}/delete', [EmployeeController::class, 'destroy']);
+    Route::resource('users', UserController::class);
+    Route::get('users/{userId}/delete', [UserController::class, 'destroy']);
 
 // });
 

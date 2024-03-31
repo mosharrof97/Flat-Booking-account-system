@@ -13,14 +13,19 @@
 
             <div class="card p-4">
                 <div class="card-header">
-                    <h3>Employee Information</h3>
+                    <h4>Employee Information</h4>
+                    <a href="{{ url('users') }}" class="btn btn-danger float-end">Back</a>
                 </div>
                 <div class="card-body">
-                    <form class="row g-3" action="" method="POST" enctype="multipart/form-data">
+                    <form class="row g-3" action="{{ url('users') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="col-md-12">
                             <label for="name" class="form-label">Full Name</label>
                             <input type="text" class="form-control" id="name" name="name">
+
+                            @error('name')
+                                <span id="" class="form-text text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
                         <div class="col-md-6">
                             <label for="father_name" class="form-label">Father Name</label>
