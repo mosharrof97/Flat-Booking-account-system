@@ -13,9 +13,8 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->increments('id');
             $table->unsignedBigInteger('voucher_no');
-            $table->unsignedBigInteger('branch_id')->nullable();
+            $table->foreignId('project_id')->nullable();
             $table->string('cheque_number')->nullable();
             $table->unsignedBigInteger('income_expense_head_id')->nullable();
             $table->unsignedBigInteger('bank_cash_id')->nullable();

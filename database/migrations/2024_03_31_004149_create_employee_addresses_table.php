@@ -23,6 +23,8 @@ return new class extends Migration
             $table->string('per_district');
             $table->integer('per_zipCode');
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 
