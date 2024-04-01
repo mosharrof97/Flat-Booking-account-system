@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Employee extends Model
@@ -30,8 +31,8 @@ class Employee extends Model
         'deleted_by',
     ];
 
-    public function employeeAddress(): HasMany
+    public function employeeAddress(): HasOne
     {
-        return $this->hasMany(EmployeeAddress::class, 'employee_id');
+        return $this->hasOne(EmployeeAddress::class, 'employee_id');
     }
 }
