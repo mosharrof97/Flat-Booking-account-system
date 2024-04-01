@@ -14,10 +14,10 @@
             <div class="card p-4">
                 <div class="card-header">
                     <h4>Employee Information</h4>
-                    <a href="{{ url('users') }}" class="btn btn-danger float-end">Back</a>
+                    {{-- <a href="{{ url('users') }}" class="btn btn-danger float-end">Back</a> --}}
                 </div>
                 <div class="card-body">
-                    <form class="row g-3" action="{{ url('users') }}" method="POST" enctype="multipart/form-data">
+                    <form class="row g-3" action="{{ route('employee.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="col-md-12">
                             <label for="name" class="form-label">Full Name</label>
@@ -56,7 +56,7 @@
                             <input type="number" class="form-control" id="nid" name="nid">
                         </div>
                         {{-- Role --}}
-                        <div class="mb-3">
+                        {{-- <div class="mb-3">
                             <label for="">Roles</label>
                             <select name="roles[]" class="form-control" multiple>
                                 <option value="">Select Role</option>
@@ -64,7 +64,7 @@
                                     <option value="{{ $role }}">{{ $role }}</option>
                                 @endforeach
                             </select>
-                        </div>
+                        </div> --}}
                         {{-- Role --}}
 
                         <div class="col-md-6">
@@ -74,7 +74,6 @@
                                 <option value="accountant">Accountant</option>
                                 <option value="projectManager">Project Manager</option>
                             </select>
-
                         </div>
 
                         <div class="col-md-12">
@@ -144,7 +143,15 @@
                                                 <div class="card-header bg-info">
                                                     <h4 class="text-light text-center">Permanent address</h4>
                                                 </div>
+
                                                 <div class="card-body">
+                                                    <div class="">
+                                                        <input type="checkbox" id="filladdress" name="filladdress" onclick="fillAddress()" />
+                                                        <label class="form-check-label" for="filladdress">
+                                                            Present address same as parmanent address.
+                                                        </label>
+                                                    </div>
+
                                                     <div class="mt-3">
                                                         <label for="per_address" class="form-label">Address</label>
                                                         <input type="text" class="form-control" id="per_address"
@@ -218,4 +225,26 @@
             </div>
         </div>
     </div>
+    <script>
+        $(document).ready(function() {
+            $('#filladdress').change(function() {
+                if ($(this).is(':checked')) {
+                    var pre_address = $('#pre_address').val();
+                    var pre_city = $('#pre_city').val();
+                    var pre_district = $('#pre_district').val();
+                    var pre_zipCode = $('#pre_zipCode').val();
+
+                    $('#per_address').val(pre_address);
+                    $('#per_city').val(pre_city);
+                    $('#per_district').val(pre_district);
+                    $('#per_zipCode').val(pre_zipCode);
+                } else {
+                    $('#per_address').val('');
+                    $('#per_city').val('');
+                    $('#per_district').val('');
+                    $('#per_zipCode').val('');
+                }
+            });
+        });
+    </script>
 @endsection

@@ -127,6 +127,16 @@ Route::prefix('admin')->group(function () {
         // });
     });
 
+    Route::prefix('employee')->group(function () {
+        Route::get('/list', [EmployeeController::class,'index'])->name('employee.list');
+        Route::get('/create', [EmployeeController::class,'create'])->name('employee.create');
+        Route::post('/create', [EmployeeController::class,'store'])->name('employee.store');
+        Route::get('/{id}/edit', [EmployeeController::class,'edit'])->name('employee.edit');
+        Route::put('/{id}/edit', [EmployeeController::class,'update'])->name('employee.update');
+        Route::get('/{id}/view', [EmployeeController::class,'view'])->name('employee.view');
+        Route::delete('/{id}/delete', [EmployeeController::class,'delete'])->name('employee.delete');
+    });
+
 });
 
 // Route::prefix('permissions')->group(['middleware' => ['role:super-admin|admin']], function() {

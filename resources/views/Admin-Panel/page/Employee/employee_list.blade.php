@@ -2,11 +2,12 @@
 @section('content')
     {{-- <div class="row justify-content-center">
     <div class="col-lg-10 col-sm-12"> --}}
-    <div class="container mt-5">
+
+    {{-- <div class="container mt-5">
         <a href="{{ url('roles') }}" class="btn btn-primary mx-1">Roles</a>
         <a href="{{ url('permissions') }}" class="btn btn-info mx-1">Permissions</a>
         <a href="{{ url('users') }}" class="btn btn-warning mx-1">Users</a>
-    </div>
+    </div> --}}
 
     <div class="container mt-2">
         <div class="row">
@@ -18,46 +19,46 @@
 
                 <div class="card mt-3">
                     <div class="card-header">
-                        <h4>Users
-                            @can('create user')
-                                <a href="{{ url('users/create') }}" class="btn btn-primary float-end">Add User</a>
-                            @endcan
-                        </h4>
+                        <h4>Employee</h4>
+                        {{-- @can('create employee') --}}
+                            <a href="{{ route('employee.create') }}" class="btn btn-primary float-end">Add Employee</a>
+                        {{-- @endcan --}}
                     </div>
                     <div class="card-body">
-
                         <table class="table table-bordered table-striped">
                             <thead>
                                 <tr>
                                     <th>Id</th>
                                     <th>Name</th>
+                                    <th>Phone</th>
                                     <th>Email</th>
-                                    <th>Roles</th>
+                                    <th>designation</th>
+                                    <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($users as $user)
+                                @foreach ($employees as $employee)
                                     <tr>
-                                        <td>{{ $user->id }}</td>
-                                        <td>{{ $user->name }}</td>
-                                        <td>{{ $user->email }}</td>
+                                        <td>{{ $employee->id }}</td>
+                                        <td>{{ $employee->name }}</td>
+                                        <td>{{ $employee->phone }}</td>
+                                        <td>{{ $employee->email }}</td>
+                                        <td>{{ $employee->designation }}</td>
+                                        <td>{{ $employee->active_status }}</td>
                                         <td>
-                                            @if (!empty($user->getRoleNames()))
-                                                @foreach ($user->getRoleNames() as $rolename)
-                                                    <label class="badge bg-primary mx-1">{{ $rolename }}</label>
-                                                @endforeach
-                                            @endif
-                                        </td>
-                                        <td>
-                                            @can('update user')
-                                                <a href="{{ url('users/' . $user->id . '/edit') }}" class="btn btn-success">Edit</a>
-                                            @endcan
+                                            {{-- @can('update employee') --}}
+                                                <a href="{{ route('employee.edit', $employee->id) }}" class="btn btn-success">Edit</a>
+                                            {{-- @endcan
 
-                                            @can('delete user')
-                                                <a href="{{ url('users/' . $user->id . '/delete') }}"
+                                            {{-- @can('update employee') --}}
+                                            <a href="{{ route('employee.view', $employee->id) }}" class="btn btn-info">View</a>
+                                            {{-- @endcan
+
+                                            @can('delete employee') --}}
+                                                <a href="{{ route('employee.delete', $employee->id) }}"
                                                     class="btn btn-danger mx-2">Delete</a>
-                                            @endcan
+                                            {{-- @endcan --}}
                                         </td>
                                     </tr>
                                 @endforeach

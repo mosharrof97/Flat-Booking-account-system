@@ -10,13 +10,15 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 
 class Project extends AuthenticatableUser implements Authenticatable
 
 // class Project extends Model
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
 
     protected $fillable = [
         'projectName',
@@ -36,6 +38,10 @@ class Project extends AuthenticatableUser implements Authenticatable
         'zipCode',
         'image',
         'status',
+
+        'created_by',
+        'updated_by',
+        'deleted_by',
     ];
 
     public function district(): BelongsTo

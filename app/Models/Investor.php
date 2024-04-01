@@ -9,10 +9,12 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 class Investor extends Model
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
     protected $fillable = [
         'name',
         'father_name',
@@ -34,6 +36,10 @@ class Investor extends Model
         'per_district',
         'per_zipCode',
         'image',
+
+        'created_by',
+        'updated_by',
+        'deleted_by',
     ];
 
     /**

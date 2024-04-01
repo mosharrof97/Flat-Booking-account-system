@@ -9,4 +9,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Transaction extends Model
 {
     use HasFactory, SoftDeletes;
+    protected $fillable = [
+
+        'created_by',
+        'updated_by',
+        'deleted_by',
+    ];
 }

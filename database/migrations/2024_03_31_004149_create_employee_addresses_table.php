@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('employee_addresses', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('employee_id');
             $table->string('pre_address');
             $table->string('pre_city');
             $table->string('pre_district');

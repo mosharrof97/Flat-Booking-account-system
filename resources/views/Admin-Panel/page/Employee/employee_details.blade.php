@@ -20,15 +20,17 @@
                         </tr>
                     </thead>
                     <tbody>
+
                         <tr>
                             <th scope="row">1</th>
-                            <td>Md. Rakid Hasan</td>
+                            <td>{{ $employee->employeeAddress->per_address }}</td>
                             <td>0214587842</td>
                             <td>Rakid@mdo.com</td>
                             <td>0214587842</td>
                             <td>Project Manager</td>
                             <td><img src="" alt="" sizes="100" srcset=""></td>
                         </tr>
+
                     </tbody>
                 </table>
             </div>
