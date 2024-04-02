@@ -77,6 +77,7 @@
             Header start
         ***********************************-- --}}
         <div class="header">
+
             <div class="header-content">
                 <nav class="navbar navbar-expand">
                     <div class="collapse navbar-collapse justify-content-between">
@@ -120,6 +121,9 @@
                             <li class="nav-item dropdown header-profile">
                                 <a class="nav-link" href="#" role="button" data-toggle="dropdown">
                                     <i class="fa-solid fa-user"></i>
+                                    @if(auth()->user())
+                                        <span>{{ auth()->user()->name }}</span>
+                                    @endif
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right">
                                     <a href="./app-profile.html" class="dropdown-item">
@@ -131,16 +135,16 @@
                                         <span class="ml-2">Inbox </span>
                                     </a>
 
-                                    {{-- <form method="POST" action="{{ route('logout') }}">
+                                    <form method="POST" action="{{ route('logout') }}">
                                     @csrf
                                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();">Log
                                         out</a>
-                                    </form> --}}
-                                    <form method="POST" action="">
+                                    </form>
+                                    {{-- <form method="POST" action="">
                                         @csrf
                                         <a class="dropdown-item" href="" onclick="event.preventDefault(); this.closest('form').submit();">Log
                                             out</a>
-                                    </form>
+                                    </form> --}}
                                 </div>
                             </li>
                         </ul>
@@ -312,6 +316,17 @@
                         </div>
                     </li>
 
+                    {{-- Employee --}}
+                    @can('view employee')
+                        <li id="employee-parent">
+                            <a class="has-arrow" href="{{ route('employee.list') }}" aria-expanded="false">
+                                <i class="fa-solid fa-users"></i>
+                                <span class="nav-text">Employee List</span>
+                            </a>
+                        </li>
+                    @endcan
+                    {{-- Employee End --}}
+
                     {{-- Project --}}
                     <li id="project-parent">
                         <a class="has-arrow" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#project" aria-expanded="false" aria-controls="project">
@@ -335,6 +350,7 @@
                             </ul>
                         </div>
                     </li>
+                    {{-- Project End --}}
 
                     {{-- Role --}}
                     <li id="role-parent">

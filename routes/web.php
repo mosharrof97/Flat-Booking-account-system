@@ -44,16 +44,16 @@ use App\Http\Controllers\Employee\EmployeeController;
 
 
 //Auth
-Route::prefix('admin')->group(function () {
-    Route::get('/', [AdminController::class, 'dashboard'])->name('admin.dashboard')->middleware('admin');
-    // Route::get('/list', [RegisteredAminController::class,'index'])->name('list.investment');
-    Route::get('/create', [RegisteredAminController::class, 'create'])->name('create.admin');
-    Route::post('/create', [RegisteredAminController::class, 'store'])->name('store.admin');
-    // Route::get('/view/{id}', [RegisteredAminController::class,'view'])->name('view.investment');
-    Route::get('login', [AdminAuthController::class, 'login'])->name('admin.login');
-    Route::post('login', [AdminAuthController::class, 'store'])->name('admin.login.store');
-    Route::post('logout', [AdminAuthController::class, 'destroy'])->name('admin.logout');
-});
+// Route::prefix('admin')->group(function () {
+//     Route::get('/', [AdminController::class, 'dashboard'])->name('admin.dashboard')->middleware('admin');
+//     // Route::get('/list', [RegisteredAminController::class,'index'])->name('list.investment');
+//     Route::get('/create', [RegisteredAminController::class, 'create'])->name('create.admin');
+//     Route::post('/create', [RegisteredAminController::class, 'store'])->name('store.admin');
+//     // Route::get('/view/{id}', [RegisteredAminController::class,'view'])->name('view.investment');
+//     Route::get('login', [AdminAuthController::class, 'login'])->name('admin.login');
+//     Route::post('login', [AdminAuthController::class, 'store'])->name('admin.login.store');
+//     Route::post('logout', [AdminAuthController::class, 'destroy'])->name('admin.logout');
+// });
 
 Route::prefix('admin')->group(function () {
 
@@ -134,7 +134,7 @@ Route::prefix('admin')->group(function () {
         Route::get('/{id}/edit', [EmployeeController::class,'edit'])->name('employee.edit');
         Route::put('/{id}/edit', [EmployeeController::class,'update'])->name('employee.update');
         Route::get('/{id}/view', [EmployeeController::class,'view'])->name('employee.view');
-        Route::delete('/{id}/delete', [EmployeeController::class,'delete'])->name('employee.delete');
+        Route::delete('/{id}/delete', [EmployeeController::class,'destroy'])->name('employee.delete');
     });
 
 });
@@ -160,11 +160,11 @@ Route::prefix('admin')->group(function () {
 // });
 
 
-Route::get('/', function () { return view('Admin-Panel.dashboard'); });
+Route::get('/', [AdminController::class, 'dashboard'])->name('dashboard');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

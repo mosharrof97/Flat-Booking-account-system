@@ -20,11 +20,13 @@ class RoleController extends Controller
 
    public function index(){
         $roles = Role::get();
+
+        // dd(auth()->user()->getRoleNames());
         return view('Admin-Panel.page.role-permission.role.index', ['roles' => $roles]);
     }
 
    public function create(){
-        return view('role-permission.role.create');
+        return view('Admin-Panel.page.role-permission.role.create');
     }
 
    public function store(Request $request){

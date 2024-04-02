@@ -9,7 +9,7 @@
         <a href="{{ url('users') }}" class="btn btn-warning mx-1">Users</a>
     </div> --}}
 
-    <div class="container mt-2">
+    <div class="container-fluid mt-2">
         <div class="row">
             <div class="col-md-12">
 
@@ -20,9 +20,9 @@
                 <div class="card mt-3">
                     <div class="card-header">
                         <h4>Employee</h4>
-                        {{-- @can('create employee') --}}
+                        @can('create employee')
                             <a href="{{ route('employee.create') }}" class="btn btn-primary float-end">Add Employee</a>
-                        {{-- @endcan --}}
+                        @endcan
                     </div>
                     <div class="card-body">
                         <table class="table table-bordered table-striped">
@@ -47,18 +47,22 @@
                                         <td>{{ $employee->designation }}</td>
                                         <td>{{ $employee->active_status }}</td>
                                         <td>
-                                            {{-- @can('update employee') --}}
+                                            @can('update employee')
                                                 <a href="{{ route('employee.edit', $employee->id) }}" class="btn btn-success">Edit</a>
-                                            {{-- @endcan
+                                            @endcan
 
-                                            {{-- @can('update employee') --}}
+                                            @can('update employee')
                                             <a href="{{ route('employee.view', $employee->id) }}" class="btn btn-info">View</a>
-                                            {{-- @endcan
+                                            @endcan
 
-                                            @can('delete employee') --}}
-                                                <a href="{{ route('employee.delete', $employee->id) }}"
-                                                    class="btn btn-danger mx-2">Delete</a>
-                                            {{-- @endcan --}}
+                                            @can('delete employee')
+                                            <form action="{{ route('employee.delete', $employee->id) }}" method="post">
+                                                @csrf
+                                                @method('delete')
+                                                <input type="submit" class="btn btn-danger mx-2" value="Delete">
+                                            </form>
+
+                                            @endcan
                                         </td>
                                     </tr>
                                 @endforeach

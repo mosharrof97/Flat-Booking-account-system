@@ -1,82 +1,59 @@
 @extends('Admin-Panel.partial.Layout')
 @section('content')
+
 <div class="row justify-content-center">
     <div class="col-lg-10 col-sm-12">
 
+        @if ($errors->any())
+            <ul class="alert alert-warning">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        @endif
+
         <div class="card p-4">
             <div class="card-header">
-                <h3>Admin Information</h3>
+                <h4>Create User</h4>
+                <a href="{{ url('users') }}" class="btn btn-danger float-end">Back</a>
             </div>
             <div class="card-body">
-                <div>
-                    @if (Session::has('success'))
-                    <p class="text-success">{{ Session::get('success') }}</p>
-                    @endif
-
-                    @if (Session::has('error'))
-                    <p class="text-danger">{{ Session::get('error') }}</p>
-                    @endif
-                </div>
-                <form class="row g-3" action="{{ route('store.admin') }}" method="POST" enctype="multipart/form-data">
+                <form class="row g-3" action="{{ url('users') }}" method="POST" enctype="multipart/form-data">
                     @csrf
+                    {{-- Full Name --}}
                     <div class="col-md-12">
                         <label for="name" class="form-label">Full Name</label>
                         <input type="text" class="form-control" id="name" name="name">
+
                         @error('name')
-                        <span id="" class="form-text text-danger">{{ $message }}</span>
+                            <span id="" class="form-text text-danger">{{ $message }}</span>
                         @enderror
                     </div>
+                    {{-- Full Name End --}}
 
-                    {{-- <div class="col-md-6">
-                        <label for="father_name" class="form-label">Father Name</label>
-                        <input type="text" class="form-control" id="father_name" name="father_name">
-                        @error('father_name')
-                        <span id="" class="form-text text-danger">{{ $message }}</span>
-                        @enderror
-                    </div> --}}
-
-                    {{-- <div class="col-md-6">
-                        <label for="mother_name" class="form-label">Mother Name</label>
-                        <input type="text" class="form-control" id="mother_name" name="mother_name">
-                        @error('mother_name')
-                        <span id="" class="form-text text-danger">{{ $message }}</span>
-                        @enderror
-                    </div> --}}
-
+                    {{-- Phone --}}
                     <div class="col-md-6">
                         <label for="phone" class="form-label">Phone</label>
                         <input type="phone" class="form-control" id="phone" name="phone">
+
                         @error('phone')
-                        <span id="" class="form-text text-danger">{{ $message }}</span>
+                            <span id="" class="form-text text-danger">{{ $message }}</span>
                         @enderror
                     </div>
+                    {{-- Phone End --}}
 
+                    {{-- Email --}}
                     <div class="col-md-6">
                         <label for="email" class="form-label">Email</label>
                         <input type="email" class="form-control" id="email" name="email">
+
                         @error('email')
-                        <span class="form-text text-danger">{{ $message }}</span>
+                            <span id="" class="form-text text-danger">{{ $message }}</span>
                         @enderror
                     </div>
+                    {{-- Email End --}}
 
-                    <div class="col-md-6">
-                        <label for="nid" class="form-label">NID Number</label>
-                        <input type="number" class="form-control" id="nid" name="nid">
-
-                        @error('nid')
-                        <span class="form-text text-danger">{{ $message }}</span>
-                        @enderror
-                    </div>
-
-                    {{-- <div class="col-md-6">
-                        <label for="tin" class="form-label">TIN Number</label>
-                        <input type="number" class="form-control" id="tin" name="tin">
-
-                        @error('tin')
-                        <span class="form-text text-danger">{{ $message }}</span>
-                        @enderror
-                    </div> --}}
-
+                    {{-- Password --}}
                     <div class="col-md-6">
                         <label for="password" class="form-label">Password</label>
                         <input type="password" class="form-control" id="password" name="password">
@@ -92,135 +69,60 @@
                         <span class="form-text text-danger">{{ $message }}</span>
                         @enderror
                     </div>
+                    {{-- Password End --}}
 
-                    {{-- <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-header bg-primary">
-                                <h4 class="text-light text-center">Address</h4>
-                            </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="card shadow-none border">
-                                            <div class="card-header bg-info">
-                                                <h4 class="text-light text-center">Present Address</h4>
-                                            </div>
-                                            <div class="card-body">
-                                                <div class="mt-3">
-                                                    <label for="pre_address" class="form-label">Address</label>
-                                                    <input type="text" class="form-control" id="pre_address" placeholder="1234 Main St" name="pre_address">
-                                                    @error('pre_address')
-                                                    <span class="form-text text-danger">{{ $message }}</span>
-                                                    @enderror
-                                                </div>
+                    {{-- Role --}}
+                    <div class="mb-3">
+                        <label for="">Roles</label>
+                        <select name="roles[]" class="form-select" >
+                            <option value="" selected>Select Role</option>
+                            @foreach ($roles as $role)
+                                <option value="{{ $role }}">{{ $role }}</option>
+                            @endforeach
+                        </select>
 
-                                                <div class="mt-3">
-                                                    <label for="pre_city" class="form-label">City</label>
-                                                    <input type="text" class="form-control" id="pre_city" name="pre_city">
+                        @error('roles')
+                            <span id="" class="form-text text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    {{-- Role --}}
 
-                                                    @error('pre_city')
-                                                    <span class="form-text text-danger">{{ $message }}</span>
-                                                    @enderror
-                                                </div>
+                    {{-- Designation  --}}
+                    <div class="col-md-6">
+                        <label for="designation" class="form-label">Designation</label>
+                        <select class="form-select" name="designation" id="designation">
+                            <option value="">Select designation.....</option>
+                            <option value="accountant">Accountant</option>
+                            <option value="projectManager">Project Manager</option>
+                        </select>
 
-                                                <div class="mt-3">
-                                                    <label for="pre_district" class="form-label">District</label>
-                                                    <select name="pre_district" id="pre_district" class="form-select bg-light">
-                                                        <option value="">Select Dristrict.......</option>
-                                                        @foreach ( $districts as $district)
-                                                            <option value="{{ $district->name }}">{{ $district->name }}</option>
-                                                        @endforeach
-                                                    </select>
+                        @error('designation')
+                            <span id="" class="form-text text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    {{-- Designation End --}}
 
-                                                    <div class="mr-1 ">
-                                                        @error('pre_district')
-                                                        <span class="form-text text-danger">{{ $message }}</span>
-                                                        @enderror
-                                                    </div>
-                                                </div>
-                                                <div class="mt-3">
-                                                    <label for="pre_zipCode" class="form-label">Zip Code</label>
-                                                    <input type="text" class="form-control" id="pre_zipCode" name="pre_zipCode">
-
-                                                    @error('pre_zipCode')
-                                                    <span class="form-text text-danger">{{ $message }}</span>
-                                                    @enderror
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="card shadow-none border">
-                                            <div class="card-header bg-info">
-                                                <h4 class="text-light text-center">Permanent address</h4>
-                                            </div>
-                                            <div class="card-body">
-                                                <div class="mt-3">
-                                                    <label for="per_address" class="form-label">Address</label>
-                                                    <input type="text" class="form-control" id="per_address" placeholder="1234 Main St" name="per_address">
-                                                    @error('per_address')
-                                                    <span class="form-text text-danger">{{ $message }}</span>
-                                                    @enderror
-                                                </div>
-
-                                                <div class="mt-3">
-                                                    <label for="per_city" class="form-label">City</label>
-                                                    <input type="text" class="form-control" id="per_city" name="per_city">
-
-                                                    @error('per_city')
-                                                    <span class="form-text text-danger">{{ $message }}</span>
-                                                    @enderror
-                                                </div>
-
-                                                <div class="mt-3">
-                                                    <label for="per_district" class="form-label">District</label>
-                                                    <select name="per_district" id="per_district" class="form-select bg-light">
-                                                        <option value="">Select Dristrict.......</option>
-                                                        @foreach ( $districts as $district)
-                                                            <option value="{{ $district->name }}">{{ $district->name }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                    <div class="mr-1 ">
-                                                        @error('per_district')
-                                                        <span class="form-text text-danger">{{ $message }}</span>
-                                                        @enderror
-                                                    </div>
-                                                </div>
-                                                <div class="mt-3">
-                                                    <label for="per_zipCode" class="form-label">Zip Code</label>
-                                                    <input type="text" class="form-control" id="per_zipCode" name="per_zipCode">
-
-                                                    @error('per_zipCode')
-                                                    <span class="form-text text-danger">{{ $message }}</span>
-                                                    @enderror
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> --}}
-
-                    <div class="col-md-12 m-0">
+                    {{-- Image --}}
+                    <div class="col-md-12">
                         <label for="image" class="form-label">Image</label>
                         <input type="file" class="form-control" id="image" name="image">
 
                         @error('image')
-                        <span class="form-text text-danger">{{ $message }}</span>
+                            <span id="" class="form-text text-danger">{{ $message }}</span>
                         @enderror
                     </div>
-                    {{-- <div class="col-12">
+                    {{-- Image End --}}
+
+                    {{-- Checkbox --}}
+                    <div class="col-12">
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" id="gridCheck">
                             <label class="form-check-label" for="gridCheck">
                                 Check me out
                             </label>
-
                         </div>
-                    </div> --}}
+                    </div>
+                    {{-- Checkbox --}}
                     <div class="col-12 text-end">
                         <button type="submit " class="btn btn-primary ">Submit</button>
                     </div>

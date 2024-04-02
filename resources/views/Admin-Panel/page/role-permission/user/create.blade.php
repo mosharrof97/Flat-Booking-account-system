@@ -53,8 +53,26 @@
                     </div>
                     {{-- Email End --}}
 
+                    {{-- Password --}}
+                    <div class="col-md-6">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password" name="password">
+                        @error('password')
+                        <span class="form-text text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="password_confirmation" class="form-label">Confirmation Password</label>
+                        <input type="password" class="form-control" id="password_confirmation" name="password_confirmation">
+                        @error('password_confirmation')
+                        <span class="form-text text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    {{-- Password End --}}
+
                     {{-- Role --}}
-                    <div class="mb-3">
+                    <div class="col-md-6 mb-3">
                         <label for="">Roles</label>
                         <select name="roles[]" class="form-select" >
                             <option value="" selected>Select Role</option>

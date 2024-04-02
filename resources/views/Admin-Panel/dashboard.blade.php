@@ -38,10 +38,10 @@
             </div>
 
             <!-- Widgets -->
-            <div class="row clearfix">
+            <div class="row ">
 
                 <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
-                    <div class="info-box bg-pink hover-expand-effect">
+                    <div class="card gradient-16 p-3">
                         <div class="icon">
                             <i class="fas fa-project-diagram"></i>
                         </div>
@@ -54,8 +54,9 @@
                     </div>
                 </div>
 
+
                 <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
-                    <div class="info-box bg-amber hover-expand-effect">
+                    <div class="card gradient-3 p-3">
                         <div class="icon">
                             <i class="fas fa-boxes"></i>
                         </div>
@@ -69,7 +70,7 @@
                 </div>
 
                 <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
-                    <div class="info-box bg-green hover-expand-effect">
+                    <div class="card gradient-13 p-3">
                         <div class="icon">
                             <i class="fas fa-dolly"></i>
                         </div>
@@ -83,7 +84,7 @@
                 </div>
 
                 <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
-                    <div class="info-box bg-pink hover-expand-effect">
+                    <div class="card gradient-15 p-3">
                         <div class="icon">
                             <i class="fas fa-shopping-cart"></i>
                         </div>
@@ -97,7 +98,7 @@
                 </div>
 
                 <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
-                    <div class="info-box bg-brown hover-expand-effect">
+                    <div class="card gradient-18 p-3">
                         <div class="icon">
                             <i class="fas fa-shopping-cart"></i>
                         </div>
@@ -111,11 +112,8 @@
                 </div>
 
 
-
-
-
                 <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
-                    <div class="info-box bg-cyan hover-expand-effect">
+                    <div class="card gradient-9 p-3">
                         <div class="icon">
                             <i class="fas fa-file-invoice-dollar"></i>
                         </div>
@@ -129,7 +127,7 @@
                 </div>
 
                 <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
-                    <div class="info-box bg-purple hover-expand-effect">
+                    <div class="card gradient-6 p-3">
                         <div class="icon">
                             <i class="fas fa-file-invoice-dollar"></i>
                         </div>
@@ -143,7 +141,7 @@
                 </div>
 
                 <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
-                    <div class="info-box bg-light-green hover-expand-effect">
+                    <div class="card gradient-4 p-3">
                         <div class="icon">
                             <i class="fas fa-file-invoice-dollar"></i>
                         </div>
@@ -158,7 +156,7 @@
 
 
                 <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
-                    <div class="info-box bg-blue-grey hover-expand-effect">
+                    <div class="card gradient-11 p-3">
                         <div class="icon">
                             <i class="fas fa-university"></i>
                         </div>
@@ -172,7 +170,7 @@
                 </div>
 
                 <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
-                    <div class="info-box bg-orange hover-expand-effect">
+                    <div class="card gradient-12 p-3">
                         <div class="icon">
                             <i class="fas fa-user"></i>
                         </div>
@@ -186,7 +184,7 @@
                 </div>
 
                 <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
-                    <div class="info-box bg-red hover-expand-effect">
+                    <div class="card gradient-1 p-3">
                         <div class="icon">
                             <i class="fas fa-user-lock "></i>
                         </div>
@@ -203,7 +201,7 @@
                 </div>
 
                 <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
-                    <div class="info-box bg-brown hover-expand-effect">
+                    <div class="card gradient-2 p-3">
                         <div class="icon">
                             <i class="fas fa-receipt"></i>
                         </div>
@@ -215,20 +213,14 @@
                         </div>
                     </div>
                 </div>
-
-
-
                 <!-- #END# Widgets -->
-
             </div>
-
-
 
 
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
-                        <div class="header">
+                        <div class="">
                             <h2>
                                 Quick Access
                             </h2>

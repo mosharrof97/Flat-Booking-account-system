@@ -4,7 +4,8 @@
     <div class="col-lg-11 col-sm-12">
         <div class="card p-4">
             <div class="card-header">
-                <h3>Investment List</h3>
+                <h4>Project List</h4>
+                <a class="btn btn-primary" href="{{ route('create.project') }}">Add New Project</a>
             </div>
             <div class="card-body">
                 <div>

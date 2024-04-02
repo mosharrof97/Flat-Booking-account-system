@@ -13,13 +13,13 @@ use DB;
 
 class EmployeeController extends Controller
 {
-    // public function __construct()
-    // {
-    //     $this->middleware('permission:view user', ['only' => ['index']]);
-    //     $this->middleware('permission:create user', ['only' => ['create','store']]);
-    //     $this->middleware('permission:update user', ['only' => ['update','edit']]);
-    //     $this->middleware('permission:delete user', ['only' => ['destroy']]);
-    // }
+    public function __construct()
+    {
+        $this->middleware('permission:view employee', ['only' => ['index']]);
+        $this->middleware('permission:create employee', ['only' => ['create','store']]);
+        $this->middleware('permission:update employee', ['only' => ['update','edit']]);
+        $this->middleware('permission:delete employee', ['only' => ['destroy']]);
+    }
 
     public function index() {
         $employee = Employee::get();
@@ -59,6 +59,7 @@ class EmployeeController extends Controller
             $request->file('image')->move(public_path('upload/employee'), $imageName);
         }
 
+        // dd(auth()->id());
         try {
             DB::beginTransaction();
             $employee = Employee::create([
@@ -70,7 +71,7 @@ class EmployeeController extends Controller
                 'nid' => $request->nid,
                 'designation' => $request->designation,
                 'image'=> $imageName ?? 'No Image',
-                // 'created_by' => $request->auth()->id(),
+                'created_by' => $request->auth()->id(),
             ]);
 
             EmployeeAddress::create([
@@ -139,6 +140,7 @@ class EmployeeController extends Controller
         // ];
 
 
+
         try {
             DB::beginTransaction();
             $employee = Employee::update([
@@ -150,7 +152,7 @@ class EmployeeController extends Controller
                 'nid' => $request->nid,
                 'designation' => $request->designation,
                 'image'=> $imageName ?? 'No Image',
-                // 'updated_by' => $request->auth()->id(),
+                'updated_by' => $request->auth()->id(),
             ]);
 
             EmployeeAddress::update([
@@ -180,9 +182,13 @@ class EmployeeController extends Controller
         return view('Admin-Panel.page.Employee.employee_details',['employee' => $employee]);
     }
 
-    public function destroy($userId) {
-        $user = Employee::findOrFail($userId);
-        $user->delete();
+    public function destroy($employeeId) {
+
+        $employee = Employee::findOrFail($employeeId);
+        // $employee->deleted_by = auth()->id();
+        // $employee->save();
+
+        $employee->delete();
 
         return redirect()->route('employee.list')->with('status','User Delete Successfully');
     }
