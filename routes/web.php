@@ -56,7 +56,10 @@ use App\Http\Controllers\Role_permission\PermissionController;
 //     Route::post('logout', [AdminAuthController::class, 'destroy'])->name('admin.logout');
 // });
 
-Route::prefix('admin')->group(function () {
+
+Route::prefix('admin')->middleware(['role:super-admin|admin'])->group(function () {
+
+    Route::get('/', [AdminController::class, 'dashboard'])->name('dashboard');
 
     //Investment
     Route::prefix('investment')->group(function () {
@@ -71,7 +74,7 @@ Route::prefix('admin')->group(function () {
         Route::get('/list', [InvestorController::class,'index'])->name('list_investor');
         Route::get('/create', [InvestorController::class, 'create'])->name('create_investor');
         Route::post('/create', [InvestorController::class, 'store'])->name('store_investor');
-        Route::get('/view/{id}', [InvestorController::class,'view'])->name('investor.view');
+        Route::get('/{id}/view', [InvestorController::class,'view'])->name('investor.view');
     });
 
     // Investor
@@ -79,15 +82,9 @@ Route::prefix('admin')->group(function () {
         Route::get('/list', [CustomerController::class,'index'])->name('list.customer');
         Route::get('/create', [InvestorController::class, 'create'])->name('create.customer');
         Route::post('/create', [InvestorController::class, 'store'])->name('store.customer');
-        Route::get('/view/{id}', [InvestorController::class,'view'])->name('view.customer');
-        Route::get('/view/{id}', [InvestorController::class,'destroy'])->name('customer.view');
+        Route::get('/{id}/view', [InvestorController::class,'view'])->name('view.customer');
+        Route::get('/{id}/delete', [InvestorController::class,'destroy'])->name('customer.delete');
     });
-
-    //  Route::prefix('role')->group(function () {
-    //     Route::get('/list', [RoleController::class,'index'])->name('role.list');
-    //     Route::post('/create', [RoleController::class, 'store'])->name('store.role');
-    //     Route::get('/view/{id}', [RoleController::class,'view'])->name('role.view');
-    //  });
 
     // Project
     Route::prefix('project')->group(function () {
@@ -100,7 +97,7 @@ Route::prefix('admin')->group(function () {
         Route::delete('/delete/{id}', [ProjectController::class,'delete'])->name('project.delete');
 
         // Project Panel
-        Route::prefix('name')->group(function () {
+        Route::prefix('project')->group(function () {
             // Project Dashboard
             Route::get('/dashboard/{id}', [ProjectDashboardController::class, 'index'])->name('project.dashboard');
             Route::get('/logout', [ProjectDashboardController::class, 'sessionDelete'])->name('project.sessionDelete');
@@ -127,14 +124,7 @@ Route::prefix('admin')->group(function () {
                 Route::get('/view/{id}', [ProjectExpenseController::class, 'view'])->name('project.expense.view');
 
             });
-
-
-
         });
-
-        // Route::prefix('investment')->group(function () {
-        //     Route::get('/list', [ProjectInvestmentController::class,'index'])->name('project.investment.list');
-        // });
     });
 
     Route::prefix('employee')->group(function () {
@@ -147,22 +137,22 @@ Route::prefix('admin')->group(function () {
         Route::delete('/{id}/delete', [EmployeeController::class,'destroy'])->name('employee.delete');
     });
 
+    Route::prefix('permissions')->group(function() {
+        Route::resource('permissions',PermissionController::class);
+        Route::get('permissions/{permissionId}/delete', [PermissionController::class, 'destroy']);
+
+        Route::resource('roles', RoleController::class);
+        Route::get('roles/{roleId}/delete', [RoleController::class, 'destroy']);
+        Route::get('roles/{roleId}/give-permissions', [RoleController::class, 'addPermissionToRole']);
+        Route::put('roles/{roleId}/give-permissions', [RoleController::class, 'givePermissionToRole']);
+
+        Route::resource('users', UserController::class);
+        Route::get('users/{userId}/delete', [UserController::class, 'destroy']);
+    });
+
 });
 
-// Route::prefix('permissions')->group(['middleware' => ['role:super-admin|admin']], function() {
 
-    Route::resource('permissions',PermissionController::class);
-    Route::get('permissions/{permissionId}/delete', [PermissionController::class, 'destroy']);
-
-    Route::resource('roles', RoleController::class);
-    Route::get('roles/{roleId}/delete', [RoleController::class, 'destroy']);
-    Route::get('roles/{roleId}/give-permissions', [RoleController::class, 'addPermissionToRole']);
-    Route::put('roles/{roleId}/give-permissions', [RoleController::class, 'givePermissionToRole']);
-
-    Route::resource('users', UserController::class);
-    Route::get('users/{userId}/delete', [UserController::class, 'destroy']);
-
-// });
 
 // Route::prefix('project')->group(function () {
 //     Route::get('/login', [ProjectAuthController::class, 'create']) ->name('project_login');
@@ -170,7 +160,6 @@ Route::prefix('admin')->group(function () {
 // });
 
 
-Route::get('/', [AdminController::class, 'dashboard'])->name('dashboard');
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
