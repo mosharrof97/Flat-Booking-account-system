@@ -4,7 +4,8 @@
     <div class="col-lg-10 col-sm-12">
         <div class="card p-4">
             <div class="card-header">
-                <h3>Installment Information</h3>
+                <h4>Installment Information</h4>
+                <a href="{{ route('project.investment.list') }}" class="btn btn-danger">Back</a>
             </div>
             <div class="card-body">
                 <div class="table-responsive">

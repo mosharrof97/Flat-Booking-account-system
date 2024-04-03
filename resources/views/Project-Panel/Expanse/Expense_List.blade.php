@@ -4,7 +4,10 @@
     <div class="col-lg-12 col-sm-12">
         <div class="card p-4">
             <div class="card-header">
-                <h3>Expense List</h3>
+                <h4>Expense List</h4>
+                <a class="btn btn-primary" href="{{ route('project.expense') }}">
+                    <span class="nav-text">New Expanse</span>
+                </a>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -28,7 +31,7 @@
                             <tr>
                                 <th scope="row">{{  $expense->id }}</th>
 
-                                <td>{{ $expense->project_id }}</td>
+                                <td>{{ $expense->project->projectName }}</td>
                                 <td>{{ $expense->date }}</td>
                                 @php
                                     // $names = explode("**",$expense->name);

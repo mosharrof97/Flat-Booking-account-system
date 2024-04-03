@@ -1,10 +1,11 @@
 @extends('Admin-Panel.partial.Layout')
 @section('content')
 <div class="row justify-content-center">
-    <div class="col-lg-10 col-sm-12">
+    <div class="col-lg-12 col-sm-12">
         <div class="card p-4">
             <div class="card-header">
                 <h3>Project Details Information</h3>
+                <a href="{{ route('list.project') }}" class="btn btn-danger">Back</a>
             </div>
             <div class="card-body">
                 <div class="row">

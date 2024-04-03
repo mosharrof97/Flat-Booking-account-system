@@ -5,6 +5,10 @@
         <div class="card p-4">
             <div class="card-header">
                 <h3>Investment List</h3>
+                 <a class="btn btn-facebook" href="{{ route('create.project.investment') }}">
+                    <i class="fa-solid fa-store"></i>
+                    <span class="nav-text">New Invest</span>
+                </a>
             </div>
             <div class="card-body">
                 <div class="table-responsive">

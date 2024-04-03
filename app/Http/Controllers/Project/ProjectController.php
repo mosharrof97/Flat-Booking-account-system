@@ -71,7 +71,7 @@ class ProjectController extends Controller
         // dd($data);
 
         Project::create($data);
-        return back()->with('message','Create Project Successful');
+        return redirect()->route('list.project')->with('message','Create Project Successful');
     }
 
     public function view($id){

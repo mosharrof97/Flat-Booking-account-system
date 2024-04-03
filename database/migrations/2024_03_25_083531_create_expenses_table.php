@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->nullable();
             $table->foreignId('project_id');
-            $table->date('data');
+            $table->date('date');
             $table->string('name')->nullable();
             $table->string('quantity')->nullable();
             $table->string('unit')->nullable();

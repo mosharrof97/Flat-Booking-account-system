@@ -1,31 +1,32 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\ProfileController;
-use Illuminate\Support\Facades\Route;
 //Admin File
 // use App\Http\Controllers\Admin\RoleController;
-use App\Http\Controllers\Admin\RegisteredAminController;
-use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\AdminAuthController;
+use App\Http\Controllers\Invest\InvestorController;
+// use App\Http\Controllers\Invest\InvestorController;
 
 // invest File
-use App\Http\Controllers\Invest\InvestorController;
-use App\Http\Controllers\Invest\InvestmentController;
+use App\Http\Controllers\Project\ProjectController;
+use App\Http\Controllers\Customer\CustomerController;
 
 //Project File
-use App\Http\Controllers\Project\ProjectController;
-use App\Http\Controllers\Project\ProjectDashboardController;
-use App\Http\Controllers\Project\ProjectExpanseController;
-use App\Http\Controllers\Project\ProjectInvestmentController;
-use App\Http\Controllers\Project\ProjectAuthController;
+use App\Http\Controllers\Employee\EmployeeController;
+use App\Http\Controllers\Invest\InvestmentController;
 use App\Http\Controllers\Project\InstallmentController;
-use App\Http\Controllers\Project\ProjectExpenseController;
-
-use App\Http\Controllers\Role_permission\PermissionController;
+use App\Http\Controllers\Project\ProjectAuthController;
+use App\Http\Controllers\Admin\RegisteredAminController;
 use App\Http\Controllers\Role_permission\RoleController;
 use App\Http\Controllers\Role_permission\UserController;
-use App\Http\Controllers\Employee\EmployeeController;
+
+use App\Http\Controllers\Project\ProjectExpenseController;
+use App\Http\Controllers\Project\ProjectDashboardController;
+use App\Http\Controllers\Project\ProjectInvestmentController;
+use App\Http\Controllers\Role_permission\PermissionController;
 
 
 
@@ -71,6 +72,15 @@ Route::prefix('admin')->group(function () {
         Route::get('/create', [InvestorController::class, 'create'])->name('create_investor');
         Route::post('/create', [InvestorController::class, 'store'])->name('store_investor');
         Route::get('/view/{id}', [InvestorController::class,'view'])->name('investor.view');
+    });
+
+    // Investor
+    Route::prefix('customer')->group(function () {
+        Route::get('/list', [CustomerController::class,'index'])->name('list.customer');
+        Route::get('/create', [InvestorController::class, 'create'])->name('create.customer');
+        Route::post('/create', [InvestorController::class, 'store'])->name('store.customer');
+        Route::get('/view/{id}', [InvestorController::class,'view'])->name('view.customer');
+        Route::get('/view/{id}', [InvestorController::class,'destroy'])->name('customer.view');
     });
 
     //  Route::prefix('role')->group(function () {

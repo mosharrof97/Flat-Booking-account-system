@@ -8,7 +8,9 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
     {{-- -- Favicon icon -- --}}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/favicon.png') }}">
 
     <link href="{{ asset('asset/css/bootstrap.min.css') }}" rel="stylesheet" />
@@ -60,7 +62,8 @@
             <a href="" class="brand-logo">
                 {{-- <img class="logo-abbr" style="max-width: 52px;" src="{{ asset('images/logo.png') }}" alt="">
                 <img class="logo-compact" src="{{ asset('images/logo-text.png') }}" alt=""> --}}
-                <img class="brand-title  " style="max-width:100px" src="{{ asset('images/logo-text.png') }}" alt="">
+                <img class="brand-title  " style="max-width:100px" src="{{ asset('images/logo-text.png') }}"
+                    alt="">
             </a>
 
             <div class="nav-control">
@@ -88,7 +91,8 @@
                                 </span>
                                 <div class="dropdown-menu p-0 m-0">
                                     <form>
-                                        <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                                        <input class="form-control" type="search" placeholder="Search"
+                                            aria-label="Search">
                                     </form>
                                 </div>
                             </div>
@@ -115,13 +119,14 @@
                                         </li>
 
                                     </ul>
-                                    <a class="all-notification" href="#">See all notifications <i class="fa-solid fa-arrow-right"></i></a>
+                                    <a class="all-notification" href="#">See all notifications <i
+                                            class="fa-solid fa-arrow-right"></i></a>
                                 </div>
                             </li>
                             <li class="nav-item dropdown header-profile">
                                 <a class="nav-link" href="#" role="button" data-toggle="dropdown">
                                     <i class="fa-solid fa-user"></i>
-                                    @if(auth()->user())
+                                    @if (auth()->user())
                                         <span>{{ auth()->user()->name }}</span>
                                     @endif
                                 </a>
@@ -136,9 +141,10 @@
                                     </a>
 
                                     <form method="POST" action="{{ route('logout') }}">
-                                    @csrf
-                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();">Log
-                                        out</a>
+                                        @csrf
+                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                            onclick="event.preventDefault(); this.closest('form').submit();">Log
+                                            out</a>
                                     </form>
                                     {{-- <form method="POST" action="">
                                         @csrf
@@ -171,14 +177,15 @@
                             <span class="nav-text">Dashboard</span>
                         </a>
                     </li>
-
+                    {{-- @can('list project') --}}
+                        <li>
+                            <a class="has-arrow" href="{{ route('list.project') }}" aria-expanded="false">
+                                <i class="fa-solid fa-diagram-project"></i>
+                                <span class="nav-text">Project</span>
+                            </a>
+                        </li>
+                    {{-- @endcan --}}
                     {{-- <li>
-                        <a class="has-arrow" href="{{ route('new.project') }}" aria-expanded="false">
-                    <i class="fa-solid fa-store"></i>
-                    <span class="nav-text">New Project</span>
-                    </a>
-                    </li>
-                    <li>
                         <a class="has-arrow" href="{{ route('investor.list') }}" aria-expanded="false">
                             <i class="fa-solid fa-store"></i>
                             <span class="nav-text">Investor List</span>
@@ -292,21 +299,26 @@
                         </div>
                     </li> --}}
 
-                    {{-- Investor --}}
-                    <li id="investor-parent">
+                    {{-- ======= Investor ======== --}}
+
+                    {{-- <li id="investor-parent">
                         <a class="has-arrow" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#investor" aria-expanded="false" aria-controls="investor">
                             <i class="fa-solid fa-store"></i>
                             <span class="nav-text">Investor </span>
                         </a>
                         <div id="investor" class="accordion-collapse collapse" style="background-color: #1c0f54" data-bs-parent="#investor-parent">
-                            <ul class=" metismenu" >
-                                <li>
-                                    <a class="has-arrow" href="{{ route('list_investor') }}" >
-                                        <i class="fa-solid fa-store"></i>
-                                        <span class="nav-text">All Investor</span>
-                                    </a>
-                                </li>
-                                <li  >
+                            <ul class=" metismenu" > --}}
+
+                    {{-- @can('view employee') --}}
+                    <li>
+                        <a class="has-arrow" href="{{ route('list_investor') }}">
+                            <i class="fa-solid fa-seedling"></i>
+                            <span class="nav-text">Investors</span>
+                        </a>
+                    </li>
+                    {{-- @endcan --}}
+
+                    {{-- <li  >
                                     <a class="has-arrow" href="{{ route('create_investor') }}">
                                         <i class="fa-solid fa-store"></i>
                                         <span class="nav-text">Add New Investor</span>
@@ -314,34 +326,48 @@
                                 </li>
                             </ul>
                         </div>
-                    </li>
+                    </li> --}}
+                    {{--======= Invostore End ========--}}
 
-                    {{-- Employee --}}
-                    @can('view employee')
-                        <li id="employee-parent">
-                            <a class="has-arrow" href="{{ route('employee.list') }}" aria-expanded="false">
-                                <i class="fa-solid fa-users"></i>
-                                <span class="nav-text">Employee List</span>
-                            </a>
-                        </li>
-                    @endcan
-                    {{-- Employee End --}}
+                    {{-- ====== Employee ======= --}}
+                    {{-- @can('view employee') --}}
+                    <li id="employee-parent">
+                        <a class="has-arrow" href="{{ route('employee.list') }}" aria-expanded="false">
+                            <i class="fa-solid fa-user-tie"></i>
+                            <span class="nav-text">Employee</span>
+                        </a>
+                    </li>
+                    {{-- @endcan --}}
+                    {{--======= Employee End =======--}}
+
+                    {{--========= Customer ===========--}}
+                    {{-- @can('list customer') --}}
+                    <li id="employee-parent">
+                        <a class="has-arrow" href="{{ route('list.customer') }}" aria-expanded="false">
+                            <i class="fa-solid fa-users"></i>
+                            <span class="nav-text">Customer</span>
+                        </a>
+                    </li>
+                    {{-- @endcan --}}
+                    {{--========= Customer End ===========--}}
 
                     {{-- Project --}}
-                    <li id="project-parent">
-                        <a class="has-arrow" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#project" aria-expanded="false" aria-controls="project">
+                    {{-- <li id="project-parent">
+                        <a class="has-arrow" href="javascript:void(0);" data-bs-toggle="collapse"
+                            data-bs-target="#project" aria-expanded="false" aria-controls="project">
                             <i class="fa-solid fa-store"></i>
                             <span class="nav-text">Project </span>
                         </a>
-                        <div id="project" class="accordion-collapse collapse" style="background-color: #1c0f54" data-bs-parent="#project-parent">
-                            <ul class=" metismenu" >
+                        <div id="project" class="accordion-collapse collapse" style="background-color: #1c0f54"
+                            data-bs-parent="#project-parent">
+                            <ul class=" metismenu">
                                 <li>
-                                    <a class="has-arrow" href="{{ route('list.project') }}" >
+                                    <a class="has-arrow" href="{{ route('list.project') }}">
                                         <i class="fa-solid fa-store"></i>
                                         <span class="nav-text">All Project</span>
                                     </a>
                                 </li>
-                                <li  >
+                                <li>
                                     <a class="has-arrow" href="{{ route('create.project') }}">
                                         <i class="fa-solid fa-store"></i>
                                         <span class="nav-text">Add New Project</span>
@@ -349,26 +375,40 @@
                                 </li>
                             </ul>
                         </div>
-                    </li>
+                    </li> --}}
                     {{-- Project End --}}
 
                     {{-- Role --}}
-                    <li id="role-parent">
-                        <a class="has-arrow" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#role" aria-expanded="false" aria-controls="role">
+                    {{-- <li id="role-parent">
+                        <a class="has-arrow" href="javascript:void(0);" data-bs-toggle="collapse"
+                            data-bs-target="#role" aria-expanded="false" aria-controls="role">
                             <i class="fa-solid fa-store"></i>
                             <span class="nav-text">Role </span>
                         </a>
-                        <div id="role" class="accordion-collapse collapse" style="background-color: #1c0f54" data-bs-parent="#role-parent">
-                            <ul class=" metismenu" >
+                        <div id="role" class="accordion-collapse collapse" style="background-color: #1c0f54"
+                            data-bs-parent="#role-parent">
+                            <ul class=" metismenu">
                                 <li>
-                                    {{-- <a class="has-arrow" href="{{ route('role.list') }}" > --}}
-                                    <a class="has-arrow" href="#" >
-                                        <i class="fa-solid fa-store"></i>
+                                    <a class="has-arrow" href="" >
+                                        <i class="fa-solid fa-users"></i>
                                         <span class="nav-text">Role add & list</span>
                                     </a>
                                 </li>
                             </ul>
                         </div>
+
+                    </li> --}}
+                    <li>
+                        <a class="has-arrow" href="{{ url('users') }}">
+                            <i class="fa-solid fa-user"></i>
+                            <span class="nav-text">Users</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="has-arrow" href="{{ url('roles') }}">
+                            <i class="fa-solid fa-pen-ruler"></i>
+                            <span class="nav-text">Roles</span>
+                        </a>
                     </li>
                 </ul>
             </div>

@@ -162,44 +162,44 @@
                     </li>
 
                     {{-- Investment --}}
-                    <li id="investment-parent">
+                    {{-- <li id="investment-parent">
                         <a class="has-arrow" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#investment" aria-expanded="false" aria-controls="investment">
                             <i class="fa-solid fa-store"></i>
                             <span class="nav-text">Investment </span>
                         </a>
                         <div id="investment" class="accordion-collapse collapse" style="background-color: #1c0f54" data-bs-parent="#investment-parent">
-                            <ul class="metismenu">
+                            <ul class="metismenu"> --}}
                                 <li>
                                     <a class="has-arrow" href="{{ route('project.investment.list')}}">
-                                        <i class="fa-solid fa-store"></i>
-                                        <span class="nav-text">All Investment</span>
+                                        <i class="fa-solid fa-dollar-sign"></i>
+                                        <span class="nav-text">Investment</span>
                                     </a>
                                 </li>
-                                <li>
-                                    <a class="has-arrow" href="{{ route('create.project.investment') }}">
+                                {{-- <li>
+                                    <a class="btn btn-facebook" href="{{ route('create.project.investment') }}">
                                         <i class="fa-solid fa-store"></i>
                                         <span class="nav-text">New Invest</span>
                                     </a>
                                 </li>
                             </ul>
                         </div>
-                    </li>
+                    </li>-}}
 
                     {{-- Expanse --}}
-                    <li id="investor-parent">
+                    {{-- <li id="investor-parent">
                         <a class="has-arrow" href="" data-bs-toggle="collapse" data-bs-target="#investor" aria-expanded="false" aria-controls="investor">
                             <i class="fa-solid fa-store"></i>
                             <span class="nav-text">Expanse </span>
                         </a>
                         <div id="investor" class="accordion-collapse collapse" style="background-color: #1c0f54" data-bs-parent="#investor-parent">
-                            <ul class=" metismenu">
+                            <ul class=" metismenu"> --}}
                                 <li>
                                     <a class="has-arrow" href="{{ route('project.expense.list') }}">
                                         <i class="fa-solid fa-store"></i>
-                                        <span class="nav-text">All Expanse</span>
+                                        <span class="nav-text">Expanse</span>
                                     </a>
                                 </li>
-                                <li>
+                                {{-- <li>
                                     <a class="has-arrow" href="{{ route('project.expense') }}">
                                         <i class="fa-solid fa-store"></i>
                                         <span class="nav-text">New Expanse</span>
@@ -207,7 +207,8 @@
                                 </li>
                             </ul>
                         </div>
-                    </li>
+                    </li> --}}
+                    {{--======= Expense ========--}}
 
                     {{-- Flat Sell --}}
                     <li id="flat-parent">
@@ -218,28 +219,28 @@
                         <div id="flat" class="accordion-collapse collapse" style="background-color: #1c0f54" data-bs-parent="#flat-parent">
                             <ul class=" metismenu">
                                 <li>
-                                    <a class="has-arrow" href="#">
+                                    <a class="has-arrow" href="####">
                                         <i class="fa-solid fa-store"></i>
                                         <span class="nav-text">All Flat</span>
                                     </a>
                                 </li>
 
                                 <li>
-                                    <a class="has-arrow" href="#">
+                                    <a class="has-arrow" href="#####">
                                         <i class="fa-solid fa-store"></i>
                                         <span class="nav-text">UnSold Flat</span>
                                     </a>
                                 </li>
 
                                 <li>
-                                    <a class="has-arrow" href="#">
+                                    <a class="has-arrow" href="##">
                                         <i class="fa-solid fa-store"></i>
                                         <span class="nav-text">Sold Flat</span>
                                     </a>
                                 </li>
 
                                 <li>
-                                    <a class="has-arrow" href="#">
+                                    <a class="has-arrow" href="###">
                                         <i class="fa-solid fa-store"></i>
                                         <span class="nav-text">Add New Flat</span>
                                     </a>
@@ -256,21 +257,21 @@
                         <div id="accountant" class="accordion-collapse collapse" style="background-color: #1c0f54" data-bs-parent="#accountant-parent">
                             <ul class=" metismenu">
                                 <li>
-                                    <a class="has-arrow" href="#">
+                                    <a class="has-arrow" href="##">
                                         <i class="fa-solid fa-store"></i>
                                         <span class="nav-text">Investment</span>
                                     </a>
                                 </li>
 
                                 <li>
-                                    <a class="has-arrow" href="#">
+                                    <a class="has-arrow" href="###">
                                         <i class="fa-solid fa-store"></i>
                                         <span class="nav-text">Expanse</span>
                                     </a>
                                 </li>
 
                                 <li>
-                                    <a class="has-arrow" href="#">
+                                    <a class="has-arrow" href="#####">
                                         <i class="fa-solid fa-store"></i>
                                         <span class="nav-text">Sold Flat</span>
                                     </a>

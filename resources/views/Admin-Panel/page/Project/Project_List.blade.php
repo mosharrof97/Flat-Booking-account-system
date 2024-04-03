@@ -1,7 +1,7 @@
 @extends('Admin-Panel.partial.Layout')
 @section('content')
 <div class="row justify-content-center">
-    <div class="col-lg-11 col-sm-12">
+    <div class="col-lg-12 col-sm-12">
         <div class="card p-4">
             <div class="card-header">
                 <h4>Project List</h4>
@@ -68,23 +68,31 @@
                                 <td>{{ $project->district->name }}</td>
                                 <td>1{{ $project->zipCode }}</td>
                                 <td>
-                                    <a href="{{route('project.dashboard', $project->id)}} " class="btn btn-success me-2">Dashboard</a>
+                                    <a href="{{route('project.dashboard', $project->id)}} " class="btn btn-success me-2">
+                                        <i class="fa-solid fa-right-to-bracket"></i>
+                                    </a>
                                     {{-- <a href="{{ route('project.dashboard', ['name' => $project->projectName, 'id' => $project->id]) }}" class="btn btn-success me-2">Dashboard</a> --}}
 
                                 </td>
 
                                 <td>
-                                    <a href="{{route('project.view',$project->id)}} " class="btn btn-success me-2">View</a>
+                                    <a href="{{route('project.view',$project->id)}} " class="btn btn-success me-2">
+                                        <i class="fa-solid fa-eye"></i>
+                                    </a>
                                 </td>
 
                                 <td>
-                                    <a href="{{route('project.edit',$project->id)}} " class="btn btn-success me-2">edit</a>
+                                    <a href="{{route('project.edit',$project->id)}} " class="btn btn-success me-2">
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                </a>
                                 </td>
                                 <td>
                                     <form action="{{route('project.delete',$project->id)}}" method="post">
                                         @csrf
                                         @method('delete')
-                                        <input type="submit"  class="btn btn-success me-2" value="Delete">
+                                        <button type="submit"  class="btn btn-success me-2" >
+                                            <i class="fa-solid fa-trash"></i>
+                                        </button>
                                     </form>
                                 </td>
                             </tr>

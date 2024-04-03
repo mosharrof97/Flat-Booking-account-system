@@ -90,7 +90,7 @@
                         {{-- Project Investment Installment--}}
                         <hr>
                         <div class="col-md-12">
-                            <h2> Project Investment </h2>
+                            <h4> Project Investment </h4>
                         </div>
 
                         <div class="col-md-6">
@@ -98,7 +98,7 @@
                             <input type="text" class="form-control" id="installment_amount" placeholder="Installment amount" name="installment_amount">
                         </div>
 
-                        <hr>
+                        {{-- <hr>
                         <div class="col-md-12">
                             <div class="my-2">
                                 <h3>Installment Details</h3>
@@ -128,7 +128,7 @@
                                     </tr>
                                 </tbody>
                             </table>
-                        </div>
+                        </div> --}}
 
 
                         <hr>
