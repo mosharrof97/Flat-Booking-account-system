@@ -15,12 +15,12 @@
                     <div class="card-header">
                         <h4>Role : {{ $role->name }} </h4>
                         <div class="">
-                            <a href="{{ url('roles') }}" class="btn btn-danger float-end">Back</a>
+                            <a href="{{ url('admin/permissions/roles') }}" class="btn btn-danger float-end">Back</a>
                         </div>
                     </div>
                     <div class="card-body">
 
-                        <form action="{{ url('roles/'.$role->id.'/give-permissions') }}" method="POST">
+                        <form action="{{ url('admin/permissions/roles/'.$role->id.'/give-permissions') }}" method="POST">
                             @csrf
                             @method('PUT')
 

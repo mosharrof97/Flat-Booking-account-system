@@ -16,11 +16,11 @@
                 <div class="card">
                     <div class="card-header">
                         <h4>Edit Role
-                            <a href="{{ url('roles') }}" class="btn btn-danger float-end">Back</a>
+                            <a href="{{ url('admin/permissions/roles') }}" class="btn btn-danger float-end">Back</a>
                         </h4>
                     </div>
                     <div class="card-body">
-                        <form action="{{ url('roles/'.$role->id) }}" method="POST">
+                        <form action="{{ url('admin/permissions/roles/'.$role->id) }}" method="POST">
                             @csrf
                             @method('PUT')
 

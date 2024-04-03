@@ -138,8 +138,16 @@ Route::prefix('admin')->middleware(['role:super-admin|admin'])->group(function (
     });
 
     Route::prefix('permissions')->group(function() {
-        Route::resource('permissions',PermissionController::class);
-        Route::get('permissions/{permissionId}/delete', [PermissionController::class, 'destroy']);
+        Route::resource('/',PermissionController::class)->names([
+            'index' => 'permissions.index',
+            'create' => 'permissions.create',
+            'store' => 'permissions.store',
+            'show' => 'permissions.show',
+            'edit' => 'permissions.edit',
+            'update' => 'permissions.update',
+            'destroy' => 'permissions.destroy',
+        ]);;
+        Route::get('/{permissionId}/delete', [PermissionController::class, 'destroy']);
 
         Route::resource('roles', RoleController::class);
         Route::get('roles/{roleId}/delete', [RoleController::class, 'destroy']);

@@ -399,13 +399,13 @@
 
                     </li> --}}
                     <li>
-                        <a class="has-arrow" href="{{ url('users') }}">
+                        <a class="has-arrow" href="{{ url('admin/permissions/users') }}">
                             <i class="fa-solid fa-user"></i>
                             <span class="nav-text">Users</span>
                         </a>
                     </li>
                     <li>
-                        <a class="has-arrow" href="{{ url('roles') }}">
+                        <a class="has-arrow" href="{{ url('admin/permissions/roles') }}">
                             <i class="fa-solid fa-pen-ruler"></i>
                             <span class="nav-text">Roles</span>
                         </a>

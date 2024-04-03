@@ -1,9 +1,9 @@
 @extends('Admin-Panel.partial.Layout')
 @section('content')
     <div class="container-fluid mt-5">
-        <a href="{{ url('roles') }}" class="btn btn-primary mx-1">Roles</a>
-        <a href="{{ url('permissions/create') }}" class="btn btn-info mx-1">Permissions</a>
-        <a href="{{ url('users') }}" class="btn btn-warning mx-1">Users</a>
+        <a href="{{ url('admin/permissions/roles') }}" class="btn btn-primary mx-1">Roles</a>
+        <a href="{{ url('admin/permissions/create') }}" class="btn btn-info mx-1">Permissions</a>
+        <a href="{{ url('admin/permissions/users') }}" class="btn btn-warning mx-1">Users</a>
     </div>
 
     <div class="container-fluid mt-2">
@@ -24,7 +24,7 @@
                         </h4>
                         <div class="">
                             {{-- @can('create permission') --}}
-                            <a href="{{ url('permissions/create') }}" class="btn btn-primary float-end">Add Permission</a>
+                            <a href="{{ url('admin/permissions/create') }}" class="btn btn-primary float-end">Add Permission</a>
                             {{-- @endcan --}}
                         </div>
                     </div>
@@ -44,13 +44,13 @@
                                     <td>{{ $permission->id }}</td>
                                     <td>{{ $permission->name }}</td>
                                     <td>
-                                        {{-- @can('update permission')
-                                        <a href="{{ url('permissions/'.$permission->id.'/edit') }}" class="btn btn-success">Edit</a>
+                                        @can('update permission')
+                                        <a href="{{ url('/admin/permissions/'.$permission->id.'/edit') }}" class="btn btn-success">Edit</a>
                                         @endcan
 
                                         @can('delete permission')
-                                        <a href="{{ url('permissions/'.$permission->id.'/delete') }}" class="btn btn-danger mx-2">Delete</a>
-                                        @endcan --}}
+                                        <a href="{{ url('/admin/permissions/'.$permission->id.'/delete') }}" class="btn btn-danger mx-2">Delete</a>
+                                        @endcan
 
                                     </td>
                                 </tr>

@@ -15,10 +15,10 @@
         <div class="card p-4">
             <div class="card-header">
                 <h4>Create User</h4>
-                <a href="{{ url('users') }}" class="btn btn-danger float-end">Back</a>
+                <a href="{{ url('admin/permissions/users') }}" class="btn btn-danger float-end">Back</a>
             </div>
             <div class="card-body">
-                <form class="row g-3" action="{{ url('users') }}" method="POST" enctype="multipart/form-data">
+                <form class="row g-3" action="{{ url('admin/permissions/users') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     {{-- Full Name --}}
                     <div class="col-md-12">
