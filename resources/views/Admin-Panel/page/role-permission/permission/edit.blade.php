@@ -15,11 +15,11 @@
                 <div class="card">
                     <div class="card-header">
                         <h4>Edit Permission
-                            <a href="{{ url('admin/permissions') }}" class="btn btn-danger float-end">Back</a>
+                            <a href="{{ route('permissions.index') }}" class="btn btn-danger float-end">Back</a>
                         </h4>
                     </div>
                     <div class="card-body">
-                        <form action="{{ url('admin/permissions/'.$permission->id) }}" method="POST">
+                        <form action="{{ route('permissions.update',$permission->id) }}" method="POST">
                             @csrf
                             @method('PUT')
 

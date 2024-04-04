@@ -11,6 +11,14 @@ use App\Models\Project;
 
 class ProjectController extends Controller
 {
+    public function __construct(){
+        $this->middleware('permission:view project', ['only' => ['index']]);
+        $this->middleware('permission:create project', ['only' => ['create','store']]);
+        $this->middleware('permission:update project', ['only' => ['edit','update']]);
+        $this->middleware('permission:delete project', ['only' => ['delete']]);
+    }
+
+
     public function index(){
         $projects = Project::paginate(15);
         return view('Admin-Panel.page.Project.Project_List',compact('projects'));
@@ -43,7 +51,7 @@ class ProjectController extends Controller
             'image' =>[ 'required','image'],
         ]);
 
-        // dd($request->image);
+        // dd($request->all());
 
         if($request->hasFile('image')){
             $imageName = 'Project_' . time().'-'.mt_rand(1000000,10000000000).'.'.$request->file('image')->extension();

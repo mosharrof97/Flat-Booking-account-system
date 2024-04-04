@@ -56,7 +56,7 @@ class UserController extends Controller
 
         $user->syncRoles($request->roles);
 
-        return redirect('/users')->with('status','User created successfully with roles');
+        return redirect()->route('users.index')->with('status','User created successfully with roles');
     }
 
     public function edit(User $user)
@@ -73,9 +73,6 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $request->validate([
-            // 'name' => 'required|string|max:255',
-            // 'password' => 'nullable|string|min:8|max:20',
-            // 'roles' => 'required'
             'name' => 'required|string|max:255',
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'roles' => 'required',
@@ -99,7 +96,7 @@ class UserController extends Controller
         $user->update($data);
         $user->syncRoles($request->roles);
 
-        return redirect('/users')->with('status','User Updated Successfully with roles');
+        return redirect()->route('users.index')->with('status','User Updated Successfully with roles');
     }
 
     public function destroy($userId)
@@ -107,6 +104,6 @@ class UserController extends Controller
         $user = User::findOrFail($userId);
         $user->delete();
 
-        return redirect('/users')->with('status','User Delete Successfully');
+        return redirect()->route('users.index')->with('status','User Delete Successfully');
     }
 }

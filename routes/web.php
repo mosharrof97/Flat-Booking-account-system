@@ -57,7 +57,7 @@ use App\Http\Controllers\Role_permission\PermissionController;
 // });
 
 
-Route::prefix('admin')->middleware(['role:super-admin|admin'])->group(function () {
+Route::prefix('admin')->middleware(['role:Super Admin|admin'])->group(function () {
 
     Route::get('/', [AdminController::class, 'dashboard'])->name('dashboard');
 
@@ -142,20 +142,31 @@ Route::prefix('admin')->middleware(['role:super-admin|admin'])->group(function (
             'index' => 'permissions.index',
             'create' => 'permissions.create',
             'store' => 'permissions.store',
-            'show' => 'permissions.show',
             'edit' => 'permissions.edit',
             'update' => 'permissions.update',
-            'destroy' => 'permissions.destroy',
-        ]);;
-        Route::get('/{permissionId}/delete', [PermissionController::class, 'destroy']);
+        ]);
+        Route::get('/{permissionId}/delete', [PermissionController::class, 'destroy'])->name('permissions.delete');
 
-        Route::resource('roles', RoleController::class);
-        Route::get('roles/{roleId}/delete', [RoleController::class, 'destroy']);
-        Route::get('roles/{roleId}/give-permissions', [RoleController::class, 'addPermissionToRole']);
-        Route::put('roles/{roleId}/give-permissions', [RoleController::class, 'givePermissionToRole']);
+        Route::resource('roles', RoleController::class)->names([
+            'index' => 'roles.index',
+            'create' => 'roles.create',
+            'store' => 'roles.store',
+            'edit' => 'roles.edit',
+            'update' => 'roles.update',
+        ]);
+        Route::get('roles/{roleId}/delete', [RoleController::class, 'destroy'])->name('roles.delete');
+        Route::get('roles/{roleId}/give-permissions', [RoleController::class, 'addPermissionToRole'])->name('roles.add.permission');
+        Route::put('roles/{roleId}/give-permissions', [RoleController::class, 'givePermissionToRole'])->name('roles.give.permission');
 
-        Route::resource('users', UserController::class);
-        Route::get('users/{userId}/delete', [UserController::class, 'destroy']);
+        Route::resource('users', UserController::class)->names([
+            'index' => 'users.index',
+            'create' => 'users.create',
+            'store' => 'users.store',
+            'show' => 'users.show',
+            'edit' => 'users.edit',
+            'update' => 'users.update',
+        ]);
+        Route::get('users/{userId}/delete', [UserController::class, 'destroy'])->name('users.delete');
     });
 
 });

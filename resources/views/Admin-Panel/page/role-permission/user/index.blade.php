@@ -2,9 +2,9 @@
 @section('content')
 
 <div class="container mt-5">
-    <a href="{{ url('admin/permissions/roles') }}" class="btn btn-primary mx-1">Roles</a>
-    <a href="{{ url('admin/permissions') }}" class="btn btn-info mx-1">Permissions</a>
-    <a href="{{ url('admin/permissions/users') }}" class="btn btn-warning mx-1">Users</a>
+    <a href="{{ route('roles.index') }}" class="btn btn-primary mx-1">Roles</a>
+    <a href="{{ route('permissions.index') }}" class="btn btn-info mx-1">Permissions</a>
+    <a href="{{ route('users.index') }}" class="btn btn-warning mx-1">Users</a>
 </div>
 
 <div class="container mt-2">
@@ -19,7 +19,7 @@
                 <div class="card-header">
                     <h4>Users </h4>
                     @can('create user')
-                    <a href="{{ url('admin/permissions/users/create') }}" class="btn btn-primary float-end">Add User</a>
+                    <a href="{{ route('users.create') }}" class="btn btn-primary float-end">Add User</a>
                     @endcan
                 </div>
                 <div class="card-body">
@@ -53,18 +53,17 @@
                                 </td>
                                 <td>
                                     @can('update user')
-                                    <a href="{{ url('admin/permissions/users/'.$user->id.'/edit') }}" class="btn btn-success">Edit</a>
+                                    <a href="{{ route('users.edit',$user->id) }}" class="btn btn-success">Edit</a>
                                     @endcan
 
                                     @can('delete user')
-                                    <a href="{{ url('admin/permissions/users/'.$user->id.'/delete') }}" class="btn btn-danger mx-2">Delete</a>
+                                    <a href="{{ route('users.delete',$user->id) }}" class="btn btn-danger mx-2">Delete</a>
                                     @endcan
                                 </td>
                             </tr>
                             @endforeach
                         </tbody>
                     </table>
-
                 </div>
             </div>
         </div>

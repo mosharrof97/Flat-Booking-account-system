@@ -1,9 +1,9 @@
 @extends('Admin-Panel.partial.Layout')
 @section('content')
     <div class="container-fluid mt-5">
-        <a href="{{ url('admin/permissions/roles') }}" class="btn btn-primary mx-1">Roles</a>
-        <a href="{{ url('admin/permissions') }}" class="btn btn-info mx-1">Permissions</a>
-        <a href="{{ url('admin/permissions/users') }}" class="btn btn-warning mx-1">Users</a>
+        <a href="{{ route('roles.index') }}" class="btn btn-primary mx-1">Roles</a>
+        <a href="{{ route('permissions.index') }}" class="btn btn-info mx-1">Permissions</a>
+        <a href="{{ route('users.index') }}" class="btn btn-warning mx-1">Users</a>
     </div>
 
     <div class="container-fluid mt-2">
@@ -21,7 +21,7 @@
                     <div class="card-header">
                         <h4> Roles </h4>
                         @can('create role')
-                        <a href="{{ url('admin/permissions/roles/create') }}" class="btn btn-primary float-end">Add Role</a>
+                        <a href="{{ route('roles.create') }}" class="btn btn-primary float-end">Add Role</a>
                         @endcan
                     </div>
                     <div class="card-body">
@@ -40,18 +40,18 @@
                                     <td>{{ $role->id }}</td>
                                     <td>{{ $role->name }}</td>
                                     <td>
-                                        <a href="{{ url('admin/permissions/roles/'.$role->id.'/give-permissions') }}" class="btn btn-warning">
+                                        <a href="{{ route('roles.add.permission',$role->id) }}" class="btn btn-warning">
                                             Add / Edit Role Permission
                                         </a>
 
                                         @can('update role')
-                                        <a href="{{ url('admin/permissions/roles/'.$role->id.'/edit') }}" class="btn btn-success">
+                                        <a href="{{ route('roles.edit',$role->id) }}" class="btn btn-success">
                                             Edit
                                         </a>
                                         @endcan
 
                                         @can('delete role')
-                                        <a href="{{ url('admin/permissions/roles/'.$role->id.'/delete') }}" class="btn btn-danger mx-2">
+                                        <a href="{{ route('roles.delete',$role->id) }}" class="btn btn-danger mx-2">
                                             Delete
                                         </a>
                                         @endcan

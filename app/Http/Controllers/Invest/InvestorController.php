@@ -10,6 +10,12 @@ use App\Models\District;
 
 class InvestorController extends Controller
 {
+    public function __construct(){
+        $this->middleware('permission:view investor', ['only' => ['index']]);
+        $this->middleware('permission:create investor', ['only' => ['create','store']]);
+        $this->middleware('permission:show investor', ['only' => ['view']]);
+        // $this->middleware('permission:delete investor', ['only' => ['delete']]);
+    }
     public function index(){
         //  $datas = Investor::join('districts as per_districts', 'investors.per_district', '=', 'per_districts.id')
         // ->select('investors.*', 'per_districts.name as per_district_name')
@@ -30,7 +36,7 @@ class InvestorController extends Controller
         if($request->hasFile('image')){
             $imageName = 'Investor_'. time() .'_'. mt_rand(100000, 10000000000) .'.'.$request->file('image')->extension();
         };
-// dd($request->hasFile('image'));
+        // dd($request->hasFile('image'));
         $data=[
             'name'=>$request->name,
             'father_name'=>$request->father_name,

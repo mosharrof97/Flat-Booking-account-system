@@ -14,12 +14,11 @@
 
                 <div class="card">
                     <div class="card-header">
-                        <h4>Create Permission
-                            <a href="{{ url('/admin/permissions') }}" class="btn btn-danger float-end">Back</a>
-                        </h4>
+                        <h4>Create Permission </h4>
+                        <a href="{{ route('permissions.index') }}" class="btn btn-danger float-end">Back</a>
                     </div>
                     <div class="card-body">
-                        <form action="{{ url('/admin/permissions') }}" method="POST">
+                        <form action="{{ route('permissions.store') }}" method="POST">
                             @csrf
 
                             <div class="mb-3">

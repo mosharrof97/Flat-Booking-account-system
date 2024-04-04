@@ -142,7 +142,7 @@
 
                                     <form method="POST" action="{{ route('logout') }}">
                                         @csrf
-                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                        <a class="dropdown-item ms-2" href="{{ route('logout') }}"
                                             onclick="event.preventDefault(); this.closest('form').submit();">Log
                                             out</a>
                                     </form>
@@ -172,7 +172,7 @@
                     <li class="nav-label first">Main Menu</li>
 
                     <li>
-                        <a class="has-arrow" href="#" aria-expanded="false">
+                        <a class="has-arrow" href="{{ route('dashboard') }}" aria-expanded="false">
                             <i class="fa-solid fa-gauge"></i>
                             <span class="nav-text">Dashboard</span>
                         </a>
@@ -399,13 +399,13 @@
 
                     </li> --}}
                     <li>
-                        <a class="has-arrow" href="{{ url('admin/permissions/users') }}">
+                        <a class="has-arrow" href="{{ route('users.index') }}">
                             <i class="fa-solid fa-user"></i>
                             <span class="nav-text">Users</span>
                         </a>
                     </li>
                     <li>
-                        <a class="has-arrow" href="{{ url('admin/permissions/roles') }}">
+                        <a class="has-arrow" href="{{ route('roles.index') }}">
                             <i class="fa-solid fa-pen-ruler"></i>
                             <span class="nav-text">Roles</span>
                         </a>

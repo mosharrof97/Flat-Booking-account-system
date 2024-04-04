@@ -15,11 +15,11 @@
                 <div class="card">
                     <div class="card-header">
                         <h4>Create Role
-                            <a href="{{ url('admin/permissions/roles') }}" class="btn btn-danger float-end">Back</a>
+                            <a href="{{ route('roles.index') }}" class="btn btn-danger float-end">Back</a>
                         </h4>
                     </div>
                     <div class="card-body">
-                        <form action="{{ url('admin/permissions/roles') }}" method="POST">
+                        <form action="{{ route('roles.store') }}" method="POST">
                             @csrf
 
                             <div class="mb-3">

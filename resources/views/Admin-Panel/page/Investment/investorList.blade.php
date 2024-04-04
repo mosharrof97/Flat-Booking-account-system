@@ -5,6 +5,7 @@
         <div class="card p-4">
             <div class="card-header">
                 <h3>Investor List</h3>
+                <a href="{{ route('create_investor') }}" class="btn btn-primary"> Add Investor</a>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
