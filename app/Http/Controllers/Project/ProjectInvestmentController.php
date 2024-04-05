@@ -13,6 +13,12 @@ use App\Models\Investor;
 
 class ProjectInvestmentController extends Controller
 {
+    public function __construct(){
+        $this->middleware('permission:view investment', ['only' => ['index']]);
+        $this->middleware('permission:create investment', ['only' => ['create','store']]);
+        $this->middleware('permission:show investment', ['only' => ['show']]);
+    }
+
     public function index(){
         $project_id = Session::get('project_id');
         if($project_id !== null){
@@ -26,7 +32,6 @@ class ProjectInvestmentController extends Controller
         }
     }
 
-
     public function create(Request $request){
         $project_id = Session::get('project_id');
         if($project_id !== null){
@@ -38,7 +43,6 @@ class ProjectInvestmentController extends Controller
             return redirect()->route('list.project')-> with('error','Project Id Is Null');
         }
     }
-
 
     public function store(Request $request){
         $project_id = Session::get('project_id');
@@ -87,7 +91,7 @@ class ProjectInvestmentController extends Controller
         }
     }
 
-    public function view($id){
+    public function show($id){
         $project_id = Session::get('project_id');
         if($project_id !== null){
             $investment = Investment::where('project_id', $project_id)->where('id',$id)->first();

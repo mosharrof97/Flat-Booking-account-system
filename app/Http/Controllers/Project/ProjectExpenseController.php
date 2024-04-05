@@ -10,6 +10,12 @@ use App\Models\Expense;
 
 class ProjectExpenseController extends Controller
 {
+    public function __construct(){
+        $this->middleware('permission:view expanse', ['only' => ['index']]);
+        $this->middleware('permission:create expanse', ['only' => ['create','store']]);
+        $this->middleware('permission:show expanse', ['only' => ['show']]);
+        // $this->middleware('permission:delete', ['only' => ['delete']]);
+    }
     public function index(){
         $projectId = Session::get('project_id');
         if($projectId){
@@ -69,7 +75,8 @@ class ProjectExpenseController extends Controller
             return redirect()->route('list.project')-> with('error','Project Id Is Null');
         }
     }
-    public function view($id){
+
+    public function show($id){
         $projectId = Session::get('project_id');
         if($projectId){
             $expense = Expense::where('id',$id)->where('project_id',$projectId)->first();

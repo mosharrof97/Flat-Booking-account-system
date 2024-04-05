@@ -107,7 +107,7 @@ Route::prefix('admin')->middleware(['role:Super Admin|admin'])->group(function (
                 Route::get('/list', [ProjectInvestmentController::class, 'index'])->name('project.investment.list');
                 Route::get('/create', [ProjectInvestmentController::class, 'create'])->name('create.project.investment');
                 Route::post('/create', [ProjectInvestmentController::class, 'store'])->name('store.project.investment');
-                Route::get('/view/{id}', [ProjectInvestmentController::class, 'view'])->name('project.investment.view');
+                Route::get('/view/{id}', [ProjectInvestmentController::class, 'show'])->name('project.investment.view');
             });
 
              // Project Investment Installment
@@ -121,7 +121,7 @@ Route::prefix('admin')->middleware(['role:Super Admin|admin'])->group(function (
                 Route::get('/list', [ProjectExpenseController::class, 'index'])->name('project.expense.list');
                 Route::get('/create', [ProjectExpenseController::class, 'create'])->name('project.expense');
                 Route::post('/create', [ProjectExpenseController::class, 'store'])->name('store.project.expense');
-                Route::get('/view/{id}', [ProjectExpenseController::class, 'view'])->name('project.expense.view');
+                Route::get('/{id}/show', [ProjectExpenseController::class, 'show'])->name('project.expense.view');
 
             });
         });

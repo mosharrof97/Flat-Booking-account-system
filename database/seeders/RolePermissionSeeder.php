@@ -19,6 +19,7 @@ class RolePermissionSeeder extends Seeder
         // Create Permissions
         Permission::create(['name' => 'view']);
         Permission::create(['name' => 'create']);
+        Permission::create(['name' => 'show']);
         Permission::create(['name' => 'update']);
         Permission::create(['name' => 'delete']);
 
@@ -37,28 +38,47 @@ class RolePermissionSeeder extends Seeder
         Permission::create(['name' => 'update user', 'guard_name' => 'web',]);
         Permission::create(['name' => 'delete user', 'guard_name' => 'web',]);
 
-        Permission::create(['name' => 'view product', 'guard_name' => 'web',]);
-        Permission::create(['name' => 'create product', 'guard_name' => 'web',]);
-        Permission::create(['name' => 'update product', 'guard_name' => 'web',]);
-        Permission::create(['name' => 'delete product', 'guard_name' => 'web',]);
+        Permission::create(['name' => 'view project', 'guard_name' => 'web',]);
+        Permission::create(['name' => 'create project', 'guard_name' => 'web',]);
+        Permission::create(['name' => 'update project', 'guard_name' => 'web',]);
+        Permission::create(['name' => 'delete project', 'guard_name' => 'web',]);
+
+        Permission::create(['name' => 'view expanse', 'guard_name' => 'web',]);
+        Permission::create(['name' => 'create expanse', 'guard_name' => 'web',]);
+        Permission::create(['name' => 'show expanse', 'guard_name' => 'web',]);
+
+        Permission::create(['name' => 'login project', 'guard_name' => 'web',]);
+        Permission::create(['name' => 'logout project', 'guard_name' => 'web',]);
+
+        Permission::create(['name' => 'installment', 'guard_name' => 'web',]);
+
+        Permission::create(['name' => 'view investment', 'guard_name' => 'web',]);
+        Permission::create(['name' => 'create investment', 'guard_name' => 'web',]);
+        Permission::create(['name' => 'show investment', 'guard_name' => 'web',]);
+
+        Permission::create(['name' => 'list customer', 'guard_name' => 'web',]);
+        Permission::create(['name' => 'create customer', 'guard_name' => 'web',]);
+        Permission::create(['name' => 'update customer', 'guard_name' => 'web',]);
+        Permission::create(['name' => 'view customer', 'guard_name' => 'web',]);
+        Permission::create(['name' => 'delete customer', 'guard_name' => 'web',]);
 
 
         // Create Roles
         $superAdminRole = Role::create(['name' => 'super-admin']); //as super-admin
         $adminRole = Role::create(['name' => 'admin']);
-        $staffRole = Role::create(['name' => 'staff']);
-        $userRole = Role::create(['name' => 'user']);
+        // $staffRole = Role::create(['name' => 'staff']);
+        // $userRole = Role::create(['name' => 'user']);
 
         // Lets give all permission to super-admin role.
         $allPermissionNames = Permission::pluck('name')->toArray();
 
         $superAdminRole->givePermissionTo($allPermissionNames);
 
-        // Let's give few permissions to admin role.
-        $adminRole->givePermissionTo(['create role', 'view role', 'update role']);
-        $adminRole->givePermissionTo(['create permission', 'view permission']);
-        $adminRole->givePermissionTo(['create user', 'view user', 'update user']);
-        $adminRole->givePermissionTo(['create product', 'view product', 'update product']);
+        // // Let's give few permissions to admin role.
+        // $adminRole->givePermissionTo(['create role', 'view role', 'update role']);
+        // $adminRole->givePermissionTo(['create permission', 'view permission']);
+        // $adminRole->givePermissionTo(['create user', 'view user', 'update user']);
+        // $adminRole->givePermissionTo(['create product', 'view product', 'update product']);
 
 
         // Let's Create User and assign Role to it.
@@ -76,29 +96,29 @@ class RolePermissionSeeder extends Seeder
         $superAdminUser->assignRole($superAdminRole);
 
 
-        $adminUser = User::firstOrCreate([
-                            'email' => 'admin@gmail.com'
-                        ], [
-                            'name' => 'Admin',
-                            'phone' => '01774656830',
-                            'email' => 'admin@gmail.com',
-                            'designation' => 'Admin',
-                            'password' => Hash::make ('12345678'),
-                        ]);
+        // $adminUser = User::firstOrCreate([
+        //                     'email' => 'admin@gmail.com'
+        //                 ], [
+        //                     'name' => 'Admin',
+        //                     'phone' => '01774656830',
+        //                     'email' => 'admin@gmail.com',
+        //                     'designation' => 'Admin',
+        //                     'password' => Hash::make ('12345678'),
+        //                 ]);
 
-        $adminUser->assignRole($adminRole);
+        // $adminUser->assignRole($adminRole);
 
 
-        $staffUser = User::firstOrCreate([
-                            'email' => 'staff@gmail.com',
-                        ], [
-                            'name' => 'Staff',
-                            'phone' => '01774656833',
-                            'email' => 'staff@gmail.com',
-                            'designation' => 'Staff',
-                            'password' => Hash::make('12345678'),
-                        ]);
+        // $staffUser = User::firstOrCreate([
+        //                     'email' => 'staff@gmail.com',
+        //                 ], [
+        //                     'name' => 'Staff',
+        //                     'phone' => '01774656833',
+        //                     'email' => 'staff@gmail.com',
+        //                     'designation' => 'Staff',
+        //                     'password' => Hash::make('12345678'),
+        //                 ]);
 
-        $staffUser->assignRole($staffRole);
+        // $staffUser->assignRole($staffRole);
     }
 }

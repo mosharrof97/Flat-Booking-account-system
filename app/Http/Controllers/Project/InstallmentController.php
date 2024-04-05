@@ -10,6 +10,10 @@ use App\Models\Investment;
 
 class InstallmentController extends Controller
 {
+    // public function __construct(){
+    //     $this->middleware('permission:installment', ['only' => ['create','store']]);
+    // }
+
     public function create(Request $request,$id){
         $project_id = Session::get('project_id');
         if($project_id !== null){

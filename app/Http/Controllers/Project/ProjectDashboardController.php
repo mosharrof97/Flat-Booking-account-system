@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Session;
 
 class ProjectDashboardController extends Controller
 {
+    // public function __construct(){
+    //     $this->middleware('permission:login project', ['only' => ['index']]);
+    //     $this->middleware('permission:logout project', ['only' => ['sessionDelete']]);
+    // }
+
     public function index(Request $request,$id){
 
         $request->session()->put('project_id',$id);

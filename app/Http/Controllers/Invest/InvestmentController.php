@@ -12,6 +12,13 @@ use App\Models\Project;
 
 class InvestmentController extends Controller
 {
+    // public function __construct(){
+    //     $this->middleware('permission:installment', ['only' => ['create','store']]);
+    //     $this->middleware('permission:installment', ['only' => ['create','store']]);
+    //     $this->middleware('permission:installment', ['only' => ['create','store']]);
+    //     $this->middleware('permission:installment', ['only' => ['create','store']]);
+    // }
+
     public function index(){
 
         $datas = Investment::paginate(15);
@@ -32,7 +39,7 @@ class InvestmentController extends Controller
         return back();
     }
 
-    public function view(){
+    public function show(){
 
     }
 

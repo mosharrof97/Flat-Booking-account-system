@@ -29,10 +29,6 @@ class CustomerAuthController extends Controller
 
         $request->session()->regenerate();
 
-        $request->authenticate();
-
-        $request->session()->regenerate();
-
 
 
 

@@ -21,8 +21,8 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->foreignId('role_id')->nullable();
             $table->string('designation');
-            $table->enum('active_status',['active', 'inactive'])->default('inactive');
-            $table->string('status')->default(0);
+            $table->integer('active_status')->default(0);
+            $table->integer('status')->default(0);
 
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();
