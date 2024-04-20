@@ -6,20 +6,21 @@ use App\Http\Controllers\ProfileController;
 //Admin File
 // use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\Admin\AdminAuthController;
-use App\Http\Controllers\Invest\InvestorController;
+// use App\Http\Controllers\Admin\AdminAuthController;
+// use App\Http\Controllers\Invest\InvestorController;
 // use App\Http\Controllers\Invest\InvestorController;
 
 // invest File
 use App\Http\Controllers\Project\ProjectController;
-use App\Http\Controllers\Customer\CustomerController;
+// use App\Http\Controllers\Customer\CustomerController;
 
 //Project File
 use App\Http\Controllers\Employee\EmployeeController;
+use App\Http\Controllers\Client\ClientController;
 use App\Http\Controllers\Invest\InvestmentController;
 use App\Http\Controllers\Project\InstallmentController;
-use App\Http\Controllers\Project\ProjectAuthController;
-use App\Http\Controllers\Admin\RegisteredAminController;
+// use App\Http\Controllers\Project\ProjectAuthController;
+// use App\Http\Controllers\Admin\RegisteredAminController;
 use App\Http\Controllers\Role_permission\RoleController;
 use App\Http\Controllers\Role_permission\UserController;
 
@@ -57,36 +58,28 @@ use App\Http\Controllers\Role_permission\PermissionController;
 // });
 
 
-Route::prefix('admin')->middleware(['role:Super Admin|admin'])->group(function () {
+Route::prefix('admin')->middleware('auth')->group(function () {
 
     Route::get('/', [AdminController::class, 'dashboard'])->name('dashboard');
 
-    //Investment
-    Route::prefix('investment')->group(function () {
-        Route::get('/list', [InvestmentController::class,'index'])->name('list.investment');
-        Route::get('/create', [InvestmentController::class, 'create'])->name('create.investment');
-        Route::post('/create', [InvestmentController::class, 'store'])->name('store.investment');
-        Route::get('/view/{id}', [InvestmentController::class,'view'])->name('view.investment');
-    });
+    // // Investor
+    // Route::prefix('investor')->group(function () {
+    //     Route::get('/list', [InvestorController::class,'index'])->name('list_investor');
+    //     Route::get('/create', [InvestorController::class, 'create'])->name('create_investor');
+    //     Route::post('/create', [InvestorController::class, 'store'])->name('store_investor');
+    //     Route::get('/{id}/view', [InvestorController::class,'view'])->name('investor.view');
+    // });
 
-    // Investor
-    Route::prefix('investor')->group(function () {
-        Route::get('/list', [InvestorController::class,'index'])->name('list_investor');
-        Route::get('/create', [InvestorController::class, 'create'])->name('create_investor');
-        Route::post('/create', [InvestorController::class, 'store'])->name('store_investor');
-        Route::get('/{id}/view', [InvestorController::class,'view'])->name('investor.view');
-    });
+    // // Investor
+    // Route::prefix('customer')->group(function () {
+    //     Route::get('/list', [CustomerController::class,'index'])->name('list.customer');
+    //     Route::get('/create', [InvestorController::class, 'create'])->name('create.customer');
+    //     Route::post('/create', [InvestorController::class, 'store'])->name('store.customer');
+    //     Route::get('/{id}/view', [InvestorController::class,'view'])->name('view.customer');
+    //     Route::get('/{id}/delete', [InvestorController::class,'destroy'])->name('customer.delete');
+    // });
 
-    // Investor
-    Route::prefix('customer')->group(function () {
-        Route::get('/list', [CustomerController::class,'index'])->name('list.customer');
-        Route::get('/create', [InvestorController::class, 'create'])->name('create.customer');
-        Route::post('/create', [InvestorController::class, 'store'])->name('store.customer');
-        Route::get('/{id}/view', [InvestorController::class,'view'])->name('view.customer');
-        Route::get('/{id}/delete', [InvestorController::class,'destroy'])->name('customer.delete');
-    });
-
-    // Project
+    /**------------------ Project --------------------**/
     Route::prefix('project')->group(function () {
         Route::get('/list', [ProjectController::class,'index'])->name('list.project');
         Route::get('/create', [ProjectController::class, 'create'])->name('create.project');
@@ -125,8 +118,10 @@ Route::prefix('admin')->middleware(['role:Super Admin|admin'])->group(function (
 
             });
         });
+        /**------------------ Project End --------------------**/
     });
 
+    /**------------------ Employee --------------------**/
     Route::prefix('employee')->group(function () {
         Route::get('/list', [EmployeeController::class,'index'])->name('employee.list');
         Route::get('/create', [EmployeeController::class,'create'])->name('employee.create');
@@ -136,7 +131,32 @@ Route::prefix('admin')->middleware(['role:Super Admin|admin'])->group(function (
         Route::get('/{id}/view', [EmployeeController::class,'view'])->name('employee.view');
         Route::delete('/{id}/delete', [EmployeeController::class,'destroy'])->name('employee.delete');
     });
+    /**------------------ Employee End --------------------**/
 
+
+
+    /**-------------- Client && Investment ------------**/
+    Route::prefix('client')->group(function () {
+        Route::get('/list', [ClientController::class,'index'])->name('client.list');
+        Route::get('/create', [ClientController::class,'create'])->name('client.create');
+        Route::post('/create', [ClientController::class,'store'])->name('client.store');
+        Route::get('/{id}/edit', [ClientController::class,'edit'])->name('client.edit');
+        Route::put('/{id}/edit', [ClientController::class,'update'])->name('client.update');
+        Route::get('/{id}/view', [ClientController::class,'view'])->name('client.view');
+        Route::delete('/{id}/delete', [ClientController::class,'destroy'])->name('client.delete');
+
+        //Investment
+        Route::prefix('investment')->group(function () {
+            Route::get('/list', [InvestmentController::class,'index'])->name('list.investment');
+            Route::get('/create', [InvestmentController::class, 'create'])->name('create.investment');
+            Route::post('/create', [InvestmentController::class, 'store'])->name('store.investment');
+            Route::get('/view/{id}', [InvestmentController::class,'view'])->name('view.investment');
+        });
+    });
+    /**-------------- Client && Investment End------------**/
+
+
+    /**-------------- User && Roles && Permissions ------------**/
     Route::prefix('permissions')->group(function() {
         Route::resource('/',PermissionController::class)->names([
             'index' => 'permissions.index',
@@ -168,6 +188,8 @@ Route::prefix('admin')->middleware(['role:Super Admin|admin'])->group(function (
         ]);
         Route::get('users/{userId}/delete', [UserController::class, 'destroy'])->name('users.delete');
     });
+    /**-------------- User && Roles && Permissions End------------**/
+
 
 });
 

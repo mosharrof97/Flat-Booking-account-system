@@ -4,11 +4,13 @@
     <div class="col-lg-10 col-sm-12">
         <div class="card p-4">
             <div class="card-header">
-                <h3>Customer List</h3>
+                <h3>Client List</h3>
+                <a href="{{ route('client.create') }}" class="btn btn-primary">Add Client</a>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-striped">
+                    {{-- <table class="table table-striped"> --}}
+                    <table id="claintTable" class="display nowrap" style="width:100%">
                         <thead>
                             <tr>
                                 <th scope="col" class="text-wrap">SL</th>
@@ -18,20 +20,25 @@
                                 <th scope="col" class="text-wrap">NID</th>
                                 <th scope="col" class="text-wrap">Flat Booking</th>
                                 <th scope="col" class="text-wrap">Action</th>
+                                <th scope="col" class="text-wrap">Image</th>
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($clients as $key => $client)
                             <tr>
-                                <th scope="row">1</th>
-                                <td>Md. Rakid Hasan</td>
-                                <td>0214587842</td>
-                                <td>Rakid@mdo.com</td>
-                                <td>0214587842</td>
+                                <th scope="row">{{ $key + 1 }}</th>
+                                <td>{{ $client->name }}</td>
+                                <td>{{ $client->phone }}</td>
+                                <td>{{ $client->email }}</td>
+                                <td>{{ $client->nid }}</td>
                                 <td>3 Flat</td>
+                                <td> <img src="{{ asset('upload/client/'.$client->image) }}" alt="" width="40"> </td>
+
                                 <td>
-                                    <a href="{{route('customer.details')}}" class="btn btn-success">View</a>
+                                    <a href="{{route('client.view', $client->id)}}" class="btn btn-success">View</a>
                                 </td>
                             </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -40,5 +47,13 @@
         </div>
     </div>
 </div>
-
+<script>
+    new DataTable('#claintTable', {
+        layout: {
+            topStart: {
+                buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+            }
+        }
+    });
+</script>
 @endsection

@@ -13,7 +13,28 @@ return new class extends Migration
     {
         Schema::create('clients', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('father_name');
+            $table->string('mother_name');
+            $table->string('phone',15)->unique();
+            $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('nid',20)->unique();
+            $table->string('tin',20)->unique();
+            $table->foreignId('role_id')->nullable();
+            $table->enum('active_status',['active', 'inactive'])->default('inactive');
+            $table->string('status')->default(0);
+            $table->string('password');
+            $table->string('image');
+
+
+            $table->string('created_by')->nullable();
+            $table->string('updated_by')->nullable();
+            $table->string('deleted_by')->nullable();
+
+            $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

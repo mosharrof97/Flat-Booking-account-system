@@ -12,7 +12,7 @@ class Investment extends Model
 {
     use HasFactory, SoftDeletes;
     protected $fillable = [
-        'investor_id',
+        'client_id',
         'project_id',
         'total_Investment',
         'installment_type',
@@ -25,8 +25,8 @@ class Investment extends Model
         'deleted_by',
     ];
 
-    public function investor(){
-        return $this->BelongsTo(Investor::class);
+    public function client(){
+        return $this->BelongsTo(Client::class);
     }
 
     public function project(): BelongsTo

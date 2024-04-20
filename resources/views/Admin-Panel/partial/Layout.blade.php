@@ -16,19 +16,38 @@
     <link href="{{ asset('asset/css/bootstrap.min.css') }}" rel="stylesheet" />
 
     <link href="{{ asset('vendor/pg-calendar/css/pignose.calendar.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('vendor/chartist/css/chartist.min.css') }}" rel="stylesheet">
+    {{-- <link href="{{ asset('vendor/chartist/css/chartist.min.css') }}" rel="stylesheet"> --}}
     {{-- -- Datatable -- --}}
-    <link href="{{ asset('vendor/datatables/css/jquery.dataTables.min.css') }}" rel="stylesheet">
+    {{-- <link href="{{ asset('vendor/datatables/css/jquery.dataTables.min.css') }}" rel="stylesheet"> --}}
     <link href="{{ asset('asset/css/style.css') }}" rel="stylesheet">
     <script src="{{ asset('asset/js/jquery.min.js') }}"></script>
 
 
 
     <!-- Include jQuery UI -->
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    {{-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> --}}
 
     <!-- Include jQuery UI CSS (for styling) -->
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    {{-- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> --}}
+
+    {{---- Datatable ----}}
+        {{-- CSS --}}
+        <link href="https://cdn.datatables.net/2.0.5/css/dataTables.dataTables.css" rel="stylesheet">
+        <link href="https://cdn.datatables.net/buttons/3.0.2/css/buttons.dataTables.css" rel="stylesheet">
+
+        {{-- Javascript --}}
+        {{-- <script src="https://code.jquery.com/jquery-3.7.1.js"></script> --}}
+        <script src="https://cdn.datatables.net/2.0.5/js/dataTables.js"></script>
+        <script src="https://cdn.datatables.net/buttons/3.0.2/js/dataTables.buttons.js"></script>
+        <script src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.dataTables.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+        <script src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.html5.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.print.min.js"></script>
+    {{---- Datatable ----}}
+
+
 
     <title>Flat Booking </title>
 </head>
@@ -309,14 +328,7 @@
                         <div id="investor" class="accordion-collapse collapse" style="background-color: #1c0f54" data-bs-parent="#investor-parent">
                             <ul class=" metismenu" > --}}
 
-                    {{-- @can('view employee') --}}
-                    <li>
-                        <a class="has-arrow" href="{{ route('list_investor') }}">
-                            <i class="fa-solid fa-seedling"></i>
-                            <span class="nav-text">Investors</span>
-                        </a>
-                    </li>
-                    {{-- @endcan --}}
+
 
                     {{-- <li  >
                                     <a class="has-arrow" href="{{ route('create_investor') }}">
@@ -342,10 +354,10 @@
 
                     {{--========= Customer ===========--}}
                     {{-- @can('list customer') --}}
-                    <li id="employee-parent">
-                        <a class="has-arrow" href="{{ route('list.customer') }}" aria-expanded="false">
+                    <li id="client-parent">
+                        <a class="has-arrow" href="{{ route('client.list') }}" aria-expanded="false">
                             <i class="fa-solid fa-users"></i>
-                            <span class="nav-text">Customer</span>
+                            <span class="nav-text">Client</span>
                         </a>
                     </li>
                     {{-- @endcan --}}
@@ -457,19 +469,21 @@
     <script src="{{ asset('asset/js/quixnav-init.js') }}"></script>
     <script src="{{ asset('asset/js/custom.min.js') }}"></script>
 
-    <script src="{{ asset('vendor/chartist/js/chartist.min.js') }}"></script>
+    {{-- <script src="{{ asset('vendor/chartist/js/chartist.min.js') }}"></script> --}}
 
     <script src="{{ asset('vendor/moment/moment.min.js') }}"></script>
     <script src="{{ asset('vendor/pg-calendar/js/pignose.calendar.min.js') }}"></script>
 
-    <script src="{{ asset('js/dashboard/dashboard-2.js') }}"></script>
+    {{-- <script src="{{ asset('js/dashboard/dashboard-2.js') }}"></script> --}}
     {{-- -- Circle progress -- --}}
 
     <script src="{{ asset('asset/js/bootstrap.bundle.min.js') }}"></script>
 
     {{-- -- Datatable -- --}}
-    <script src="{{ asset('vendor/datatables/js/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('asset/js/plugins-init/datatables.init.js') }}"></script>
+    {{-- <script src="{{ asset('vendor/datatables/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('asset/js/plugins-init/datatables.init.js') }}"></script> --}}
+
+
 
 </body>
 

@@ -25,27 +25,40 @@
                         <tr>
                             <th scope="row" style="width: 20%">Name </th>
                             <td colspan="" style="width: 3%">:</td>
-                            <td colspan="3" style="width: 77%">Md. Rakid Hasan</td>
+                            <td colspan="3" style="width: 77%">{{ $client->name }}</td>
                         </tr>
                         <tr>
                             <th scope="row" style="width: 20%">Phone</th>
                             <td colspan="" style="width: 3%">:</td>
-                            <td colspan="3" style="width: 77%">0214587842</td>
+                            <td colspan="3" style="width: 77%">{{ $client->phone }}</td>
                         </tr>
                         <tr>
                             <th scope="row" style="width: 20%">Email</th>
                             <td colspan="" style="width: 3%">:</td>
-                            <td colspan="3" style="width: 77%">Rakid@mdo.com</td>
+                            <td colspan="3" style="width: 77%">{{ $client->email }}</td>
                         </tr>
                         <tr>
                             <th scope="row" style="width: 20%">NID</th>
                             <td colspan="" style="width: 3%">:</td>
-                            <td colspan="3" style="width: 77%">0312546548</td>
+                            <td colspan="3" style="width: 77%">{{ $client->nid }}</td>
                         </tr>
+
+                        <tr>
+                            <th scope="row" style="width: 20%">TIN</th>
+                            <td colspan="" style="width: 3%">:</td>
+                            <td colspan="3" style="width: 77%">{{ $client->tin }}</td>
+                        </tr>
+
                         <tr>
                             <th scope="row" style="width: 20%">Flat Booking</th>
                             <td colspan="" style="width: 3%">:</td>
                             <td colspan="3" style="width: 77%">3 Flat</td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row" style="width: 20%">Active status</th>
+                            <td colspan="" style="width: 3%">:</td>
+                            <td colspan="3" style="width: 77%">{{ $client->active_status }}</td>
                         </tr>
 
                     </table>
@@ -54,28 +67,60 @@
                     <div class="col-md-5 col-12">
                         <div class="card">
                             <div class="card-body">
-                                <table class="table table-borderless">
-                                    <tr>
-                                        <th scope="row" style="width: 20%">Address</th>
-                                        <td colspan="" style="width: 3%">:</td>
-                                        <td colspan="3" style="width: 77%">Dhaka - 1205</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row" style="width: 20%">ZIP Code</th>
-                                        <td colspan="" style="width: 3%">:</td>
-                                        <td colspan="3" style="width: 77%"> 1205</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row" style="width: 20%">City</th>
-                                        <td colspan="" style="width: 3%">:</td>
-                                        <td colspan="3" style="width: 77%">Dhaka</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row" style="width: 20%">District</th>
-                                        <td colspan="" style="width: 3%">:</td>
-                                        <td colspan="3" style="width: 77%">Dhaka</td>
-                                    </tr>
-                                </table>
+                                {{-- <table class="table table-borderless"> --}}
+
+                                <div class="">
+                                    <h4>Present Address</h4>
+                                    <table class="table">
+                                        <tr>
+                                            <th scope="row" style="width: 20%">Address</th>
+                                            <td colspan="" style="width: 3%">:</td>
+                                            <td colspan="3" style="width: 77%">{{ $client->clientAddress->pre_address }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" style="width: 20%">ZIP Code</th>
+                                            <td colspan="" style="width: 3%">:</td>
+                                            <td colspan="3" style="width: 77%"> {{ $client->clientAddress->pre_zipCode}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" style="width: 20%">City</th>
+                                            <td colspan="" style="width: 3%">:</td>
+                                            <td colspan="3" style="width: 77%">{{ $client->clientAddress->pre_city }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" style="width: 20%">District</th>
+                                            <td colspan="" style="width: 3%">:</td>
+                                            <td colspan="3" style="width: 77%">{{ $client->clientAddress->pre_district }}</td>
+                                        </tr>
+                                    </table>
+                                </div>
+
+                                <div class="mt-5">
+                                    <h4>Present Address</h4>
+                                    <table class="table">
+                                        <tr>
+                                            <th scope="row" style="width: 20%">Address</th>
+                                            <td colspan="" style="width: 3%">:</td>
+                                            <td colspan="3" style="width: 77%">{{ $client->clientAddress->per_address }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" style="width: 20%">ZIP Code</th>
+                                            <td colspan="" style="width: 3%">:</td>
+                                            <td colspan="3" style="width: 77%"> {{ $client->clientAddress->per_zipCode}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" style="width: 20%">City</th>
+                                            <td colspan="" style="width: 3%">:</td>
+                                            <td colspan="3" style="width: 77%">{{ $client->clientAddress->per_city }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" style="width: 20%">District</th>
+                                            <td colspan="" style="width: 3%">:</td>
+                                            <td colspan="3" style="width: 77%">{{ $client->clientAddress->per_district }}</td>
+                                        </tr>
+                                    </table>
+                                </div>
+
                             </div>
                         </div>
                     </div>
