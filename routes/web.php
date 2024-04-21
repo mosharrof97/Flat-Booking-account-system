@@ -11,22 +11,25 @@ use App\Http\Controllers\Admin\AdminController;
 // use App\Http\Controllers\Invest\InvestorController;
 
 // invest File
-use App\Http\Controllers\Project\ProjectController;
 // use App\Http\Controllers\Customer\CustomerController;
 
 //Project File
 use App\Http\Controllers\Employee\EmployeeController;
 use App\Http\Controllers\Client\ClientController;
 use App\Http\Controllers\Invest\InvestmentController;
-use App\Http\Controllers\Project\InstallmentController;
-// use App\Http\Controllers\Project\ProjectAuthController;
-// use App\Http\Controllers\Admin\RegisteredAminController;
-use App\Http\Controllers\Role_permission\RoleController;
-use App\Http\Controllers\Role_permission\UserController;
+use App\Http\Controllers\Vendor\VendorController;
 
+
+use App\Http\Controllers\Project\ProjectController;
+use App\Http\Controllers\Project\InstallmentController;
 use App\Http\Controllers\Project\ProjectExpenseController;
 use App\Http\Controllers\Project\ProjectDashboardController;
 use App\Http\Controllers\Project\ProjectInvestmentController;
+// use App\Http\Controllers\Project\ProjectAuthController;
+// use App\Http\Controllers\Admin\RegisteredAminController;
+
+use App\Http\Controllers\Role_permission\RoleController;
+use App\Http\Controllers\Role_permission\UserController;
 use App\Http\Controllers\Role_permission\PermissionController;
 
 
@@ -103,13 +106,13 @@ Route::prefix('admin')->middleware('auth')->group(function () {
                 Route::get('/view/{id}', [ProjectInvestmentController::class, 'show'])->name('project.investment.view');
             });
 
-             // Project Investment Installment
+            // Project Investment Installment
             Route::prefix('installment')->group(function () {
                 Route::get('/create/{id}', [InstallmentController::class, 'create'])->name('project.installment');
                 Route::post('/create', [InstallmentController::class, 'store'])->name('store.project.installment');
             });
 
-              // Project Expense
+            // Project Expense
             Route::prefix('expense')->group(function () {
                 Route::get('/list', [ProjectExpenseController::class, 'index'])->name('project.expense.list');
                 Route::get('/create', [ProjectExpenseController::class, 'create'])->name('project.expense');
@@ -118,8 +121,9 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 
             });
         });
-        /**------------------ Project End --------------------**/
     });
+    /**------------------ Project End --------------------**/
+
 
     /**------------------ Employee --------------------**/
     Route::prefix('employee')->group(function () {
@@ -155,9 +159,22 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     });
     /**-------------- Client && Investment End------------**/
 
+    /**-------------- Vendor ------------------**/
+    Route::prefix('vendor')->group(function () {
+        Route::get('/list', [VendorController::class,'index'])->name('vendor.list');
+        Route::get('/create', [VendorController::class, 'create'])->name('vendor.create');
+        Route::post('/create', [VendorController::class, 'store'])->name('vendor.store');
+        Route::get('/{id}/view', [VendorController::class,'show'])->name('vendor.view');
+        // Route::get('/{id}/edit', [VendorController::class,'edit'])->name('vendor.edit');
+        // Route::put('/{id}/edit', [VendorController::class,'update'])->name('vendor.update');
+        Route::get('/{id}/delete', [VendorController::class,'destroy'])->name('vendor.delete');
+    });
+    /**-------------- Vendor End ------------------**/
+
 
     /**-------------- User && Roles && Permissions ------------**/
     Route::prefix('permissions')->group(function() {
+        // Permission
         Route::resource('/',PermissionController::class)->names([
             'index' => 'permissions.index',
             'create' => 'permissions.create',
@@ -167,6 +184,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
         ]);
         Route::get('/{permissionId}/delete', [PermissionController::class, 'destroy'])->name('permissions.delete');
 
+        //Role
         Route::resource('roles', RoleController::class)->names([
             'index' => 'roles.index',
             'create' => 'roles.create',
@@ -178,6 +196,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
         Route::get('roles/{roleId}/give-permissions', [RoleController::class, 'addPermissionToRole'])->name('roles.add.permission');
         Route::put('roles/{roleId}/give-permissions', [RoleController::class, 'givePermissionToRole'])->name('roles.give.permission');
 
+        // User
         Route::resource('users', UserController::class)->names([
             'index' => 'users.index',
             'create' => 'users.create',
@@ -202,9 +221,9 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 
 
 
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/', function () {
+    return redirect()->route('login');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

@@ -1,10 +1,10 @@
 @extends('Admin-Panel.partial.Layout')
 @section('content')
 <div class="row justify-content-center">
-    <div class="col-lg-10 col-sm-12">
+    <div class="col-lg-12 col-sm-12">
         <div class="card p-4">
             <div class="card-header">
-                <h3>Investor Information</h3>
+                <h3>Client Information</h3>
             </div>
             <div class="card-body">
                 <div class="mb-5">

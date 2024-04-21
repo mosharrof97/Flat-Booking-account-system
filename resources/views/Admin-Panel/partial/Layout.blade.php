@@ -204,6 +204,37 @@
                             </a>
                         </li>
                     {{-- @endcan --}}
+
+                    <li>
+                        <a class="has-arrow" href="" aria-expanded="false">
+                            <i class="fa-solid fa-store"></i>
+                            <span class="nav-text">Purchase</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="has-arrow" href="" aria-expanded="false">
+                            <i class="fa-solid fa-store"></i>
+                            <span class="nav-text">Purchase Return</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="has-arrow" href="" aria-expanded="false">
+                            <i class="fa-solid fa-store"></i>
+                            <span class="nav-text">Sale</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="has-arrow" href="{{ route('vendor.list') }}" aria-expanded="false">
+                            <i class="fa-solid fa-store"></i>
+                            <span class="nav-text">Vandor</span>
+                        </a>
+                    </li>
+
+
+
                     {{-- <li>
                         <a class="has-arrow" href="{{ route('investor.list') }}" aria-expanded="false">
                             <i class="fa-solid fa-store"></i>
@@ -363,31 +394,39 @@
                     {{-- @endcan --}}
                     {{--========= Customer End ===========--}}
 
-                    {{-- Project --}}
-                    {{-- <li id="project-parent">
+                    {{-- Expanse --}}
+                    <li id="expanse-parent">
                         <a class="has-arrow" href="javascript:void(0);" data-bs-toggle="collapse"
-                            data-bs-target="#project" aria-expanded="false" aria-controls="project">
+                            data-bs-target="#expanse" aria-expanded="false" aria-controls="expanse">
                             <i class="fa-solid fa-store"></i>
-                            <span class="nav-text">Project </span>
+                            <span class="nav-text">Expanse </span>
                         </a>
-                        <div id="project" class="accordion-collapse collapse" style="background-color: #1c0f54"
-                            data-bs-parent="#project-parent">
+                        <div id="expanse" class="accordion-collapse collapse" style="background-color: #1c0f54"
+                            data-bs-parent="#expanse-parent">
                             <ul class=" metismenu">
                                 <li>
-                                    <a class="has-arrow" href="{{ route('list.project') }}">
+                                    <a class="has-arrow" href="">
                                         <i class="fa-solid fa-store"></i>
-                                        <span class="nav-text">All Project</span>
+                                        <span class="nav-text">Project Expanse</span>
                                     </a>
                                 </li>
+
                                 <li>
-                                    <a class="has-arrow" href="{{ route('create.project') }}">
+                                    <a class="has-arrow" href="">
                                         <i class="fa-solid fa-store"></i>
-                                        <span class="nav-text">Add New Project</span>
+                                        <span class="nav-text">Office Ex Category </span>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a class="has-arrow" href="">
+                                        <i class="fa-solid fa-store"></i>
+                                        <span class="nav-text">Office Expanse </span>
                                     </a>
                                 </li>
                             </ul>
                         </div>
-                    </li> --}}
+                    </li>
                     {{-- Project End --}}
 
                     {{-- Role --}}
