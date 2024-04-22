@@ -27,6 +27,7 @@
                                 <th scope="col" class="flex-wrap">Action</th>
                             </tr>
                         </thead>
+
                         <tbody >
                             @foreach ($expenses as $key => $expense )
                             <tr>
