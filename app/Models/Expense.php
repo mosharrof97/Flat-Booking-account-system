@@ -14,14 +14,21 @@ class Expense extends Model
 
     protected $fillable = [
         'project_id',
-        'user_id',
+        'vendor_id',
+        'memo_no',
         'date',
         'name',
+        'price',
         'quantity',
         'unit',
-        'price',
         'total_price',
         'total',
+        'service_charge',
+        'shipping_charge',
+        'total_amount',
+        'discount',
+        'paid',
+        'due',
 
         'created_by',
         'updated_by',
@@ -39,4 +46,12 @@ class Expense extends Model
     public function project() {
        return $this->BelongsTo(Project::class);
     }
+
+    public function user() {
+        return $this->BelongsTo(User::class);
+     }
+
+    public function vendor() {
+        return $this->BelongsTo(Vendor::class);
+     }
 }

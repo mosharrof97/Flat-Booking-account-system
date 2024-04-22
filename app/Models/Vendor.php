@@ -18,4 +18,8 @@ class Vendor extends Model
         'updated_by',
         'deleted_by',
     ];
+
+    public function expense() {
+        return $this->HasMany(Expense::class, 'vendor_id');
+    }
 }
