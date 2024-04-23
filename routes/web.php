@@ -94,7 +94,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
         Route::delete('/delete/{id}', [ProjectController::class,'delete'])->name('project.delete');
 
         // Project Panel
-        Route::prefix('project')->group(function () {
+        Route::prefix('panel')->group(function () {
             // Project Dashboard
             Route::get('/dashboard/{id}', [ProjectDashboardController::class, 'index'])->name('project.dashboard');
             Route::get('/logout', [ProjectDashboardController::class, 'sessionDelete'])->name('project.sessionDelete');
