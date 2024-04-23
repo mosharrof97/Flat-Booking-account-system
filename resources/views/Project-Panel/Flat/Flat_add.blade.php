@@ -71,7 +71,7 @@
 
                         <div class="col-md-6">
                             <label for="parking" class="form-label">Parking</label>
-                            <input type="number" class="form-control" id="parking" name="parking" value="" placeholder="parking.....">
+                            {{-- <input type="number" class="form-control" id="parking" name="parking" value="" placeholder="parking....."> --}}
                             <select class="form-select" name="parking" id="parking">
                                 <option value="No info">No info</option>
                             </select>
@@ -82,7 +82,7 @@
 
                         <div class="col-md-6">
                             <label for="outdoor" class="form-label">Outdoor</label>
-                            <input type="number" class="form-control" id="outdoor" name="outdoor" value="" placeholder="Outdoor.....">
+                            {{-- <input type="number" class="form-control" id="outdoor" name="outdoor" value="" placeholder="Outdoor....."> --}}
                             <select class="form-select" name="outdoor" id="outdoor">
                                 <option value="No info">No info</option>
                             </select>
@@ -102,7 +102,7 @@
 
                         <div class="col-md-6">
                             <label for="description" class="form-label">Flat Description</label>
-                            <textarea name="description" id="description" cols="30" rows="10"></textarea>
+                            <textarea name="description" id="description" cols="" rows="" class="form-control"></textarea>
 
                             @error('description')
                                 <span class="form-text text-danger">{{ $message }}</span>

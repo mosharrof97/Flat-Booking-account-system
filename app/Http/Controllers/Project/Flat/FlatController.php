@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Project\Flat;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use App\Models\Flat;
 
 class FlatController extends Controller
@@ -12,8 +13,8 @@ class FlatController extends Controller
         $project_id = Session::get('project_id');
         if($project_id !== null){
 
-            $flat = Flat::where('project_id', $project_id)->where('status', '!=', 1)->get();
-            return view('', compact('flat'));
+            $flats = Flat::where('project_id', $project_id)->where('status', '!=', 1)->get();
+            return view('Project-Panel.Flat.Flat_list', compact('flats'));
         }else{
             return redirect()->route('list.project')-> with('error','Project Id Is Null');
         }
@@ -23,7 +24,7 @@ class FlatController extends Controller
         $project_id = Session::get('project_id');
         if($project_id !== null){
 
-            return view('');
+            return view('Project-Panel.Flat.Flat_add');
         }else{
             return redirect()->route('list.project')-> with('error','Project Id Is Null');
         }
@@ -72,7 +73,7 @@ class FlatController extends Controller
 
             $flat = Flat::where('project_id', $project_id)->where('status', '!=', 1)->find($id);
             // Flat::where('project_id', $project_id) ->where('status', '!=', 1) ->find($id);
-            return view('', compact('flat'));
+            return view('Project-Panel.Flat.Flat_edit', compact('flat'));
         }else{
             return redirect()->route('list.project')-> with('error','Project Id Is Null');
         }

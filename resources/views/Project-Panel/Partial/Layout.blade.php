@@ -214,16 +214,24 @@
 
                     {{-- Flat Sell --}}
                     <li id="flat-parent">
-                        <a class="has-arrow" href="" data-bs-toggle="collapse" data-bs-target="#flat" aria-expanded="false" aria-controls="flat">
+                        <a class="has-arrow"  data-bs-toggle="collapse" data-bs-target="#flat" aria-expanded="false" aria-controls="flat">
                             <i class="fa-solid fa-store"></i>
                             <span class="nav-text">Flat Sell </span>
                         </a>
                         <div id="flat" class="accordion-collapse collapse" style="background-color: #1c0f54" data-bs-parent="#flat-parent">
                             <ul class=" metismenu">
+
                                 <li>
-                                    <a class="has-arrow" href="####">
+                                    <a class="has-arrow" href="{{ route('flat.list') }}">
                                         <i class="fa-solid fa-store"></i>
                                         <span class="nav-text">All Flat</span>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a class="has-arrow" href="{{ route('flat.add') }}">
+                                        <i class="fa-solid fa-store"></i>
+                                        <span class="nav-text">Add New Flat</span>
                                     </a>
                                 </li>
 
@@ -238,13 +246,6 @@
                                     <a class="has-arrow" href="##">
                                         <i class="fa-solid fa-store"></i>
                                         <span class="nav-text">Sold Flat</span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a class="has-arrow" href="###">
-                                        <i class="fa-solid fa-store"></i>
-                                        <span class="nav-text">Add New Flat</span>
                                     </a>
                                 </li>
                             </ul>

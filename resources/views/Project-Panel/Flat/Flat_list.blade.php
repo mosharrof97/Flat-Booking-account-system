@@ -32,7 +32,7 @@
                                     <th rowspan="" class="text-nowrap">Dining Space</th>
                                     <th rowspan="" class="text-nowrap">Status</th>
                                     <th rowspan="" class="text-nowrap">Image</th>
-                                    <th colspan="4" class="text-nowrap">Action</th>
+                                    <th colspan="" class="text-nowrap">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -45,6 +45,7 @@
                                         <td>{{ $flat->room }} Room</td>
                                         <td>{{ $flat->bath_room }} Bath Room</td>
                                         <td>{{ $flat->dining_space }} Squer Fit</td>
+                                        <td>{{ $flat->status }} Squer Fit</td>
 
                                         <td>
                                             <img src="{{ asset('upload/flat/' . $flat->image) }}" alt="No Image"
@@ -56,16 +57,12 @@
                                                 class="btn btn-success me-2">
                                                 <i class="fa-solid fa-eye"></i>
                                             </a>
-                                        </td>
 
-                                        <td>
                                             <a href="{{ route('flat.edit', $flat->id) }} "
                                                 class="btn btn-success me-2">
                                                 <i class="fa-solid fa-pen-to-square"></i>
                                             </a>
-                                        </td>
 
-                                        <td>
                                             <a href="{{ route('flat.edit', $flat->id) }} "
                                                 class="btn btn-danger me-2">
                                                 <i class="fa-solid fa-trash"></i>
@@ -114,12 +111,14 @@
 
 
     <script>
-        new DataTable('#flatTable', {
-            layout: {
-                topStart: {
-                    buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
-                }
-            }
-        });
+        new DataTable('#flatTable'
+        // , {
+        //     layout: {
+        //         topStart: {
+        //             buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+        //         }
+        //     }
+        // }
+    );
     </script>
 @endsection
