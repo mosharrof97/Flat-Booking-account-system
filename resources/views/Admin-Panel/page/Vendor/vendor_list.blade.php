@@ -54,12 +54,14 @@
     </div>
 
     <script>
-        new DataTable('#vendorTable', {
-            layout: {
-                topStart: {
-                    buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
-                }
-            }
-        });
+        new DataTable('#vendorTable'
+        // , {
+        //     layout: {
+        //         topStart: {
+        //             buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+        //         }
+        //     }
+        // }
+        );
     </script>
 @endsection

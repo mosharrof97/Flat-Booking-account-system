@@ -146,7 +146,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
         Route::get('/{id}/edit', [EmployeeController::class,'edit'])->name('employee.edit');
         Route::put('/{id}/edit', [EmployeeController::class,'update'])->name('employee.update');
         Route::get('/{id}/view', [EmployeeController::class,'view'])->name('employee.view');
-        Route::delete('/{id}/delete', [EmployeeController::class,'destroy'])->name('employee.delete');
+        Route::get('/{id}/delete', [EmployeeController::class,'destroy'])->name('employee.delete');
     });
     /**------------------ Employee End --------------------**/
 

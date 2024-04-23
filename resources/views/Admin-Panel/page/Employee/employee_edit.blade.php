@@ -1,7 +1,7 @@
 @extends('Admin-Panel.partial.Layout')
 @section('content')
     <div class="row justify-content-center">
-        <div class="col-lg-10 col-sm-12">
+        <div class="col-lg-12 col-sm-12">
             @if ($errors->any())
                 <ul class="alert alert-warning">
                     @foreach ($errors->all() as $error)
@@ -12,7 +12,7 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h4>Edit User </h4>
+                    <h4>Update Employee Information </h4>
                     <a href="{{ route('employee.edit',$employee->id) }}" class="btn btn-danger float-end">Back</a>
                 </div>
                 <div class="card-body">
@@ -74,13 +74,20 @@
                             </select>
                         </div>
 
+                        <div class="col-md-6">
+                            <label for="image" class="form-label">Image</label>
+                            <input type="file" class="form-control" id="image" name="image">
+                            <br>
+                            <img src="" alt="No Image" width="100" height="100">
+                        </div>
+
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header bg-primary">
                                     <h4 class="text-light text-center">Address</h4>
                                 </div>
 
-                                @foreach($employee->employeeAddress as $data)
+                                {{-- @foreach($employee->employeeAddress as $data) --}}
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-6">
@@ -94,7 +101,7 @@
                                                             dd($employee->employeeAddress->pre_address);
                                                         @endphp --}}
                                                         <label for="pre_address" class="form-label">Address</label>
-                                                        <input type="text" class="form-control" id="pre_address" placeholder="1234 Main St" name="pre_address" value="{{ $data->pre_address }}">
+                                                        <input type="text" class="form-control" id="pre_address" placeholder="1234 Main St" name="pre_address" value="{{ $employee->employeeAddress->pre_address }}">
 
 
                                                         @error('pre_address')
@@ -105,7 +112,7 @@
                                                     <div class="mt-3">
                                                         <label for="pre_city" class="form-label">City</label>
                                                         <input type="text" class="form-control" id="pre_city"
-                                                            name="pre_city" value="{{ $data->pre_city }}">
+                                                            name="pre_city" value="{{ $employee->employeeAddress->pre_city }}">
 
                                                         @error('pre_city')
                                                             <span class="form-text text-danger">{{ $message }}</span>
@@ -119,7 +126,7 @@
                                                             <option value="">Select Dristrict.......</option>
 
                                                             @foreach ($districts as $district)
-                                                                <option value="{{ $district->name }}" {{ $employee->pre_district == $district->name ? 'selected' : '' }}>{{ $district->name }}
+                                                                <option value="{{ $district->name }}" {{ $employee->employeeAddress->pre_district == $district->name ? 'selected' : '' }}>{{ $district->name }}
                                                                 </option>
                                                             @endforeach
                                                         </select>
@@ -133,7 +140,7 @@
                                                     <div class="mt-3">
                                                         <label for="pre_zipCode" class="form-label">Zip Code</label>
                                                         <input type="text" class="form-control" id="pre_zipCode"
-                                                            name="pre_zipCode" value="{{ $data->pre_zipCode }}">
+                                                            name="pre_zipCode" value="{{ $employee->employeeAddress->pre_zipCode }}">
 
                                                         @error('pre_zipCode')
                                                             <span class="form-text text-danger">{{ $message }}</span>
@@ -160,7 +167,7 @@
                                                     <div class="mt-3">
                                                         <label for="per_address" class="form-label">Address</label>
                                                         <input type="text" class="form-control" id="per_address"
-                                                            placeholder="1234 Main St" name="per_address" value="{{ $data->per_address }}">
+                                                            placeholder="1234 Main St" name="per_address" value="{{ $employee->employeeAddress->per_address }}">
                                                         @error('per_address')
                                                             <span class="form-text text-danger">{{ $message }}</span>
                                                         @enderror
@@ -169,7 +176,7 @@
                                                     <div class="mt-3">
                                                         <label for="per_city" class="form-label">City</label>
                                                         <input type="text" class="form-control" id="per_city"
-                                                            name="per_city" value="{{ $data->per_city }}">
+                                                            name="per_city" value="{{ $employee->employeeAddress->per_city }}">
 
                                                         @error('per_city')
                                                             <span class="form-text text-danger">{{ $message }}</span>
@@ -182,7 +189,7 @@
                                                             class="form-select bg-light">
                                                             <option value="">Select Dristrict.......</option>
                                                             @foreach ($districts as $district)
-                                                                <option value="{{ $district->name }}" {{ $employee->per_district == $district->name ? 'selected' : '' }}>
+                                                                <option value="{{ $district->name }}" {{ $employee->employeeAddress->per_district == $district->name ? 'selected' : '' }}>
                                                                     {{ $district->name }}</option>
                                                             @endforeach
                                                         </select>
@@ -195,7 +202,7 @@
                                                     <div class="mt-3">
                                                         <label for="per_zipCode" class="form-label">Zip Code</label>
                                                         <input type="text" class="form-control" id="per_zipCode"
-                                                            name="per_zipCode" value="{{ $data->per_zipCode }}">
+                                                            name="per_zipCode" value="{{ $employee->employeeAddress->per_zipCode }}">
 
                                                         @error('per_zipCode')
                                                             <span class="form-text text-danger">{{ $message }}</span>
@@ -207,18 +214,11 @@
                                         </div>
                                     </div>
                                 </div>
-                                @endforeach
+                                {{-- @endforeach --}}
                             </div>
                         </div>
 
-                        <div class="col-md-12">
-                            <label for="image" class="form-label">Image</label>
-                            <input type="file" class="form-control" id="image" name="image">
-                            <br>
-                            <img src="" alt="No Image">
-                        </div>
-
-                        <div class="mb-3">
+                        <div class="mb-3 text-end">
                             <button type="submit" class="btn btn-primary">Update</button>
                         </div>
                     </form>

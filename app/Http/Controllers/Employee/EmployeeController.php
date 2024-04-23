@@ -23,7 +23,7 @@ class EmployeeController extends Controller
     // }
 
     public function index() {
-        $employee = Employee::get();
+        $employee = Employee::where('status', '!=', 1)->get();
         return view('Admin-Panel.page.Employee.employee_list', ['employees' => $employee]);
     }
 
@@ -72,7 +72,7 @@ class EmployeeController extends Controller
                 'nid' => $request->nid,
                 'designation' => $request->designation,
                 'image'=> $imageName ?? 'No Image',
-                'created_by' => $request->auth()->id(),
+                'created_by' => auth()->id(),
             ]);
 
             EmployeeAddress::create([
@@ -100,7 +100,7 @@ class EmployeeController extends Controller
 
     public function edit(Request $request, $id) {
         $districts = District::get();
-        $employee = Employee::find($id);
+        $employee = Employee::where('status', '!=', 1)->find($id);
 
         return view('Admin-Panel.page.Employee.employee_edit', [
             'employee' => $employee,
@@ -108,16 +108,16 @@ class EmployeeController extends Controller
         ]);
     }
 
-    public function update(Request $request, User $user) {
+    public function update(Request $request, $id) {
         $request->validate([
             'name' => 'required|string|max:255',
             'father_name' => 'required|string|max:255',
             'mother_name' => 'required|string|max:255',
-            'phone' => 'required|max:255|unique:employees,phone',
+            'phone' => 'required|max:255',
             'nid' => 'required',
-            'email' => 'required|email|max:255|unique:employees,email',
+            'email' => 'required|email|max:255',
             'designation' => 'required',
-            'image' => 'required',
+            // 'image' => 'required',
 
             'pre_address' => 'required|string|max:255',
             'pre_city' => 'required|string|max:255',
@@ -144,7 +144,8 @@ class EmployeeController extends Controller
 
         try {
             DB::beginTransaction();
-            $employee = Employee::update([
+            $employee = Employee::where('status', '!=', 1)->find($id);
+            $employee->update([
                 'name' => $request->name,
                 'father_name' => $request->father_name,
                 'mother_name' => $request->mother_name,
@@ -153,11 +154,12 @@ class EmployeeController extends Controller
                 'nid' => $request->nid,
                 'designation' => $request->designation,
                 'image'=> $imageName ?? 'No Image',
-                'updated_by' => $request->auth()->id(),
+                'updated_by' => auth()->id(),
             ]);
+            $address = EmployeeAddress::where('employee_id', $id)->first();
 
-            EmployeeAddress::update([
-                'employee_id' => $employee->id,
+            $address->update([
+                // 'employee_id' => $employee->id,
                 'pre_address' => $request->pre_address,
                 'pre_city' => $request->pre_city,
                 'pre_district' => $request->pre_district,
@@ -178,18 +180,20 @@ class EmployeeController extends Controller
     }
 
     public function view($Id) {
-        $employee = Employee::find($Id);
+        $employee = Employee::where('status', '!=', 1)->find($Id);
 
         return view('Admin-Panel.page.Employee.employee_details',['employee' => $employee]);
     }
 
     public function destroy($employeeId) {
 
-        $employee = Employee::findOrFail($employeeId);
+        $employee = Employee::where('status', '!=', 1)->findOrFail($employeeId);
         // $employee->deleted_by = auth()->id();
         // $employee->save();
 
-        $employee->delete();
+        $employee->update([
+            'status'=> 1,
+        ]);
 
         return redirect()->route('employee.list')->with('status','User Delete Successfully');
     }
