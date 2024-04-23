@@ -25,6 +25,7 @@ use App\Http\Controllers\Project\InstallmentController;
 use App\Http\Controllers\Project\ProjectExpenseController;
 use App\Http\Controllers\Project\ProjectDashboardController;
 use App\Http\Controllers\Project\ProjectInvestmentController;
+use App\Http\Controllers\Project\Flat\FlatController;
 // use App\Http\Controllers\Project\ProjectAuthController;
 // use App\Http\Controllers\Admin\RegisteredAminController;
 
@@ -118,6 +119,18 @@ Route::prefix('admin')->middleware('auth')->group(function () {
                 Route::get('/create', [ProjectExpenseController::class, 'create'])->name('project.expense');
                 Route::post('/create', [ProjectExpenseController::class, 'store'])->name('store.project.expense');
                 Route::get('/{id}/show', [ProjectExpenseController::class, 'show'])->name('project.expense.view');
+
+            });
+
+            // Flat Expense
+            Route::prefix('flat')->group(function () {
+                Route::get('/list', [FlatController::class, 'index'])->name('flat.list');
+                Route::get('/create', [FlatController::class, 'create'])->name('flat.add');
+                Route::post('/create', [FlatController::class, 'store'])->name('flat.store');
+                Route::get('/25{id}%020/view', [FlatController::class, 'view'])->name('flat.view');
+                Route::get('/03{id}%021/edit', [FlatController::class, 'edit'])->name('flat.edit');
+                Route::put('/03{id}%021/edit', [FlatController::class, 'update'])->name('flat.update');
+                Route::get('/06{id}%023/delete', [FlatController::class, 'delete'])->name('flat.delete');
 
             });
         });

@@ -21,8 +21,9 @@ return new class extends Migration
             $table->integer('room');
             $table->integer('dining_space')->nullable();
             $table->integer('bath_room');
-            $table->string('Parking')->nullable();
-            $table->string('Outdoor')->nullable();
+            $table->string('parking')->nullable();
+            $table->string('outdoor')->nullable();
+            $table->string('image')->nullable();
             $table->text('description')->nullable();
             $table->integer('sale_status')->default(0);
             $table->integer('status')->default(0);

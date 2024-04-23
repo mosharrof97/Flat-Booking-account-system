@@ -53,8 +53,8 @@ class FlatController extends Controller
                 'dining_space' =>$request->dining_space,
                 'bath_room' =>$request->bath_room,
                 'description' =>$request->description,
-                // 'Parking' =>$request->Parking,
-                // 'Outdoor' =>$request->Outdoor,
+                'Parking' =>$request->Parking,
+                'Outdoor' =>$request->Outdoor,
             ];
 
             Flat::create($data);

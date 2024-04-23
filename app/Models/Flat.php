@@ -19,8 +19,9 @@ class Flat extends Model
         'dining_space',
         'bath_room',
         'description',
-        'Parking',
-        'Outdoor',
+        'parking',
+        'outdoor',
+        'image',
         'sale_status',
         'status',
 
