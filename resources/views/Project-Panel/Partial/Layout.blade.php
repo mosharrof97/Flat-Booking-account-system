@@ -151,7 +151,7 @@
             Sidebar start
         ***********************************-- --}}
         <div class="quixnav">
-            <div class="quixnav-scroll">
+            <div class="quixnav-scroll" style="overflow-y: scroll; ">
                 <ul class="metismenu" id="menu">
 
                     <li class="nav-label first">Main Menu</li>

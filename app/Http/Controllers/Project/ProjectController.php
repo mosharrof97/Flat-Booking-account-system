@@ -11,16 +11,16 @@ use App\Models\Project;
 
 class ProjectController extends Controller
 {
-    public function __construct(){
-        $this->middleware('permission:view project', ['only' => ['index']]);
-        $this->middleware('permission:create project', ['only' => ['create','store']]);
-        $this->middleware('permission:update project', ['only' => ['edit','update']]);
-        $this->middleware('permission:delete project', ['only' => ['delete']]);
-    }
+    // public function __construct(){
+    //     $this->middleware('permission:view project', ['only' => ['index']]);
+    //     $this->middleware('permission:create project', ['only' => ['create','store']]);
+    //     $this->middleware('permission:update project', ['only' => ['edit','update']]);
+    //     $this->middleware('permission:delete project', ['only' => ['delete']]);
+    // }
 
 
     public function index(){
-        $projects = Project::paginate(15);
+        $projects = Project::where('active_status',0)->paginate(15);
         return view('Admin-Panel.page.Project.Project_List',compact('projects'));
     }
 
@@ -38,10 +38,12 @@ class ProjectController extends Controller
             'projectName' =>[ 'required','string'],
             'budget' =>[ 'required'],
             'land_area' =>[ 'required'],
+            'front_road'=>[ 'required'],
             'duration' =>[ 'required'],
             'floor' =>[ 'required'],
             'flat' =>[ 'required'],
-            'flat_area' =>[ 'required'],
+            'comm_space_size' =>[ 'required'],
+            'num_of_basement' =>[ 'required'],
             'start_date' =>[ 'required'],
             'end_date' =>[ 'required'],
             'address' =>[ 'required','string'],
@@ -63,10 +65,12 @@ class ProjectController extends Controller
             'projectName' =>$request->projectName,
             'budget' =>$request->budget,
             'land_area' =>$request->land_area,
+            'front_road' =>$request->front_road,
             'duration' =>$request->duration,
             'floor' =>$request->floor,
             'flat' =>$request->flat,
-            'flat_area' =>$request->flat_area,
+            'comm_space_size' =>$request->comm_space_size,
+            'num_of_basement' =>$request->num_of_basement,
             'start_date' =>$request->start_date,
             'end_date' =>$request->end_date,
             'address' =>$request->address,
@@ -83,13 +87,13 @@ class ProjectController extends Controller
     }
 
     public function view($id){
-        $project = Project::where('id', $id)->first();
+        $project = Project::where('active_status',0)->where('id', $id)->first();
         return view('Admin-Panel.page.Project.Project_View', compact('project'));
     }
 
     public function edit($id){
         $data=[
-            'project' => Project::where('id', $id)->first(),
+            'project' => Project::where('active_status',0)->where('id', $id)->first(),
             'districts' => District::get(),
         ];
         return view('Admin-Panel.page.Project.edit_project', $data);
@@ -101,10 +105,12 @@ class ProjectController extends Controller
             'projectName' =>[ 'required','string'],
             'budget' =>[ 'required'],
             'land_area' =>[ 'required'],
+            'front_road' =>[ 'required'],
             'duration' =>[ 'required'],
             'floor' =>[ 'required'],
             'flat' =>[ 'required'],
-            'flat_area' =>[ 'required'],
+            'comm_space_size' =>[ 'required'],
+            'num_of_basement' =>[ 'required'],
             'start_date' =>[ 'required'],
             'end_date' =>[ 'required'],
             'address' =>[ 'required','string'],
@@ -126,10 +132,12 @@ class ProjectController extends Controller
             'projectName' =>$request->projectName,
             'budget' =>$request->budget,
             'land_area' =>$request->land_area,
+            'front_road' =>$request->front_road,
             'duration' =>$request->duration,
             'floor' =>$request->floor,
             'flat' =>$request->flat,
-            'flat_area' =>$request->flat_area,
+            'comm_space_size' =>$request->comm_space_size,
+            'num_of_basement' =>$request->num_of_basement,
             'start_date' =>$request->start_date,
             'end_date' =>$request->end_date,
             'address' =>$request->address,
@@ -140,14 +148,16 @@ class ProjectController extends Controller
             // 'image' =>$imageName,
         ];
 
-        $project = Project::find($id);
+        $project = Project::where('active_status',0)->find($id);
         $project->update($data);
         return redirect()->route('list.project')->with('message','Project Update Successful');
     }
 
     public function delete($id){
-        $project = Project::find($id);
-        $project->delete();
+        $project = Project::where('active_status',0)->find($id);
+        $project->update([
+            'active_status' => 1,
+        ]);
 
         return redirect()->route('list.project')->with('message','Project Delete Successful');
     }

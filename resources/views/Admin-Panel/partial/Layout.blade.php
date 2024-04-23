@@ -184,8 +184,9 @@
         {{-- --**********************************
             Sidebar start
         ***********************************-- --}}
-        <div class="quixnav">
-            <div class="quixnav-scroll">
+        <div class="quixnav" >
+
+            <div class="quixnav-scroll" style="overflow-y: scroll; " >
                 <ul class="metismenu" id="menu">
 
                     <li class="nav-label first">Main Menu</li>
@@ -205,7 +206,7 @@
                         </li>
                     {{-- @endcan --}}
 
-                    <li>
+                    {{-- <li>
                         <a class="has-arrow" href="" aria-expanded="false">
                             <i class="fa-solid fa-store"></i>
                             <span class="nav-text">Purchase</span>
@@ -224,7 +225,7 @@
                             <i class="fa-solid fa-store"></i>
                             <span class="nav-text">Sale</span>
                         </a>
-                    </li>
+                    </li> --}}
 
                     <li>
                         <a class="has-arrow" href="{{ route('vendor.list') }}" aria-expanded="false">
@@ -496,33 +497,16 @@
             Footer end
         ***********************************-- --}}
     </div>
-    {{-- --**********************************
-        Main wrapper end
-    ***********************************-- --}}
 
-    {{-- --**********************************
-        Scripts
-    ***********************************-- --}}
     {{-- -- Required vendors -- --}}
     <script src="{{ asset('vendor/global/global.min.js') }}"></script>
     <script src="{{ asset('asset/js/quixnav-init.js') }}"></script>
     <script src="{{ asset('asset/js/custom.min.js') }}"></script>
 
-    {{-- <script src="{{ asset('vendor/chartist/js/chartist.min.js') }}"></script> --}}
-
     <script src="{{ asset('vendor/moment/moment.min.js') }}"></script>
     <script src="{{ asset('vendor/pg-calendar/js/pignose.calendar.min.js') }}"></script>
 
-    {{-- <script src="{{ asset('js/dashboard/dashboard-2.js') }}"></script> --}}
-    {{-- -- Circle progress -- --}}
-
     <script src="{{ asset('asset/js/bootstrap.bundle.min.js') }}"></script>
-
-    {{-- -- Datatable -- --}}
-    {{-- <script src="{{ asset('vendor/datatables/js/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('asset/js/plugins-init/datatables.init.js') }}"></script> --}}
-
-
 
 </body>
 

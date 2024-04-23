@@ -22,14 +22,15 @@ class Project extends AuthenticatableUser implements Authenticatable
 
     protected $fillable = [
         'projectName',
-        'email',
-        'password',
         'budget',
         'land_area',
-        'duration',
+        'front_road',
+        'property_type',
         'floor',
+        'comm_space_size',
+        'num_of_basement',
         'flat',
-        'flat_area',
+        'duration',
         'start_date',
         'end_date',
         'address',
@@ -38,6 +39,7 @@ class Project extends AuthenticatableUser implements Authenticatable
         'zipCode',
         'image',
         'status',
+        'active_status',
 
         'created_by',
         'updated_by',
@@ -55,6 +57,10 @@ class Project extends AuthenticatableUser implements Authenticatable
 
     public function expense() {
         return $this->HasMany(Expense::class, 'project_id');
+    }
+
+    public function flat() {
+        return $this->HasMany(Flat::class, 'project_id');
     }
 
 

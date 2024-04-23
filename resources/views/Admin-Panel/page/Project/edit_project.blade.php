@@ -14,7 +14,7 @@
                     <div class="row g-3">
                         <div class="col-md-6">
                             <label for="projectName" class="form-label">Project Name</label>
-                            <input type="text" class="form-control" id="projectName" name="projectName" value="{{ $project->projectName }}">
+                            <input type="text" class="form-control" id="projectName" name="projectName" value="{{ $project->projectName }}" placeholder="Project Name.....">
                             @error('projectName')
                                 <span class="form-text text-danger">{{ $message }}</span>
                             @enderror
@@ -33,7 +33,7 @@
 
                         <div class="col-md-6">
                             <label for="budget" class="form-label">Project Budget</label>
-                            <input type="text" class="form-control" id="budget" name="budget" value="{{ $project->budget }}">
+                            <input type="text" class="form-control" id="budget" name="budget" value="{{ $project->budget }}" placeholder="Project Budget.....">
                             @error('budget')
                                 <span class="form-text text-danger">{{ $message }}</span>
                             @enderror
@@ -41,7 +41,7 @@
 
                         <div class="col-md-6">
                             <label for="land_area" class="form-label">Land Area</label>
-                            <input type="text" class="form-control" id="land_area" name="land_area" value="{{ $project->land_area }}">
+                            <input type="text" class="form-control" id="land_area" name="land_area" value="{{ $project->land_area }}"  >
 
                             @error('land_area')
                                 <span class="form-text text-danger">{{ $message }}</span>
@@ -49,8 +49,17 @@
                         </div>
 
                         <div class="col-md-6">
+                            <label for="front_road" class="form-label">Front Road</label>
+                            <input type="text" class="form-control" id="front_road" name="front_road" value="{{ $project->front_road }}" placeholder="120 Feet Wide.....">
+
+                            @error('front_road')
+                                <span class="form-text text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        <div class="col-md-6">
                             <label for="duration" class="form-label">Project Duration</label>
-                            <input type="text" class="form-control" id="duration" name="duration" value="{{ $project->duration }}">
+                            <input type="text" class="form-control" id="duration" name="duration" value="{{ $project->duration }}" placeholder="Project Duration.....">
 
                             @error('duration')
                                 <span class="form-text text-danger">{{ $message }}</span>
@@ -58,8 +67,8 @@
                         </div>
 
                         <div class="col-md-6">
-                            <label for="floor" class="form-label">Floor</label>
-                            <input type="text" class="form-control" id="floor" name="floor" value="{{ $project->floor }}">
+                            <label for="floor" class="form-label">Total Floor</label>
+                            <input type="text" class="form-control" id="floor" name="floor" value="{{ $project->floor }}" placeholder="Total Floor.....">
 
                             @error('floor')
                                 <span class="form-text text-danger">{{ $message }}</span>
@@ -67,7 +76,7 @@
                         </div>
 
                         <div class="col-md-6">
-                            <label for="flat" class="form-label">Flat</label>
+                            <label for="flat" class="form-label">Total Flat</label>
                             <input type="text" class="form-control" id="flat" name="flat" value="{{ $project->flat }}">
 
                             @error('flat')
@@ -76,10 +85,19 @@
                         </div>
 
                         <div class="col-md-6">
-                            <label for="flat_area" class="form-label">Flat Area</label>
-                            <input type="text" class="form-control" id="flat_area" name="flat_area" value="{{ $project->flat_area }}">
+                            <label for="comm_space_size" class="form-label">Comm. Space Size</label>
+                            <input type="text" class="form-control" id="comm_space_size" name="comm_space_size" value="{{ $project->comm_space_size }}" placeholder="450 - 555 sft, 1250 - 2680 sft, and 17,370 sft. (full floor) " >
 
-                            @error('flat_area')
+                            @error('comm_space_size')
+                                <span class="form-text text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="num_of_basement" class="form-label">Number of Basements</label>
+                            <input type="text" class="form-control" id="num_of_basement" name="num_of_basement" value="{{ $project->num_of_basement }}" placeholder="00">
+
+                            @error('num_of_basement')
                                 <span class="form-text text-danger">{{ $message }}</span>
                             @enderror
                         </div>
@@ -118,7 +136,7 @@
                         </div>
                         <div class="col-md-6">
                             <label for="city" class="form-label">City</label>
-                            <input type="text" class="form-control" id="city" name="city" value="{{ $project->city }}">
+                            <input type="text" class="form-control" id="city" name="city" value="{{ $project->city }}" placeholder="city.....">
 
                             @error('city')
                                 <span class="form-text text-danger">{{ $message }}</span>
@@ -140,7 +158,7 @@
                         </div>
                         <div class="col-md-2">
                             <label for="zipCode" class="form-label">Zip Code</label>
-                            <input type="text" class="form-control" id="zipCode" name="zipCode" value="{{ $project->zipCode }}">
+                            <input type="text" class="form-control" id="zipCode" name="zipCode" value="{{ $project->zipCode }}" placeholder="Zip Code.....">
                             @error('zipCode')
                                 <span class="form-text text-danger">{{ $message }}</span>
                             @enderror

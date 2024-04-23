@@ -33,13 +33,10 @@
                                     <th rowspan="" class="text-nowrap">Project Duration</th>
                                     <th rowspan="" class="text-nowrap">Floor</th>
                                     <th rowspan="" class="text-nowrap">Flat</th>
-                                    <th rowspan="" class="text-nowrap">Flat Area</th>
+                                    {{-- <th rowspan="" class="text-nowrap">Flat Area</th> --}}
                                     <th rowspan="" class="text-nowrap">Start Date</th>
                                     <th rowspan="" class="text-nowrap">End Date</th>
                                     <th rowspan="" class="text-nowrap">Address</th>
-                                    <th rowspan="" class="text-nowrap">City</th>
-                                    <th rowspan="" class="text-nowrap">District</th>
-                                    <th rowspan="" class="text-nowrap">Zip Code</th>
                                     <th colspan="4" class="text-nowrap">Action</th>
                                 </tr>
                             </thead>
@@ -69,13 +66,10 @@
                                         <td>{{ $project->duration }} Year</td>
                                         <td>{{ $project->floor }} Floor</td>
                                         <td>{{ $project->flat }} Flat</td>
-                                        <td>{{ $project->flat_area }} Squer Fit</td>
+                                        {{-- <td>{{ $project->flat_area }} Squer Fit</td> --}}
                                         <td>{{ $project->start_date }}</td>
                                         <td>{{ $project->end_date }}</td>
-                                        <td>{{ $project->address }}</td>
-                                        <td>{{ $project->city }}</td>
-                                        <td>{{ $project->district->name }}</td>
-                                        <td>1{{ $project->zipCode }}</td>
+                                        <td>{{ $project->address .', '. $project->city .', '. $project->district->name .', '. $project->zipCode}}</td>
                                         <td>
                                             <a href="{{ route('project.dashboard', $project->id) }} "
                                                 class="btn btn-success me-2">

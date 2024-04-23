@@ -70,7 +70,7 @@
                                                     <input type="text" name="name[]" class="form-control" id="name" placeholder="Enter Material Name" />
                                                 </td>
                                                 <td>
-                                                    <input type="number" name="price[]" class="form-control price" id="price" value="0"/>
+                                                    <input type="decimal" name="price[]" class="form-control price" id="price" value="0"/>
                                                 </td>
                                                 <td>
                                                     <input type="text" name="quantity[]" class="form-control quantity" id="quantity" />
@@ -85,6 +85,7 @@
                                                     </select>
                                                 </td>
                                                 <td>
+                                                    {{-- <input type="text" name="total_price[]" class="form-control  totalPrice" id="totalPrice" style="background-color: rgb(218, 218, 218)" value="" required="" readonly=""> --}}
                                                     <input type="decimal" name="total_price[]" class="form-control totalPrice" id="totalPrice" style="background-color: rgb(218, 218, 218)" value="0" required="" readonly="" />
                                                 </td>
                                                 <td>

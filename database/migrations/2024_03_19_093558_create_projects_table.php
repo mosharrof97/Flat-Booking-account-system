@@ -17,10 +17,13 @@ return new class extends Migration
             $table->string('projectName');
             $table->decimal('budget',15,2);
             $table->integer('land_area');
-            $table->string('duration');
+            $table->string('front_road',100)->nullable();
+            $table->string('property_type')->nullable();
             $table->integer('floor');
+            $table->string('comm_space_size')->nullable();
+            $table->string('num_of_basement')->nullable();
             $table->integer('flat');
-            $table->integer('flat_area');
+            $table->string('duration',50);
             $table->date('start_date');
             $table->date('end_date');
             $table->string('address');
@@ -29,6 +32,7 @@ return new class extends Migration
             $table->integer('zipCode');
             $table->string('image');
             $table->integer('status')->default(0);
+            $table->integer('active_status')->default(0);
 
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();

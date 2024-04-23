@@ -13,11 +13,11 @@ use App\Models\Investor;
 
 class ProjectInvestmentController extends Controller
 {
-    public function __construct(){
-        $this->middleware('permission:view investment', ['only' => ['index']]);
-        $this->middleware('permission:create investment', ['only' => ['create','store']]);
-        $this->middleware('permission:show investment', ['only' => ['show']]);
-    }
+    // public function __construct(){
+    //     $this->middleware('permission:view investment', ['only' => ['index']]);
+    //     $this->middleware('permission:create investment', ['only' => ['create','store']]);
+    //     $this->middleware('permission:show investment', ['only' => ['show']]);
+    // }
 
     public function index(){
         $project_id = Session::get('project_id');
