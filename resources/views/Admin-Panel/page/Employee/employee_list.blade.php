@@ -25,7 +25,8 @@
                         {{-- @endcan --}}
                     </div>
                     <div class="card-body">
-                        <table class="table table-bordered table-striped">
+                        {{-- <table class="table table-bordered table-striped"> --}}
+                        <table id="employeeTable" class="display nowrap" style="width:100%">
                             <thead>
                                 <tr>
                                     <th>Id</th>
@@ -78,4 +79,8 @@
     </div>
     {{-- </div>
 </div> --}}
+
+<script>
+    new DataTable('#employeeTable');
+</script>
 @endsection
