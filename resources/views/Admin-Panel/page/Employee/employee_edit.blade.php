@@ -45,6 +45,48 @@
                         </div>
 
                         <div class="col-md-6">
+                            <label for="gender" class="form-label">Gender</label>
+                            {{-- <input type="gender" class="form-control" id="gender" name="gender"> --}}
+                            <select class="form-select" name="gender" id="gender" >
+                                <option value="">Select gender.......</option>
+                                <option value="Male" {{ $employee->gender == 'Male' ? 'selected' : '' }}>Male</option>
+                                <option value="Female" {{ $employee->gender == 'Female' ? 'selected' : '' }}>Female</option>
+                                <option value="Other" {{ $employee->gender == 'Other' ? 'selected' : '' }}>Other</option>
+                            </select>
+
+                            @error('gender')
+                                <span id="" class="form-text text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="nationality" class="form-label">Nationality</label>
+                            <input type="text" class="form-control" id="nationality" name="nationality" value="{{ $employee->nationality }}">
+
+                            @error('nationality')
+                                <span id="" class="form-text text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="birthdate" class="form-label">Birthdate</label>
+                            <input type="date" class="form-control" id="birthdate" name="birthdate" value="{{ $employee->birthdate }}">
+
+                            @error('birthdate')
+                                <span id="" class="form-text text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="join_date" class="form-label">Join date</label>
+                            <input type="date" class="form-control" id="join_date" name="join_date" value="{{ $employee->join_date }}">
+
+                            @error('join_date')
+                                <span id="" class="form-text text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        <div class="col-md-6">
                             <label for="phone" class="form-label">Phone</label>
                             <input type="phone" class="form-control" id="phone" name="phone" value="{{ $employee->phone }}">
                         </div>

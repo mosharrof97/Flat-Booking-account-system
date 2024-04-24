@@ -38,10 +38,14 @@ class EmployeeController extends Controller
             'name' => 'required|string|max:255',
             'father_name' => 'required|string|max:255',
             'mother_name' => 'required|string|max:255',
+            'birth_date' => 'required',
+            'gender' => 'required',
             'phone' => 'required|max:255|unique:employees,phone',
-            'nid' => 'required',
             'email' => 'required|email|max:255|unique:employees,email',
+            'nid' => 'required',
+            'nationality' => 'required',
             'designation' => 'required',
+            'join_date' => 'required',
             'image' => 'required',
 
             'pre_address' => 'required|string|max:255',
@@ -67,9 +71,13 @@ class EmployeeController extends Controller
                 'name' => $request->name,
                 'father_name' => $request->father_name,
                 'mother_name' => $request->mother_name,
+                'birth_date' => $request->birth_date,
+                'gender' => $request->gender,
                 'email' => $request->email,
                 'phone' => $request->phone,
                 'nid' => $request->nid,
+                'nationality' => $request->nationality,
+                'join_date' => $request->join_date,
                 'designation' => $request->designation,
                 'image'=> $imageName ?? 'No Image',
                 'created_by' => auth()->id(),
@@ -113,6 +121,7 @@ class EmployeeController extends Controller
             'name' => 'required|string|max:255',
             'father_name' => 'required|string|max:255',
             'mother_name' => 'required|string|max:255',
+            'gender' => 'required',
             'phone' => 'required|max:255',
             'nid' => 'required',
             'email' => 'required|email|max:255',
@@ -144,11 +153,17 @@ class EmployeeController extends Controller
 
         try {
             DB::beginTransaction();
+
+            if($request->hasFile('image')){
+                $imageName = "Employee_" . time() .'_'. mt_rand(100000,1000000000) .'.'. $request->File('image')->extension();
+                $request->file('image')->move(public_path('upload/Employee'),$imageName);
+            }
             $employee = Employee::where('status', '!=', 1)->find($id);
             $employee->update([
                 'name' => $request->name,
                 'father_name' => $request->father_name,
                 'mother_name' => $request->mother_name,
+                'gender' => $request->gender,
                 'email' => $request->email,
                 'phone' => $request->phone,
                 'nid' => $request->nid,

@@ -14,12 +14,17 @@ return new class extends Migration
         Schema::create('employees', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('gender');
             $table->string('father_name');
             $table->string('mother_name');
+            $table->date('birth_date');
+            $table->string('nationality');
             $table->string('phone',15)->unique();
             $table->string('nid',20)->unique();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
+            $table->date('join_date');
+            $table->date('regain_date')->nullable();
             $table->string('password')->nullable();
             $table->string('image')->nullable();
             $table->foreignId('role_id')->nullable();

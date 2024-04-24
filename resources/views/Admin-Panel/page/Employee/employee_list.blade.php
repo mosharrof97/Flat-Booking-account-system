@@ -19,7 +19,7 @@
 
                 <div class="card mt-3">
                     <div class="card-header">
-                        <h4>Employee</h4>
+                        <h3 class="fw-bold">Employee List</h3>
                         {{-- @can('create employee') --}}
                             <a href="{{ route('employee.create') }}" class="btn btn-primary float-end">Add Employee</a>
                         {{-- @endcan --}}
@@ -31,10 +31,12 @@
                                 <tr>
                                     <th>Id</th>
                                     <th>Name</th>
+                                    <th>Gender</th>
                                     <th>Phone</th>
                                     <th>Email</th>
                                     <th>designation</th>
                                     <th>Status</th>
+                                    <th>Image</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -43,10 +45,12 @@
                                     <tr>
                                         <td>{{ $employee->id }}</td>
                                         <td>{{ $employee->name }}</td>
+                                        <td>{{ $employee->gender }}</td>
                                         <td>{{ $employee->phone }}</td>
                                         <td>{{ $employee->email }}</td>
                                         <td>{{ $employee->designation }}</td>
                                         <td>{{ $employee->active_status }}</td>
+                                        <td>{{  asset('upload/Employee/'. $employee->image) }}</td>
                                         <td>
                                             {{-- @can('update employee') --}}
                                                 <a href="{{ route('employee.edit', $employee->id) }}" class="btn btn-success">Edit</a>

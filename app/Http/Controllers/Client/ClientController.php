@@ -125,7 +125,7 @@ class ClientController extends Controller
             'email' => 'required|email|max:255|unique:employees,email',
             'nid' => 'required',
             'tin' => 'required',
-            'image' => 'required',
+            // 'image' => 'required',
 
             'pre_address' => 'required|string|max:255',
             'pre_city' => 'required|string|max:255',

@@ -44,16 +44,71 @@
                         </div>
 
                         <div class="col-md-6">
+                            <label for="gender" class="form-label">Gender</label>
+                            {{-- <input type="gender" class="form-control" id="gender" name="gender"> --}}
+                            <select class="form-select" name="gender" id="gender">
+                                <option value="">Select gender.......</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Other</option>
+                            </select>
+
+                            @error('gender')
+                                <span id="" class="form-text text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="birth_date" class="form-label">Birthdate</label>
+                            <input type="date" class="form-control" id="birth_date" name="birth_date">
+
+                            @error('birth_date')
+                                <span id="" class="form-text text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="nationality" class="form-label">Nationality</label>
+                            <input type="text" class="form-control" id="nationality" name="nationality" value="">
+
+                            @error('nationality')
+                                <span id="" class="form-text text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="join_date" class="form-label">Join date</label>
+                            <input type="date" class="form-control" id="join_date" name="join_date">
+
+                            @error('join_date')
+                                <span id="" class="form-text text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        <div class="col-md-6">
                             <label for="phone" class="form-label">Phone</label>
                             <input type="phone" class="form-control" id="phone" name="phone">
+
+                            @error('phone')
+                                <span id="" class="form-text text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
+
                         <div class="col-md-6">
                             <label for="email" class="form-label">Email</label>
                             <input type="email" class="form-control" id="email" name="email">
+
+                            @error('email')
+                                <span id="" class="form-text text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
                         <div class="col-md-6">
                             <label for="nid" class="form-label">NID Number</label>
                             <input type="number" class="form-control" id="nid" name="nid">
+
+                            @error('nid')
+                                <span id="" class="form-text text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
                         {{-- Role --}}
                         {{-- <div class="mb-3">
@@ -74,6 +129,10 @@
                                 <option value="accountant">Accountant</option>
                                 <option value="projectManager">Project Manager</option>
                             </select>
+
+                            @error('designation')
+                                <span id="" class="form-text text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
 
                         <div class="col-md-12">
@@ -196,7 +255,6 @@
                                                             <span class="form-text text-danger">{{ $message }}</span>
                                                         @enderror
                                                     </div>
-
                                                 </div>
                                             </div>
                                         </div>
@@ -208,6 +266,10 @@
                         <div class="col-md-12">
                             <label for="image" class="form-label">Image</label>
                             <input type="file" class="form-control" id="image" name="image">
+
+                            @error('image')
+                                <span id="" class="form-text text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
                         {{-- <div class="col-12">
                         <div class="form-check">
