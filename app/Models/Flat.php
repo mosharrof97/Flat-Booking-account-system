@@ -24,6 +24,7 @@ class Flat extends Model
         'parking',
         'outdoor',
         'image',
+        'active_status',
         'sale_status',
         'status',
 
@@ -36,4 +37,9 @@ class Flat extends Model
     {
         return $this->BelongsTo(Project::class);
     }
+
+
+    // public function count(){
+    //     return Flat::where('sale_status', $this->sale_status)->count();
+    // }
 }

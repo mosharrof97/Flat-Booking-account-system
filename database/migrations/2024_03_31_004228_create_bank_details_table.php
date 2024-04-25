@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('bank_details', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('client_id');
+            $table->foreignId('instalment_id');
             $table->string('name');
             $table->string('account_number');
             $table->string('description')->nullable();

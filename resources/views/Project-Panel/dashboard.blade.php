@@ -53,7 +53,7 @@
         <div class="card border-1 border-primary">
             <div class="stat-widget-one card-body p-3">
                 <div class=" text-center">
-                    <h5>1000</h5>
+                    <h5>{{ $allFlat }}</h5>
                     <h5>Total Flat </h5>
                 </div>
             </div>
@@ -63,7 +63,7 @@
         <div class="card border-1 border-primary">
             <div class="stat-widget-one card-body p-3">
                 <div class=" text-center">
-                    <h5>1000</h5>
+                    <h5>{{ $complete_flat }}</h5>
                     <h5>Complate Flat</h5>
                 </div>
             </div>
@@ -73,7 +73,7 @@
         <div class="card border-1 border-primary">
             <div class="stat-widget-one card-body p-3">
                 <div class=" text-center">
-                    <h5>10000</h5>
+                    <h5>{{ $under_contraction_flat }}</h5>
                     <h5>Under Constraction Flat</h5>
                 </div>
             </div>
@@ -105,7 +105,7 @@
         <div class="card border-1 border-primary">
             <div class="stat-widget-one card-body p-3">
                 <div class=" text-center">
-                    <h5>1000</h5>
+                    <h5>{{ $sold_flat }}</h5>
                     <h5>Totel Sold</h5>
                 </div>
             </div>
@@ -116,7 +116,7 @@
         <div class="card border-1 border-primary">
             <div class="stat-widget-one card-body p-3">
                 <div class=" text-center">
-                    <h5>1000</h5>
+                    <h5>{{ $unsold_flat  }}</h5>
                     <h5>Totel Unsold Flat</h5>
                 </div>
             </div>
@@ -138,24 +138,47 @@
         <div class="card border-1 border-primary">
             <div class="stat-widget-one card-body p-3">
                 <div class=" text-center">
-                    <h5>1000</h5>
+                    <h5>{{ $totalExpense }}</h5>
                     <h5>Totel Expense Amount</h5>
                 </div>
             </div>
         </div>
     </div>
+
+    <div class="col-lg-3 col-sm-6">
+        <div class="card border-1 border-primary">
+            <div class="stat-widget-one card-body p-3">
+                <div class=" text-center">
+                    <h5>{{ $paidExpense }}</h5>
+                    <h5>Paid Expense Amount</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-sm-6">
+        <div class="card border-1 border-primary">
+            <div class="stat-widget-one card-body p-3">
+                <div class=" text-center">
+                    <h5>{{ $dueExpense }}</h5>
+                    <h5>Due Expense Amount</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 {{-- Total Report Summary  --}}
 
 
 {{-- All Employee Report --}}
-<div class="row page-titles mx-0">
+{{-- <div class="row page-titles mx-0">
     <div class="col-12 p-md-0">
         <div class=" text-center">
             <h4>All Employee Report </h4>
         </div>
     </div>
-</div>
+</div> --}}
 
 {{-- <div class="row">
     @foreach ($user as $data)

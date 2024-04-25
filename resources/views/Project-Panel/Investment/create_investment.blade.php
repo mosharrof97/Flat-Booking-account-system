@@ -12,15 +12,15 @@
                     @csrf
                     <div class="row g-3">
                         <div class="col-md-6">
-                            <label for="investor" class="form-label">Investor</label>
-                            <select name="investor_id" id="investor" class="form-select bg-light">
-                                <option value="">Select Investor.......</option>
-                                @foreach ( $investors as $investor)
-                                <option value="{{ $investor->id }}">{{ $investor->name }}</option>
+                            <label for="client" class="form-label">Client</label>
+                            <select name="client_id" id="client" class="form-select bg-light">
+                                <option value="">Select client.......</option>
+                                @foreach ( $clients as $client)
+                                <option value="{{ $client->id }}">{{ $client->name }}</option>
                                 @endforeach
                             </select>
                             <div class="mr-1 ">
-                                @error('investor_id')
+                                @error('client_id')
                                 <span class="form-text text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -70,7 +70,7 @@
                             <label for="profit_type" class="form-label">Profit Type</label>
                             <select id="profit_type" class="form-select" name="profit_type">
                                 <option value="">Select Profit Type.....</option>
-                                <option value="percentage">percentage</option>
+                                <option value="percentage">Percentage</option>
                                 <option value="fixed">fixed</option>
                                 <option value="flat">flat</option>
                             </select>

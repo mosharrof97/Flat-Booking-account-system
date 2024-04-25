@@ -9,7 +9,7 @@ class BankDetails extends Model
 {
     use HasFactory;
     protected $fillable=[
-        'client_id',
+        'instalment_id',
         'name',
         'account_number',
         'description',
@@ -18,6 +18,5 @@ class BankDetails extends Model
         'created_by',
         'updated_by',
         'deleted_by',
-
     ];
 }

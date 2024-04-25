@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('outdoor')->nullable();
             $table->string('image')->nullable();
             $table->text('description')->nullable();
+            $table->integer('active_status')->default(0);
             $table->integer('sale_status')->default(0);
             $table->integer('status')->default(0);
 
