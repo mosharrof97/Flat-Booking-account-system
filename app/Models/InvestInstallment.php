@@ -12,7 +12,12 @@ class InvestInstallment extends Model
     use HasFactory;
     protected $fillable = [
         'investment_id',
+        'payment_type',
         'installment_amount',
+        'bank_name',
+        'branch',
+        'account_number',
+        'check_number',
     ];
 
     public function investment(): BelongsTo

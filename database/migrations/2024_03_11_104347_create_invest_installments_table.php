@@ -14,7 +14,12 @@ return new class extends Migration
         Schema::create('invest_installments', function (Blueprint $table) {
             $table->id();
             $table->foreignId('investment_id');
+            $table->string('payment_type');
             $table->decimal('installment_amount',15,2);
+            $table->string('bank_name')->nullable();
+            $table->string('branch')->nullable();
+            $table->bigInteger('account_number')->nullable();
+            $table->bigInteger('check_number')->nullable();
 
             $table->foreignId('created_by')->nullable();
             $table->foreignId('updated_by')->nullable();
@@ -22,7 +27,6 @@ return new class extends Migration
 
             $table->rememberToken();
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

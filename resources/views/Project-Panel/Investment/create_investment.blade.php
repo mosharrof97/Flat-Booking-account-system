@@ -128,7 +128,7 @@
 
                                 <div class="col-md-6">
                                     <label for="account_number" class="form-label">Account Number</label>
-                                    <input type="text" class="form-control" id="account_number" placeholder="Installment amount" name="account_number">
+                                    <input type="number" class="form-control" id="account_number" placeholder="Installment amount" name="account_number">
 
                                     @error('account_number')
                                         <span class="form-text text-danger">{{ $message }}</span>
@@ -153,17 +153,17 @@
                                 </div>
 
                                 <div class="col-md-6">
-                                    <label for="account_number" class="form-label">Account Number</label>
-                                    <input type="text" class="form-control" id="account_number" placeholder="Installment amount" name="account_number">
+                                    <label for="check_number" class="form-label">Check Number</label>
+                                    <input type="number" class="form-control" id="check_number" placeholder="Installment amount" name="check_number">
 
-                                    @error('account_number')
+                                    @error('check_number')
                                         <span class="form-text text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
 
                                 <div class="col-md-6">
-                                    <label for="account_number" class="form-label">Check Number</label>
-                                    <input type="text" class="form-control" id="account_number" placeholder="Installment amount" name="account_number">
+                                    <label for="account_number" class="form-label">Account Number</label>
+                                    <input type="number" class="form-control" id="account_number" placeholder="Installment amount" name="account_number">
 
                                     @error('account_number')
                                         <span class="form-text text-danger">{{ $message }}</span>
@@ -198,17 +198,27 @@
 
 <script>
     $(document).on('change', '#payment_type', function(){
-    var payment_type = $(this).val();
-    if(payment_type == 'bank'){
-        $('#bank_details').css('display', 'block');
-        $('#check_details').css('display', 'none');
-    } else if(payment_type == 'check'){
-        $('#check_details').css('display', 'block');
-        $('#bank_details').css('display', 'none');
+        var payment_type = $(this).val();
+        if(payment_type == 'bank'){
+            $('#bank_details').css('display', 'block');
+            $('#check_details').css('display', 'none');
+        } else if(payment_type == 'check'){
+            $('#check_details').css('display', 'block');
+            $('#bank_details').css('display', 'none');
 
-    }
+        }
 
-})
+    })
+
+    $(document).ready(function(){
+        $('#installment_amount').on('change', function(){
+            var amount = $(this).val();
+            var total_Investment = $('#total_Investment').val();
+            if(total_Investment <= amount){
+                alert("Installment Amount is greater than or equal to Total Investment");
+            }
+        });
+    });
 </script>
 
 

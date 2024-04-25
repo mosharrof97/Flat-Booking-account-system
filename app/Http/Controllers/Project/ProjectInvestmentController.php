@@ -53,6 +53,7 @@ class ProjectInvestmentController extends Controller
                 'installment_type'=> 'required',
                 'profit_type'=> 'required',
                 'profit'=> 'required',
+                'payment_type'=>'required',
                 'installment_amount'=> 'required',
             ]);
 
@@ -61,13 +62,14 @@ class ProjectInvestmentController extends Controller
                 DB::beginTransaction();
 
                 $data=[
-                    'user_id' => Auth::id(),
+                    // 'user_id' => Auth::id(),
                     'client_id' => $request->client_id,
                     'project_id'=> $project_id,
                     'total_Investment'=> $request->total_Investment,
                     'installment_type'=> $request->installment_type,
                     'profit_type'=> $request->profit_type,
                     'profit'=> $request->profit,
+                    'created_by'=> Auth::id(),
                 ];
 
                 // dd($data);
@@ -75,7 +77,12 @@ class ProjectInvestmentController extends Controller
                 // dd($investmentId);
                 $InvestInstallment = [
                     'investment_id'=> $investmentId,
+                    'payment_type'=> $request->payment_type,
                     'installment_amount'=> $request->installment_amount,
+                    'bank_name'=> $request->bank_name,
+                    'branch'=> $request->branch,
+                    'account_number'=> $request->account_number,
+                    'check_number'=> $request->check_number,
                 ];
                 // dd($InvestInstallment);
                 InvestInstallment::create($InvestInstallment);
