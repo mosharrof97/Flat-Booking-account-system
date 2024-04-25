@@ -8,7 +8,8 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 use App\Models\Investment;
 use App\Models\InvestInstallment;
-use App\Models\Investor;
+use App\Models\Client;
+use Auth;
 
 
 class ProjectInvestmentController extends Controller
@@ -36,7 +37,7 @@ class ProjectInvestmentController extends Controller
         $project_id = Session::get('project_id');
         if($project_id !== null){
             $data =[
-                'investors'=> Investor::get(),
+                'clients'=> Client::get(),
                 ];
             return view('Project-Panel.Investment.create_investment',$data);
         }else{
@@ -59,7 +60,8 @@ class ProjectInvestmentController extends Controller
                 DB::beginTransaction();
 
                 $data=[
-                    'investor_id' => $request->investor_id,
+                    'user_id' => Auth::user(),
+                    'client_id' => $request->client_id,
                     'project_id'=> $project_id,
                     'total_Investment'=> $request->total_Investment,
                     'installment_type'=> $request->installment_type,

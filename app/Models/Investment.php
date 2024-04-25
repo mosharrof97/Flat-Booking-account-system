@@ -12,6 +12,7 @@ class Investment extends Model
 {
     use HasFactory, SoftDeletes;
     protected $fillable = [
+        'user_id',
         'client_id',
         'project_id',
         'total_Investment',

@@ -32,9 +32,9 @@ return new class extends Migration
             $table->enum('active_status',['active', 'inactive'])->default('inactive');
             $table->string('status')->default(0);
 
-            $table->string('created_by')->nullable();
-            $table->string('updated_by')->nullable();
-            $table->string('deleted_by')->nullable();
+            $table->foreignId('created_by')->nullable();
+            $table->foreignId('updated_by')->nullable();
+            $table->foreignId('deleted_by')->nullable();
 
             $table->timestamps();
             $table->softDeletes();

@@ -11,7 +11,9 @@ class Flat extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'user_id',
         'project_id',
+        'client_id',
         'name',
         'flat_area',
         'price',//Price/per Sqft

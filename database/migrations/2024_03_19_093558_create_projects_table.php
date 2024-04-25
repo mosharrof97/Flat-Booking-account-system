@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->nullable();
             $table->string('projectName');
             $table->decimal('budget',15,2);
             $table->integer('land_area');
@@ -34,9 +33,9 @@ return new class extends Migration
             $table->integer('status')->default(0);
             $table->integer('active_status')->default(0);
 
-            $table->string('created_by')->nullable();
-            $table->string('updated_by')->nullable();
-            $table->string('deleted_by')->nullable();
+            $table->foreignId('created_by')->nullable();
+            $table->foreignId('updated_by')->nullable();
+            $table->foreignId('deleted_by')->nullable();
 
             $table->rememberToken();
             $table->timestamps();

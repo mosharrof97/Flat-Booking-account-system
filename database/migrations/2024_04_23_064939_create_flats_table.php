@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('flats', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->nullable();
             $table->foreignId('project_id');
             $table->foreignId('client_id')->nullable();
             $table->string('name');
@@ -28,9 +29,9 @@ return new class extends Migration
             $table->integer('sale_status')->default(0);
             $table->integer('status')->default(0);
 
-            $table->string('created_by')->nullable();
-            $table->string('updated_by')->nullable();
-            $table->string('deleted_by')->nullable();
+            $table->foreignId('created_by')->nullable();
+            $table->foreignId('updated_by')->nullable();
+            $table->foreignId('deleted_by')->nullable();
             $table->timestamps();
         });
     }

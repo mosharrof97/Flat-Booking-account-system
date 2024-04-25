@@ -30,9 +30,9 @@ return new class extends Migration
             $table->decimal('paid',15,2);
             $table->decimal('due',15,2);
 
-            $table->string('created_by')->nullable();
-            $table->string('updated_by')->nullable();
-            $table->string('deleted_by')->nullable();
+            $table->foreignId('created_by')->nullable();
+            $table->foreignId('updated_by')->nullable();
+            $table->foreignId('deleted_by')->nullable();
 
             $table->timestamps();
             $table->softDeletes();

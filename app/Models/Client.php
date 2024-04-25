@@ -16,6 +16,7 @@ class Client extends Model
 {
     use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
     protected $fillable = [
+        'user_id',
         'name',
         'father_name',
         'mother_name',

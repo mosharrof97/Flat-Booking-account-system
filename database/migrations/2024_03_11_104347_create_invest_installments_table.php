@@ -13,13 +13,12 @@ return new class extends Migration
     {
         Schema::create('invest_installments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->nullable();
             $table->foreignId('investment_id');
             $table->decimal('installment_amount',15,2);
 
-            $table->string('created_by')->nullable();
-            $table->string('updated_by')->nullable();
-            $table->string('deleted_by')->nullable();
+            $table->foreignId('created_by')->nullable();
+            $table->foreignId('updated_by')->nullable();
+            $table->foreignId('deleted_by')->nullable();
 
             $table->rememberToken();
             $table->timestamps();

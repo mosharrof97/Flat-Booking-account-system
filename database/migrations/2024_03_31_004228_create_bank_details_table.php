@@ -13,13 +13,15 @@ return new class extends Migration
     {
         Schema::create('bank_details', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
-            $table->string('account_number')->nullable();
+            $table->foreignId('client_id');
+            $table->string('name');
+            $table->string('account_number');
             $table->string('description')->nullable();
+            $table->integer('status')->default();
 
-            $table->string('created_by')->nullable();
-            $table->string('updated_by')->nullable();
-            $table->string('deleted_by')->nullable();
+            $table->foreignId('created_by')->nullable();
+            $table->foreignId('updated_by')->nullable();
+            $table->foreignId('deleted_by')->nullable();
 
             $table->timestamps();
         });
