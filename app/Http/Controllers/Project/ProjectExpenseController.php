@@ -59,7 +59,7 @@ class ProjectExpenseController extends Controller
             $prices = $request->input('price');
             $total_prices = $request->input('total_price');
 
-
+            // dd(auth()->id());
             $expensesData = [
                 'project_id' => $projectId,
                 // 'user_id' =>  auth()->user()->id,
@@ -81,7 +81,7 @@ class ProjectExpenseController extends Controller
                 'discount' => $request->discount,
                 'paid' => $request->paid,
                 'due' => $request->due,
-                'created_by' => auth()->user()->id,
+                'created_by' => auth()->id(),
 
                 //--------Use implode Method-------//
                 // 'name' =>implode("**",$names),
@@ -91,7 +91,7 @@ class ProjectExpenseController extends Controller
                 // 'total_price' => implode("**",$total_prices),
                 //--------Use implode Method-------//
             ];
-
+            // dd($expensesData);
             $expenses = Expense::create($expensesData);
             return redirect()->route('project.expense.list')-> with('success','Expense Add Successful.');
         }else{
@@ -102,7 +102,7 @@ class ProjectExpenseController extends Controller
     public function show($id){
         $projectId = Session::get('project_id');
         if($projectId){
-            $expense = Expense::where('id',$id)->where('project_id',$projectId)->first();
+            $expense = Expense::where('project_id',$projectId)->where('id',$id)->first();
 
             return view('Project-Panel.Expanse.Expense_View', compact('expense'));
         }else{

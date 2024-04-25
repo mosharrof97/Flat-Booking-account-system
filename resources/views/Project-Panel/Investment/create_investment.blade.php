@@ -21,7 +21,7 @@
                             </select>
                             <div class="mr-1 ">
                                 @error('client_id')
-                                <span class="form-text text-danger">{{ $message }}</span>
+                                    <span class="form-text text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
                         </div>
@@ -30,23 +30,8 @@
                         <hr>
                         <div class="col-md-12">
                             <h4>Investment details</h4>
-
                         </div>
 
-                        {{-- <div class="col-md-6">
-                            <label for="project" class="form-label">Project Name</label>
-                            <select name="project_id" id="project" class="form-select bg-light">
-                                <option value="">Select Project Name.......</option>
-                                @foreach ( $districts as $project)
-                                    <option value="{{ $project->id }}">{{ $project->name }}</option>
-                                @endforeach
-                            </select>
-                            <div class="mr-1 ">
-                                @error('project_id')
-                                <span class="form-text text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
-                        </div> --}}
                         <div class="col-md-6">
                             <label for="total_Investment" class="form-label">Investment Total Amount</label>
                             <input type="decimal" class="form-control" id="total_Investment" name="total_Investment" placeholder="0.00">
@@ -94,41 +79,99 @@
                         </div>
 
                         <div class="col-md-6">
-                            <label for="installment_amount" class="form-label">Installment Amount</label>
-                            <input type="text" class="form-control" id="installment_amount" placeholder="Installment amount" name="installment_amount">
+                            <label for="payment_type" class="form-label">Payment Type</label>
+                            {{-- <input type="text" class="form-control" id="payment_type" placeholder="Installment amount" name="payment_type"> --}}
+                            <select name="payment_type" id="payment_type" class="form-select">
+                                <option value="">select Payment Type...........</option>
+                                <option value="cash">Cash</option>
+                                <option value="bank">Bank</option>
+                                <option value="check">Check</option>
+                            </select>
+
+                            @error('payment_type')
+                                <span class="form-text text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
 
-                        {{-- <hr>
-                        <div class="col-md-12">
-                            <div class="my-2">
-                                <h3>Installment Details</h3>
+                        <div class="col-md-6">
+                            <label for="installment_amount" class="form-label">Installment Amount</label>
+                            <input type="text" class="form-control" id="installment_amount" placeholder="Installment amount" name="installment_amount">
+
+                            @error('installment_amount')
+                                <span class="form-text text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        <hr>
+
+                        {{--*********** Bank Details *************--}}
+                        <div class="mt-3" id="bank_details" style="display: none">
+                            <h4>Bank Details</h4>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="bank_name" class="form-label">Bank Name</label>
+                                    <input type="text" class="form-control" id="bank_name" placeholder="Installment amount" name="bank_name">
+
+                                    @error('bank_name')
+                                        <span class="form-text text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label for="branch" class="form-label">Branch</label>
+                                    <input type="text" class="form-control" id="branch" placeholder="Installment amount" name="branch">
+
+                                    @error('branch')
+                                        <span class="form-text text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label for="account_number" class="form-label">Account Number</label>
+                                    <input type="text" class="form-control" id="account_number" placeholder="Installment amount" name="account_number">
+
+                                    @error('account_number')
+                                        <span class="form-text text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
                             </div>
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>SL</th>
-                                        <th>Date</th>
-                                        <th>Installment</th>
-                                        <th>Installment Amoune</th>
-                                        <th> Due Amoune</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>01</td>
-                                        <td>01/02/2024</td>
-                                        <td>1st Installment</td>
-                                        <td>500000</td>
-                                        <td>1000000</td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="3"> Total Investment</td>
-                                        <td colspan="">500000</td>
-                                        <td colspan="">1000000</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div> --}}
+                        </div>
+                        {{--*********** Bank Details *************--}}
+
+
+                        {{--*********** Check Details *************--}}
+                        <div class="mt-3" id="check_details" style="display: none">
+                            <h4>Check Details</h4>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="bank_name" class="form-label">Bank Name</label>
+                                    <input type="text" class="form-control" id="bank_name" placeholder="Installment amount" name="bank_name">
+
+                                    @error('bank_name')
+                                        <span class="form-text text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label for="account_number" class="form-label">Account Number</label>
+                                    <input type="text" class="form-control" id="account_number" placeholder="Installment amount" name="account_number">
+
+                                    @error('account_number')
+                                        <span class="form-text text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label for="account_number" class="form-label">Check Number</label>
+                                    <input type="text" class="form-control" id="account_number" placeholder="Installment amount" name="account_number">
+
+                                    @error('account_number')
+                                        <span class="form-text text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                        {{--*********** Check Details *************--}}
 
 
                         <hr>
@@ -152,6 +195,21 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(document).on('change', '#payment_type', function(){
+    var payment_type = $(this).val();
+    if(payment_type == 'bank'){
+        $('#bank_details').css('display', 'block');
+        $('#check_details').css('display', 'none');
+    } else if(payment_type == 'check'){
+        $('#check_details').css('display', 'block');
+        $('#bank_details').css('display', 'none');
+
+    }
+
+})
+</script>
 
 
 @endsection

@@ -6,6 +6,8 @@
         <div class="card p-4">
             <div class="card-header">
                 <h3>Investment Information</h3>
+                <a href="{{ url()->previous() }}" class="btn btn-danger">back</a>
+
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -26,17 +28,17 @@
                         <tr>
                             <th scope="row" style="width: 20%">Name </th>
                             <td colspan="" style="width: 3%">:</td>
-                            <td colspan="3" style="width: 77%">{{ $investment->investor->name }}</td>
+                            <td colspan="3" style="width: 77%">{{ $investment->client->name }}</td>
                         </tr>
                         <tr>
                             <th scope="row" style="width: 20%">Phone</th>
                             <td colspan="" style="width: 3%">:</td>
-                            <td colspan="3" style="width: 77%">{{ $investment->investor->phone }}</td>
+                            <td colspan="3" style="width: 77%">{{ $investment->client->phone }}</td>
                         </tr>
                         <tr>
                             <th scope="row" style="width: 20%">Email</th>
                             <td colspan="" style="width: 3%">:</td>
-                            <td colspan="3" style="width: 77%">{{ $investment->investor->email }}</td>
+                            <td colspan="3" style="width: 77%">{{ $investment->client->email }}</td>
                         </tr>
                         <tr>
                             <th scope="row" style="width: 20%">Project Name</th>

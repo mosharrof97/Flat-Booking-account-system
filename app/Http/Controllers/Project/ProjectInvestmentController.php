@@ -56,11 +56,12 @@ class ProjectInvestmentController extends Controller
                 'installment_amount'=> 'required',
             ]);
 
+            // dd($request->all());
             try {
                 DB::beginTransaction();
 
                 $data=[
-                    'user_id' => Auth::user(),
+                    'user_id' => Auth::id(),
                     'client_id' => $request->client_id,
                     'project_id'=> $project_id,
                     'total_Investment'=> $request->total_Investment,
@@ -69,6 +70,7 @@ class ProjectInvestmentController extends Controller
                     'profit'=> $request->profit,
                 ];
 
+                // dd($data);
                 $investmentId = Investment::create($data)->id;
                 // dd($investmentId);
                 $InvestInstallment = [
@@ -87,7 +89,8 @@ class ProjectInvestmentController extends Controller
                 // Optionally, handle the exception
             }
 
-            return redirect()->route('project.investment.list')->with('success','Investment Successful');
+            return redirect()->route('project.investment.view',$investmentId)->with('success','Investment Successful');
+            // return redirect()->route('project.investment.list')->with('success','Investment Successful');
         }else{
             return redirect()->route('list.project')-> with('error','Project Id Is Null');
         }

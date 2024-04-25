@@ -32,9 +32,9 @@
                                 @foreach ( $invest as $key => $data )
                                 <tr>
                                     <th scope="row">{{ $key + 1 }}</th>
-                                    <td>{{ $data->investor->name }}</td>
-                                    <td>{{ $data->investor->phone }}</td>
-                                    <td>{{ $data->investor->email }}</td>
+                                    <td>{{ $data->client->name }}</td>
+                                    <td>{{ $data->client->phone }}</td>
+                                    <td>{{ $data->client->email }}</td>
                                     <td>{{ $data->project->projectName }}</td>
                                     <td>{{ $data->total_Investment }}</td>
                                     {{-- @if ( $data->installment->count()  !== null)

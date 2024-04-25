@@ -18,10 +18,10 @@ return new class extends Migration
             $table->string('memo_no');
             $table->date('date');
             $table->string('name')->nullable();
-            $table->string('price',15);
+            $table->string('price');
             $table->string('quantity')->nullable();
             $table->string('unit')->nullable();
-            $table->string('total_price',15);
+            $table->string('total_price');
             $table->decimal('total',15,2);
             $table->decimal('service_charge',15,2);
             $table->decimal('shipping_charge',15,2);

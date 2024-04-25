@@ -74,6 +74,8 @@
                         $units = json_decode($expense->unit);
                         $prices = json_decode($expense->price);
                         $total_prices = json_decode($expense->total_price);
+
+                        // dd($prices);
                     @endphp
                     <table class="table table-bordered">
                         <thead class="table-primary">
