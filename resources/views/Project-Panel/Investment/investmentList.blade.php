@@ -1,7 +1,7 @@
 @extends('Project-Panel.Partial.Layout')
 @section('content')
 <div class="row justify-content-center">
-    <div class="col-lg-10 col-sm-12">
+    <div class="col-lg-12 col-sm-12">
         <div class="card p-4">
             <div class="card-header">
                 <h3>Investment List</h3>

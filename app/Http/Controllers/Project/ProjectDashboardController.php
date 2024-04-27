@@ -49,7 +49,8 @@ class ProjectDashboardController extends Controller
     public function sessionDelete(Request $request){
        $project_id = Session::get('project_id');
         if($project_id !== null){
-            Session::flush('project_id');
+            // Session::flush($project_id);
+            Session::forget('project_id');
             return redirect()->route('list.project');
         }else{
             return redirect()->route('list.project')-> with('error','Project Id Is Null');

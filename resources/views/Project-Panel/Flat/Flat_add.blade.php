@@ -5,7 +5,7 @@
 
         <div class="card p-4">
             <div class="card-header">
-                <h3>Add New Project</h3>
+                <h3>Add New Flat</h3>
             </div>
             <div class="card-body">
                 <div>
@@ -24,6 +24,14 @@
                             <label for="name" class="form-label">Flat Name</label>
                             <input type="text" class="form-control" id="name" name="name" value="" placeholder="Flat Name.....">
                             @error('name')
+                                <span class="form-text text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="floor" class="form-label">Floor</label>
+                            <input type="number" class="form-control" id="floor" name="floor" value="" placeholder="Flat Area.....">
+                            @error('floor')
                                 <span class="form-text text-danger">{{ $message }}</span>
                             @enderror
                         </div>

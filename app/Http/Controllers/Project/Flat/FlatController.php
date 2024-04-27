@@ -88,7 +88,7 @@ class FlatController extends Controller
         }
     }
 
-    public function edit(){
+    public function edit($id){
         $project_id = Session::get('project_id');
         if($project_id !== null){
 
@@ -105,6 +105,7 @@ class FlatController extends Controller
         if($project_id !== null){
             $request->validate([
                 'name' =>[ 'required'],
+                'floor' => [ 'required'],
                 'flat_area' =>[ 'required'],
                 'price' =>[ 'required'],
                 'room' =>[ 'required'],
@@ -118,6 +119,7 @@ class FlatController extends Controller
             $data = [
                 'project_id' => $project_id,
                 'name' => $request->name,
+                'floor' => $request->floor,
                 'flat_area' =>$request->flat_area,
                 'price' =>$request->price,//Price/per Sqft
                 'room' =>$request->room,
@@ -127,6 +129,8 @@ class FlatController extends Controller
                 // 'Parking' =>$request->Parking,
                 // 'Outdoor' =>$request->Outdoor,
             ];
+
+            // dd($request->all());
 
             $flat = Flat::where('project_id', $project_id)->where('status', '!=', 1)->find($id);
             $flat->update($data);
@@ -138,14 +142,12 @@ class FlatController extends Controller
     }
 
     public function view($id){
-
         // dd($id);
         $project_id = Session::get('project_id');
         if($project_id !== null){
 
             $flat = Flat::where('project_id', $project_id)->where('status', '!=', 1)->find($id);
 
-            // dd($flat->project);
             return view('Project-Panel.Flat.Flat_view', compact('flat'));
         }else{
             return redirect()->route('list.project')-> with('error','Project Id Is Null');

@@ -25,6 +25,7 @@
                             <tr>
                                 <th rowspan="" class="text-nowrap">SL</th>
                                 <th rowspan="" class="text-nowrap">Flat Name</th>
+                                <th rowspan="" class="text-nowrap">Floor</th>
                                 <th rowspan="" class="text-nowrap">Flat Area</th>
                                 <th rowspan="" class="text-nowrap">Flat price</th>
                                 <th rowspan="" class="text-nowrap">Number of room</th>
@@ -40,6 +41,7 @@
                             <tr>
                                 <th scope="row">{{ $key + 1 }}</th>
                                 <td>{{ $flat->name }}</td>
+                                <td>{{ $flat->floor }} No floor</td>
                                 <td>{{ $flat->flat_area }} Squer Fit</td>
                                 <td>{{ $flat->price }} Per Squer Fit</td>
                                 <td>{{ $flat->room }} Room</td>
@@ -76,7 +78,7 @@
                                         <i class="fa-solid fa-pen-to-square"></i>
                                     </a>
 
-                                    <a href="{{ route('flat.edit', $flat->id) }} " class="btn btn-danger me-2">
+                                    <a href="{{ route('flat.delete', $flat->id) }} " class="btn btn-danger me-2">
                                         <i class="fa-solid fa-trash"></i>
                                     </a>
                                 </td>

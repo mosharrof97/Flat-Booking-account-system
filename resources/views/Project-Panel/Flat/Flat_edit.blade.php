@@ -5,7 +5,8 @@
 
         <div class="card p-4">
             <div class="card-header">
-                <h3>Add New Project</h3>
+                <h3>Edit Flat Details</h3>
+                <a class="btn btn-danger" href="{{ url()-> previous() }}">back</a>
             </div>
             <div class="card-body">
                 <div>
@@ -17,20 +18,29 @@
                         <h4 class="text-danger">{{ Session::get('error') }}</h4>
                     @endif
                 </div>
-                <form class="" action="{{ route('flat.store') }}" method="post" enctype="multipart/form-data">
+                <form class="" action="{{ route('flat.update',$flat->id) }}" method="post" enctype="multipart/form-data">
                     @csrf
+                    @method('put')
                     <div class="row g-3">
                         <div class="col-md-6">
                             <label for="name" class="form-label">Flat Name</label>
-                            <input type="text" class="form-control" id="name" name="name" value="" placeholder="Flat Name.....">
+                            <input type="text" class="form-control" id="name" name="name" value="{{ $flat->name }}" placeholder="Flat Name.....">
                             @error('name')
                                 <span class="form-text text-danger">{{ $message }}</span>
                             @enderror
                         </div>
 
                         <div class="col-md-6">
+                            <label for="floor" class="form-label">Floor</label>
+                            <input type="number" class="form-control" id="floor" name="floor" value="{{ $flat->floor }} " placeholder="Flat Area.....">
+                            @error('floor')
+                                <span class="form-text text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        <div class="col-md-6">
                             <label for="flat_area" class="form-label">Flat Area</label>
-                            <input type="number" class="form-control" id="flat_area" name="flat_area" value="" placeholder="Flat Area.....">
+                            <input type="number" class="form-control" id="flat_area" name="flat_area" value="{{ $flat->flat_area }}" placeholder="Flat Area.....">
                             @error('flat_area')
                                 <span class="form-text text-danger">{{ $message }}</span>
                             @enderror
@@ -38,7 +48,7 @@
 
                         <div class="col-md-6">
                             <label for="price" class="form-label">Price Per squer Fit </label>
-                            <input type="decimal" class="form-control" id="price" name="price" value="" placeholder="Price Per squer Fit.....">
+                            <input type="decimal" class="form-control" id="price" name="price" value="{{ $flat->price }}" placeholder="Price Per squer Fit.....">
 
                             @error('price')
                                 <span class="form-text text-danger">{{ $message }}</span>
@@ -47,7 +57,7 @@
 
                         <div class="col-md-6">
                             <label for="room" class="form-label">Number of Room</label>
-                            <input type="number" class="form-control" id="room" name="room" value="" placeholder="Number of Room.....">
+                            <input type="number" class="form-control" id="room" name="room" value="{{ $flat->room }}" placeholder="Number of Room.....">
                             @error('room')
                                 <span class="form-text text-danger">{{ $message }}</span>
                             @enderror
@@ -55,7 +65,7 @@
 
                         <div class="col-md-6">
                             <label for="dining_space" class="form-label">Dining Space</label>
-                            <input type="number" class="form-control" id="dining_space" name="dining_space" value="" placeholder="Dining space.....">
+                            <input type="number" class="form-control" id="dining_space" name="dining_space" value="{{ $flat->dining_space }}" placeholder="Dining space.....">
                             @error('dining_space')
                                 <span class="form-text text-danger">{{ $message }}</span>
                             @enderror
@@ -63,24 +73,56 @@
 
                         <div class="col-md-6">
                             <label for="bath_room" class="form-label">Number of Bath Room</label>
-                            <input type="number" class="form-control" id="bath_room" name="bath_room" value="" placeholder="Flat Area.....">
+                            <input type="number" class="form-control" id="bath_room" name="bath_room" value="{{ $flat->bath_room }}" placeholder="Number of Bath Room.....">
                             @error('bath_room')
                                 <span class="form-text text-danger">{{ $message }}</span>
                             @enderror
                         </div>
 
                         <div class="col-md-6">
-                            <label for="image" class="form-label">image</label>
-                            <input type="text" class="form-control" id="image" name="image" value="" placeholder="120 Feet Wide.....">
-
-                            @error('image')
+                            <label for="parking" class="form-label">Parking</label>
+                            {{-- <input type="number" class="form-control" id="parking" name="parking" value="" placeholder="parking....."> --}}
+                            <select class="form-select" name="parking" id="parking">
+                                <option value="No info">No info</option>
+                            </select>
+                            @error('parking')
                                 <span class="form-text text-danger">{{ $message }}</span>
                             @enderror
                         </div>
 
                         <div class="col-md-6">
+                            <label for="active_status" class="form-label">Active Status</label>
+                            <select class="form-select" name="active_status" id="active_status">
+                                <option value="0" {{ $flat->active_status == 0 ? 'selected' : '' }}>Active</option>
+                                <option value="1" {{ $flat->active_status == 1 ? 'selected' : '' }}>Inactive</option>
+                            </select>
+                            @error('active_status')
+                                <span class="form-text text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        {{-- <div class="col-md-6">
+                            <label for="outdoor" class="form-label">Outdoor</label>
+                            <select class="form-select" name="outdoor" id="outdoor">
+                                <option value="No info">No info</option>
+                            </select>
+                            @error('outdoor')
+                                <span class="form-text text-danger">{{ $message }}</span>
+                            @enderror
+                        </div> --}}
+
+                        {{-- <div class="col-md-6">
+                            <label for="images" class="form-label">image</label>
+                            <input type="file" class="form-control" id="images" name="images[]" value="" placeholder="120 Feet Wide....." multiple>
+
+                            @error('images')
+                                <span class="form-text text-danger">{{ $message }}</span>
+                            @enderror
+                        </div> --}}
+
+                        <div class="col-md-6">
                             <label for="description" class="form-label">Flat Description</label>
-                            <textarea name="description" id="description" cols="30" rows="10"></textarea>
+                            <textarea name="description" id="description" cols="" rows="" class="form-control">{{ $flat->description }}</textarea>
 
                             @error('description')
                                 <span class="form-text text-danger">{{ $message }}</span>

@@ -15,6 +15,7 @@ class Flat extends Model
         'project_id',
         'client_id',
         'name',
+        'floor',
         'flat_area',
         'price',//Price/per Sqft
         'room',
@@ -38,6 +39,11 @@ class Flat extends Model
     public function project(): BelongsTo
     {
         return $this->BelongsTo(Project::class);
+    }
+
+    public function client(): BelongsTo
+    {
+        return $this->BelongsTo(Client::class);
     }
 
     public function flatImage()

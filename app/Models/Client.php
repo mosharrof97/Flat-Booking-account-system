@@ -60,9 +60,9 @@ class Client extends Model
         return $this->HasMany(Investment::class, 'investor_id');
     }
 
-    // public function role(){
-    //     return $this->BelongsTo(Role::class);
-    // }
+    public function flat(){
+        return $this->hasMany(Flat::class, 'client_id');
+    }
 
     public function clientAddress(): HasOne
     {

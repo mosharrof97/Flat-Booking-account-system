@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('project_id');
             $table->foreignId('client_id')->nullable();
             $table->string('name');
+            $table->integer('floor');
             $table->integer('flat_area');
             $table->decimal('price',15,2);
             $table->integer('room');
