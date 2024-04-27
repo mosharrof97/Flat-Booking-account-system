@@ -63,7 +63,7 @@
 
                         <div class="col-md-6">
                             <label for="bath_room" class="form-label">Number of Bath Room</label>
-                            <input type="number" class="form-control" id="bath_room" name="bath_room" value="" placeholder="Flat Area.....">
+                            <input type="number" class="form-control" id="bath_room" name="bath_room" value="" placeholder="Number of Bath Room.....">
                             @error('bath_room')
                                 <span class="form-text text-danger">{{ $message }}</span>
                             @enderror
@@ -92,10 +92,10 @@
                         </div>
 
                         <div class="col-md-6">
-                            <label for="image" class="form-label">image</label>
-                            <input type="text" class="form-control" id="image" name="image" value="" placeholder="120 Feet Wide.....">
+                            <label for="images" class="form-label">image</label>
+                            <input type="file" class="form-control" id="images" name="images[]" value="" placeholder="120 Feet Wide....." multiple>
 
-                            @error('image')
+                            @error('images')
                                 <span class="form-text text-danger">{{ $message }}</span>
                             @enderror
                         </div>

@@ -127,7 +127,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
                 Route::get('/list', [FlatController::class, 'index'])->name('flat.list');
                 Route::get('/create', [FlatController::class, 'create'])->name('flat.add');
                 Route::post('/create', [FlatController::class, 'store'])->name('flat.store');
-                Route::get('/25{id}%020/view', [FlatController::class, 'view'])->name('flat.view');
+                Route::get('/{id}/view', [FlatController::class, 'view'])->name('flat.view');
                 Route::get('/03{id}%021/edit', [FlatController::class, 'edit'])->name('flat.edit');
                 Route::put('/03{id}%021/edit', [FlatController::class, 'update'])->name('flat.update');
                 Route::get('/06{id}%023/delete', [FlatController::class, 'delete'])->name('flat.delete');

@@ -23,7 +23,7 @@ class Flat extends Model
         'description',
         'parking',
         'outdoor',
-        'image',
+        'images',
         'active_status',
         'sale_status',
         'status',
@@ -32,11 +32,20 @@ class Flat extends Model
         'updated_by',
         'deleted_by',
     ];
-
+    protected $casts = [
+        'images' => 'array',
+    ];
     public function project(): BelongsTo
     {
         return $this->BelongsTo(Project::class);
     }
+
+    public function flatImage()
+    {
+        return $this->BelongsTo(FlatImage::class, 'flat_id');
+    }
+
+
 
 
     // public function count(){
