@@ -26,6 +26,7 @@ use App\Http\Controllers\Project\ProjectExpenseController;
 use App\Http\Controllers\Project\ProjectDashboardController;
 use App\Http\Controllers\Project\ProjectInvestmentController;
 use App\Http\Controllers\Project\Flat\FlatController;
+use App\Http\Controllers\Project\Flat\FlatSaleController;
 // use App\Http\Controllers\Project\ProjectAuthController;
 // use App\Http\Controllers\Admin\RegisteredAminController;
 
@@ -131,6 +132,11 @@ Route::prefix('admin')->middleware('auth')->group(function () {
                 Route::get('/{id}/edit', [FlatController::class, 'edit'])->name('flat.edit');
                 Route::put('/{id}/edit', [FlatController::class, 'update'])->name('flat.update');
                 Route::get('/{id}/delete', [FlatController::class, 'delete'])->name('flat.delete');
+
+
+                Route::get('/sale', [FlatSaleController::class, 'index'])->name('flat.sale');
+                Route::get('/{id}/sale', [FlatSaleController::class, 'create'])->name('flat.sale.edit');
+                Route::get('/{id}/sale', [FlatSaleController::class, 'update'])->name('flat.sale.update');
 
             });
         });

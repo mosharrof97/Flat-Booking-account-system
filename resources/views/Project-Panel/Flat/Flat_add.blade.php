@@ -21,8 +21,8 @@
                     @csrf
                     <div class="row g-3">
                         <div class="col-md-6">
-                            <label for="name" class="form-label">Flat Name</label>
-                            <input type="text" class="form-control" id="name" name="name" value="" placeholder="Flat Name.....">
+                            <label for="name" class="form-label">Flat Name / Number</label>
+                            <input type="text" class="form-control" id="name" name="name" value="" placeholder="Flat Name or Number.....">
                             @error('name')
                                 <span class="form-text text-danger">{{ $message }}</span>
                             @enderror
@@ -30,7 +30,7 @@
 
                         <div class="col-md-6">
                             <label for="floor" class="form-label">Floor</label>
-                            <input type="number" class="form-control" id="floor" name="floor" value="" placeholder="Flat Area.....">
+                            <input type="text" class="form-control" id="floor" name="floor" value="" placeholder="Flat Area.....">
                             @error('floor')
                                 <span class="form-text text-danger">{{ $message }}</span>
                             @enderror

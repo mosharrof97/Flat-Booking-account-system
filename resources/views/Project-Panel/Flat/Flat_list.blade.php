@@ -24,7 +24,7 @@
                         <thead>
                             <tr>
                                 <th rowspan="" class="text-nowrap">SL</th>
-                                <th rowspan="" class="text-nowrap">Flat Name</th>
+                                <th rowspan="" class="text-nowrap">Flat Name / Number</th>
                                 <th rowspan="" class="text-nowrap">Floor</th>
                                 <th rowspan="" class="text-nowrap">Flat Area</th>
                                 <th rowspan="" class="text-nowrap">Flat price</th>

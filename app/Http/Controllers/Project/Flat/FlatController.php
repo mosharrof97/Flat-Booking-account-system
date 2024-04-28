@@ -67,6 +67,7 @@ class FlatController extends Controller
             $data = [
                 'project_id' => $project_id,
                 'name' => $request->name,
+                'floor' => $request->floor,
                 'flat_area' =>$request->flat_area,
                 'price' =>$request->price,//Price/per Sqft
                 'room' =>$request->room,
@@ -78,6 +79,8 @@ class FlatController extends Controller
                 'images'=>$images,
                 'created_by' =>auth()->id(),
             ];
+
+            // dd($data);
 
             Flat::create($data);
 
