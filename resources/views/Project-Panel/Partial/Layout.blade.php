@@ -211,7 +211,7 @@
                                 </li>
 
                                 <li>
-                                    <a class="has-arrow" href="{{ route('flat.sale') }}">
+                                    <a class="has-arrow" href="{{ route('flat.view.chart') }}">
                                         <i class="fa-solid fa-cart-flatbed-suitcase"></i>
                                         <span class="nav-text">Flat Sale</span>
                                     </a>

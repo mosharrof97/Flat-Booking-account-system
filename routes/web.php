@@ -134,10 +134,10 @@ Route::prefix('admin')->middleware('auth')->group(function () {
                 Route::get('/{id}/delete', [FlatController::class, 'delete'])->name('flat.delete');
 
 
-                Route::get('/sale', [FlatSaleController::class, 'index'])->name('flat.sale');
-                Route::get('/{id}/sale', [FlatSaleController::class, 'create'])->name('flat.sale.edit');
-                Route::get('/{id}/sale', [FlatSaleController::class, 'update'])->name('flat.sale.update');
-
+                Route::get('/sale', [FlatSaleController::class, 'index'])->name('flat.view.chart');
+                Route::get('/sale/{id}', [FlatSaleController::class, 'create'])->name('flat.sale.form');
+                Route::get('/{id}/booking', [FlatSaleController::class, 'flatBooking'])->name('flat_booking');
+                Route::get('/{id}/sale', [FlatSaleController::class, 'flatSale'])->name('flat.sale');
             });
         });
     });
