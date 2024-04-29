@@ -136,7 +136,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 
                 Route::get('/sale', [FlatSaleController::class, 'index'])->name('flat.view.chart');
                 Route::get('/sale/{id}', [FlatSaleController::class, 'create'])->name('flat.sale.form');
-                Route::get('/{id}/booking', [FlatSaleController::class, 'flatBooking'])->name('flat_booking');
+                Route::post('/{id}/booking', [FlatSaleController::class, 'flatBooking'])->name('flat_booking');
                 Route::get('/{id}/sale', [FlatSaleController::class, 'flatSale'])->name('flat.sale');
             });
         });

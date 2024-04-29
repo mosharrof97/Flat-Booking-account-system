@@ -50,13 +50,21 @@ class FlatSaleController extends Controller
 
 
     public function flatBooking( Request $request, $id){
+
+        // dd($request->all());
         $project_id = Session::get('project_id');
         if($project_id !== null){
 
+            // dd($request->all());
             $flats = Flat::where('project_id', $project_id)->where('status', 0)->find($id);
 
-            dd($flats);
-            // return view('Project-Panel.Flat.Flat_sale', compact('flats'));
+            $flats->update([
+                'client_id' => $request->client_id,
+                'sale_status' => 1,
+            ]);
+
+            // dd($flats);
+            // return view('Project-Panel.Flat.Flat_booking_info', compact('flats'));
         }else{
             return redirect()->route('list.project')-> with('error','Project Id Is Null');
         }

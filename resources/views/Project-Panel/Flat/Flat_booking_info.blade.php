@@ -4,7 +4,7 @@
     <div class="col-lg-12 col-sm-12">
         <div class="card p-4">
             <div class="card-header">
-                <h4>Flat Sale</h4>
+                <h4>Flat Booking Info</h4>
                 <a class="btn btn-danger" href="{{ url()->previous() }}">back</a>
             </div>
             <div class="card-body">
@@ -19,7 +19,9 @@
                 </div>
                 <div class="col-md-12">
                     <div class="text-center">
-                        <h2 class="fw-bold">{{ $project->projectName }}</h2>
+                        <h1 class="fw-bold">Flat Booking System</h1>
+                        <h3 class="fw-bold"><b>Email :</b> flat@bookingsystem.com</h3>
+                        <h4 class="fw-bold">{{ $project->projectName }}</h3>
                         <h4><b>Address:</b> {{ $project->address.', '.$project->city.', '.$project->address }}</h4>
                         <h4>{{ $project->district->name.'- '.$project->zipCode}}</h4>
                     </div>
@@ -118,40 +120,54 @@
                                     <tr>
                                         <th scope="row" style="width: 20%">Name </th>
                                         <td colspan="" style="width: 3%">:</td>
-                                        <td colspan="3" style="width: 77%">{{ $clientInfo->name }}</td>
+                                        <td colspan="3" style="width: 77%">{{ $flat->client->name }}</td>
+                                {{-- <td>{{ $flat->client->name }}</td> --}}
+
                                     </tr>
                                     <tr>
                                         <th scope="row" style="width: 20%">Phone</th>
                                         <td colspan="" style="width: 3%">:</td>
-                                        <td colspan="3" style="width: 77%">{{ $clientInfo->phone }}</td>
+                                        <td colspan="3" style="width: 77%">{{ $flat->client->phone }}</td>
                                     </tr>
                                     <tr>
                                         <th scope="row" style="width: 20%">Email</th>
                                         <td colspan="" style="width: 3%">:</td>
-                                        <td colspan="3" style="width: 77%">{{ $clientInfo->email }}</td>
+                                        <td colspan="3" style="width: 77%">{{ $flat->client->email }}</td>
                                     </tr>
                                     <tr>
                                         <th scope="row" style="width: 20%">NID</th>
                                         <td colspan="" style="width: 3%">:</td>
-                                        <td colspan="3" style="width: 77%">{{ $clientInfo->nid }}</td>
+                                        <td colspan="3" style="width: 77%">{{ $flat->client->nid }}</td>
                                     </tr>
 
                                     <tr>
                                         <th scope="row" style="width: 20%">TIN</th>
                                         <td colspan="" style="width: 3%">:</td>
-                                        <td colspan="3" style="width: 77%">{{ $clientInfo->tin }}</td>
+                                        <td colspan="3" style="width: 77%">{{ $flat->client->tin }}</td>
                                     </tr>
 
                                     <tr>
-                                        <th scope="row" style="width: 20%">Flat Booking</th>
+                                        <th scope="row" style="width: 20%">Flat</th>
                                         <td colspan="" style="width: 3%">:</td>
-                                        <td colspan="3" style="width: 77%">3 Flat</td>
+
+                                        @if($flat->client->sale_status == 1)
+                                        <div class="d-flex align-items-center">
+                                            <span class="bg-info p-2 me-1 rounded-circle "></span>
+                                            <span class="text-info">Booking</span>
+                                        </div>
+                                        @elseif($flat->client->sale_status == 2)
+                                        <div class="d-flex align-items-center">
+                                            <span class="bg-success p-2 me-1 rounded-circle "></span>
+                                            <span class="text-success">Buy</span>
+                                        </div>
+                                        @endif
+
                                     </tr>
 
                                     <tr>
                                         <th scope="row" style="width: 20%">Active status</th>
                                         <td colspan="" style="width: 3%">:</td>
-                                        <td colspan="3" style="width: 77%">{{ $clientInfo->active_status }}</td>
+                                        <td colspan="3" style="width: 77%">{{ $flat->client->active_status }}</td>
                                     </tr>
 
                                 </table>
@@ -169,22 +185,22 @@
                                         <tr>
                                             <th scope="row" style="width: 20%">Address</th>
                                             <td colspan="" style="width: 3%">:</td>
-                                            <td colspan="3" style="width: 77%">{{ $clientInfo->clientAddress->pre_address }}</td>
+                                            <td colspan="3" style="width: 77%">{{ $flat->client->clientAddress->pre_address }}</td>
                                         </tr>
                                         <tr>
                                             <th scope="row" style="width: 20%">ZIP Code</th>
                                             <td colspan="" style="width: 3%">:</td>
-                                            <td colspan="3" style="width: 77%"> {{ $clientInfo->clientAddress->pre_zipCode}}</td>
+                                            <td colspan="3" style="width: 77%"> {{ $flat->client->clientAddress->pre_zipCode}}</td>
                                         </tr>
                                         <tr>
                                             <th scope="row" style="width: 20%">City</th>
                                             <td colspan="" style="width: 3%">:</td>
-                                            <td colspan="3" style="width: 77%">{{ $clientInfo->clientAddress->pre_city }}</td>
+                                            <td colspan="3" style="width: 77%">{{ $flat->client->clientAddress->pre_city }}</td>
                                         </tr>
                                         <tr>
                                             <th scope="row" style="width: 20%">District</th>
                                             <td colspan="" style="width: 3%">:</td>
-                                            <td colspan="3" style="width: 77%">{{ $clientInfo->clientAddress->pre_district }}</td>
+                                            <td colspan="3" style="width: 77%">{{ $flat->client->clientAddress->pre_district }}</td>
                                         </tr>
                                     </table>
                                 </div>
@@ -195,22 +211,22 @@
                                         <tr>
                                             <th scope="row" style="width: 20%">Address</th>
                                             <td colspan="" style="width: 3%">:</td>
-                                            <td colspan="3" style="width: 77%">{{ $clientInfo->clientAddress->per_address }}</td>
+                                            <td colspan="3" style="width: 77%">{{ $flat->client->clientAddress->per_address }}</td>
                                         </tr>
                                         <tr>
                                             <th scope="row" style="width: 20%">ZIP Code</th>
                                             <td colspan="" style="width: 3%">:</td>
-                                            <td colspan="3" style="width: 77%"> {{ $clientInfo->clientAddress->per_zipCode}}</td>
+                                            <td colspan="3" style="width: 77%"> {{ $flat->client->clientAddress->per_zipCode}}</td>
                                         </tr>
                                         <tr>
                                             <th scope="row" style="width: 20%">City</th>
                                             <td colspan="" style="width: 3%">:</td>
-                                            <td colspan="3" style="width: 77%">{{ $clientInfo->clientAddress->per_city }}</td>
+                                            <td colspan="3" style="width: 77%">{{ $flat->client->clientAddress->per_city }}</td>
                                         </tr>
                                         <tr>
                                             <th scope="row" style="width: 20%">District</th>
                                             <td colspan="" style="width: 3%">:</td>
-                                            <td colspan="3" style="width: 77%">{{ $clientInfo->clientAddress->per_district }}</td>
+                                            <td colspan="3" style="width: 77%">{{ $flat->client->clientAddress->per_district }}</td>
                                         </tr>
                                     </table>
                                 </div>
