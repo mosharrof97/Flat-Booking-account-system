@@ -27,6 +27,7 @@ use App\Http\Controllers\Project\ProjectDashboardController;
 use App\Http\Controllers\Project\ProjectInvestmentController;
 use App\Http\Controllers\Project\Flat\FlatController;
 use App\Http\Controllers\Project\Flat\FlatSaleController;
+use App\Http\Controllers\Project\Flat\BookingController;
 // use App\Http\Controllers\Project\ProjectAuthController;
 // use App\Http\Controllers\Admin\RegisteredAminController;
 
@@ -136,8 +137,10 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 
                 Route::get('/sale', [FlatSaleController::class, 'index'])->name('flat.view.chart');
                 Route::get('/sale/{id}', [FlatSaleController::class, 'create'])->name('flat.sale.form');
-                Route::post('/{id}/booking', [FlatSaleController::class, 'flatBooking'])->name('flat_booking');
-                Route::get('/{id}/sale', [FlatSaleController::class, 'flatSale'])->name('flat.sale');
+                Route::post('/{id}/booking', [BookingController::class, 'flatBooking'])->name('flat_booking');
+                Route::get('/{id}/booking/view', [BookingController::class, 'BookingView'])->name('booking_view');
+
+                Route::post('/{id}/sale', [FlatSaleController::class, 'flatSale'])->name('flat.sale');
             });
         });
     });

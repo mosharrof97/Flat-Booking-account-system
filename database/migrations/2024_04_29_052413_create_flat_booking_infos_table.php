@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('flat_id');
             $table->foreignId('client_id');
-            $table->decimal('buying_price');
+            $table->decimal('buying_price',15,2);
             $table->bigInteger('status')->default(0);
             $table->foreignId('booking_by');
             $table->timestamps();

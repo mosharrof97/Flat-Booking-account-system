@@ -13,11 +13,20 @@ class FlatSaleInfo extends Model
     use HasFactory;
     protected $fillable = [
         'flat_id',
-        'client_id',
-        'buying_price',
+        'price',
         'status',
         'sold_by',
-        'booking_by',
+        'created_by',
     ];
+
+    public function project(): BelongsTo
+    {
+        return $this->belongsTo(Project::class );
+    }
+
+    public function installment(): BelongsTo
+    {
+        return $this->belongsTo(Installment::class, 'flatSale_id' );
+    }
 
 }

@@ -17,4 +17,14 @@ class FlatBookingInfo extends Model
         'status',
         'booking_by',
     ];
+
+    // public function client(): BelongsTo
+    // {
+    //     return $this->BelongsTo(Client::class);
+    // }
+
+    public function flat(): BelongsTo
+    {
+        return $this->BelongsTo(Flat::class);
+    }
 }

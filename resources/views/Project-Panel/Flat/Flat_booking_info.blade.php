@@ -3,295 +3,216 @@
 <div class="row justify-content-center">
     <div class="col-lg-12 col-sm-12">
         <div class="card p-4">
-            <div class="card-header">
+            {{-- <div class="card-header">
                 <h4>Flat Booking Info</h4>
                 <a class="btn btn-danger" href="{{ url()->previous() }}">back</a>
+        </div> --}}
+        <div class="card-body">
+            <div>
+                @if (Session::has('message'))
+                <h4 class="text-success ">{{ Session::get('message') }}</h4>
+                @endif
+
+                @if (Session::has('error'))
+                <h4 class="text-danger">{{ Session::get('error') }}</h4>
+                @endif
             </div>
+            <div class="col-md-12">
+                <div class="text-center">
+                    <h1 class="fw-bold">Flat Booking System</h1>
+                    <h3 class="fw-bold"><b>Email :</b> flat@bookingsystem.com</h3>
+                    <h4 class="fw-bold"><b>Project :</b> {{ $booking->flat->project->projectName }}</h3>
+                        <h4><b>Address:</b> {{ $booking->flat->project->address.', '.$booking->flat->project->city.', '.$booking->flat->project->address }}</h4>
+                        <h4>{{ $booking->flat->project->district->name.'- '.$booking->flat->project->zipCode}}</h4>
+                </div>
+            </div>
+
+            <div class="col-sm-12 p-2 " style="background-color: #abecfc">
+                <h2 class="fst-italic fw-bold p-0">Flat Information</h2>
+            </div>
+
+            <div class="col-lg-3  col-md-4 col-sm-6">
+                <table class="table table-borderless">
+                    <tbody>
+
+                        <style>
+                            th,
+                            td {
+                                padding: 0.4rem !important;
+                            }
+
+                        </style>
+
+                        <tr>
+                            <th colspan="">Flat Name / Number </th>
+                            <td><b>:</b></td>
+                            <td>{{ $booking->flat->name }}</td>
+                        </tr>
+
+                        <tr>
+                            <th colspan="">Floor </th>
+                            <td><b>:</b></td>
+                            <td>{{ $booking->flat->floor }}</td>
+                        </tr>
+
+                        <tr>
+                            <th colspan="">Flat Area </th>
+                            <td><b>:</b></td>
+                            <td>{{ $booking->flat->flat_area }}</td>
+                        </tr>
+
+                        <tr>
+                            <th colspan="">Price </th>
+                            <td><b>:</b></td>
+                            <td>{{ $booking->flat->price *  $booking->flat->flat_area}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <hr>
+            <div class="card-header" style="background-color: #abecfc">
+                <h3 class=" fw-bold fst-italic p-0">Client Information</h3>
+            </div>
+
+            {{-- --}}
             <div class="card-body">
-                <div>
-                    @if (Session::has('message'))
-                    <h4 class="text-success ">{{ Session::get('message') }}</h4>
-                    @endif
+                <div class="mb-5">
+                    <style>
+                        .table-information {
+                            width: 100%;
+                            margin-bottom: 1rem;
+                            color: #BDBDC7;
+                        }
 
-                    @if (Session::has('error'))
-                    <h4 class="text-danger">{{ Session::get('error') }}</h4>
-                    @endif
-                </div>
-                <div class="col-md-12">
-                    <div class="text-center">
-                        <h1 class="fw-bold">Flat Booking System</h1>
-                        <h3 class="fw-bold"><b>Email :</b> flat@bookingsystem.com</h3>
-                        <h4 class="fw-bold">{{ $project->projectName }}</h3>
-                        <h4><b>Address:</b> {{ $project->address.', '.$project->city.', '.$project->address }}</h4>
-                        <h4>{{ $project->district->name.'- '.$project->zipCode}}</h4>
-                    </div>
-                </div>
+                        .table-information th,
+                        .table-information td {
+                            padding: 0.2rem !important;
+                        }
 
-                <div class="col-sm-12 p-2 " style="background-color: #abecfc">
-                    <h2 class="fst-italic fw-bold p-0">Flat Information</h2>
-                </div>
+                    </style>
+                    <table class="table-information table table-borderless">
+                        <tr>
+                            <th scope="row" style="width: 20%">Name </th>
+                            <td colspan="" style="width: 3%">:</td>
+                            <td colspan="3" style="width: 77%">{{ $booking->flat->client->name }}</td>
+                            {{-- <td>{{ $booking->flat->client->name }}</td> --}}
 
-                <div class="col-lg-3  col-md-4 col-sm-6">
-                    <table class="table table-borderless">
-                        <tbody>
+                        </tr>
+                        <tr>
+                            <th scope="row" style="width: 20%">Phone</th>
+                            <td colspan="" style="width: 3%">:</td>
+                            <td colspan="3" style="width: 77%">{{ $booking->flat->client->phone }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" style="width: 20%">Email</th>
+                            <td colspan="" style="width: 3%">:</td>
+                            <td colspan="3" style="width: 77%">{{ $booking->flat->client->email }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" style="width: 20%">NID</th>
+                            <td colspan="" style="width: 3%">:</td>
+                            <td colspan="3" style="width: 77%">{{ $booking->flat->client->nid }}</td>
+                        </tr>
 
-                            <style>
-                                th,
-                                td {
-                                    padding: 0.4rem !important;
-                                }
+                        <tr>
+                            <th scope="row" style="width: 20%">TIN</th>
+                            <td colspan="" style="width: 3%">:</td>
+                            <td colspan="3" style="width: 77%">{{ $booking->flat->client->tin }}</td>
+                        </tr>
 
-                            </style>
+                        <tr>
+                            <th scope="row" style="width: 20%">Flat</th>
+                            <td colspan="" style="width: 3%">:</td>
 
-                            <tr>
-                                <th colspan="">Flat Name / Number </th>
-                                <td><b>:</b></td>
-                                <td>{{ $flat->name }}</td>
-                            </tr>
+                            @if($booking->flat->client->sale_status == 1)
+                            <div class="d-flex align-items-center">
+                                <span class="bg-info p-2 me-1 rounded-circle "></span>
+                                <span class="text-info">Booking</span>
+                            </div>
+                            @elseif($booking->flat->client->sale_status == 2)
+                            <div class="d-flex align-items-center">
+                                <span class="bg-success p-2 me-1 rounded-circle "></span>
+                                <span class="text-success">Buy</span>
+                            </div>
+                            @endif
 
-                            <tr>
-                                <th colspan="">Floor </th>
-                                <td><b>:</b></td>
-                                <td>{{ $flat->floor }}</td>
-                            </tr>
+                        </tr>
 
-                            <tr>
-                                <th colspan="">Flat Area </th>
-                                <td><b>:</b></td>
-                                <td>{{ $flat->flat_area }}</td>
-                            </tr>
+                        <tr>
+                            <th scope="row" style="width: 20%">Active status</th>
+                            <td colspan="" style="width: 3%">:</td>
+                            <td colspan="3" style="width: 77%">{{ $booking->flat->client->active_status }}</td>
+                        </tr>
 
-                            <tr>
-                                <th colspan="">Price </th>
-                                <td><b>:</b></td>
-                                <td>{{ $flat->price *  $flat->flat_area}}</td>
-                            </tr>
-                        </tbody>
                     </table>
                 </div>
-                <hr>
-                <div class="col-md-12">
-                    <form class="row g-3" action="{{ route('flat.sale.form',$flat->id) }}" method="get" enctype="multipart/form-data">
-                        @csrf
 
-                        <div class="form-group col-md-6 mb-3">
-                            <div class="row ">
-                                <h4 for="client" class="col-sm-4 col-form-label text-right ">Client Information</h4>
-                                <select name="client" id="client" class="form-select col-sm-8">
-                                    <option value="">Select Client.........</option>
-                                    @foreach($clients as $key => $client)
-                                    <option value="{{ $client->id }}">{{ $client->name .' - '. $client->phone }}</option>
-                                    @endforeach
-                                </select>
+                <div class="row">
+                    <div class="col-md-12 mb-4 p-2" style="background-color: #abecfc">
+                        <h3 class="fw-bold fst-italic p-0">Address Details</h3>
+                    </div>
+                    {{-- <table class="table table-borderless"> --}}
 
-                                @error('client')
-                                <span class="form-text text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
-                        </div>
+                    <div class="col-md-6 col-12">
+                        <h4>Present Address</h4>
+                        <table class="table">
+                            <tr>
+                                <th scope="row" style="width: 20%">Address</th>
+                                <td colspan="" style="width: 3%">:</td>
+                                <td colspan="3" style="width: 77%">{{ $booking->flat->client->clientAddress->pre_address }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" style="width: 20%">ZIP Code</th>
+                                <td colspan="" style="width: 3%">:</td>
+                                <td colspan="3" style="width: 77%"> {{ $booking->flat->client->clientAddress->pre_zipCode}}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" style="width: 20%">City</th>
+                                <td colspan="" style="width: 3%">:</td>
+                                <td colspan="3" style="width: 77%">{{ $booking->flat->client->clientAddress->pre_city }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" style="width: 20%">District</th>
+                                <td colspan="" style="width: 3%">:</td>
+                                <td colspan="3" style="width: 77%">{{ $booking->flat->client->clientAddress->pre_district }}</td>
+                            </tr>
+                        </table>
+                    </div>
 
-                        <div class="col-md-6 text-start">
-                            <button type="submit " class="btn btn-primary ">Submit</button>
-                        </div>
-                    </form>
-
-                    <div class="card p-4  shadow-none">
-                        <div class="card-header" style="background-color: #abecfc">
-                            <h3 class=" fw-bold fst-italic p-0">Client Information</h3>
-                        </div>
-                        @if($clientInfo !== "")
-                        {{-- --}}
-                        <div class="card-body">
-                            <div class="mb-5">
-                                <style>
-                                    .table-information {
-                                        width: 100%;
-                                        margin-bottom: 1rem;
-                                        color: #BDBDC7;
-                                    }
-
-                                    .table-information th,
-                                    .table-information td {
-                                        padding: 0.2rem !important;
-                                    }
-
-                                </style>
-                                <table class="table-information table table-borderless">
-                                    <tr>
-                                        <th scope="row" style="width: 20%">Name </th>
-                                        <td colspan="" style="width: 3%">:</td>
-                                        <td colspan="3" style="width: 77%">{{ $flat->client->name }}</td>
-                                {{-- <td>{{ $flat->client->name }}</td> --}}
-
-                                    </tr>
-                                    <tr>
-                                        <th scope="row" style="width: 20%">Phone</th>
-                                        <td colspan="" style="width: 3%">:</td>
-                                        <td colspan="3" style="width: 77%">{{ $flat->client->phone }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row" style="width: 20%">Email</th>
-                                        <td colspan="" style="width: 3%">:</td>
-                                        <td colspan="3" style="width: 77%">{{ $flat->client->email }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row" style="width: 20%">NID</th>
-                                        <td colspan="" style="width: 3%">:</td>
-                                        <td colspan="3" style="width: 77%">{{ $flat->client->nid }}</td>
-                                    </tr>
-
-                                    <tr>
-                                        <th scope="row" style="width: 20%">TIN</th>
-                                        <td colspan="" style="width: 3%">:</td>
-                                        <td colspan="3" style="width: 77%">{{ $flat->client->tin }}</td>
-                                    </tr>
-
-                                    <tr>
-                                        <th scope="row" style="width: 20%">Flat</th>
-                                        <td colspan="" style="width: 3%">:</td>
-
-                                        @if($flat->client->sale_status == 1)
-                                        <div class="d-flex align-items-center">
-                                            <span class="bg-info p-2 me-1 rounded-circle "></span>
-                                            <span class="text-info">Booking</span>
-                                        </div>
-                                        @elseif($flat->client->sale_status == 2)
-                                        <div class="d-flex align-items-center">
-                                            <span class="bg-success p-2 me-1 rounded-circle "></span>
-                                            <span class="text-success">Buy</span>
-                                        </div>
-                                        @endif
-
-                                    </tr>
-
-                                    <tr>
-                                        <th scope="row" style="width: 20%">Active status</th>
-                                        <td colspan="" style="width: 3%">:</td>
-                                        <td colspan="3" style="width: 77%">{{ $flat->client->active_status }}</td>
-                                    </tr>
-
-                                </table>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-12 mb-4 p-2" style="background-color: #abecfc">
-                                    <h3 class="fw-bold fst-italic p-0">Address Details</h3>
-                                </div>
-                                {{-- <table class="table table-borderless"> --}}
-
-                                <div class="col-md-6 col-12">
-                                    <h4>Present Address</h4>
-                                    <table class="table">
-                                        <tr>
-                                            <th scope="row" style="width: 20%">Address</th>
-                                            <td colspan="" style="width: 3%">:</td>
-                                            <td colspan="3" style="width: 77%">{{ $flat->client->clientAddress->pre_address }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row" style="width: 20%">ZIP Code</th>
-                                            <td colspan="" style="width: 3%">:</td>
-                                            <td colspan="3" style="width: 77%"> {{ $flat->client->clientAddress->pre_zipCode}}</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row" style="width: 20%">City</th>
-                                            <td colspan="" style="width: 3%">:</td>
-                                            <td colspan="3" style="width: 77%">{{ $flat->client->clientAddress->pre_city }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row" style="width: 20%">District</th>
-                                            <td colspan="" style="width: 3%">:</td>
-                                            <td colspan="3" style="width: 77%">{{ $flat->client->clientAddress->pre_district }}</td>
-                                        </tr>
-                                    </table>
-                                </div>
-
-                                <div class="col-md-6 col-12">
-                                    <h4>Present Address</h4>
-                                    <table class="table">
-                                        <tr>
-                                            <th scope="row" style="width: 20%">Address</th>
-                                            <td colspan="" style="width: 3%">:</td>
-                                            <td colspan="3" style="width: 77%">{{ $flat->client->clientAddress->per_address }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row" style="width: 20%">ZIP Code</th>
-                                            <td colspan="" style="width: 3%">:</td>
-                                            <td colspan="3" style="width: 77%"> {{ $flat->client->clientAddress->per_zipCode}}</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row" style="width: 20%">City</th>
-                                            <td colspan="" style="width: 3%">:</td>
-                                            <td colspan="3" style="width: 77%">{{ $flat->client->clientAddress->per_city }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row" style="width: 20%">District</th>
-                                            <td colspan="" style="width: 3%">:</td>
-                                            <td colspan="3" style="width: 77%">{{ $flat->client->clientAddress->per_district }}</td>
-                                        </tr>
-                                    </table>
-                                </div>
-                                {{-- <div class="col-md-7 col-12">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="table-responsive">
-                                                <table class="table">
-                                                    <thead>
-                                                        <tr>
-                                                            <th scope="col">SL</th>
-                                                            <th scope="col">Project Name</th>
-                                                            <th scope="col">Floor</th>
-                                                            <th scope="col">flat</th>
-                                                            <th scope="col">flat Area</th>
-                                                            <th scope="col">flat Price</th>
-                                                            <th scope="col">Pay Amount</th>
-                                                            <th scope="col">Due Amount</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <th scope="row">1</th>
-                                                            <td>Coder De Dhaka</td>
-                                                            <td>3rd Floor</td>
-                                                            <td>302 </td>
-                                                            <td>5000 Squer Fit</td>
-                                                            <td>5000000Tk</td>
-                                                            <td>3000000</td>
-                                                            <td>2000000</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> --}}
-
-                            </div>
-                            <div class="mt-4 d-flex  justify-content-end">
-                                <form action="{{ route('flat_booking',$flat->id) }}" method="post" class="mx-2">
-                                    @csrf
-                                    <input type="hidden" name="client_id" id="client_id" value="{{ $clientInfo->id }}">
-                                    <button type="submit" class="btn btn-primary">Booking Now</button>
-                                </form>
-                                <form action="{{ route('flat.sale',$flat->id) }}" method="post" class="mx-2">
-                                    @csrf
-                                    <input type="hidden" name="client_id" id="client_id" value="{{ $clientInfo->id }}">
-                                    <button type="submit" class="btn btn-success">Buy Now</button>
-                                </form>
-                                {{-- <a href="" class="btn btn-success">Buy Now</a> --}}
-                            </div>
-                        </div>
-                        @else
-                        <div class="card-body" style="background-color: #eeeeee">
-                            <h4 class="text-center fw-bold fst-italic">No Client Information</h4>
-                        </div>
-                        @endif
+                    <div class="col-md-6 col-12">
+                        <h4>Present Address</h4>
+                        <table class="table">
+                            <tr>
+                                <th scope="row" style="width: 20%">Address</th>
+                                <td colspan="" style="width: 3%">:</td>
+                                <td colspan="3" style="width: 77%">{{ $booking->flat->client->clientAddress->per_address }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" style="width: 20%">ZIP Code</th>
+                                <td colspan="" style="width: 3%">:</td>
+                                <td colspan="3" style="width: 77%"> {{ $booking->flat->client->clientAddress->per_zipCode}}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" style="width: 20%">City</th>
+                                <td colspan="" style="width: 3%">:</td>
+                                <td colspan="3" style="width: 77%">{{ $booking->flat->client->clientAddress->per_city }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" style="width: 20%">District</th>
+                                <td colspan="" style="width: 3%">:</td>
+                                <td colspan="3" style="width: 77%">{{ $booking->flat->client->clientAddress->per_district }}</td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
-
-
+            </div>
+            <div class="card-footer text-end">
+                <a class="btn btn-danger" href="{{ url()->previous() }}">back</a>
+                <a class="btn btn-success" href="{{ url()->previous() }}">Buy</a>
             </div>
         </div>
     </div>
+</div>
 </div>
 
 <script>

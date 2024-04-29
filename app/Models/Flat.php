@@ -46,11 +46,15 @@ class Flat extends Model
         return $this->BelongsTo(Client::class);
     }
 
-    public function flatImage()
-    {
-        return $this->BelongsTo(FlatImage::class, 'flat_id');
-    }
+    // public function flatImage()
+    // {
+    //     return $this->BelongsTo(FlatImage::class, 'flat_id');
+    // }
 
+    public function flatBooking()
+    {
+        return $this->BelongsTo(FlatBookingInfo::class, 'flat_id');
+    }
 
 
 

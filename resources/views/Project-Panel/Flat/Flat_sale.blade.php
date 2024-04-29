@@ -32,9 +32,9 @@
                             @if ($flat->sale_status == 0)
                                 <a href="{{ route('flat.sale.form',$flat->id) }}" class="btn btn-success rounded">{{ $flat->name }}</a>
                             @elseif($flat->sale_status == 1)
-                                <a href="{{ route('flat.sale.form',$flat->id) }}" class="btn btn-warning rounded">{{ $flat->name }}</a>
+                                <a href="{{ route('booking_view',$flat->id) }}" class="btn btn-warning rounded">{{ $flat->name }}</a>
                             @elseif($flat->sale_status == 2)
-                                <a href="{{ route('flat.sale.form',$flat->id) }}" class="btn btn-danger rounded">{{ $flat->name }}</a>
+                                <a href="{{ route('flat.sale',$flat->id) }}" class="btn btn-danger rounded">{{ $flat->name }}</a>
                             @endif
                         @endforeach
                     </div>
