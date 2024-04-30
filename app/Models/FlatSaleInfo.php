@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 
@@ -19,14 +20,14 @@ class FlatSaleInfo extends Model
         'created_by',
     ];
 
-    public function project(): BelongsTo
+    public function flat(): BelongsTo
     {
-        return $this->belongsTo(Project::class );
+        return $this->belongsTo(Flat::class );
     }
 
-    public function installment(): BelongsTo
+    public function payment(): HasMany
     {
-        return $this->belongsTo(Installment::class, 'flatSale_id' );
+        return $this->hasMany(Payment::class, 'flatSale_id' );
     }
 
 }

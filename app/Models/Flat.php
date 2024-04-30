@@ -51,9 +51,9 @@ class Flat extends Model
     //     return $this->BelongsTo(FlatImage::class, 'flat_id');
     // }
 
-    public function flatBooking()
+    public function flatSaleInfo():HasMany
     {
-        return $this->BelongsTo(FlatBookingInfo::class, 'flat_id');
+        return $this->hasMany(FlatSaleInfo::class, 'flat_id');
     }
 
 

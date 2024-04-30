@@ -141,6 +141,11 @@ Route::prefix('admin')->middleware('auth')->group(function () {
                 Route::get('/{id}/booking/view', [BookingController::class, 'BookingView'])->name('booking_view');
 
                 Route::post('/{id}/sale', [FlatSaleController::class, 'flatSale'])->name('flat.sale');
+                Route::get('/{id}/sale', [FlatSaleController::class, 'flatSaleDetails'])->name('flat.sale.details');
+
+                Route::get('/{id}/payment', [FlatSaleController::class, 'payment'])->name('payment.from');
+                Route::post('/payment', [FlatSaleController::class, 'paymentStore'])->name('payment.store');
+
             });
         });
     });

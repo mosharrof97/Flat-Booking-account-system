@@ -70,7 +70,7 @@ class InstallmentController extends Controller
                 'account_number'=> $request->account_number,
                 'check_number'=> $request->check_number,
             ];
-            dd($InvestInstallment);
+            // dd($InvestInstallment);
             InvestInstallment::create($InvestInstallment);
 
             return redirect()->route('project.investment.view',$request->investment_id)->with('success','Investment Successful');

@@ -33,7 +33,7 @@
     <title>Flat Booking </title>
 </head>
 
-<body>
+<body id="body">
 
     {{-- --*******************
         Preloader start
