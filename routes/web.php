@@ -28,6 +28,7 @@ use App\Http\Controllers\Project\ProjectInvestmentController;
 use App\Http\Controllers\Project\Flat\FlatController;
 use App\Http\Controllers\Project\Flat\FlatSaleController;
 use App\Http\Controllers\Project\Flat\BookingController;
+use App\Http\Controllers\Project\Flat\FlatReturnController;
 // use App\Http\Controllers\Project\ProjectAuthController;
 // use App\Http\Controllers\Admin\RegisteredAminController;
 
@@ -145,6 +146,9 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 
                 Route::get('/{id}/payment', [FlatSaleController::class, 'payment'])->name('payment.from');
                 Route::post('/payment', [FlatSaleController::class, 'paymentStore'])->name('payment.store');
+
+                Route::get('/{id}/return', [FlatReturnController::class, 'index'])->name('return');
+                Route::post('/return', [FlatReturnController::class, 'paymentStore'])->name('return.store');
 
             });
         });

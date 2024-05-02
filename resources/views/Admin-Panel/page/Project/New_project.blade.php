@@ -22,7 +22,7 @@
                     <div class="row g-3">
                         <div class="col-md-6">
                             <label for="projectName" class="form-label">Project Name</label>
-                            <input type="text" class="form-control" id="projectName" name="projectName" value="" placeholder="Project Name.....">
+                            <input type="text" class="form-control" id="projectName" name="projectName" value="{{ old('projectName') }}" placeholder="Project Name.....">
                             @error('projectName')
                                 <span class="form-text text-danger">{{ $message }}</span>
                             @enderror
@@ -30,7 +30,7 @@
 
                         <div class="col-md-6">
                             <label for="budget" class="form-label">Project Budget</label>
-                            <input type="decimal" class="form-control" id="budget" name="budget" value="" placeholder="Project Budget.....">
+                            <input type="decimal" class="form-control" id="budget" name="budget" value="{{ old('budget') }}" placeholder="Project Budget.....">
                             @error('budget')
                                 <span class="form-text text-danger">{{ $message }}</span>
                             @enderror
@@ -38,7 +38,7 @@
 
                         <div class="col-md-6">
                             <label for="land_area" class="form-label">Land Area</label>
-                            <input type="text" class="form-control" id="land_area" name="land_area" value="" placeholder="Land Area.....">
+                            <input type="text" class="form-control" id="land_area" name="land_area" value="{{ old('land_area') }}" placeholder="Land Area.....">
 
                             @error('land_area')
                                 <span class="form-text text-danger">{{ $message }}</span>
@@ -47,7 +47,7 @@
 
                         <div class="col-md-6">
                             <label for="front_road" class="form-label">Front Road</label>
-                            <input type="text" class="form-control" id="front_road" name="front_road" value="" placeholder="120 Feet Wide.....">
+                            <input type="text" class="form-control" id="front_road" name="front_road" value="{{ old('front_road') }}" placeholder="120 Feet Wide.....">
 
                             @error('front_road')
                                 <span class="form-text text-danger">{{ $message }}</span>
@@ -56,7 +56,7 @@
 
                         <div class="col-md-6">
                             <label for="duration" class="form-label">Project Duration</label>
-                            <input type="text" class="form-control" id="duration" name="duration" value="" placeholder="Project Duration.....">
+                            <input type="text" class="form-control" id="duration" name="duration" value="{{ old('duration') }}" placeholder="Project Duration.....">
 
                             @error('duration')
                                 <span class="form-text text-danger">{{ $message }}</span>
@@ -65,7 +65,7 @@
 
                         <div class="col-md-6">
                             <label for="floor" class="form-label">Total Floor</label>
-                            <input type="text" class="form-control" id="floor" name="floor" value="" placeholder="Total Floor.....">
+                            <input type="text" class="form-control" id="floor" name="floor" value="{{ old('projectName') }}" placeholder="Total Floor.....">
 
                             @error('floor')
                                 <span class="form-text text-danger">{{ $message }}</span>
@@ -74,7 +74,7 @@
 
                         <div class="col-md-6">
                             <label for="comm_space_size" class="form-label">Comm. Space Size</label>
-                            <input type="text" class="form-control" id="comm_space_size" name="comm_space_size" value="" placeholder="450 - 555 sft, 1250 - 2680 sft, and 17,370 sft. (full floor) ">
+                            <input type="text" class="form-control" id="comm_space_size" name="comm_space_size" value="{{ old('projectName') }}" placeholder="450 - 555 sft, 1250 - 2680 sft, and 17,370 sft. (full floor) ">
 
                             @error('comm_space_size')
                                 <span class="form-text text-danger">{{ $message }}</span>
@@ -83,7 +83,7 @@
 
                         <div class="col-md-6">
                             <label for="num_of_basement" class="form-label">Number of Basements</label>
-                            <input type="text" class="form-control" id="num_of_basement" name="num_of_basement" value="" placeholder="00">
+                            <input type="text" class="form-control" id="num_of_basement" name="num_of_basement" value="{{ old('num_of_basement') }}" placeholder="00">
 
                             @error('num_of_basement')
                                 <span class="form-text text-danger">{{ $message }}</span>
@@ -92,7 +92,7 @@
 
                         <div class="col-md-6">
                             <label for="flat" class="form-label">Total Flat</label>
-                            <input type="text" class="form-control" id="flat" name="flat" value="" placeholder="Total Flat.....">
+                            <input type="text" class="form-control" id="flat" name="flat" value="{{ old('flat') }}" placeholder="Total Flat.....">
 
                             @error('flat')
                                 <span class="form-text text-danger">{{ $message }}</span>
@@ -102,7 +102,7 @@
 
                         <div class="col-md-6">
                             <label for="start_date" class="form-label">Project Start Date</label>
-                            <input type="date" class="form-control" id="start_date" name="start_date" value="">
+                            <input type="date" class="form-control" id="start_date" name="start_date" value="{{ old('start_date') }}">
 
                             @error('start_date')
                                 <span class="form-text text-danger">{{ $message }}</span>
@@ -111,7 +111,7 @@
 
                         <div class="col-md-6">
                             <label for="end_date" class="form-label">Project End Date</label>
-                            <input type="date" class="form-control" id="end_date" name="end_date" value="">
+                            <input type="date" class="form-control" id="end_date" name="end_date" value="{{ old('end_date') }}">
 
                             @error('end_date')
                                 <span class="form-text text-danger">{{ $message }}</span>
@@ -126,7 +126,7 @@
                         </div>
                         <div class="col-12">
                             <label for="address" class="form-label">Address</label>
-                            <input type="text" class="form-control" id="address" placeholder="1234 Main St" name="address" value="">
+                            <input type="text" class="form-control" id="address" placeholder="1234 Main St" name="address" value="{{ old('address') }}">
 
                             @error('address')
                                 <span class="form-text text-danger">{{ $message }}</span>
@@ -134,7 +134,7 @@
                         </div>
                         <div class="col-md-6">
                             <label for="city" class="form-label">City</label>
-                            <input type="text" class="form-control" id="city" name="city" value="" placeholder="city.....">
+                            <input type="text" class="form-control" id="city" name="city" value="{{ old('city') }}" placeholder="city.....">
 
                             @error('city')
                                 <span class="form-text text-danger">{{ $message }}</span>
@@ -156,7 +156,7 @@
                         </div>
                         <div class="col-md-2">
                             <label for="zipCode" class="form-label">Zip Code</label>
-                            <input type="text" class="form-control" id="zipCode" name="zipCode" value="" placeholder="Zip Code.....">
+                            <input type="text" class="form-control" id="zipCode" name="zipCode" value="{{ old('zipCode') }}" placeholder="Zip Code.....">
                             @error('zipCode')
                                 <span class="form-text text-danger">{{ $message }}</span>
                             @enderror

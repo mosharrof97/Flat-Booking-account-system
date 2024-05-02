@@ -15,6 +15,7 @@ class FlatReturnInfo extends Model
         'flat_id',
         'client_id',
         'buying_price',
+        'pay_amount',
         'return_price',
         'status',
         'sold_by',

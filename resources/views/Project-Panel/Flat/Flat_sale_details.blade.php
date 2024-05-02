@@ -7,6 +7,7 @@
                 <h4>Flat Sale</h4>
                 <div class="">
                     <a class="btn btn-success" href="{{ route('payment.from', $flat->id) }}">Payment</a>
+                    <a class="btn btn-success" href="{{ route('return', $flat->id.'part=021364') }}">Flat Return</a>
                     <a class="btn btn-danger" href="{{ url()->previous() }}">back</a>
                 </div>
             </div>
