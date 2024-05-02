@@ -16,8 +16,9 @@ return new class extends Migration
             $table->foreignId('flat_id');
             $table->foreignId('client_id');
             $table->decimal('buying_price',15,2);
-            $table->decimal('pay_amount',15,2);
-            $table->decimal('return_price',15,2);
+            $table->decimal('payable_amount',15,2);
+            $table->string('payment_type');
+            $table->decimal('return_amount',15,2);
             $table->bigInteger('status')->default(0);
             $table->foreignId('sold_by')->nullable();
             $table->foreignId('booking_by')->nullable();

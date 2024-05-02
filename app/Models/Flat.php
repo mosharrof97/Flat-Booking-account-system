@@ -56,6 +56,11 @@ class Flat extends Model
         return $this->hasMany(FlatSaleInfo::class, 'flat_id');
     }
 
+    public function payment():HasMany
+    {
+        return $this->hasMany(Payment::class, 'flat_id');
+    }
+
 
 
     // public function count(){

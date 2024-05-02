@@ -225,17 +225,28 @@
                                 <button type="submit" class="btn btn-primary">Booking Now</button>
                                 </form> --}}
 
-                                <form action="{{ route('flat.sale',$flat->id) }}" method="post" class="mx-2">
+                                <form action="{{ route('return.store') }}" method="post" class="mx-2">
                                     @csrf
+                                    <input type="hidden" name="flat_id" id="flat_id" value="{{ $flat->id }}">
+                                    <input type="hidden" name="sold_by" id="sold_by" value="{{ $flat->flatSaleInfo[0]->sold_by }}">
                                     <input type="hidden" name="client_id" id="client_id" value="{{ $flat->client->id }}">
                                     <div class="row">
-                                        {{-- <div class="col-md-6">
-                                            <label for="total_Investment" class="form-label">Investment Total Amount</label>
-                                            <input type="decimal" class="form-control" id="total_Investment" name="total_Investment" placeholder="0.00">
-                                            @error('total_Investment')
+                                        <div class="col-md-6">
+                                            <label for="buying_price" class="form-label">Buying Price</label>
+                                            <input type="decimal" class="form-control" id="buying_price" name="buying_price" value="{{ $flat->flatSaleInfo[0]->price }}"  placeholder="0.00"  aria-readonly="true" style="background-color: #e7e7e7">
+                                            @error('buying_price')
                                             <span class="form-text text-danger">{{ $message }}</span>
                                             @enderror
-                                        </div> --}}
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label for="payable_amount" class="form-label">Payable Amount</label>
+                                            <input type="decimal" class="form-control" id="payable_amount" name="payable_amount" value="{{ $flat->payment->sum('amount') }}.00"  placeholder="0.00"  aria-readonly="true" style="background-color: #e7e7e7">
+                                            @error('payable_amount')
+                                            <span class="form-text text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+
                                         {{-- <div class="col-md-6">
                                             <label for="return_type" class="form-label">Return Type</label>
                                             <select id="return_type" class="form-select" name="return_type">
@@ -247,12 +258,15 @@
                                             <span class="form-text text-danger">{{ $message }}</span>
                                             @enderror
                                         </div> --}}
+                                        {{-- <div class="col-md-12 my-2 mx-0">
+                                            <h4 class="p-3" style="background-color: #e7e7e7"><b>Payable Amount : </b> {{ $flat->flatSaleInfo[0]->price }} TK</h4>
+                                        </div> --}}
 
-                                        <div class="col-md-6">
+                                        <div class="col-md-6 mt-3">
                                             <label for="payment_type" class="form-label">Payment Return Method </label>
                                             {{-- <input type="text" class="form-control" id="payment_type" placeholder="Installment amount" name="payment_type"> --}}
                                             <select name="payment_type" id="payment_type" class="form-select">
-                                                <option value="">select Payment Return MEthod...........</option>
+                                                <option value="">select Method...........</option>
                                                 <option value="cash">Cash</option>
                                                 <option value="bank">Bank</option>
                                                 <option value="check">Check</option>
@@ -263,11 +277,11 @@
                                             @enderror
                                         </div>
 
-                                        <div class="col-md-6">
-                                            <label for="amount" class="form-label"> Amount</label>
-                                            <input type="text" class="form-control" id="amount" placeholder="Installment amount" name="amount">
+                                        <div class="col-md-6 mt-3">
+                                            <label for="return_amount" class="form-label"> Amount</label>
+                                            <input type="text" class="form-control" id="return_amount" placeholder="Return amount......" name="return_amount">
 
-                                            @error('amount')
+                                            @error('return_amount')
                                             <span class="form-text text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>

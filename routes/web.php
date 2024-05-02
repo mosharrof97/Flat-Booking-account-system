@@ -148,7 +148,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
                 Route::post('/payment', [FlatSaleController::class, 'paymentStore'])->name('payment.store');
 
                 Route::get('/{id}/return', [FlatReturnController::class, 'index'])->name('return');
-                Route::post('/return', [FlatReturnController::class, 'paymentStore'])->name('return.store');
+                Route::post('/return', [FlatReturnController::class, 'flatReturn'])->name('return.store');
 
             });
         });
