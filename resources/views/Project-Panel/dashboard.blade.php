@@ -138,8 +138,8 @@
         <div class="card border-1 border-primary">
             <div class="stat-widget-one card-body p-3">
                 <div class=" text-center">
-                    <h5>{{ $totalExpense }}</h5>
-                    <h5>Totel Expense Amount</h5>
+                    <h5>{{ $totalPurchase }}</h5>
+                    <h5>Totel Purchase Amount</h5>
                 </div>
             </div>
         </div>
@@ -149,8 +149,8 @@
         <div class="card border-1 border-primary">
             <div class="stat-widget-one card-body p-3">
                 <div class=" text-center">
-                    <h5>{{ $paidExpense }}</h5>
-                    <h5>Paid Expense Amount</h5>
+                    <h5>{{ $paidPurchase }}</h5>
+                    <h5>Paid Purchase Amount</h5>
                 </div>
             </div>
         </div>
@@ -160,8 +160,8 @@
         <div class="card border-1 border-primary">
             <div class="stat-widget-one card-body p-3">
                 <div class=" text-center">
-                    <h5>{{ $dueExpense }}</h5>
-                    <h5>Due Expense Amount</h5>
+                    <h5>{{ $duePurchase }}</h5>
+                    <h5>Due Purchase Amount</h5>
                 </div>
             </div>
         </div>

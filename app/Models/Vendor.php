@@ -19,7 +19,7 @@ class Vendor extends Model
         'deleted_by',
     ];
 
-    public function expense() {
-        return $this->HasMany(Expense::class, 'vendor_id');
+    public function purchase() {
+        return $this->HasMany(Purchase::class,'vendor_id');
     }
 }

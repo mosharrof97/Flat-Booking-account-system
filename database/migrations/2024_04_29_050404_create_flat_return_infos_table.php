@@ -19,6 +19,12 @@ return new class extends Migration
             $table->decimal('payable_amount',15,2);
             $table->string('payment_type');
             $table->decimal('return_amount',15,2);
+
+            $table->string('bank_name')->nullable();
+            $table->string('branch')->nullable();
+            $table->string('account_number',20)->nullable();
+            $table->string('check_number',20)->nullable();
+
             $table->bigInteger('status')->default(0);
             $table->foreignId('sold_by')->nullable();
             $table->foreignId('booking_by')->nullable();

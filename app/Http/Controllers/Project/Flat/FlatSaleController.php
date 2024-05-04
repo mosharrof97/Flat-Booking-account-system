@@ -52,18 +52,12 @@ class FlatSaleController extends Controller
         }
     }
 
-
-    // public function ( Request $request, $id){
-
-    // }
-
     public function flatSale( Request $request, $id){
 
         $project_id = Session::get('project_id');
         if($project_id !== null){
 
             $flat = Flat::where('project_id', $project_id)->where('status', 0)->find($id);
-            // dd($request->all());
             try {
                 DB::beginTransaction();
                 $flat->update([

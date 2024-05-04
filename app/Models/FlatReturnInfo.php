@@ -18,6 +18,12 @@ class FlatReturnInfo extends Model
         'payable_amount',
         'payment_type',
         'return_amount',
+
+        'bank_name',
+        'branch',
+        'account_number',
+        'check_number',
+
         'status',
         'sold_by',
         'booking_by',

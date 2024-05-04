@@ -31,13 +31,7 @@
                                     <th rowspan="" class="text-nowrap">Project Budget</th>
                                     <th rowspan="" class="text-nowrap">Land Area</th>
                                     <th rowspan="" class="text-nowrap">Project Duration</th>
-                                    <th rowspan="" class="text-nowrap">Floor</th>
-                                    <th rowspan="" class="text-nowrap">Flat</th>
-                                    {{-- <th rowspan="" class="text-nowrap">Flat Area</th> --}}
-                                    <th rowspan="" class="text-nowrap">Start Date</th>
-                                    <th rowspan="" class="text-nowrap">End Date</th>
-                                    <th rowspan="" class="text-nowrap">Address</th>
-                                    <th colspan="4" class="text-nowrap">Action</th>
+                                    <th colspan="" class="text-nowrap">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -64,42 +58,35 @@
                                         <td>{{ $project->budget }}</td>
                                         <td>{{ $project->land_area }} Squer Fit</td>
                                         <td>{{ $project->duration }} Year</td>
-                                        <td>{{ $project->floor }} Floor</td>
-                                        <td>{{ $project->flat }} Flat</td>
-                                        {{-- <td>{{ $project->flat_area }} Squer Fit</td> --}}
-                                        <td>{{ $project->start_date }}</td>
-                                        <td>{{ $project->end_date }}</td>
-                                        <td>{{ $project->address .', '. $project->city .', '. $project->district->name .', '. $project->zipCode}}</td>
+
                                         <td>
                                             <a href="{{ route('project.dashboard', $project->id) }} "
-                                                class="btn btn-success me-2">
+                                                class="btn btn-primary me-1">
                                                 <i class="fa-solid fa-right-to-bracket"></i>
                                             </a>
-                                            {{-- <a href="{{ route('project.dashboard', ['name' => $project->projectName, 'id' => $project->id]) }}" class="btn btn-success me-2">Dashboard</a> --}}
 
-                                        </td>
-
-                                        <td>
                                             <a href="{{ route('project.view', $project->id) }} "
-                                                class="btn btn-success me-2">
+                                                class="btn btn-success me-1">
                                                 <i class="fa-solid fa-eye"></i>
                                             </a>
-                                        </td>
 
-                                        <td>
                                             <a href="{{ route('project.edit', $project->id) }} "
-                                                class="btn btn-success me-2">
+                                                class="btn btn-info me-1">
                                                 <i class="fa-solid fa-pen-to-square"></i>
                                             </a>
-                                        </td>
-                                        <td>
-                                            <form action="{{ route('project.delete', $project->id) }}" method="post">
+
+                                            <a href="{{ route('project.delete', $project->id) }} "
+                                                class="btn btn-danger me-1">
+                                                <i class="fa-solid fa-trash"></i>
+                                            </a>
+
+                                            {{-- <form action="{{ route('project.delete', $project->id) }}" method="post">
                                                 @csrf
                                                 @method('delete')
-                                                <button type="submit" class="btn btn-success me-2">
+                                                <button type="submit" class="btn btn-success">
                                                     <i class="fa-solid fa-trash"></i>
                                                 </button>
-                                            </form>
+                                            </form> --}}
                                         </td>
                                     </tr>
                                 @endforeach

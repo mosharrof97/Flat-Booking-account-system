@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Models\Project;
 use App\Models\Flat;
+use App\Models\Purchase;
 use App\Models\Expense;
 
 
@@ -26,7 +27,7 @@ class ProjectDashboardController extends Controller
         if($project_id !== null){
 
             $flat = Flat::where('id', $project_id)->where('status', 0 );
-            $expense = Expense::where('id', $project_id);
+            $purchase = Purchase::where('id', $project_id);
             $data = [
                 'project' => Project::where('id', $project_id)->first(),
                 'allFlat' => $flat->count(),
@@ -34,9 +35,9 @@ class ProjectDashboardController extends Controller
                 'complete_flat' => $flat->where('active_status', 1 )->count(),
                 'unsold_flat' => $flat->where('sale_status', 0 )->count(),
                 'sold_flat' => $flat->where('sale_status', 1 )->count(),
-                'totalExpense' => $expense->sum('total_amount'),
-                'paidExpense' => $expense->sum('paid'),
-                'dueExpense' => $expense->sum('due'),
+                'totalPurchase' => $purchase->sum('total_amount'),
+                'paidPurchase' => $purchase->sum('paid'),
+                'duePurchase' => $purchase->sum('due'),
             ];
 
             // dd($data['allFlat']);

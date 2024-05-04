@@ -1,18 +1,8 @@
 @extends('Admin-Panel.partial.Layout')
 @section('content')
-    {{-- <div class="row justify-content-center">
-    <div class="col-lg-10 col-sm-12"> --}}
-
-    {{-- <div class="container mt-5">
-        <a href="{{ url('roles') }}" class="btn btn-primary mx-1">Roles</a>
-        <a href="{{ url('permissions') }}" class="btn btn-info mx-1">Permissions</a>
-        <a href="{{ url('users') }}" class="btn btn-warning mx-1">Users</a>
-    </div> --}}
-
     <div class="container-fluid mt-2">
         <div class="row">
             <div class="col-md-12">
-
                 @if (session('status'))
                     <div class="alert alert-success">{{ session('status') }}</div>
                 @endif
@@ -50,7 +40,9 @@
                                         <td>{{ $employee->email }}</td>
                                         <td>{{ $employee->designation }}</td>
                                         <td>{{ $employee->active_status }}</td>
-                                        <td>{{  asset('upload/Employee/'. $employee->image) }}</td>
+                                        <td>
+                                            <img src="{{ asset('upload/employee/'.$employee->image)}}" alt="No Image" width="40">
+                                        </td>
                                         <td>
                                             {{-- @can('update employee') --}}
                                                 <a href="{{ route('employee.edit', $employee->id) }}" class="btn btn-success">Edit</a>
@@ -62,13 +54,6 @@
 
                                             {{-- @can('delete employee') --}}
                                             <a href="{{ route('employee.delete', $employee->id) }}" class="btn btn-info">delete</a>
-
-                                            {{-- <form action="{{ route('employee.delete', $employee->id) }}" method="post">
-                                                @csrf
-                                                @method('delete')
-                                                <input type="submit" class="btn btn-danger mx-2" value="Delete">
-                                            </form> --}}
-
                                             {{-- @endcan --}}
                                         </td>
                                     </tr>
@@ -81,8 +66,6 @@
             </div>
         </div>
     </div>
-    {{-- </div>
-</div> --}}
 
 <script>
     new DataTable('#employeeTable');

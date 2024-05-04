@@ -22,6 +22,7 @@ use App\Http\Controllers\Vendor\VendorController;
 
 use App\Http\Controllers\Project\ProjectController;
 use App\Http\Controllers\Project\InstallmentController;
+use App\Http\Controllers\Project\ProjectPurchaseController;
 use App\Http\Controllers\Project\ProjectExpenseController;
 use App\Http\Controllers\Project\ProjectDashboardController;
 use App\Http\Controllers\Project\ProjectInvestmentController;
@@ -94,7 +95,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
         Route::get('/view/{id}', [ProjectController::class,'view'])->name('project.view');
         Route::get('/update/{id}', [ProjectController::class,'edit'])->name('project.edit');
         Route::put('/update/{id}', [ProjectController::class,'update'])->name('project.update');
-        Route::delete('/delete/{id}', [ProjectController::class,'delete'])->name('project.delete');
+        Route::post('/delete/{id}', [ProjectController::class,'delete'])->name('project.delete');
 
         // Project Panel
         Route::prefix('panel')->group(function () {
@@ -116,16 +117,26 @@ Route::prefix('admin')->middleware('auth')->group(function () {
                 Route::post('/create', [InstallmentController::class, 'store'])->name('store.project.installment');
             });
 
+            // Project Purchase
+            Route::prefix('purchase')->group(function () {
+                Route::get('/list', [ProjectPurchaseController::class, 'index'])->name('project.purchase.list');
+                Route::get('/create', [ProjectPurchaseController::class, 'create'])->name('project.purchase');
+                Route::post('/create', [ProjectPurchaseController::class, 'store'])->name('store.project.purchase');
+                Route::get('/{id}/show', [ProjectPurchaseController::class, 'show'])->name('project.purchase.view');
+
+            });
+
             // Project Expense
             Route::prefix('expense')->group(function () {
                 Route::get('/list', [ProjectExpenseController::class, 'index'])->name('project.expense.list');
                 Route::get('/create', [ProjectExpenseController::class, 'create'])->name('project.expense');
                 Route::post('/create', [ProjectExpenseController::class, 'store'])->name('store.project.expense');
                 Route::get('/{id}/show', [ProjectExpenseController::class, 'show'])->name('project.expense.view');
-
+                Route::get('/edit/{id}', [ProjectExpenseController::class, 'edit'])->name('project.expense.edit');
+                Route::post('/{id}/edit', [ProjectExpenseController::class, 'update'])->name('project.expense.update');
             });
 
-            // Flat Expense
+            // Flat
             Route::prefix('flat')->group(function () {
                 Route::get('/list', [FlatController::class, 'index'])->name('flat.list');
                 Route::get('/create', [FlatController::class, 'create'])->name('flat.add');

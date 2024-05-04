@@ -4,9 +4,9 @@
     <div class="col-lg-12 col-sm-12">
         <div class="card p-4">
             <div class="card-header">
-                <h4>Expense List</h4>
-                <a class="btn btn-primary" href="{{ route('project.expense') }}">
-                    <span class="nav-text">New Expanse</span>
+                <h4>Purchase List</h4>
+                <a class="btn btn-primary" href="{{ route('project.purchase') }}">
+                    <span class="nav-text">New purchase</span>
                 </a>
             </div>
             <div class="card-body">
@@ -29,27 +29,27 @@
                         </thead>
 
                         <tbody >
-                            @foreach ($expenses as $key => $expense )
+                            @foreach ($purchases as $key => $purchase )
                             <tr>
                                 <th scope="row">{{  $key + 1 }}</th>
 
-                                {{-- <td>{{ $expense->order_no }}</td> --}}
-                                <td>{{  $key + 10 }}</td>
-                                <td>{{ $expense->memo_no  }}</td>
-                                <td>{{ $expense->vendor->name  }}</td>
-                                <td>{{ $expense->vendor->phone }}</td>
-                                <td>{{ $expense->total }}</td>
-                                <td>{{ $expense->date }}</td>
-                                <td>{{ $expense->created_by }}</td>
+                                {{-- <td>{{ $purchase->order_no }}</td> --}}
+                                <td>{{  $purchase->id }}</td>
+                                <td>{{ $purchase->memo_no  }}</td>
+                                <td>{{ $purchase->vendor->name  }}</td>
+                                <td>{{ $purchase->vendor->phone }}</td>
+                                <td>{{ $purchase->total }}</td>
+                                <td>{{ $purchase->date }}</td>
+                                <td>{{ $purchase->created_by }}</td>
 
                                 {{-- @php
-                                    // $names = explode("**",$expense->name);
+                                    // $names = explode("**",$purchase->name);
 
-                                    $names = json_decode($expense->name);
-                                    $quantitys = json_decode($expense->quantity);
-                                    $units = json_decode($expense->unit);
-                                    $prices = json_decode($expense->price);
-                                    $total_prices = json_decode($expense->total_price);
+                                    $names = json_decode($purchase->name);
+                                    $quantitys = json_decode($purchase->quantity);
+                                    $units = json_decode($purchase->unit);
+                                    $prices = json_decode($purchase->price);
+                                    $total_prices = json_decode($purchase->total_price);
                                 @endphp
                                 <td>
                                     @foreach ( $names as $key => $name)
@@ -76,9 +76,9 @@
                                         <p class="p-0 m-0">({{ $key+ 1}}). {{ $totalPrice }}, </p>
                                     @endforeach
                                 </td>
-                                <td>{{ $expense->total }}</td> --}}
+                                <td>{{ $purchase->total }}</td> --}}
                                 <td>
-                                    <a href="{{ route('project.expense.view',$expense->id) }} " class="btn btn-success">View</a>
+                                    <a href="{{ route('project.purchase.view',$purchase->id) }} " class="btn btn-success">View</a>
                                 </td>
                             </tr>
                             @endforeach

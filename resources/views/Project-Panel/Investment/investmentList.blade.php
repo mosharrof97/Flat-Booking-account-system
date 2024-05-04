@@ -44,13 +44,20 @@
                                     @endif --}}
 
                                     {{-- <td>{{ $data->installment->sum('installment_amount') }}</td> --}}
-                                    <td>2000000</td>
-                                    <td>2000000</td>
+                                    <td>{{ $data->installment->sum('installment_amount') }}</td>
+                                    <td>{{$data->total_Investment - $data->installment->sum('installment_amount') }}</td>
                                     <td>
                                         <a href="{{ route('project.investment.view',$data->id) }}" class="btn btn-success">View</a>
                                     </td>
+                                    {{-- @php
+                                        dd($data->installment->sum('installment_amount'));
+                                    @endphp --}}
                                     <td>
+                                        @if($data->total_Investment == $data->installment->sum('installment_amount'))
+                                        <button class="btn btn-danger">paid</button>
+                                        @else
                                         <a href="{{ route('project.installment',$data->id) }}" class="btn btn-success">Installment</a>
+                                        @endif
                                     </td>
                                 </tr>
                                 @endforeach

@@ -11,13 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('flat_booking_infos', function (Blueprint $table) {
+        Schema::create('expense_categories', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('flat_id');
-            $table->foreignId('client_id');
-            $table->decimal('buying_price',15,2);
-            $table->bigInteger('status')->default(0);
-            $table->foreignId('booking_by');
+            $table->string('name',100)->unique();
             $table->timestamps();
         });
     }
@@ -27,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('flat_booking_infos');
+        Schema::dropIfExists('expense_categories');
     }
 };

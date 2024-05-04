@@ -25,9 +25,8 @@ class FlatSaleInfo extends Model
         return $this->belongsTo(Flat::class );
     }
 
-    public function payment(): HasMany
+    public function payment(): HasOne
     {
-        return $this->hasMany(Payment::class, 'flatSale_id' );
+        return $this->hasOne(Payment::class, 'flatSale_id' );
     }
-
 }

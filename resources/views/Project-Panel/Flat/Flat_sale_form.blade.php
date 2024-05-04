@@ -250,7 +250,6 @@
 
                                         <div class="col-md-6">
                                             <label for="payment_type" class="form-label">Payment Type</label>
-                                            {{-- <input type="text" class="form-control" id="payment_type" placeholder="Installment amount" name="payment_type"> --}}
                                             <select name="payment_type" id="payment_type" class="form-select">
                                                 <option value="">select Payment Type...........</option>
                                                 <option value="cash">Cash</option>
@@ -315,49 +314,13 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        {{--*********** Bank Details *************--}}
-
-
-                                        {{--*********** Check Details *************--}}
-                                        {{-- <div class="mt-3" id="check_details" style="display: none">
-                                            <h4>Check Details</h4>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <label for="bank_name" class="form-label">Bank Name</label>
-                                                    <input type="text" class="form-control" id="bank_name" placeholder="Installment amount" name="bank_name">
-
-                                                    @error('bank_name')
-                                                    <span class="form-text text-danger">{{ $message }}</span>
-                                                    @enderror
-                                                </div>
-
-                                                <div class="col-md-6">
-                                                    <label for="check_number" class="form-label">Check Number</label>
-                                                    <input type="number" class="form-control" id="check_number" placeholder="Installment amount" name="check_number">
-
-                                                    @error('check_number')
-                                                    <span class="form-text text-danger">{{ $message }}</span>
-                                                    @enderror
-                                                </div>
-
-                                                <div class="col-md-6">
-                                                    <label for="account_number" class="form-label">Account Number</label>
-                                                    <input type="number" class="form-control" id="account_number" placeholder="Installment amount" name="account_number">
-
-                                                    @error('account_number')
-                                                    <span class="form-text text-danger">{{ $message }}</span>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                        </div> --}}
-                                        {{--*********** Check Details *************--}}
+                                        {{--*********** Bank Details End*************--}}
 
                                         <div class="col-md-12 mt-3 text-end">
                                             <button type="submit" class="btn btn-success">Buy Now</button>
                                         </div>
                                     </div>
                                 </form>
-                                {{-- <a href="" class="btn btn-success">Buy Now</a> --}}
                             </div>
                         </div>
                         @else
@@ -367,8 +330,6 @@
                         @endif
                     </div>
                 </div>
-
-
             </div>
         </div>
     </div>
@@ -384,6 +345,10 @@
             $('#div_check_number').css('display', 'block');
         }else if (payment_type == 'bank') {
             $('#div_check_number').css('display', 'none');
+        }
+
+        if (payment_type == 'cash') {
+            $('#bank_details').css('display', 'none');
         }
 
     })

@@ -8,25 +8,27 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Expense extends Model
+class Purchase extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
 
     protected $fillable = [
         'project_id',
+        'vendor_id',
+        'memo_no',
         'date',
         'name',
         'price',
         'quantity',
-        // 'unit',
+        'unit',
         'total_price',
         'total',
-        // 'service_charge',
-        // 'shipping_charge',
-        // 'total_amount',
-        // 'discount',
-        // 'paid',
-        // 'due',
+        'service_charge',
+        'shipping_charge',
+        'total_amount',
+        'discount',
+        'paid',
+        'due',
 
         'created_by',
         'updated_by',

@@ -98,7 +98,7 @@
                             <input type="text" class="form-control" id="installment_amount" placeholder="Installment amount" name="installment_amount">
 
                             @error('installment_amount')
-                                <span class="form-text text-danger">{{ $message }}</span>
+                                <span class="form-text text-danger" id="installment_amount_error">{{ $message }}</span>
                             @enderror
                         </div>
 
@@ -214,8 +214,24 @@
         $('#installment_amount').on('change', function(){
             var amount = $(this).val();
             var total_Investment = $('#total_Investment').val();
-            if(total_Investment <= amount){
+            if(total_Investment < amount){
                 alert("Installment Amount is greater than or equal to Total Investment");
+            }else {
+                $('#bank_details').prop('disabled', false);
+            }
+        });
+    });
+
+    $(document).ready(function(){
+        $('#installment_amount').on('change', function(){
+            var ins_type = $('#installment_type').val();
+            var total_Investment = $('#total_Investment').val();
+            var amount = $(this).val();
+
+            if(ins_type == 'fullPaid'){
+                if(total_Investment > amount){
+                    alert("Installment Amount is Less than Total Investment");
+                }
             }
         });
     });

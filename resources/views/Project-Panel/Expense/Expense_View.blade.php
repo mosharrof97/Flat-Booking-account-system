@@ -4,7 +4,7 @@
     <div class="col-lg-12 col-sm-12">
         <div class="card p-4">
             <div class="card-header bg-info">
-                <h3>Expense Information</h3>
+                <h3>Expense Details</h3>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -47,20 +47,13 @@
                                 </td>
                             @endif
                         </tr>
-
                         <tr>
-                            <th scope="row" style="width: 20%">Create Expense</th>
+                            <th scope="row" style="width: 20%">Create expense</th>
                             <td colspan="" style="width: 3%">:</td>
-                            <td colspan="3" style="width: 77%">{{ $expense->created_by }}</td>
+                            <td colspan="3" style="width: 77%">{{ $expense->user->name }}</td>
                         </tr>
                         <tr>
-                            <th scope="row" style="width: 20%">vendor</th>
-                            <td colspan="" style="width: 3%">:</td>
-                            <td colspan="3" style="width: 77%">{{ $expense->vendor->name .' - '. $expense->vendor->phone}}</td>
-                        </tr>
-
-                        <tr>
-                            <th scope="row" style="width: 20%">Expense Date</th>
+                            <th scope="row" style="width: 20%">expense Date</th>
                             <td colspan="" style="width: 3%">:</td>
                             <td colspan="3" style="width: 77%">{{ $expense->date  }}</td>
                         </tr>
@@ -71,7 +64,6 @@
                     @php
                         $names = json_decode($expense->name);
                         $quantitys = json_decode($expense->quantity);
-                        $units = json_decode($expense->unit);
                         $prices = json_decode($expense->price);
                         $total_prices = json_decode($expense->total_price);
 
@@ -83,7 +75,7 @@
                                 <th scope="col" class="flex-wrap">SL</th>
                                 <th scope="col" class="flex-wrap">Material Name</th>
                                 <th scope="col" class="flex-wrap">Price</th>
-                                <th scope="col" class="flex-wrap">Quantity & Unit</th>
+                                <th scope="col" class="flex-wrap">Quantity</th>
                                 <th scope="col" class="flex-wrap">Total Price</th>
                             </tr>
                         </thead>
@@ -93,42 +85,15 @@
                                 <td scope="row">{{ $key + 1 }}</td>
                                 <td>{{ $name }}</td>
                                 <td>{{ $prices[$key] }}.00</td>
-                                <td>{{ $quantitys[$key] }} {{ $units[$key] }}</td>
+                                <td>{{ $quantitys[$key] }}</td>
                                 <td>{{ $total_prices[$key] }}.00</td>
                             </tr>
                             @endforeach
                         </tbody>
                         <tfoot>
-
                             <tr>
                                 <td colspan="4" class="text-right"> Total </td>
                                 <td colspan="">{{ $expense->total  }}</td>
-                            </tr>
-                            <tr>
-                                <td colspan="4" class="text-right"> Service Charge </td>
-                                <td>{{ $expense->service_charge  }}</td>
-                            </tr>
-                            <tr>
-                                <td colspan="4" class="text-right"> Shipping Charge </td>
-                                <td>{{ $expense->shipping_charge  }}</td>
-                            </tr>
-
-                            <tr>
-                                <td colspan="4" class="text-right"> Total Amount </td>
-                                <td>{{ $expense->total_amount  }}</td>
-                            </tr>
-
-                            <tr>
-                                <td colspan="4" class="text-right"> Discount </td>
-                                <td>{{ $expense->discount  }}</td>
-                            </tr>
-                            <tr>
-                                <td colspan="4" class="text-right"> Paid </td>
-                                <td>{{ $expense->paid  }}</td>
-                            </tr>
-                            <tr>
-                                <td colspan="4" class="text-right"> Due </td>
-                                <td>{{ $expense->due  }}</td>
                             </tr>
                         </tfoot>
                     </table>

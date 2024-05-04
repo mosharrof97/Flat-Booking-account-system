@@ -35,8 +35,8 @@ class Investment extends Model
         return $this->belongsTo(Project::class );
     }
 
-    public function installment(): BelongsTo
+    public function installment(): HasMany
     {
-        return $this->belongsTo(InvestInstallment::class, 'investment_id' );
+        return $this->hasMany(InvestInstallment::class, 'investment_id' );
     }
 }

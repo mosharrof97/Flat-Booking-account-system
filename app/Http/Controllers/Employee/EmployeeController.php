@@ -100,9 +100,6 @@ class EmployeeController extends Controller
             DB::rollback();
             throw $e;
         }
-
-
-
         return redirect()->route('employee.list')->with('status','User created successfully with roles');
     }
 

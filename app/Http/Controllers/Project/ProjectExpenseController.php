@@ -7,23 +7,23 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use App\Models\Project;
 use App\Models\Expense;
-use App\Models\Vendor;
+use App\Models\ExpenseCategory;
 
 class ProjectExpenseController extends Controller
 {
-    // public function __construct(){
-    //     $this->middleware('permission:view expanse', ['only' => ['index']]);
-    //     $this->middleware('permission:create expanse', ['only' => ['create','store']]);
-    //     $this->middleware('permission:show expanse', ['only' => ['show']]);
-    //     // $this->middleware('permission:delete', ['only' => ['delete']]);
-    // }
+    // // public function __construct(){
+    // //     $this->middleware('permission:view expanse', ['only' => ['index']]);
+    // //     $this->middleware('permission:create expanse', ['only' => ['create','store']]);
+    // //     $this->middleware('permission:show expanse', ['only' => ['show']]);
+    // //     // $this->middleware('permission:delete', ['only' => ['delete']]);
+    // // }
     public function index(){
         $projectId = Session::get('project_id');
         if($projectId){
              $expenses = Expense::where('project_id',$projectId)->get();
 
              // dd($expenses);
-             return view('Project-Panel.Expanse.Expense_List', compact('expenses' ));
+             return view('Project-Panel.Expense.Expense_List', compact('expenses' ));
         }else{
             return redirect()->route('list.project')-> with('error','Project Id Is Null');
         }
@@ -31,10 +31,8 @@ class ProjectExpenseController extends Controller
 
     public function create(){
         if(Session::get('project_id')){
-
-            $vendor = Vendor::all();
-            // $user = auth()->user()->id;
-            return view('Project-Panel.Expanse.Add_Expense', compact('vendor'));
+            $category = ExpenseCategory::all();
+            return view('Project-Panel.Expense.Add_Expense', compact('category'));
         }else{
             return redirect()->route('list.project')-> with('error','Project Id Is Null');
         }
@@ -46,12 +44,8 @@ class ProjectExpenseController extends Controller
         $projectId = Session::get('project_id');
          if($projectId){
             $request->validate([
-                'vendor_id' => 'required',
-                'memo_no' => 'required',
                 'date' => 'required',
             ]);
-
-            // dd($request->all());
 
             $names = $request->input('name');
             $quantities = $request->input('quantity');
@@ -59,12 +53,8 @@ class ProjectExpenseController extends Controller
             $prices = $request->input('price');
             $total_prices = $request->input('total_price');
 
-            // dd(auth()->id());
             $expensesData = [
                 'project_id' => $projectId,
-                // 'user_id' =>  auth()->user()->id,
-                'vendor_id' => $request->vendor_id,
-                'memo_no' => $request->memo_no,
                 'date' => $request->date,
                 // ---------Use json_encode---------//
                 'name' =>json_encode($names),
@@ -75,12 +65,6 @@ class ProjectExpenseController extends Controller
                 // ---------Use json_encode---------//
 
                 'total' => $request->total,
-                'service_charge' => $request->service_charge,
-                'shipping_charge' => $request->shipping_charge,
-                'total_amount' => $request->total_amount,
-                'discount' => $request->discount,
-                'paid' => $request->paid,
-                'due' => $request->due,
                 'created_by' => auth()->id(),
 
                 //--------Use implode Method-------//
@@ -91,7 +75,7 @@ class ProjectExpenseController extends Controller
                 // 'total_price' => implode("**",$total_prices),
                 //--------Use implode Method-------//
             ];
-            // dd($expensesData);
+
             $expenses = Expense::create($expensesData);
             return redirect()->route('project.expense.list')-> with('success','Expense Add Successful.');
         }else{
@@ -104,9 +88,64 @@ class ProjectExpenseController extends Controller
         if($projectId){
             $expense = Expense::where('project_id',$projectId)->where('id',$id)->first();
 
-            return view('Project-Panel.Expanse.Expense_View', compact('expense'));
+            return view('Project-Panel.Expense.Expense_View', compact('expense'));
         }else{
         return redirect()->route('list.project')-> with('error','Project Id Is Null');
         }
+    }
+
+    public function edit($id){
+        $projectId = Session::get('project_id');
+        if($projectId){
+            $expense = Expense::where('project_id',$projectId)->where('id',$id)->first();
+
+            return view('Project-Panel.Expense.Edit_Expense', compact('expense'));
+        }else{
+        return redirect()->route('list.project')-> with('error','Project Id Is Null');
+        }
+    }
+
+    public function update(Request $request, $id){
+        $projectId = Session::get('project_id');
+        if($projectId){
+           $request->validate([
+               'date' => 'required',
+           ]);
+
+           $names = $request->input('name');
+           $quantities = $request->input('quantity');
+           $units = $request->input('unit');
+           $prices = $request->input('price');
+           $total_prices = $request->input('total_price');
+
+           $expensesData = [
+               'project_id' => $projectId,
+               'date' => $request->date,
+               // ---------Use json_encode---------//
+               'name' =>json_encode($names),
+               'quantity' => json_encode($quantities),
+               'unit' =>json_encode( $units),
+               'price' => json_encode($prices),
+               'total_price' => json_encode($total_prices),
+               // ---------Use json_encode---------//
+
+               'total' => $request->total,
+               'created_by' => auth()->id(),
+
+               //--------Use implode Method-------//
+               // 'name' =>implode("**",$names),
+               // 'quantity' => implode("**",$quantities),
+               // 'unit' =>implode( "**",$units),
+               // 'price' => implode("**",$prices),
+               // 'total_price' => implode("**",$total_prices),
+               //--------Use implode Method-------//
+           ];
+           $expenses = Expense::find($id);
+           $expenses->update($expensesData);
+
+           return redirect()->route('project.expense.list')-> with('success','Expense Add Successful.');
+       }else{
+           return redirect()->route('list.project')-> with('error','Project Id Is Null');
+       }
     }
 }

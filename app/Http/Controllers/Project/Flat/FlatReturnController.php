@@ -36,10 +36,22 @@ class FlatReturnController extends Controller
                 'payment_type' =>[ 'required'],
                 'return_amount' =>[ 'required'],
             ]);
+
+            if($request->payment_type == 'bank' || $request->payment_type == 'check'){
+                $request->validate([
+                    'bank_name' =>[ 'required'],
+                    'branch' =>[ 'required'],
+                    'account_number' =>[ 'required'],
+                ]);
+                if($request->payment_type == 'check'){
+                    $request->validate([
+                        'check_number' =>[ 'required'],
+                    ]);
+                }
+            }
             // dd($request->all());
             try {
                 DB::beginTransaction();
-                    $flat = Flat::where('project_id', $project_id)->where('status', '!=', 1)->find($request->flat_id);
                     $data = [
                         'flat_id' =>$request->flat_id,
                         'client_id' =>$request->client_id,
@@ -47,15 +59,26 @@ class FlatReturnController extends Controller
                         'payable_amount' =>$request->payable_amount,
                         'payment_type' =>$request->payment_type,
                         'return_amount' =>$request->return_amount,
+
+                        // 'bank_name' =>$request->bank_name,
+                        // 'branch' =>$request->branch,
+                        // 'account_number' =>$request->account_number,
+                        // 'check_number' =>$request->check_number,
+
                         'sold_by' => $request->sold_by,
                     ];
-
                     FlatReturnInfo::create($data);
 
                     $saleFlat = FlatSaleInfo::where('flat_id', $request->flat_id)->first();
                     $saleFlat->delete();
 
-                    // Flat::where()
+                    $flat = Flat::where('project_id', $project_id)->where('status', '!=', 1)->find($request->flat_id);
+                   $update = $flat->update([
+                        'client_id'=> null,
+                        'sale_status'=>0,
+                    ]);
+// dd($flat );
+                    return redirect()->route('flat.view.chart');
                 DB::commit();
             } catch (\Exception $e) {
                 DB::rollback();

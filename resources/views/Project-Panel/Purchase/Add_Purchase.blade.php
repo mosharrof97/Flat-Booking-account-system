@@ -6,11 +6,11 @@
         <div class="card p-4">
             <div class="card-header ">
                 <div class="col-sm-12 text-center">
-                    <h4 class=" font-weight-bold font-italic mt-3">New Expense Form</h4>
+                    <h4 class=" font-weight-bold font-italic mt-3">New Purchase Form</h4>
                 </div>
             </div>
             <div class="card-body">
-                <form class="form-inline" action="" method="POST" enctype="multipart/form-data">
+                <form class="form-inline" action="{{ route('store.project.purchase') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="row g-3">
                         <div class="form-group col-md-6 mb-3">

@@ -11,22 +11,24 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('expenses', function (Blueprint $table) {
+        Schema::create('purchases', function (Blueprint $table) {
             $table->id();
             $table->foreignId('project_id')->nullable();
+            $table->foreignId('vendor_id')->nullable();
+            $table->string('memo_no');
             $table->date('date');
             $table->string('name')->nullable();
             $table->string('price');
             $table->string('quantity')->nullable();
-            // $table->string('unit')->nullable();
+            $table->string('unit')->nullable();
             $table->string('total_price');
             $table->decimal('total',15,2);
-            // $table->decimal('service_charge',15,2);
-            // $table->decimal('shipping_charge',15,2);
-            // $table->decimal('total_amount',15,2);
-            // $table->decimal('discount',15,2);
-            // $table->decimal('paid',15,2);
-            // $table->decimal('due',15,2);
+            $table->decimal('service_charge',15,2);
+            $table->decimal('shipping_charge',15,2);
+            $table->decimal('total_amount',15,2);
+            $table->decimal('discount',15,2);
+            $table->decimal('paid',15,2);
+            $table->decimal('due',15,2);
 
             $table->foreignId('created_by')->nullable();
             $table->foreignId('updated_by')->nullable();
@@ -37,12 +39,11 @@ return new class extends Migration
         });
     }
 
-
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('expenses');
+        Schema::dropIfExists('purchases');
     }
 };
