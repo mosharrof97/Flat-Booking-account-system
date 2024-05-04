@@ -20,7 +20,7 @@ class ProjectController extends Controller
 
 
     public function index(){
-        $projects = Project::where('active_status',0)->paginate(15);
+        $projects = Project::where('status',0)->get();
         return view('Admin-Panel.page.Project.Project_List',compact('projects'));
     }
 
@@ -87,13 +87,13 @@ class ProjectController extends Controller
     }
 
     public function view($id){
-        $project = Project::where('active_status',0)->where('id', $id)->first();
+        $project = Project::where('status',0)->where('id', $id)->first();
         return view('Admin-Panel.page.Project.Project_View', compact('project'));
     }
 
     public function edit($id){
         $data=[
-            'project' => Project::where('active_status',0)->where('id', $id)->first(),
+            'project' => Project::where('status',0)->where('id', $id)->first(),
             'districts' => District::get(),
         ];
         return view('Admin-Panel.page.Project.edit_project', $data);
@@ -148,15 +148,15 @@ class ProjectController extends Controller
             // 'image' =>$imageName,
         ];
 
-        $project = Project::where('active_status',0)->find($id);
+        $project = Project::where('status',0)->find($id);
         $project->update($data);
         return redirect()->route('list.project')->with('message','Project Update Successful');
     }
 
     public function delete($id){
-        $project = Project::where('active_status',0)->find($id);
+        $project = Project::where('status',0)->find($id);
         $project->update([
-            'active_status' => 1,
+            'status' => 1,
         ]);
 
         return redirect()->route('list.project')->with('message','Project Delete Successful');

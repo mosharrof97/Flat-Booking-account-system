@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('land_area');
             $table->string('front_road',100)->nullable();
             $table->string('property_type')->nullable();
-            $table->integer('floor');
+            $table->string('floor');
             $table->string('comm_space_size')->nullable();
             $table->string('num_of_basement')->nullable();
             $table->integer('flat');

@@ -95,7 +95,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
         Route::get('/view/{id}', [ProjectController::class,'view'])->name('project.view');
         Route::get('/update/{id}', [ProjectController::class,'edit'])->name('project.edit');
         Route::put('/update/{id}', [ProjectController::class,'update'])->name('project.update');
-        Route::post('/delete/{id}', [ProjectController::class,'delete'])->name('project.delete');
+        Route::get('/delete/{id}', [ProjectController::class,'delete'])->name('project.delete');
 
         // Project Panel
         Route::prefix('panel')->group(function () {
