@@ -205,26 +205,7 @@
                         </li>
                     {{-- @endcan --}}
 
-                    {{-- <li>
-                        <a class="has-arrow" href="" aria-expanded="false">
-                            <i class="fa-solid fa-store"></i>
-                            <span class="nav-text">Purchase</span>
-                        </a>
-                    </li>
 
-                    <li>
-                        <a class="has-arrow" href="" aria-expanded="false">
-                            <i class="fa-solid fa-store"></i>
-                            <span class="nav-text">Purchase Return</span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a class="has-arrow" href="" aria-expanded="false">
-                            <i class="fa-solid fa-store"></i>
-                            <span class="nav-text">Sale</span>
-                        </a>
-                    </li> --}}
 
                     <li>
                         <a class="has-arrow" href="{{ route('vendor.list') }}" aria-expanded="false">
@@ -232,145 +213,6 @@
                             <span class="nav-text">Vandor</span>
                         </a>
                     </li>
-
-
-
-                    {{-- <li>
-                        <a class="has-arrow" href="{{ route('investor.list') }}" aria-expanded="false">
-                            <i class="fa-solid fa-store"></i>
-                            <span class="nav-text">Investor List</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="has-arrow" href="{{ route('create.investor') }}" aria-expanded="false">
-                            <i class="fa-solid fa-store"></i>
-                            <span class="nav-text">Create Investor </span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a class="has-arrow" href="{{ route('investment.list') }}" aria-expanded="false">
-                            <i class="fa-solid fa-store"></i>
-                            <span class="nav-text">Investment List</span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a class="has-arrow" href="{{ route('create.investment') }}" aria-expanded="false">
-                            <i class="fa-solid fa-store"></i>
-                            <span class="nav-text">Create Investment</span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a class="has-arrow" href="{{ route('new.project') }}" aria-expanded="false">
-                            <i class="fa-solid fa-store"></i>
-                            <span class="nav-text">Add new Project</span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a class="has-arrow" href="{{ route('project.list') }}" aria-expanded="false">
-                            <i class="fa-solid fa-store"></i>
-                            <span class="nav-text">Project List</span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a class="has-arrow" href="{{ route('add.expense') }}" aria-expanded="false">
-                            <i class="fa-solid fa-store"></i>
-                            <span class="nav-text">Add Expense</span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a class="has-arrow" href="{{ route('expense.list') }}" aria-expanded="false">
-                            <i class="fa-solid fa-store"></i>
-                            <span class="nav-text">Expense List</span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a class="has-arrow" href="{{ route('employee') }}" aria-expanded="false">
-                            <i class="fa-solid fa-store"></i>
-                            <span class="nav-text">Employee</span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a class="has-arrow" href="{{ route('employee.list') }}" aria-expanded="false">
-                            <i class="fa-solid fa-store"></i>
-                            <span class="nav-text">Employee List</span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a class="has-arrow" href="{{ route('customer') }}" aria-expanded="false">
-                            <i class="fa-solid fa-store"></i>
-                            <span class="nav-text">Customer</span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a class="has-arrow" href="{{ route('customer.list') }}" aria-expanded="false">
-                            <i class="fa-solid fa-store"></i>
-                            <span class="nav-text">Customer List</span>
-                        </a>
-                    </li> --}}
-
-                    {{-- <li>
-                        <a class="has-arrow" href="#" aria-expanded="false">
-                            <i class="fa-solid fa-store"></i>
-                            <span class="nav-text">TA & DA Bill</span>
-                        </a>
-                    </li> --}}
-
-                    {{-- Customer --}}
-                    {{-- <li id="customer-parent">
-                        <a class="has-arrow" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#customer" aria-expanded="false" aria-controls="customer">
-                            <i class="fa-solid fa-store"></i>
-                            <span class="nav-text">Customer </span>
-                        </a>
-                        <div id="customer" class="accordion-collapse collapse" style="background-color: #1c0f54" data-bs-parent="#customer-parent">
-                            <ul class=" metismenu" >
-                                <li>
-                                    <a class="has-arrow" href="{{ route('customer.list') }}" >
-                                        <i class="fa-solid fa-store"></i>
-                                        <span class="nav-text">All Customer</span>
-                                    </a>
-                                </li>
-                                <li  >
-                                    <a class="has-arrow" href="{{ route('customer') }}">
-                                        <i class="fa-solid fa-store"></i>
-                                        <span class="nav-text">Add New Customer</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li> --}}
-
-                    {{-- ======= Investor ======== --}}
-
-                    {{-- <li id="investor-parent">
-                        <a class="has-arrow" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#investor" aria-expanded="false" aria-controls="investor">
-                            <i class="fa-solid fa-store"></i>
-                            <span class="nav-text">Investor </span>
-                        </a>
-                        <div id="investor" class="accordion-collapse collapse" style="background-color: #1c0f54" data-bs-parent="#investor-parent">
-                            <ul class=" metismenu" > --}}
-
-
-
-                    {{-- <li  >
-                                    <a class="has-arrow" href="{{ route('create_investor') }}">
-                                        <i class="fa-solid fa-store"></i>
-                                        <span class="nav-text">Add New Investor</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li> --}}
-                    {{--======= Invostore End ========--}}
 
                     {{-- ====== Employee ======= --}}
                     {{-- @can('view employee') --}}
@@ -429,26 +271,7 @@
                     </li>
                     {{-- Project End --}}
 
-                    {{-- Role --}}
-                    {{-- <li id="role-parent">
-                        <a class="has-arrow" href="javascript:void(0);" data-bs-toggle="collapse"
-                            data-bs-target="#role" aria-expanded="false" aria-controls="role">
-                            <i class="fa-solid fa-store"></i>
-                            <span class="nav-text">Role </span>
-                        </a>
-                        <div id="role" class="accordion-collapse collapse" style="background-color: #1c0f54"
-                            data-bs-parent="#role-parent">
-                            <ul class=" metismenu">
-                                <li>
-                                    <a class="has-arrow" href="" >
-                                        <i class="fa-solid fa-users"></i>
-                                        <span class="nav-text">Role add & list</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
 
-                    </li> --}}
                     <li>
                         <a class="has-arrow" href="{{ route('users.index') }}">
                             <i class="fa-solid fa-user"></i>

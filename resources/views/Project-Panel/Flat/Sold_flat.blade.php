@@ -26,12 +26,10 @@
                                 <th rowspan="" class="text-nowrap">SL</th>
                                 <th rowspan="" class="text-nowrap">Flat Name / Number</th>
                                 <th rowspan="" class="text-nowrap">Floor</th>
-                                <th rowspan="" class="text-nowrap">Flat Area</th>
-                                <th rowspan="" class="text-nowrap">Flat price</th>
                                 <th rowspan="" class="text-nowrap">Number of room</th>
                                 <th rowspan="" class="text-nowrap">Number of Bathroom</th>
                                 <th rowspan="" class="text-nowrap">Dining Space</th>
-                                <th rowspan="" class="text-nowrap">Status</th>
+                                <th rowspan="" class="text-nowrap">Flat price</th>
                                 <th rowspan="" class="text-nowrap">Image</th>
                                 <th colspan="" class="text-nowrap">Action</th>
                             </tr>
@@ -42,12 +40,10 @@
                                 <th scope="row">{{ $key + 1 }}</th>
                                 <td>{{ $flat->name }}</td>
                                 <td>{{ $flat->floor }} No floor</td>
-                                <td>{{ $flat->flat_area }} Squer Fit</td>
-                                <td>{{ $flat->price }} Per Squer Fit</td>
                                 <td>{{ $flat->room }} Room</td>
                                 <td>{{ $flat->bath_room }} Bath Room</td>
                                 <td>{{ $flat->dining_space }} Squer Fit</td>
-                                <td>{{ $flat->status }} Squer Fit</td>
+                                <td>{{ $flat->flatSaleInfo[0]->price }} TK</td>
 
                                 <td>
 
@@ -71,7 +67,7 @@
                                     @elseif($flat->sale_status == 1)
                                         <a href="{{ route('booking_view',$flat->id) }}" class="btn btn-warning rounded me-2"><i class="fa-solid fa-share-from-square"></i></a>
                                     @elseif($flat->sale_status == 2)
-                                        <a href="{{ route('flat.sale.details',$flat->id) }}" class="btn btn-danger rounded me-2"><i class="fa-solid fa-share-from-square"></i></a>
+                                        <a href="{{ route('flat.sale.details',$flat->id) }}" class="btn btn-danger rounded me-2">Sold</i></a>
                                     @endif
 
                                     <a href="{{ route('flat.view', $flat->id) }} " class="btn btn-success me-2">
@@ -130,13 +126,13 @@
 
 <script>
     new DataTable('#flatTable'
-        , {
-            layout: {
-                topStart: {
-                    buttons: ['pdf', 'print']
-                }
-            }
-        }
+        // , {
+        //     layout: {
+        //         topStart: {
+        //             buttons: ['pdf', 'print']
+        //         }
+        //     }
+        // }
     );
 
 </script>
