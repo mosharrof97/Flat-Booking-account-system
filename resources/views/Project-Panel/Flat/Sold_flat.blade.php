@@ -130,13 +130,13 @@
 
 <script>
     new DataTable('#flatTable'
-        // , {
-        //     layout: {
-        //         topStart: {
-        //             buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
-        //         }
-        //     }
-        // }
+        , {
+            layout: {
+                topStart: {
+                    buttons: ['pdf', 'print']
+                }
+            }
+        }
     );
 
 </script>

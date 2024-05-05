@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Models\Flat;
+use App\Models\ComponyInfo;
+use App\Models\Project;
 
 class FlatController extends Controller
 {
@@ -19,6 +21,33 @@ class FlatController extends Controller
             return redirect()->route('list.project')-> with('error','Project Id Is Null');
         }
     }
+
+    public function unSoldFlat(){
+        $project_id = Session::get('project_id');
+        if($project_id !== null){
+            $comInfo = ComponyInfo::first();
+            $project = Project::find($project_id);
+            $flats = Flat::where('project_id', $project_id)->where('status', 0)->where('sale_status', 0)->get();
+
+            return view('Project-Panel.Flat.UnSold_flat', compact(['flats','project','comInfo']));
+        }else{
+            return redirect()->route('list.project')-> with('error','Project Id Is Null');
+        }
+    }
+
+    public function soldFlat(){
+        $project_id = Session::get('project_id');
+        if($project_id !== null){
+            $comInfo = ComponyInfo::first();
+            $project = Project::find($project_id);
+            $flats = Flat::where('project_id', $project_id)->where('status', 0)->where('sale_status', 2)->get();
+
+            return view('Project-Panel.Flat.Sold_flat', compact(['flats','project','comInfo']));
+        }else{
+            return redirect()->route('list.project')-> with('error','Project Id Is Null');
+        }
+    }
+
 
     public function create(){
         $project_id = Session::get('project_id');
@@ -44,8 +73,6 @@ class FlatController extends Controller
                 // 'Parking' =>[ 'required'],
                 // 'Outdoor' =>[ 'required'],
             ]);
-
-            // dd($request->images);
             $image=[];
             if ($request->hasFile('images')) {
                 $files = $request->file('images');
@@ -53,7 +80,6 @@ class FlatController extends Controller
                 foreach( $files as $file){
                     $ImageName = 'Flat_'. time().'-'. mt_rand(100000, 100000000).'.'.$file->extension();
                     $file->move(public_path('upload/Flat'), $ImageName);
-                    // $file->move(public_path('upload/Flat'), $imageName);
 
                     $image[]=[
                          $ImageName,
@@ -62,8 +88,6 @@ class FlatController extends Controller
                 }
             }
             $images = json_encode($image);
-
-            // dd($images);
             $data = [
                 'project_id' => $project_id,
                 'name' => $request->name,
@@ -80,8 +104,6 @@ class FlatController extends Controller
                 'created_by' =>auth()->id(),
             ];
 
-            // dd($data);
-
             Flat::create($data);
 
             return redirect()->route('flat.list')-> with('success','Flat Create Successful');
@@ -96,7 +118,6 @@ class FlatController extends Controller
         if($project_id !== null){
 
             $flat = Flat::where('project_id', $project_id)->where('status', '!=', 1)->find($id);
-            // Flat::where('project_id', $project_id) ->where('status', '!=', 1) ->find($id);
             return view('Project-Panel.Flat.Flat_edit', compact('flat'));
         }else{
             return redirect()->route('list.project')-> with('error','Project Id Is Null');
@@ -148,10 +169,10 @@ class FlatController extends Controller
         // dd($id);
         $project_id = Session::get('project_id');
         if($project_id !== null){
-
+            $comInfo = ComponyInfo::first();
             $flat = Flat::where('project_id', $project_id)->where('status', '!=', 1)->find($id);
 
-            return view('Project-Panel.Flat.Flat_view', compact('flat'));
+            return view('Project-Panel.Flat.Flat_view', compact('flat','comInfo'));
         }else{
             return redirect()->route('list.project')-> with('error','Project Id Is Null');
         }

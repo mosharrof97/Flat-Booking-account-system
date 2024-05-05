@@ -21,8 +21,9 @@
                 </div>
 
                 <div class="text-center">
-                    <h2 class="fw-bold">Flat booking System</h2>
-                    <h4 class="fw-semibold"><b>Email:</b> flat@gmail.com</h4>
+                    <img src="{{ asset('upload/CompanyInfo/'. $comInfo->logo) }}" alt="" width="100">
+                    <h2 class="fw-bold">{{ $comInfo->name }}</h2>
+                    <h4 class="fw-semibold"><b>Email:</b> {{ $comInfo->email }}</h4>
                     <h4>Project: {{ $flat->project->projectName }}</h4>
                     <h5>Address: {{ $flat->project->address.', '.$flat->project->city.', '.$flat->project->address }}</h5>
                     <h5>{{ $flat->project->district->name.'- '.$flat->project->zipCode}}</h5>

@@ -157,12 +157,11 @@
                     <li class="nav-label first">Main Menu</li>
 
                     <li>
-                        <a class="has-arrow" href="#" aria-expanded="false">
+                        <a class="has-arrow" href="{{ route('project.dashboard',Session::get('project_id')) }}" aria-expanded="false">
                             <i class="fa-solid fa-gauge"></i>
                             <span class="nav-text">Dashboard</span>
                         </a>
                     </li>
-
 
                     <li>
                         <a class="has-arrow" href="{{ route('project.investment.list')}}">
@@ -231,15 +230,15 @@
                                 </li>
 
                                 <li>
-                                    <a class="has-arrow" href="#####">
+                                    <a class="has-arrow" href="{{ route('flat.unsold') }}">
                                         <i class="fa-solid fa-store"></i>
                                         <span class="nav-text">UnSold Flat</span>
                                     </a>
                                 </li>
 
                                 <li>
-                                    <a class="has-arrow" href="##">
-                                        <i class="fa-solid fa-store"></i>
+                                    <a class="has-arrow" href="{{ route('flat.sold') }}">
+                                        <i class="fa-solid fa-share-from-square"></i>
                                         <span class="nav-text">Sold Flat</span>
                                     </a>
                                 </li>
@@ -250,7 +249,7 @@
                     <li id="accountant-parent">
                         <a class="has-arrow" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#accountant" aria-expanded="false" aria-controls="accountant">
                             <i class="fa-solid fa-store"></i>
-                            <span class="nav-text">Accountant </span>
+                            <span class="nav-text">Project Report </span>
                         </a>
                         <div id="accountant" class="accordion-collapse collapse" style="background-color: #1c0f54" data-bs-parent="#accountant-parent">
                             <ul class=" metismenu">

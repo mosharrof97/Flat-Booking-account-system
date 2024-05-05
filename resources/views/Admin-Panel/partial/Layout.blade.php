@@ -81,8 +81,7 @@
             <a href="" class="brand-logo">
                 {{-- <img class="logo-abbr" style="max-width: 52px;" src="{{ asset('images/logo.png') }}" alt="">
                 <img class="logo-compact" src="{{ asset('images/logo-text.png') }}" alt=""> --}}
-                <img class="brand-title  " style="max-width:100px" src="{{ asset('images/logo-text.png') }}"
-                    alt="">
+                <img class="brand-title  " style="max-width:100px" src=""  alt="">
             </a>
 
             <div class="nav-control">
@@ -460,6 +459,14 @@
                         <a class="has-arrow" href="{{ route('roles.index') }}">
                             <i class="fa-solid fa-pen-ruler"></i>
                             <span class="nav-text">Roles</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-label first">Company Info</li>
+                    <li>
+                        <a class="has-arrow" href="{{ route('company.info.list') }}">
+                            <i class="fa-solid fa-pen-ruler"></i>
+                            <span class="nav-text">Company Info</span>
                         </a>
                     </li>
                 </ul>

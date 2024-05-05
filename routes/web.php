@@ -37,6 +37,8 @@ use App\Http\Controllers\Role_permission\RoleController;
 use App\Http\Controllers\Role_permission\UserController;
 use App\Http\Controllers\Role_permission\PermissionController;
 
+use App\Http\Controllers\ComponyInfoController;
+
 
 
 
@@ -68,24 +70,12 @@ use App\Http\Controllers\Role_permission\PermissionController;
 
 Route::prefix('admin')->middleware('auth')->group(function () {
 
+    Route::prefix('company')->group(function () {
+        Route::get('/',[ComponyInfoController::class, 'index'])->name('company.info.list');
+        Route::post('/create', [ComponyInfoController::class, 'store'])->name('company.info');
+    });
+
     Route::get('/', [AdminController::class, 'dashboard'])->name('dashboard');
-
-    // // Investor
-    // Route::prefix('investor')->group(function () {
-    //     Route::get('/list', [InvestorController::class,'index'])->name('list_investor');
-    //     Route::get('/create', [InvestorController::class, 'create'])->name('create_investor');
-    //     Route::post('/create', [InvestorController::class, 'store'])->name('store_investor');
-    //     Route::get('/{id}/view', [InvestorController::class,'view'])->name('investor.view');
-    // });
-
-    // // Investor
-    // Route::prefix('customer')->group(function () {
-    //     Route::get('/list', [CustomerController::class,'index'])->name('list.customer');
-    //     Route::get('/create', [InvestorController::class, 'create'])->name('create.customer');
-    //     Route::post('/create', [InvestorController::class, 'store'])->name('store.customer');
-    //     Route::get('/{id}/view', [InvestorController::class,'view'])->name('view.customer');
-    //     Route::get('/{id}/delete', [InvestorController::class,'destroy'])->name('customer.delete');
-    // });
 
     /**------------------ Project --------------------**/
     Route::prefix('project')->group(function () {
@@ -139,6 +129,8 @@ Route::prefix('admin')->middleware('auth')->group(function () {
             // Flat
             Route::prefix('flat')->group(function () {
                 Route::get('/list', [FlatController::class, 'index'])->name('flat.list');
+                Route::get('/unsold', [FlatController::class, 'unSoldFlat'])->name('flat.unsold');
+                Route::get('/sold', [FlatController::class, 'soldFlat'])->name('flat.sold');
                 Route::get('/create', [FlatController::class, 'create'])->name('flat.add');
                 Route::post('/create', [FlatController::class, 'store'])->name('flat.store');
                 Route::get('/{id}/view', [FlatController::class, 'view'])->name('flat.view');
