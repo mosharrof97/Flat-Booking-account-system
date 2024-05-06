@@ -154,6 +154,15 @@ Route::prefix('admin')->middleware('auth')->group(function () {
                 Route::post('/return', [FlatReturnController::class, 'flatReturn'])->name('return.store');
 
             });
+
+            // Project Expense
+            Route::prefix('report')->group(function () {
+                // Route::get('/invest_report', [ProjectExpenseController::class, 'index'])->name('invest.report');
+                Route::get('/invest_report', function(){
+                    return view('Project-Panel.Report.Invest_Report');
+                })->name('invest.report');
+
+            });
         });
     });
     /**------------------ Project End --------------------**/

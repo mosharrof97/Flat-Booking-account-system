@@ -254,7 +254,7 @@
                         <div id="accountant" class="accordion-collapse collapse" style="background-color: #1c0f54" data-bs-parent="#accountant-parent">
                             <ul class=" metismenu">
                                 <li>
-                                    <a class="has-arrow" href="##">
+                                    <a class="has-arrow" href="{{route('invest.report') }}">
                                         <i class="fa-solid fa-store"></i>
                                         <span class="nav-text">Investment Report</span>
                                     </a>
