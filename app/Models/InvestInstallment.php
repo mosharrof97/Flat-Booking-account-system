@@ -18,10 +18,19 @@ class InvestInstallment extends Model
         'branch',
         'account_number',
         'check_number',
+
+        'received_by'
     ];
 
     public function investment(): BelongsTo
     {
         return $this->BelongsTo(Investment::class);
     }
+
+    public function user(): BelongsTo
+    {
+        return $this->BelongsTo(User::class, 'id');
+    }
+
+
 }

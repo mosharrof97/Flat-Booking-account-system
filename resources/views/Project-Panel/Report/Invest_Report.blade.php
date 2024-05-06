@@ -51,106 +51,23 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach($installment as $key => $value)
                             <tr>
-                                <th scope="row" style="color: #666666;">1</th>
-                                <td>System Architect</td>
-                                <td>2011/04/25</td>
-                                <td>2021/03/08</td>
-                                <td>tnixon12@example.com</td>
-                                <td>61</td>
-                                <td>Edinburgh</td>
-                                <td>$320,800</td>
+                                <th scope="row" style="color: #666666;">{{ $key + 1 }}</th>
+                                <td>{{ $value->investment->client->name }}</td>
+                                <td>{{ $value->investment->total_Investment }}</td>
+                                @if($value->investment->profit == 'fixed')
+                                <td>{{ $value->investment->profit }}</td>
+                                @elseif($value->investment->profit == 'percentage')
+                                <td>{{ $value->investment->profit }}</td>
+                                @endif
+
+                                <td>{{ $value->created_at->format('d-M-y') }}</td>
+                                <td>{{ $value->installment_amount }}</td>
+                                <td>{{ $value->payment_type }}</td>
+                                <td>Admin</td>
                             </tr>
-                            <tr>
-                                <th scope="row" style="color: #666666;">Sonya Frost</th>
-                                <td>Software Engineer</td>
-                                <td>2008/12/13</td>
-                                <td>2021/03/08</td>
-                                <td>sfrost34@example.com</td>
-                                <td>23</td>
-                                <td>Edinburgh</td>
-                                <td>$103,600</td>
-                            </tr>
-                            <tr>
-                                <th scope="row" style="color: #666666;">Jena Gaines</th>
-                                <td>Office Manager</td>
-                                <td>2008/12/19</td>
-                                <td>2021/03/08</td>
-                                <td>jgaines75@example.com</td>
-                                <td>30</td>
-                                <td>London</td>
-                                <td>$90,560</td>
-                            </tr>
-                            <tr>
-                                <th scope="row" style="color: #666666;">Quinn Flynn</th>
-                                <td>Support Lead</td>
-                                <td>2013/03/03</td>
-                                <td>2021/03/08</td>
-                                <td>qflyn09@example.com</td>
-                                <td>22</td>
-                                <td>Edinburgh</td>
-                                <td>$342,000</td>
-                            </tr>
-                            <tr>
-                                <th scope="row" style="color: #666666;">Charde Marshall</th>
-                                <td>Regional Director</td>
-                                <td>2008/10/16</td>
-                                <td>2021/03/08</td>
-                                <td>cmarshall28@example.com</td>
-                                <td>36</td>
-                                <td>San Francisco</td>
-                                <td>$470,600</td>
-                            </tr>
-                            <tr>
-                                <th scope="row" style="color: #666666;">Haley Kennedy</th>
-                                <td>Senior Marketing Designer</td>
-                                <td>2012/12/18</td>
-                                <td>2021/03/08</td>
-                                <td>hkennedy63@example.com</td>
-                                <td>43</td>
-                                <td>London</td>
-                                <td>$313,500</td>
-                            </tr>
-                            <tr>
-                                <th scope="row" style="color: #666666;">Tatyana Fitzpatrick</th>
-                                <td>Regional Director</td>
-                                <td>2010/03/17</td>
-                                <td>2021/03/08</td>
-                                <td>tfitzpatrick00@example.com</td>
-                                <td>19</td>
-                                <td>Warsaw</td>
-                                <td>$385,750</td>
-                            </tr>
-                            <tr>
-                                <th scope="row" style="color: #666666;">Jason Cox</th>
-                                <td>Web Developer</td>
-                                <td>2017/10/16</td>
-                                <td>2021/03/08</td>
-                                <td>jcox96@example.com</td>
-                                <td>32</td>
-                                <td>New York</td>
-                                <td>$390,400</td>
-                            </tr>
-                            <tr>
-                                <th scope="row" style="color: #666666;">Christian Perkins</th>
-                                <td>Sale Specialist</td>
-                                <td>2013/12/18</td>
-                                <td>2021/03/08</td>
-                                <td>cperkins10@example.com</td>
-                                <td>40</td>
-                                <td>Paris</td>
-                                <td>$240,800</td>
-                            </tr>
-                            <tr>
-                                <th scope="row" style="color: #666666;">Emily Wheeler</th>
-                                <td>Junior Marketing Analyst</td>
-                                <td>2020/03/17</td>
-                                <td>2021/03/08</td>
-                                <td>ewheeler07@example.com</td>
-                                <td>20</td>
-                                <td>New York</td>
-                                <td>$85,620</td>
-                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

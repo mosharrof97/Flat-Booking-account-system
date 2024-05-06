@@ -34,31 +34,31 @@ class InstallmentController extends Controller
         $project_id = Session::get('project_id');
         if($project_id !== null){
 
-            dd($request->all());
-            // if($request->payment_type == 'bank'){
-            //     $request->validate([
-            //         'investment_id'=> 'required',
-            //         'payment_type'=> 'required',
-            //         'installment_amount'=> 'required',
-            //         'bank_name'=> 'required',
-            //         'branch'=> 'required',
-            //         'account_number'=> 'required',
-            //     ]);
-            // }else if( $request->payment_type == 'check'){
-            //     $request->validate([
-            //         'investment_id'=> 'required',
-            //         'payment_type'=> 'required',
-            //         'installment_amount'=> 'required',
-            //         'bank_name'=> 'required',
-            //         'check_number'=> 'required',
-            //     ]);
-            // }else{
-            //     $request->validate([
-            //         'investment_id'=> 'required',
-            //         'payment_type'=> 'required',
-            //         'installment_amount'=> 'required',
-            //     ]);
-            // }
+            // dd($request->all());
+            if($request->payment_type == 'bank'){
+                $request->validate([
+                    'investment_id'=> 'required',
+                    'payment_type'=> 'required',
+                    'installment_amount'=> 'required',
+                    'bank_name'=> 'required',
+                    'branch'=> 'required',
+                    'account_number'=> 'required',
+                ]);
+            }else if( $request->payment_type == 'check'){
+                $request->validate([
+                    'investment_id'=> 'required',
+                    'payment_type'=> 'required',
+                    'installment_amount'=> 'required',
+                    'bank_name'=> 'required',
+                    'check_number'=> 'required',
+                ]);
+            }else{
+                $request->validate([
+                    'investment_id'=> 'required',
+                    'payment_type'=> 'required',
+                    'installment_amount'=> 'required',
+                ]);
+            }
 
 
             $InvestInstallment = [
@@ -69,6 +69,7 @@ class InstallmentController extends Controller
                 'branch'=> $request->branch,
                 'account_number'=> $request->account_number,
                 'check_number'=> $request->check_number,
+                'received_by' => auth()->id(),
             ];
             // dd($InvestInstallment);
             InvestInstallment::create($InvestInstallment);

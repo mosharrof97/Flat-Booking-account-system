@@ -21,7 +21,7 @@ return new class extends Migration
             $table->bigInteger('account_number')->nullable();
             $table->bigInteger('check_number')->nullable();
 
-            $table->foreignId('created_by')->nullable();
+            $table->foreignId('received_by')->nullable();
             $table->foreignId('updated_by')->nullable();
             $table->foreignId('deleted_by')->nullable();
 

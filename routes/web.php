@@ -26,6 +26,7 @@ use App\Http\Controllers\Project\ProjectPurchaseController;
 use App\Http\Controllers\Project\ProjectExpenseController;
 use App\Http\Controllers\Project\ProjectDashboardController;
 use App\Http\Controllers\Project\ProjectInvestmentController;
+use App\Http\Controllers\Project\ProjectReportController;
 use App\Http\Controllers\Project\Flat\FlatController;
 use App\Http\Controllers\Project\Flat\FlatSaleController;
 use App\Http\Controllers\Project\Flat\BookingController;
@@ -157,10 +158,10 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 
             // Project Expense
             Route::prefix('report')->group(function () {
-                // Route::get('/invest_report', [ProjectExpenseController::class, 'index'])->name('invest.report');
-                Route::get('/invest_report', function(){
-                    return view('Project-Panel.Report.Invest_Report');
-                })->name('invest.report');
+                Route::get('/invest_report', [ProjectReportController::class, 'investReport'])->name('invest.report');
+                // Route::get('/invest_report', function(){
+                //     return view('Project-Panel.Report.Invest_Report');
+                // })->name('invest.report');
 
             });
         });
