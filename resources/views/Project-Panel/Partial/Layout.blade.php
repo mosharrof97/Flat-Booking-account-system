@@ -256,21 +256,28 @@
                                 <li>
                                     <a class="has-arrow" href="##">
                                         <i class="fa-solid fa-store"></i>
-                                        <span class="nav-text">Investment</span>
+                                        <span class="nav-text">Investment Report</span>
                                     </a>
                                 </li>
 
                                 <li>
                                     <a class="has-arrow" href="###">
                                         <i class="fa-solid fa-store"></i>
-                                        <span class="nav-text">Expanse</span>
+                                        <span class="nav-text">Expanse Report</span>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a class="has-arrow" href="###">
+                                        <i class="fa-solid fa-store"></i>
+                                        <span class="nav-text">purchase Report</span>
                                     </a>
                                 </li>
 
                                 <li>
                                     <a class="has-arrow" href="#####">
                                         <i class="fa-solid fa-store"></i>
-                                        <span class="nav-text">Sold Flat</span>
+                                        <span class="nav-text">Sold Flat Report</span>
                                     </a>
                                 </li>
                             </ul>
