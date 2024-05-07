@@ -29,8 +29,8 @@
                     </form>
                 </div>
 
-                <div class="table-responsive bg-white mt-3" data-mdb-perfect-scrollbar="true" style="position: relative; height: 445px;">
-                    <table class="table">
+                <div class="table-responsive bg-white mt-3" data-mdb-perfect-scrollbar="true" style="position: relative;">
+                    <table class="table table-bordered" id="expense-print-body">
                         <thead>
                             <tr>
                                 <th scope="col" style="min-width: 50px">SL</th>
@@ -71,9 +71,24 @@
                     </table>
                 </div>
 
+                <div class="mt-3">
+                    {{ $expense->links("pagination::bootstrap-5") }}
+                </div>
+                <div class="mt-2"><button class="btn btn-primary" id="printButton">print</button></div>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function() {
+        $("#printButton").click(function() {
+            var originalContent = $("#body").html();
+            $("#body").html($('#expense-print-body').html());
+            window.print();
+            $("#body").html(originalContent);
+        });
+    });
+</script>
 @endsection
 
