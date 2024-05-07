@@ -15,15 +15,6 @@
                         @csrf
                         <div class="row">
                             <div class="col-lg-4 mt-3">
-                                <select name="name" id="name" class="form-select" value="{{ old('name') }}">>
-                                    <option value="">All Client</option>
-                                    {{-- @foreach($client as $key => $value)
-                                    <option value="{{ $value->id }}">{{ $value->name }}</option >
-                                    @endforeach --}}
-                                </select>
-                            </div>
-
-                            <div class="col-lg-4 mt-3">
                                 <input type="date" name="start_date" id="start_date" class="form-control" value="{{ old('start_date') }}">
                             </div>
 
@@ -31,14 +22,14 @@
                                 <input type="date" name="end_date" id="end_date" class="form-control" value="{{ old('end_date') }}">
                             </div>
 
-                            <div class="col-lg-4 mt-3 text-end">
+                            <div class="col-lg-4 mt-3 ">
                                 <input type="submit" class="btn btn-primary" value="Submit">
                             </div>
                         </div>
                     </form>
                 </div>
 
-                <div class="table-responsive bg-white" data-mdb-perfect-scrollbar="true" style="position: relative; height: 445px;">
+                <div class="table-responsive bg-white mt-3" data-mdb-perfect-scrollbar="true" style="position: relative; height: 445px;">
                     <table class="table">
                         <thead>
                             <tr>
