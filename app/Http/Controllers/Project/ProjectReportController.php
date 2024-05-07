@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Hash;
+use Illuminate\Support\Facades\Crypt;
 use App\Models\Investment;
 use App\Models\InvestInstallment;
 use App\Models\Client;
@@ -62,7 +64,6 @@ class ProjectReportController extends Controller
         $project_id = Session::get('project_id');
         if ($project_id !== null) {
             $expense = Expense::orderBy('id','desc')->paginate(15);
-
             return view('Project-Panel.Report.Expense_Report', compact('expense'));
         } else {
             return redirect()->route('list.project')->with('error', 'Project Id Is Null');

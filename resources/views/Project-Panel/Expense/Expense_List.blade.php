@@ -33,6 +33,7 @@
                                 <td>{{ $expense->id }}</td>
                                 <td>
                                     @php
+
                                         $names = json_decode($expense->name);
                                     @endphp
                                     @foreach($names as $key => $value)
@@ -40,7 +41,7 @@
                                     @endforeach
                                 </td>
                                 <td>{{ $expense->total }}</td>
-                                <td>{{ $expense->user->name }}</td>
+                                <td>{{ $expense->project->user->name }}</td>
                                 <td>{{ $expense->date }}</td>
                                 <td>
                                     <a href="{{ route('project.expense.view',$expense->id) }} " class="btn btn-success">View</a>

@@ -45,13 +45,14 @@
                                 <th scope="col" style="min-width: 50px">SL</th>
                                 <th scope="col">Expense Date</th>
                                 <th scope="col">Name</th>
-                                <th scope="col">Total Price</th>
                                 <th scope="col">Created by</th>
+                                <th scope="col">Total Price</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($expense as $key => $value)
                             @php
+
                                 $names = json_decode($value->name)
                             @endphp
                             <tr>
@@ -62,11 +63,20 @@
                                         <span>{{ $name }}, </span>
                                     @endforeach
                                 </td>
-                                <td>{{ $value->total}}</td>
                                 <td>{{ $value->project->user->name}}</td>
+                                <td>{{ $value->total}}</td>
                             </tr>
                             @endforeach
                         </tbody>
+                        <tfoot>
+                            <tr>
+                                <th scope="col" style="min-width: 50px"></th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                                <th scope="col">Total</th>
+                                <th scope="col">{{ $expense->sum('total') }}</th>
+                            </tr>
+                        </tfoot>
                     </table>
                 </div>
 
