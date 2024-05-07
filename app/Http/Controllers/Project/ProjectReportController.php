@@ -61,7 +61,8 @@ class ProjectReportController extends Controller
     public function expenseReport(Request $request){
         $project_id = Session::get('project_id');
         if ($project_id !== null) {
-            $expense = Expense::orderBy('id', 'desc')->paginate(15);
+            $expense = Expense::orderBy('id','desc')->paginate(15);
+
             return view('Project-Panel.Report.Expense_Report', compact('expense'));
         } else {
             return redirect()->route('list.project')->with('error', 'Project Id Is Null');
