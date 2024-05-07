@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Builder;
 use App\Models\Investment;
 use App\Models\InvestInstallment;
 use App\Models\Client;
+use App\Models\Expense;
 use DB;
 
 class ProjectReportController extends Controller
@@ -51,6 +52,17 @@ class ProjectReportController extends Controller
             }
 
             return view('Project-Panel.Report.Invest_Report', compact('installment', 'client'));
+        } else {
+            return redirect()->route('list.project')->with('error', 'Project Id Is Null');
+        }
+    }
+
+
+    public function expenseReport(Request $request){
+        $project_id = Session::get('project_id');
+        if ($project_id !== null) {
+            $expense = Expense::orderBy('id', 'desc')->paginate(15);
+            return view('Project-Panel.Report.Expense_Report', compact('expense'));
         } else {
             return redirect()->route('list.project')->with('error', 'Project Id Is Null');
         }
