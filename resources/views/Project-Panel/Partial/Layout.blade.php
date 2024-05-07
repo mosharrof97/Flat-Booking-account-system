@@ -261,7 +261,7 @@
                                 </li>
 
                                 <li>
-                                    <a class="has-arrow" href="###">
+                                    <a class="has-arrow" href="{{ route('expense.report') }}">
                                         <i class="fa-solid fa-store"></i>
                                         <span class="nav-text">Expanse Report</span>
                                     </a>

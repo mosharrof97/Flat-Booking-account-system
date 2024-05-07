@@ -17,9 +17,9 @@
                             <div class="col-lg-4 mt-3">
                                 <select name="name" id="name" class="form-select" value="{{ old('name') }}">>
                                     <option value="">All Client</option>
-                                    @foreach($client as $key => $value)
+                                    {{-- @foreach($client as $key => $value)
                                     <option value="{{ $value->id }}">{{ $value->name }}</option >
-                                    @endforeach
+                                    @endforeach --}}
                                 </select>
                             </div>
 
@@ -43,34 +43,27 @@
                         <thead>
                             <tr>
                                 <th scope="col" style="min-width: 50px">SL</th>
-                                <th scope="col">Client Name</th>
-                                <th scope="col">invest</th>
-                                <th scope="col">profit (Fixed/Percentage)</th>
-                                <th scope="col">Date</th>
-                                <th scope="col">invest Amount</th>
-                                <th scope="col">Method</th>
-                                <th scope="col">Received by</th>
+                                <th scope="col">Expense Date</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Total Price</th>
+                                <th scope="col">Created by</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($installment as $key => $value)
+                            @foreach($expense as $key => $value)
+                            @php
+                                $names = json_decode($value->name)
+                            @endphp
                             <tr>
                                 <th scope="row" style="min-width:50px;">{{ $key + 1 }}</th>
-                                <td>{{ $value->investment->client->name }}</td>
-                                <td>{{ $value->investment->total_Investment }} TK</td>
-
-                                @if($value->investment->profit_type == 'fixed')
-                                <td>{{ $value->investment->profit }} Tk</td>
-                                @elseif($value->investment->profit_type == 'percentage')
-                                <td>{{ $value->investment->profit }}%</td>
-                                @else
-                                <td>{{ $value->investment->profit }}</td>
-                                @endif
-
-                                <td>{{ $value->created_at->format('d-M-y') }}</td>
-                                <td>{{ $value->installment_amount }}</td>
-                                <td>{{ $value->payment_type }}</td>
-                                <td>Admin</td>
+                                <td>{{ $value->date->format('d-M-y') }}</td>
+                                <td>
+                                    @foreach($names as $key => $name)
+                                        <span>{{ $name }}, </span>
+                                    @endforeach
+                                </td>
+                                <td>{{ $value->total}}</td>
+                                <td>{{ $value->project->user->name}}</td>
                             </tr>
                             @endforeach
                         </tbody>

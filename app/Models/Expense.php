@@ -39,7 +39,9 @@ class Expense extends Model
         'unit' => 'array',
         'price' => 'array',
         'total_price' => 'array',
+        'date' => 'datetime:Y-m-d',
     ];
+
 
     public function project() {
        return $this->BelongsTo(Project::class);
