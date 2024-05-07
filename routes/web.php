@@ -156,7 +156,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 
             });
 
-            // Project Expense
+            // Project Return
             Route::prefix('report')->group(function () {
                 Route::get('/invest_report', [ProjectReportController::class, 'investReport'])->name('invest.report');
                 // Route::get('/invest_report', function(){
