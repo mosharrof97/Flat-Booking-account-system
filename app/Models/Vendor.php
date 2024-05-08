@@ -22,4 +22,8 @@ class Vendor extends Model
     public function purchase() {
         return $this->HasMany(Purchase::class,'vendor_id');
     }
+
+    public function re_purchase() {
+        return $this->HasMany(ReturnPurchase::class,'vendor_id');
+    }
 }

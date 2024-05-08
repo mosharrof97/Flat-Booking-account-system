@@ -71,7 +71,7 @@ class ProjectPurchaseController extends Controller
                     'vendor_id' => $request->vendor_id,
                     'memo_no' => $request->memo_no,
                     'date' => $request->date,
-                    'invoice_no'=> 1000000 + $invoiceNumber,
+                    'invoice_no'=> 10000 + $invoiceNumber,
 
                     // ---------Use json_encode---------//
                     'name' =>json_encode($names),

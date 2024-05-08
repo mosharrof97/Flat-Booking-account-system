@@ -5,8 +5,8 @@
         <div class="card p-4">
             <div class="card-header">
                 <h4>Purchase List</h4>
-                <a class="btn btn-primary" href="{{ route('project.purchase') }}">
-                    <span class="nav-text">New purchase</span>
+                <a class="btn btn-primary" href="{{ route('project.return.purchase') }}">
+                    <span class="nav-text">purchase Return</span>
                 </a>
             </div>
             <div class="card-body">
@@ -17,8 +17,9 @@
 
                             <tr>
                                 <th scope="col" class="flex-wrap">SL</th>
-                                <th scope="col" class="flex-wrap">Order No</th>
+                                <th scope="col" class="flex-wrap">Invoice No</th>
                                 <th scope="col" class="flex-wrap">Memo No</th>
+                                <th scope="col" class="flex-wrap">Return Invoice No</th>
                                 <th scope="col" class="flex-wrap">Vendor Name</th>
                                 <th scope="col" class="flex-wrap">Phone</th>
                                 <th scope="col" class="flex-wrap">Amount</th>
@@ -29,18 +30,19 @@
                         </thead>
 
                         <tbody >
-                            @foreach ($purchases as $key => $purchase )
+                            @foreach ($purchases as $key => $re_purchase )
                             <tr>
                                 <th scope="row">{{  $key + 1 }}</th>
 
                                 {{-- <td>{{ $purchase->order_no }}</td> --}}
-                                <td>{{  $purchase->id }}</td>
-                                <td>{{ $purchase->memo_no  }}</td>
-                                <td>{{ $purchase->vendor->name  }}</td>
-                                <td>{{ $purchase->vendor->phone }}</td>
-                                <td>{{ $purchase->total }}</td>
-                                <td>{{ $purchase->date }}</td>
-                                <td>{{ $purchase->created_by }}</td>
+                                <td>{{ $re_purchase->invoice_no }}</td>
+                                <td>{{ $re_purchase->memo_no  }}</td>
+                                <td>{{ $re_purchase->purchase->invoice_no }}</td>
+                                <td>{{ $re_purchase->vendor->name  }}</td>
+                                <td>{{ $re_purchase->vendor->phone }}</td>
+                                <td>{{ $re_purchase->total }}</td>
+                                <td>{{ $re_purchase->date }}</td>
+                                <td>{{ $re_purchase->project->user->name }}</td>
 
                                 {{-- @php
                                     // $names = explode("**",$purchase->name);
@@ -78,7 +80,7 @@
                                 </td>
                                 <td>{{ $purchase->total }}</td> --}}
                                 <td>
-                                    <a href="{{ route('project.purchase.view',$purchase->id) }} " class="btn btn-success">View</a>
+                                    <a href="{{ route('project.purchase.view',$re_purchase->id) }} " class="btn btn-success">View</a>
                                 </td>
                             </tr>
                             @endforeach

@@ -51,4 +51,8 @@ class ReturnPurchase extends Model
     public function vendor() {
         return $this->BelongsTo(Vendor::class);
     }
+
+    public function purchase() {
+        return $this->BelongsTo(Purchase::class);
+    }
 }

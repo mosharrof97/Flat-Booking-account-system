@@ -54,5 +54,11 @@ class Purchase extends Model
 
     public function vendor() {
         return $this->BelongsTo(Vendor::class);
-     }
+    }
+
+    public function re_purchase() :HasMany
+    {
+        return $this->hasMany(ReturnPurchase::class, 'purchase_id');
+    }
+
 }

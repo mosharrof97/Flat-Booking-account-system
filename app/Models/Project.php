@@ -68,6 +68,10 @@ class Project extends AuthenticatableUser implements Authenticatable
         return $this->HasMany(Purchase::class, 'project_id');
     }
 
+    public function re_purchase() {
+        return $this->HasMany(ReturnPurchase::class, 'project_id');
+    }
+
     public function flat() {
         return $this->HasMany(Flat::class, 'project_id');
     }
