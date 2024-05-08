@@ -25,7 +25,7 @@ class ProjectInvestmentController extends Controller
         if($project_id !== null){
 
             $data = [
-                'invest' => Investment::where('project_id',$project_id)->get(),
+                'invest' => Investment::where('project_id',$project_id)->paginate(15),
             ];
             return view('Project-Panel.Investment.investmentList',$data);
         }else{

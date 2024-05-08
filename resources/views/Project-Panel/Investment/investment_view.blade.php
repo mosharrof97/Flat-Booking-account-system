@@ -7,7 +7,12 @@
                 <h4>Installment Information
                     <a href="{{ route('project.investment.list') }}" class="btn btn-danger">Back</a>
                 </h4>
+
+                @if($investment->total_Investment == $installment->sum('installment_amount'))
+                <button class="btn btn-danger">paid</button>
+                @else
                 <a href="{{ route('project.installment',$investment->id) }}" class="btn btn-success">Installment</a>
+                @endif
 
             </div>
             <div class="card-body">

@@ -12,10 +12,10 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table">
+                    <table class="table display nowrap" style="width:100%" id="investTable">
                         <thead>
                             <tr>
-                                <th scope="col" class="flex-wrap">SL</th>
+                                <th  class="" style="min-width: 50px">SL</th>
                                 <th scope="col" class="flex-wrap">Name</th>
                                 <th scope="col" class="flex-wrap">Phone</th>
                                 <th scope="col" class="flex-wrap">Email</th>
@@ -24,14 +24,14 @@
                                 {{-- <th scope="col" class="flex-wrap">Installment</th> --}}
                                 <th scope="col" class="flex-wrap">Paid Amount</th>
                                 <th scope="col" class="flex-wrap">Due Amount</th>
-                                <th scope="col" colspan="2" class="flex-wrap">Action</th>
+                                <th scope="col" colspan="" class="flex-wrap">Action</th>
                             </tr>
                         </thead>
                         <tbody >
                             @if($invest->count() > 0 )
                                 @foreach ( $invest as $key => $data )
                                 <tr>
-                                    <th scope="row">{{ $key + 1 }}</th>
+                                    <th scope="row" style="min-width: 50px">{{ $key + 1 }}</th>
                                     <td>{{ $data->client->name }}</td>
                                     <td>{{ $data->client->phone }}</td>
                                     <td>{{ $data->client->email }}</td>
@@ -48,11 +48,7 @@
                                     <td>{{$data->total_Investment - $data->installment->sum('installment_amount') }}</td>
                                     <td>
                                         <a href="{{ route('project.investment.view',$data->id) }}" class="btn btn-success">View</a>
-                                    </td>
-                                    {{-- @php
-                                        dd($data->installment->sum('installment_amount'));
-                                    @endphp --}}
-                                    <td>
+
                                         @if($data->total_Investment == $data->installment->sum('installment_amount'))
                                         <button class="btn btn-danger">paid</button>
                                         @else
@@ -72,9 +68,27 @@
                         </tbody>
                     </table>
                 </div>
+
+                <div class="mt-3">
+                    {{ $invest->links('pagination::bootstrap-5') }}
+                </div>
             </div>
         </div>
     </div>
 </div>
+
+
+<script>
+    new DataTable('#investTable',
+        {
+            layout: {
+                topStart: {
+                    buttons: ['excel','print']
+                }
+            }
+        }
+    );
+
+</script>
 
 @endsection

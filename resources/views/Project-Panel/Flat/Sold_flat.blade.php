@@ -72,14 +72,6 @@
                                     <a href="{{ route('flat.view', $flat->id) }} " class="btn btn-success me-2">
                                         <i class="fa-solid fa-eye"></i>
                                     </a>
-
-                                    <a href="{{ route('flat.edit', $flat->id) }} " class="btn btn-success me-2">
-                                        <i class="fa-solid fa-pen-to-square"></i>
-                                    </a>
-
-                                    <a href="{{ route('flat.delete', $flat->id) }} " class="btn btn-danger me-2">
-                                        <i class="fa-solid fa-trash"></i>
-                                    </a>
                                 </td>
                             </tr>
                             @endforeach
@@ -125,16 +117,15 @@
 
 
 
-
 <script>
-    new DataTable('#flatTable'
-        // , {
-        //     layout: {
-        //         topStart: {
-        //             buttons: ['pdf', 'print']
-        //         }
-        //     }
-        // }
+    new DataTable('#flatTable',
+        {
+            layout: {
+                topStart: {
+                    buttons: ['excel','print']
+                }
+            }
+        }
     );
 
 </script>
