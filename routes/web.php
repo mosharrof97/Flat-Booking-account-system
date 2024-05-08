@@ -22,7 +22,8 @@ use App\Http\Controllers\Vendor\VendorController;
 
 use App\Http\Controllers\Project\ProjectController;
 use App\Http\Controllers\Project\InstallmentController;
-use App\Http\Controllers\Project\ProjectPurchaseController;
+use App\Http\Controllers\Project\Purchase\ProjectPurchaseController;
+use App\Http\Controllers\Project\Purchase\ProjectReturnPurchaseController;
 use App\Http\Controllers\Project\ProjectExpenseController;
 use App\Http\Controllers\Project\ProjectDashboardController;
 use App\Http\Controllers\Project\ProjectInvestmentController;
@@ -115,6 +116,16 @@ Route::prefix('admin')->middleware('auth')->group(function () {
                 Route::post('/create', [ProjectPurchaseController::class, 'store'])->name('store.project.purchase');
                 Route::get('/{id}/show', [ProjectPurchaseController::class, 'show'])->name('project.purchase.view');
 
+
+
+                // Project Return Purchase
+                Route::prefix('return')->group(function () {
+                    Route::get('/list', [ProjectReturnPurchaseController::class, 'index'])->name('project.return.purchase.list');
+                    Route::get('/create', [ProjectReturnPurchaseController::class, 'create'])->name('project.return.purchase');
+                    Route::post('/create', [ProjectReturnPurchaseController::class, 'store'])->name('store.project.return.purchase');
+                    Route::get('/{id}/show', [ProjectReturnPurchaseController::class, 'show'])->name('project.return.purchase.view');
+
+                });
             });
 
             // Project Expense

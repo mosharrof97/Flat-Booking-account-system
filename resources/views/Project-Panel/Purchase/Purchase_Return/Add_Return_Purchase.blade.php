@@ -6,42 +6,34 @@
         <div class="card p-4">
             <div class="card-header ">
                 <div class="col-sm-12 text-center">
-                    <h4 class=" font-weight-bold font-italic mt-3">New Purchase Form</h4>
+                    <h4 class=" font-weight-bold font-italic mt-3">Purchase Return Form</h4>
                 </div>
             </div>
             <div class="card-body">
-                <form class="form-inline" action="{{ route('store.project.purchase') }}" method="POST" enctype="multipart/form-data">
+                <form class="form-inline" action="{{ route('store.project.return.purchase') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="row g-3">
+
+                        <div class="form-group col-md-6  mb-3">
+                            <label for="date" class="col-sm-4 col-form-label text-right">Date</label>
+                            <input type="date" class="form-control col-sm-8" id="date" name="date" value="">
+
+                            @error('date')
+                            <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+
                         <div class="form-group col-md-6 mb-3">
-                            <label for="vendor_id" class="col-sm-4 col-form-label text-right">Select Vandor</label>
-                            <select name="vendor_id" class="form-control col-sm-8 vandor_id" id="vendor_id" required="">
-                                <option value="">Select Vandor</option>
-                                <option value="Another vendor">Another vendor</option>
-                                @foreach($vendor as $key => $data)
-                                    <option value="{{ $data->id }}">{{ $data->name .' - '. $data->phone }}</option>
+                            <label for="purchase_id" class="col-sm-4 col-form-label text-right">Select Vandor</label>
+                            <select name="purchase_id" class="form-control col-sm-8 vandor_id" id="purchase_id" required="">
+                                <option value="">Select Return Invoice....</option>
+                                @foreach($purchase as $key => $data)
+                                    <option value="{{ $data->id }}">{{ $data->invoice_no .' - '. $data->vendor->name }}</option>
                                 @endforeach
 
                             </select>
 
-                            @error('vandor_id')
-                            <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
-
-                        <div class="form-group col-md-6 mb-3">
-                            <label for="memo_no" class="col-sm-4 col-form-label text-right">Mamo No</label>
-                            <input type="text" name="memo_no" class="form-control col-sm-8" value="" required="">
-                            @error('vandor_id')
-                            <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
-
-                        <div class="form-group col-md-6  mb-3">
-                            <label for="date" class="col-sm-4 col-form-label text-right">date</label>
-                            <input type="date" class="form-control col-sm-8" id="date" name="date" value="">
-
-                            @error('date')
+                            @error('purchase_id')
                             <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
@@ -103,37 +95,7 @@
                                                 </td>
                                                 <td></td>
                                             </tr>
-                                            <tr>
-                                                <td colspan="4" class="text-right"> Service Charge </td>
-                                                <td>
-                                                    <input type="text" name="service_charge" class="form-control col-sm-7 re_service_charge" id="re_service_charge" value="0" required="">
-                                                </td>
-                                                <td></td>
-                                            </tr>
-                                            <tr>
-                                                <td colspan="4" class="text-right"> Shipping Charge </td>
-                                                <td>
-                                                    <input type="text" name="shipping_charge" class="form-control col-sm-7 re_shipping_charge" id="re_shipping_charge" value="0" required="">
-                                                </td>
-                                                <td></td>
-                                            </tr>
 
-                                            <tr>
-                                                <td colspan="4" class="text-right"> Total Amount </td>
-                                                <td>
-
-                                                    <input type="decimal" class="form-control col-sm-7" id="total_amount" name="total_amount" style="background-color: rgb(218, 218, 218)" value="0" required="" readonly="">
-                                                </td>
-                                                <td></td>
-                                            </tr>
-
-                                            <tr>
-                                                <td colspan="4" class="text-right"> Discount </td>
-                                                <td>
-                                                    <input type="number" name="discount" class="form-control col-sm-7 re_discount" id="re_discount" value="0" required="">
-                                                </td>
-                                                <td></td>
-                                            </tr>
                                             <tr>
                                                 <td colspan="4" class="text-right"> Paid </td>
                                                 <td>
@@ -235,12 +197,12 @@
             var paid = parseFloat($('#re_paid').val()) || 0;
 
             // var total = total;
-            var total_amount = total + serviceCharge + shippingCharge;
-            var due = total_amount - discount - paid;
+            // var total_amount = total ;
+            var due = total - paid;
 
 
             // $('#total').val(total.toFixed(2));
-            $('#total_amount').val(total_amount.toFixed(2));
+            // $('#total_amount').val(total_amount.toFixed(2));
             $('#re_due').val(due.toFixed(2));
             return total;
         }

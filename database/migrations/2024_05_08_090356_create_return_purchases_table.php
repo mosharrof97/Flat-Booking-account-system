@@ -11,23 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('purchases', function (Blueprint $table) {
+        Schema::create('return_purchases', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('project_id')->nullable();
-            $table->foreignId('vendor_id')->nullable();
+            $table->foreignId('project_id');
+            $table->foreignId('vendor_id');
             $table->string('memo_no');
-            $table->date('date');
+            $table->foreignId('purchase_id');
             $table->bigInteger('invoice_no');
-            $table->string('name')->nullable();
+            $table->date('date');
+            $table->string('name');
             $table->string('price');
             $table->string('quantity')->nullable();
             $table->string('unit')->nullable();
             $table->string('total_price');
             $table->decimal('total',15,2);
-            $table->decimal('service_charge',15,2);
-            $table->decimal('shipping_charge',15,2);
-            $table->decimal('total_amount',15,2);
-            $table->decimal('discount',15,2);
             $table->decimal('paid',15,2);
             $table->decimal('due',15,2);
 
@@ -36,7 +33,6 @@ return new class extends Migration
             $table->foreignId('deleted_by')->nullable();
 
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -45,6 +41,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('purchases');
+        Schema::dropIfExists('return_purchases');
     }
 };

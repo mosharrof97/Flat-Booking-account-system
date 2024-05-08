@@ -17,7 +17,7 @@
 
                             <tr>
                                 <th scope="col" class="flex-wrap">SL</th>
-                                <th scope="col" class="flex-wrap">Order No</th>
+                                <th scope="col" class="flex-wrap">Invoice No</th>
                                 <th scope="col" class="flex-wrap">Memo No</th>
                                 <th scope="col" class="flex-wrap">Vendor Name</th>
                                 <th scope="col" class="flex-wrap">Phone</th>
@@ -34,13 +34,13 @@
                                 <th scope="row">{{  $key + 1 }}</th>
 
                                 {{-- <td>{{ $purchase->order_no }}</td> --}}
-                                <td>{{  $purchase->id }}</td>
+                                <td>{{  $purchase->invoice_no }}</td>
                                 <td>{{ $purchase->memo_no  }}</td>
                                 <td>{{ $purchase->vendor->name  }}</td>
                                 <td>{{ $purchase->vendor->phone }}</td>
                                 <td>{{ $purchase->total }}</td>
                                 <td>{{ $purchase->date }}</td>
-                                <td>{{ $purchase->created_by }}</td>
+                                <td>{{ $purchase->project->user->name }}</td>
 
                                 {{-- @php
                                     // $names = explode("**",$purchase->name);

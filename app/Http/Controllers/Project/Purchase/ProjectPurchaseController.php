@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Project;
+namespace App\Http\Controllers\Project\Purchase;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Project;
 use App\Models\Purchase;
@@ -20,7 +21,7 @@ class ProjectPurchaseController extends Controller
     public function index(){
         $projectId = Session::get('project_id');
         if($projectId){
-             $purchases = Purchase::where('project_id',$projectId)->paginate(15);
+             $purchases = Purchase::where('project_id',$projectId)->orderBy('id', 'desc')->paginate(15);
 
              // dd($purchases);
              return view('Project-Panel.Purchase.Purchase_List', compact('purchases' ));
@@ -53,47 +54,60 @@ class ProjectPurchaseController extends Controller
 
             // dd($request->all());
 
+
             $names = $request->input('name');
             $quantities = $request->input('quantity');
             $units = $request->input('unit');
             $prices = $request->input('price');
             $total_prices = $request->input('total_price');
 
-            // dd(auth()->id());
-            $purchasesData = [
-                'project_id' => $projectId,
-                // 'user_id' =>  auth()->user()->id,
-                'vendor_id' => $request->vendor_id,
-                'memo_no' => $request->memo_no,
-                'date' => $request->date,
-                // ---------Use json_encode---------//
-                'name' =>json_encode($names),
-                'quantity' => json_encode($quantities),
-                'unit' =>json_encode( $units),
-                'price' => json_encode($prices),
-                'total_price' => json_encode($total_prices),
-                // ---------Use json_encode---------//
+            $lastInvoice = Purchase::orderBy('id', 'desc')->first();
+            $invoiceNumber = $lastInvoice ? ++$lastInvoice->invoice_no : 1;
 
-                'total' => $request->total,
-                'service_charge' => $request->service_charge,
-                'shipping_charge' => $request->shipping_charge,
-                'total_amount' => $request->total_amount,
-                'discount' => $request->discount,
-                'paid' => $request->paid,
-                'due' => $request->due,
-                'created_by' => auth()->id(),
+            try {
+                DB::beginTransaction();
+                $purchasesData = [
+                    'project_id' => $projectId,
+                    'vendor_id' => $request->vendor_id,
+                    'memo_no' => $request->memo_no,
+                    'date' => $request->date,
+                    'invoice_no'=> 1000000 + $invoiceNumber,
 
-                //--------Use implode Method-------//
-                // 'name' =>implode("**",$names),
-                // 'quantity' => implode("**",$quantities),
-                // 'unit' =>implode( "**",$units),
-                // 'price' => implode("**",$prices),
-                // 'total_price' => implode("**",$total_prices),
-                //--------Use implode Method-------//
-            ];
-            // dd($expensesData);
-            $Purchases = Purchase::create($purchasesData);
-            return redirect()->route('project.purchase.list')-> with('success','Purchase Add Successful.');
+                    // ---------Use json_encode---------//
+                    'name' =>json_encode($names),
+                    'quantity' => json_encode($quantities),
+                    'unit' =>json_encode( $units),
+                    'price' => json_encode($prices),
+                    'total_price' => json_encode($total_prices),
+                    // ---------Use json_encode---------//
+
+                    'total' => $request->total,
+                    'service_charge' => $request->service_charge,
+                    'shipping_charge' => $request->shipping_charge,
+                    'total_amount' => $request->total_amount,
+                    'discount' => $request->discount,
+                    'paid' => $request->paid,
+                    'due' => $request->due,
+                    'created_by' => auth()->id(),
+
+                    //--------Use implode Method-------//
+                    // 'name' =>implode("**",$names),
+                    // 'quantity' => implode("**",$quantities),
+                    // 'unit' =>implode( "**",$units),
+                    // 'price' => implode("**",$prices),
+                    // 'total_price' => implode("**",$total_prices),
+                    //--------Use implode Method-------//
+                ];
+                $Purchases = Purchase::create($purchasesData);
+
+                DB::commit();
+
+                return redirect()->route('project.purchase.list')-> with('success','Purchase Add Successful.');
+            }catch (\Exception $e) {
+                DB::rollback();
+
+                return back()->with('error','Purchase error: '.$e->getMessage());
+            }
         }else{
             return redirect()->route('list.project')-> with('error','Project Id Is Null');
         }

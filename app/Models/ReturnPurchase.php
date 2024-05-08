@@ -6,9 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Purchase extends Model
+class ReturnPurchase extends Model
 {
     use HasFactory;
 
@@ -16,6 +15,7 @@ class Purchase extends Model
         'project_id',
         'vendor_id',
         'memo_no',
+        'purchase_id',
         'invoice_no',
         'date',
         'name',
@@ -24,10 +24,6 @@ class Purchase extends Model
         'unit',
         'total_price',
         'total',
-        'service_charge',
-        'shipping_charge',
-        'total_amount',
-        'discount',
         'paid',
         'due',
 
@@ -50,9 +46,9 @@ class Purchase extends Model
 
     public function user() {
         return $this->BelongsTo(User::class, 'id');
-     }
+    }
 
     public function vendor() {
         return $this->BelongsTo(Vendor::class);
-     }
+    }
 }
