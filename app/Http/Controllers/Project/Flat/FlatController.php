@@ -15,7 +15,7 @@ class FlatController extends Controller
         $project_id = Session::get('project_id');
         if($project_id !== null){
 
-            $flats = Flat::where('project_id', $project_id)->where('status', '!=', 1)->get();
+            $flats = Flat::where('project_id', $project_id)->where('status', '!=', 1)->paginate(15);
             return view('Project-Panel.Flat.Flat_list', compact('flats'));
         }else{
             return redirect()->route('list.project')-> with('error','Project Id Is Null');
@@ -27,7 +27,7 @@ class FlatController extends Controller
         if($project_id !== null){
             $comInfo = ComponyInfo::first();
             $project = Project::find($project_id);
-            $flats = Flat::where('project_id', $project_id)->where('status', 0)->where('sale_status', 0)->get();
+            $flats = Flat::where('project_id', $project_id)->where('status', 0)->where('sale_status', 0)->paginate(15);
 
             return view('Project-Panel.Flat.UnSold_flat', compact(['flats','project','comInfo']));
         }else{
@@ -40,7 +40,7 @@ class FlatController extends Controller
         if($project_id !== null){
             $comInfo = ComponyInfo::first();
             $project = Project::find($project_id);
-            $flats = Flat::where('project_id', $project_id)->where('status', 0)->where('sale_status', 2)->get();
+            $flats = Flat::where('project_id', $project_id)->where('status', 0)->where('sale_status', 2)->paginate(15);
 
             return view('Project-Panel.Flat.Sold_flat', compact(['flats','project','comInfo']));
         }else{
@@ -154,8 +154,6 @@ class FlatController extends Controller
                 // 'Outdoor' =>$request->Outdoor,
             ];
 
-            // dd($request->all());
-
             $flat = Flat::where('project_id', $project_id)->where('status', '!=', 1)->find($id);
             $flat->update($data);
 
@@ -166,7 +164,6 @@ class FlatController extends Controller
     }
 
     public function view($id){
-        // dd($id);
         $project_id = Session::get('project_id');
         if($project_id !== null){
             $comInfo = ComponyInfo::first();

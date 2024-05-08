@@ -3,9 +3,8 @@
 <div class="row justify-content-center">
     <div class="col-lg-12 col-sm-12">
         <div class="card p-4">
-            <div class="card-header">
-                <h4>Flat List</h4>
-                <a class="btn btn-primary" href="{{ route('flat.add') }}">Add New Project</a>
+            <div class="card-header justify-content-center">
+                <h3 class=" font-weight-bold font-italic mt-3">Sold Flat List</h3>
             </div>
             <div class="card-body">
                 <div>
@@ -86,6 +85,9 @@
                             @endforeach
                         </tbody>
                     </table>
+                </div>
+                <div class="mt-3">
+                    {{ $flats->links('pagination::bootstrap-5') }}
                 </div>
             </div>
         </div>

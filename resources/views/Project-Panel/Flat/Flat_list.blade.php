@@ -91,6 +91,9 @@
                         </tbody>
                     </table>
                 </div>
+                <div class="mt-3">
+                    {{ $flats->links('pagination::bootstrap-5') }}
+                </div>
             </div>
         </div>
     </div>
@@ -129,14 +132,13 @@
 
 
 <script>
-    new DataTable('#flatTable'
-        // , {
-        //     layout: {
-        //         topStart: {
-        //             buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
-        //         }
-        //     }
-        // }
+    new DataTable('#flatTable' , {
+            layout: {
+                topStart: {
+                    buttons: ['excel','print']
+                }
+            }
+        }
     );
 
 </script>
