@@ -44,8 +44,8 @@
                                 <td>{{ $expense->project->user->name }}</td>
                                 <td>{{ $expense->date }}</td>
                                 <td>
-                                    <a href="{{ route('project.expense.view',$expense->id) }} " class="btn btn-success">View</a>
-                                    <a href="{{ route('project.expense.edit',$expense->id) }} " class="btn btn-success">Edit</a>
+                                    <a href="{{ route('project.expense.view',$expense->id) }} " class="btn btn-success"><i class="fa-solid fa-eye"></i></a>
+                                    <a href="{{ route('project.expense.edit',$expense->id) }} " class="btn btn-info"><i class="fa-solid fa-pen-to-square"></i></a>
                                 </td>
                             </tr>
                             @endforeach
@@ -53,20 +53,22 @@
                         </tbody>
                     </table>
                 </div>
+                <div class="mt-3">
+                    {{ $expenses->links('pagination::bootstrap-5') }}
+                </div>
             </div>
         </div>
     </div>
 </div>
 
 <script>
-    new DataTable('#projectExpenseTable'
-    // , {
-    //     layout: {
-    //         topStart: {
-    //             buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
-    //         }
-    //     }
-    // }
+    new DataTable('#projectExpenseTable', {
+        layout: {
+            topStart: {
+                buttons: ['excel','print']
+            }
+        }
+    }
     );
 </script>
 @endsection
