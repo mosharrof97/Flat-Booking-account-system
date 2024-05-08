@@ -86,20 +86,22 @@
                         </tbody>
                     </table>
                 </div>
+                <div class="mt-3">
+                    {{ $purchases->links('pagination::bootstrap-5') }}
+                </div>
             </div>
         </div>
     </div>
 </div>
 
 <script>
-    new DataTable('#projectExpenseTable'
-    // , {
-    //     layout: {
-    //         topStart: {
-    //             buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
-    //         }
-    //     }
-    // }
+    new DataTable('#projectExpenseTable', {
+        layout: {
+            topStart: {
+                buttons: ['excel', 'print']
+            }
+        }
+    }
     );
 </script>
 @endsection

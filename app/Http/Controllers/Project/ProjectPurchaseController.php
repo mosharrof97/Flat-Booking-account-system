@@ -20,7 +20,7 @@ class ProjectPurchaseController extends Controller
     public function index(){
         $projectId = Session::get('project_id');
         if($projectId){
-             $purchases = Purchase::where('project_id',$projectId)->get();
+             $purchases = Purchase::where('project_id',$projectId)->paginate(15);
 
              // dd($purchases);
              return view('Project-Panel.Purchase.Purchase_List', compact('purchases' ));

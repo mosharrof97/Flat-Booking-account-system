@@ -13,19 +13,19 @@
 
     {{---- Datatable ----}}
         {{-- CSS --}}
-        <link href="https://cdn.datatables.net/2.0.5/css/dataTables.dataTables.css" rel="stylesheet">
-        <link href="https://cdn.datatables.net/buttons/3.0.2/css/buttons.dataTables.css" rel="stylesheet">
+        <link href="{{ asset('asset/DataTable/css/dataTables.dataTables.css') }}" rel="stylesheet">
+        <link href="{{ asset('asset/DataTable/css/buttons.dataTables.css') }}" rel="stylesheet">
 
         {{-- Javascript --}}
         <script src="{{ asset('asset/js/jquery.min.js') }}"></script>
-        <script src="https://cdn.datatables.net/2.0.5/js/dataTables.js"></script>
-        <script src="https://cdn.datatables.net/buttons/3.0.2/js/dataTables.buttons.js"></script>
-        <script src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.dataTables.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
-        <script src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.html5.min.js"></script>
-        <script src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.print.min.js"></script>
+        <script src="{{ asset('asset/DataTable/js/datatable.js') }}"></script>
+        <script src="{{ asset('asset/DataTable/js/buttons.js') }}"></script>
+        <script src="{{ asset('asset/DataTable/js/buttons.dataTables.js') }}"></script>
+        <script src="{{ asset('asset/DataTable/js/jszip.min.js') }}"></script>
+        <script src="{{ asset('asset/DataTable/js/pdfmake.min.js') }}"></script>
+        <script src="{{ asset('asset/DataTable/js/vfs_fonts.js') }}"></script>
+        <script src="{{ asset('asset/DataTable/js/buttons.html5.min.js') }}"></script>
+        <script src="{{ asset('asset/DataTable/js/buttons.print.min.js') }}"></script>
     {{---- Datatable ----}}
 
 
@@ -341,8 +341,8 @@
     <script src="{{ asset('asset/js/bootstrap.bundle.min.js') }}"></script>
 
     {{-- -- Datatable -- --}}
-    <script src="{{ asset('vendor/datatables/js/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('asset/js/plugins-init/datatables.init.js') }}"></script>
+    {{-- <script src="{{ asset('vendor/datatables/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('asset/js/plugins-init/datatables.init.js') }}"></script> --}}
 
 </body>
 
