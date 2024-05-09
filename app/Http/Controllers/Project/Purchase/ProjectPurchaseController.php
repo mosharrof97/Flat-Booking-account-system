@@ -13,7 +13,7 @@ use App\Models\Vendor;
 class ProjectPurchaseController extends Controller
 {
     // public function __construct(){
-    //     $this->middleware('permission:view purchase', ['only' => ['index']]);
+    //     $this->middleware('permission:list purchase', ['only' => ['index']]);
     //     $this->middleware('permission:create purchase', ['only' => ['create','store']]);
     //     $this->middleware('permission:show purchase', ['only' => ['show']]);
     // }

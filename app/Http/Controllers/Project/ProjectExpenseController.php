@@ -22,7 +22,6 @@ class ProjectExpenseController extends Controller
         if($projectId){
              $expenses = Expense::where('project_id',$projectId)->paginate(15);;
 
-             // dd($expenses);
              return view('Project-Panel.Expense.Expense_List', compact('expenses' ));
         }else{
             return redirect()->route('list.project')-> with('error','Project Id Is Null');

@@ -22,7 +22,6 @@ class FlatReturnController extends Controller
 
             $flat = Flat::where('project_id', $project_id)->where('status', '!=', 1)->find($id);
 
-        // return($flat->flatSaleInfo[0]->sold_by);
             return view('Project-Panel.Flat.Flat_return.Return',compact('flat'));
         }else{
             return redirect()->route('list.project')-> with('error','Project Id Is Null');

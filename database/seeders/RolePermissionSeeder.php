@@ -41,26 +41,54 @@ class RolePermissionSeeder extends Seeder
         Permission::create(['name' => 'view project', 'guard_name' => 'web',]);
         Permission::create(['name' => 'create project', 'guard_name' => 'web',]);
         Permission::create(['name' => 'update project', 'guard_name' => 'web',]);
+        Permission::create(['name' => 'view project', 'guard_name' => 'web',]);
         Permission::create(['name' => 'delete project', 'guard_name' => 'web',]);
-
-        Permission::create(['name' => 'view expanse', 'guard_name' => 'web',]);
-        Permission::create(['name' => 'create expanse', 'guard_name' => 'web',]);
-        Permission::create(['name' => 'show expanse', 'guard_name' => 'web',]);
 
         Permission::create(['name' => 'login project', 'guard_name' => 'web',]);
         Permission::create(['name' => 'logout project', 'guard_name' => 'web',]);
-
-        Permission::create(['name' => 'installment', 'guard_name' => 'web',]);
 
         Permission::create(['name' => 'view investment', 'guard_name' => 'web',]);
         Permission::create(['name' => 'create investment', 'guard_name' => 'web',]);
         Permission::create(['name' => 'show investment', 'guard_name' => 'web',]);
 
-        Permission::create(['name' => 'list customer', 'guard_name' => 'web',]);
-        Permission::create(['name' => 'create customer', 'guard_name' => 'web',]);
-        Permission::create(['name' => 'update customer', 'guard_name' => 'web',]);
-        Permission::create(['name' => 'view customer', 'guard_name' => 'web',]);
-        Permission::create(['name' => 'delete customer', 'guard_name' => 'web',]);
+        Permission::create(['name' => 'installment', 'guard_name' => 'web',]);
+
+        Permission::create(['name' => 'view expanse', 'guard_name' => 'web',]);
+        Permission::create(['name' => 'create expanse', 'guard_name' => 'web',]);
+        Permission::create(['name' => 'update expanse', 'guard_name' => 'web',]);
+        Permission::create(['name' => 'show expanse', 'guard_name' => 'web',]);
+
+        Permission::create(['name' => 'list purchase', 'guard_name' => 'web',]);
+        Permission::create(['name' => 'create purchase', 'guard_name' => 'web',]);
+        Permission::create(['name' => 'show purchase', 'guard_name' => 'web',]);
+
+        Permission::create(['name' => 'list return purchase', 'guard_name' => 'web',]);
+        Permission::create(['name' => 'create return purchase', 'guard_name' => 'web',]);
+        Permission::create(['name' => 'show return purchase', 'guard_name' => 'web',]);
+
+        Permission::create(['name' => 'list flat', 'guard_name' => 'web',]);
+        Permission::create(['name' => 'add flat', 'guard_name' => 'web',]);
+        Permission::create(['name' => 'update flat', 'guard_name' => 'web',]);
+        Permission::create(['name' => 'flat view', 'guard_name' => 'web',]);
+        Permission::create(['name' => 'flat delete', 'guard_name' => 'web',]);
+
+        Permission::create(['name' => 'flat sale', 'guard_name' => 'web',]);
+
+        Permission::create(['name' => 'flat return', 'guard_name' => 'web',]);
+
+        Permission::create(['name' => 'project report', 'guard_name' => 'web',]);
+
+        Permission::create(['name' => 'list client', 'guard_name' => 'web',]);
+        Permission::create(['name' => 'create client', 'guard_name' => 'web',]);
+        Permission::create(['name' => 'delete client', 'guard_name' => 'web',]);
+
+        Permission::create(['name' => 'list employee', 'guard_name' => 'web',]);
+        Permission::create(['name' => 'create employee', 'guard_name' => 'web',]);
+        Permission::create(['name' => 'delete employee', 'guard_name' => 'web',]);
+
+        Permission::create(['name' => 'list vendor', 'guard_name' => 'web',]);
+        Permission::create(['name' => 'create vendor', 'guard_name' => 'web',]);
+        Permission::create(['name' => 'delete vendor', 'guard_name' => 'web',]);
 
 
         // Create Roles

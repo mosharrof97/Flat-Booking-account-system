@@ -12,7 +12,7 @@ use App\Models\Project;
 class FlatController extends Controller
 {
     // public function __construct(){
-    //     $this->middleware('permission:flat', ['only' => ['index','show','unSoldFlat','soldFlat']]);
+    //     $this->middleware('permission:list flat', ['only' => ['index','show','unSoldFlat','soldFlat']]);
     //    // $this->middleware('permission:add flat', ['only' => ['create','store']]);
     //    // $this->middleware('permission:update flat', ['only' => ['edit','update']]);
     //    // $this->middleware('permission:flat view', ['only' => ['view']]);

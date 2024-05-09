@@ -15,8 +15,6 @@ use App\Models\Payment;
 use App\Models\ComponyInfo;
 
 
-
-
 class FlatSaleController extends Controller
 {
     // public function __construct(){
