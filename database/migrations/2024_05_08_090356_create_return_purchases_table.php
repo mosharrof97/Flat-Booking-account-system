@@ -27,6 +27,7 @@ return new class extends Migration
             $table->decimal('total',15,2);
             $table->decimal('paid',15,2);
             $table->decimal('due',15,2);
+            $table->bigInteger('status')->default(0);
 
             $table->foreignId('created_by')->nullable();
             $table->foreignId('updated_by')->nullable();

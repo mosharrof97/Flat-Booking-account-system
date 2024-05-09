@@ -26,6 +26,7 @@ class ReturnPurchase extends Model
         'total',
         'paid',
         'due',
+        'status',
 
         'created_by',
         'updated_by',
@@ -45,7 +46,7 @@ class ReturnPurchase extends Model
     }
 
     public function user() {
-        return $this->BelongsTo(User::class, 'id');
+        return $this->BelongsTo(User::class, 'created_by');
     }
 
     public function vendor() {

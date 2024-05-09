@@ -49,7 +49,7 @@ class Purchase extends Model
     }
 
     public function user() {
-        return $this->BelongsTo(User::class, 'id');
+        return $this->BelongsTo(User::class, 'created_by');
      }
 
     public function vendor() {

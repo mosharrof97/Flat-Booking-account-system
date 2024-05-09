@@ -67,11 +67,11 @@ class User extends Authenticatable
     }
 
     public function purchase() {
-        return $this->HasMany(Purchase::class,'created_by');
+        return $this->HasMany(Purchase::class);
     }
 
     public function re_purchase() {
-        return $this->HasMany(ReturnPurchase::class,'created_by');
+        return $this->HasMany(ReturnPurchase::class);
     }
 
     public function payment() {
