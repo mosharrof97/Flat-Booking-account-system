@@ -19,6 +19,10 @@ use App\Models\ComponyInfo;
 
 class FlatSaleController extends Controller
 {
+    // public function __construct(){
+    //     $this->middleware('permission:flat sale', ['only' => ['index','create','flatSale','flatSaleDetails','payment','paymentStore']]);
+    // }
+
     public function index(){
 
         $project_id = Session::get('project_id');

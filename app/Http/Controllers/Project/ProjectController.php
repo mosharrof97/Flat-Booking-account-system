@@ -15,6 +15,7 @@ class ProjectController extends Controller
     //     $this->middleware('permission:view project', ['only' => ['index']]);
     //     $this->middleware('permission:create project', ['only' => ['create','store']]);
     //     $this->middleware('permission:update project', ['only' => ['edit','update']]);
+    //     $this->middleware('permission:view project', ['only' => ['view']]);
     //     $this->middleware('permission:delete project', ['only' => ['delete']]);
     // }
 

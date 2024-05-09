@@ -11,12 +11,12 @@ use App\Models\ExpenseCategory;
 
 class ProjectExpenseController extends Controller
 {
-    // // public function __construct(){
-    // //     $this->middleware('permission:view expanse', ['only' => ['index']]);
-    // //     $this->middleware('permission:create expanse', ['only' => ['create','store']]);
-    // //     $this->middleware('permission:show expanse', ['only' => ['show']]);
-    // //     // $this->middleware('permission:delete', ['only' => ['delete']]);
-    // // }
+    // public function __construct(){
+    //     $this->middleware('permission:view expanse', ['only' => ['index']]);
+    //     $this->middleware('permission:create expanse', ['only' => ['create','store']]);
+    //     $this->middleware('permission:update expanse', ['only' => ['edit','update']]);
+    //     $this->middleware('permission:show expanse', ['only' => ['show']]);
+    // }
     public function index(){
         $projectId = Session::get('project_id');
         if($projectId){

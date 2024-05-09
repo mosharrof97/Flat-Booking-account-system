@@ -14,10 +14,9 @@ use App\Models\Vendor;
 class ProjectReturnPurchaseController extends Controller
 {
     // public function __construct(){
-    //     $this->middleware('permission:view expanse', ['only' => ['index']]);
-    //     $this->middleware('permission:create expanse', ['only' => ['create','store']]);
-    //     $this->middleware('permission:show expanse', ['only' => ['show']]);
-    //     // $this->middleware('permission:delete', ['only' => ['delete']]);
+    //     $this->middleware('permission:list return purchase', ['only' => ['index','create','store','show']]);
+    //    // $this->middleware('permission:create return purchase', ['only' => ['create','store']]);
+    //    // $this->middleware('permission:show return purchase', ['only' => ['show']]);
     // }
     public function index(){
         $projectId = Session::get('project_id');

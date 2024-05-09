@@ -15,15 +15,13 @@ class ClientController extends Controller
 {
     // public function __construct()
     // {
-    //     $this->middleware('permission:list employee', ['only' => ['index']]);
-    //     $this->middleware('permission:create employee', ['only' => ['create','store']]);
-    //     $this->middleware('permission:update employee', ['only' => ['update','edit']]);
-    //     $this->middleware('permission:view employee', ['only' => ['view']]);
-    //     $this->middleware('permission:delete employee', ['only' => ['destroy']]);
+    //     $this->middleware('permission:list client', ['only' => ['index','view']]);
+    //     $this->middleware('permission:create client', ['only' => ['create','store','update','edit']]);
+    //     $this->middleware('permission:delete client', ['only' => ['destroy']]);
     // }
 
     public function index() {
-        $client = Client::get();
+        $client = Client::where('status',0)->get();
         return view('Admin-Panel.page.Client.client_list', ['clients' => $client]);
     }
 
@@ -56,15 +54,11 @@ class ClientController extends Controller
             'per_zipCode' => 'required',
         ]);
 
-        // dd($request->all());
-
-
         if ($request->hasFile('image')) {
             $imageName = 'Client_' . time() . '_' . mt_rand(100000, 9999999999) . '.' . $request->file('image')->extension();
             $request->file('image')->move(public_path('upload/client'), $imageName);
         }
 
-        // dd(auth()->id());
         try {
             DB::beginTransaction();
             $client= Client::create([
@@ -80,7 +74,6 @@ class ClientController extends Controller
                 'created_by' => auth()->id(),
             ]);
 
-            // dd($client->id);
             $data = ClientAddress::create([
                 'client_id' => $client->id,
                 'pre_address' => $request->pre_address,
@@ -94,21 +87,18 @@ class ClientController extends Controller
                 'per_zipCode' => $request->per_zipCode,
             ]);
 
-            // dd($data);
             DB::commit();
         } catch (\Throwable $e) {
             DB::rollback();
             throw $e;
         }
 
-
-
         return redirect()->route('client.list')->with('status','Client created successfully with roles');
     }
 
     public function edit(Request $request, $id) {
         $districts = District::get();
-        $employee = Client::find($id);
+        $employee = Client::where('status',0)->first($id);
 
         return view('Admin-Panel.page.Client.client_edit', [
             'client' => $client,
@@ -137,18 +127,6 @@ class ClientController extends Controller
             'per_district' => 'required|string|max:255',
             'per_zipCode' => 'required',
         ]);
-
-        // $data = [
-        //     'name' => $request->name,
-        //     'email' => $request->email,
-        //     'phone' => $request->phone,
-        //     // 'nid' => $request->nid,
-        //     // 'role_id' => $request->role_id,
-        //     // 'password' => Hash::make($request->password),
-        //     // 'image'=> $imageName,
-        // ];
-
-
 
         try {
             DB::beginTransaction();
@@ -187,7 +165,7 @@ class ClientController extends Controller
     }
 
     public function view($Id) {
-        $client = Client::find($Id);
+        $client = Client::where('status',0)->first($Id);
 
         return view('Admin-Panel.page.Client.client_details',['client' => $client]);
     }
@@ -195,10 +173,9 @@ class ClientController extends Controller
     public function destroy($id) {
 
         $client = Client::findOrFail($id);
-        // $employee->deleted_by = auth()->id();
-        // $employee->save();
-
-        $client->delete();
+        $client->update([
+            'status'=>1,
+        ]);
 
         return redirect()->route('client.list')->with('status','Client Delete Successfully');
     }

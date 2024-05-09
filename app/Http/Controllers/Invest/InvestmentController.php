@@ -13,7 +13,7 @@ use App\Models\Project;
 class InvestmentController extends Controller
 {
     // public function __construct(){
-    //     $this->middleware('permission:installment', ['only' => ['create','store']]);
+    //     $this->middleware('permission:installment', ['only' => ['index','create','store']]);
     //     $this->middleware('permission:installment', ['only' => ['create','store']]);
     //     $this->middleware('permission:installment', ['only' => ['create','store']]);
     //     $this->middleware('permission:installment', ['only' => ['create','store']]);

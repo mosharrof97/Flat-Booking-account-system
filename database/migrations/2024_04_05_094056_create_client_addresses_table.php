@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('client_addresses', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('client_id');
+            $table->foreignId('client_id')->onDelete('cascade');
             $table->string('pre_address');
             $table->string('pre_city');
             $table->string('pre_district');

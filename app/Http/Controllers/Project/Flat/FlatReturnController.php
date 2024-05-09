@@ -12,6 +12,10 @@ use App\Models\FlatReturnInfo;
 use App\Models\FlatSaleInfo;
 class FlatReturnController extends Controller
 {
+    // public function __construct(){
+    //     $this->middleware('permission:flat return', ['only' => ['index','flatReturn']]);
+    // }
+
     public function index($id){
         $project_id = Session::get('project_id');
         if($project_id !== null){

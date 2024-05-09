@@ -15,10 +15,8 @@ class EmployeeController extends Controller
 {
     // public function __construct()
     // {
-    //     $this->middleware('permission:list employee', ['only' => ['index']]);
-    //     $this->middleware('permission:create employee', ['only' => ['create','store']]);
-    //     $this->middleware('permission:update employee', ['only' => ['update','edit']]);
-    //     $this->middleware('permission:view employee', ['only' => ['view']]);
+    //     $this->middleware('permission:list employee', ['only' => ['index','view']]);
+    //     $this->middleware('permission:create employee', ['only' => ['create','store','update','edit']]);
     //     $this->middleware('permission:delete employee', ['only' => ['destroy']]);
     // }
 

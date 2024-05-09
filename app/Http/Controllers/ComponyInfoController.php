@@ -8,6 +8,11 @@ use App\Models\District;
 
 class ComponyInfoController extends Controller
 {
+    // public function __construct()
+    // {
+    //     $this->middleware('permission:compony info', ['only' => ['index','store']]);
+    // }
+
     public function index(){
         $district = District::all();
         $componyInfo = ComponyInfo::first();

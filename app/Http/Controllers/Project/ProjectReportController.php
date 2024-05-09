@@ -16,6 +16,10 @@ use DB;
 
 class ProjectReportController extends Controller
 {
+    // public function __construct(){
+    //     $this->middleware('permission:project report', ['only' => ['investReport','expenseReport',]]);
+    // }
+
     public function investReport(Request $request)
     {
         $project_id = Session::get('project_id');

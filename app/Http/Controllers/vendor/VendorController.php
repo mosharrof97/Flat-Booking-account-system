@@ -8,6 +8,13 @@ use App\Models\Vendor;
 
 class VendorController extends Controller
 {
+    // public function __construct()
+    // {
+    //     $this->middleware('permission:vendor', ['only' => ['index','show']]);
+    //     $this->middleware('permission:create vendor', ['only' => ['create','store']]);
+    //     $this->middleware('permission:delete vendor', ['only' => ['destroy']]);
+    // }
+
     public function index(){
 
         $vendors = Vendor::where('status', 0)->get();
