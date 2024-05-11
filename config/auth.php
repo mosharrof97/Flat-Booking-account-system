@@ -44,18 +44,18 @@ return [
         //     'driver' => 'session',
         //     'provider' => 'admins',
         // ],
-        // 'accountant' => [
-        //     'driver' => 'session',
-        //     'provider' => 'admins',
-        // ],
-        // 'project' => [
-        //     'driver' => 'session',
-        //     'provider' => 'projects',
-        // ],
-        // 'investor' => [
-        //     'driver' => 'session',
-        //     'provider' => 'investors',
-        // ],
+        'employee' => [
+            'driver' => 'session',
+            'provider' => 'employees',
+        ],
+        'vendor' => [
+            'driver' => 'session',
+            'provider' => 'vendors',
+        ],
+        'client' => [
+            'driver' => 'session',
+            'provider' => 'clients',
+        ],
     ],
 
     /*
@@ -81,20 +81,20 @@ return [
         //     'model' => App\Models\Admin::class,
         // ],
 
-        // 'accountants' => [
-        //     'driver' => 'eloquent',
-        //     'model' => App\Models\Admin::class,
-        // ],
+        'employees' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Employee::class,
+        ],
 
-        // 'investors' => [
-        //     'driver' => 'eloquent',
-        //     'model' => App\Models\Investor::class,
-        // ],
+        'vendors' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Vendor::class,
+        ],
 
-        // 'projects' => [
-        //     'driver' => 'eloquent',
-        //     'model' => App\Models\Project::class,
-        // ],
+        'clients' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Client::class,
+        ],
 
         'users' => [
             'driver' => 'eloquent',
@@ -133,24 +133,24 @@ return [
         //     'expire' => 60,
         //     'throttle' => 60,
         // ],
-        // 'accountants' => [
-        //     'provider' => 'admins',
-        //     'table' => 'password_reset_tokens',
-        //     'expire' => 60,
-        //     'throttle' => 60,
-        // ],
-        // 'projects' => [
-        //     'provider' => 'projects',
-        //     'table' => 'password_reset_tokens',
-        //     'expire' => 60,
-        //     'throttle' => 60,
-        // ],
-        // 'investors' => [
-        //     'provider' => 'investors',
-        //     'table' => 'password_reset_tokens',
-        //     'expire' => 60,
-        //     'throttle' => 60,
-        // ],
+        'employees' => [
+            'provider' => 'employees',
+            'table' => 'password_reset_tokens',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'vendors' => [
+            'provider' => 'vendors',
+            'table' => 'password_reset_tokens',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'clients' => [
+            'provider' => 'clients',
+            'table' => 'password_reset_tokens',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
         'users' => [
             'provider' => 'users',
             'table' => 'password_reset_tokens',

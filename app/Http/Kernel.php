@@ -67,7 +67,7 @@ class Kernel extends HttpKernel
         'setProjectName' => \App\Http\Middleware\SetProjectName::class ,
         'admin' => \App\Http\Middleware\Admin::class,
         'accountant' => \App\Http\Middleware\Accountant::class,
-        'investor' => \App\Http\Middleware\Investor::class,
+        'client' => \App\Http\Middleware\Client::class,
 
         /*------------ permission -----------*/
         'role' => \Spatie\Permission\Middleware\RoleMiddleware::class,

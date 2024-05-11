@@ -68,7 +68,7 @@
 
                     <div class="signin-form">
                         <h2 class="form-title">Login</h2>
-                        <form method="POST" action="{{ route('login') }}" class="w-100" id="login-form">
+                        <form method="POST" action="{{ route('client.login.store') }}" class="w-100" id="login-form">
                             @csrf
                             <div class="form-group">
                                 <label for="email"><i class="zmdi zmdi-account material-icons-name"></i></label>

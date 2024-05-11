@@ -13,24 +13,31 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/favicon.png') }}">
 
-    <link href="{{ asset('asset/css/bootstrap.min.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('asset/css/bootstrap.min.css') }}" rel="stylesheet" />
 
     <link href="{{ asset('vendor/pg-calendar/css/pignose.calendar.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('vendor/chartist/css/chartist.min.css') }}" rel="stylesheet">
-    {{-- -- Datatable -- --}}
-    <link href="{{ asset('vendor/datatables/css/jquery.dataTables.min.css') }}" rel="stylesheet">
     <link href="{{ asset('asset/css/style.css') }}" rel="stylesheet">
-    <script src="{{ asset('asset/js/jquery.min.js') }}"></script>
+
+    {{---- Datatable ----}}
+        {{-- CSS --}}
+        <link href="{{ asset('asset/DataTable/css/dataTables.dataTables.css') }}" rel="stylesheet">
+        <link href="{{ asset('asset/DataTable/css/buttons.dataTables.css') }}" rel="stylesheet">
+
+        {{-- Javascript --}}
+        <script src="{{ asset('asset/js/jquery.min.js') }}"></script>
+        <script src="{{ asset('asset/DataTable/js/datatable.js') }}"></script>
+        <script src="{{ asset('asset/DataTable/js/buttons.js') }}"></script>
+        <script src="{{ asset('asset/DataTable/js/buttons.dataTables.js') }}"></script>
+        <script src="{{ asset('asset/DataTable/js/jszip.min.js') }}"></script>
+        <script src="{{ asset('asset/DataTable/js/pdfmake.min.js') }}"></script>
+        <script src="{{ asset('asset/DataTable/js/vfs_fonts.js') }}"></script>
+        <script src="{{ asset('asset/DataTable/js/buttons.html5.min.js') }}"></script>
+        <script src="{{ asset('asset/DataTable/js/buttons.print.min.js') }}"></script>
+    {{---- Datatable ----}}
 
 
 
-    <!-- Include jQuery UI -->
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
-    <!-- Include jQuery UI CSS (for styling) -->
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-
-    <title>Flat Booking </title>
+    <title>Parents Engineering Ltd </title>
 </head>
 
 <body>
@@ -62,8 +69,7 @@
             <a href="" class="brand-logo">
                 {{-- <img class="logo-abbr" style="max-width: 52px;" src="{{ asset('images/logo.png') }}" alt="">
                 <img class="logo-compact" src="{{ asset('images/logo-text.png') }}" alt=""> --}}
-                <img class="brand-title  " style="max-width:100px" src="{{ asset('images/logo-text.png') }}"
-                    alt="">
+                <img class="brand-title  " style="max-width:100px" src=""  alt="">
             </a>
 
             <div class="nav-control">
@@ -80,6 +86,7 @@
             Header start
         ***********************************-- --}}
         <div class="header">
+
             <div class="header-content">
                 <nav class="navbar navbar-expand">
                     <div class="collapse navbar-collapse justify-content-between">
@@ -125,6 +132,9 @@
                             <li class="nav-item dropdown header-profile">
                                 <a class="nav-link" href="#" role="button" data-toggle="dropdown">
                                     <i class="fa-solid fa-user"></i>
+                                    @if (auth()->user())
+                                        <span>{{ auth()->user()->name }}</span>
+                                    @endif
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right">
                                     <a href="./app-profile.html" class="dropdown-item">
@@ -136,18 +146,17 @@
                                         <span class="ml-2">Inbox </span>
                                     </a>
 
-                                    {{-- <form method="POST" action="{{ route('logout') }}">
+                                    <form method="POST" action="{{ route('logout') }}">
                                         @csrf
-                                        <a class="dropdown-item" href="{{ route('logout') }}"
-                                            onclick="event.preventDefault(); this.closest('form').submit();">Log
-                                            out</a>
-                                    </form> --}}
-                                    <form method="POST" action="">
-                                        @csrf
-                                        <a class="dropdown-item" href=""
+                                        <a class="dropdown-item ms-2" href="{{ route('logout') }}"
                                             onclick="event.preventDefault(); this.closest('form').submit();">Log
                                             out</a>
                                     </form>
+                                    {{-- <form method="POST" action="">
+                                        @csrf
+                                        <a class="dropdown-item" href="" onclick="event.preventDefault(); this.closest('form').submit();">Log
+                                            out</a>
+                                    </form> --}}
                                 </div>
                             </li>
                         </ul>
@@ -162,169 +171,115 @@
         {{-- --**********************************
             Sidebar start
         ***********************************-- --}}
-        <div class="quixnav">
-            <div class="quixnav-scroll">
-                <ul class="metismenu"  id="menu">
+        <div class="quixnav" >
+
+            <div class="quixnav-scroll" style="overflow-y: scroll; " >
+                <ul class="metismenu" id="menu">
 
                     <li class="nav-label first">Main Menu</li>
 
                     <li>
-                        <a class="has-arrow" href="z" aria-expanded="false">
+                        <a class="has-arrow" href="{{ route('dashboard') }}" aria-expanded="false">
                             <i class="fa-solid fa-gauge"></i>
                             <span class="nav-text">Dashboard</span>
                         </a>
                     </li>
+                    {{-- @can('list project') --}}
+                        <li>
+                            <a class="has-arrow" href="{{ route('list.project') }}" aria-expanded="false">
+                                <i class="fa-solid fa-diagram-project"></i>
+                                <span class="nav-text">Project</span>
+                            </a>
+                        </li>
+                    {{-- @endcan --}}
+
+
 
                     <li>
-                        <a class="has-arrow" href="{{ route('new.project') }}" aria-expanded="false">
+                        <a class="has-arrow" href="{{ route('vendor.list') }}" aria-expanded="false">
                             <i class="fa-solid fa-store"></i>
-                            <span class="nav-text">New Project</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="has-arrow" href="{{ route('investor.list') }}" aria-expanded="false">
-                            <i class="fa-solid fa-store"></i>
-                            <span class="nav-text">Investor List</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="has-arrow" href="{{ route('create.investor') }}" aria-expanded="false">
-                            <i class="fa-solid fa-store"></i>
-                            <span class="nav-text">Create Investor </span>
+                            <span class="nav-text">Vandor</span>
                         </a>
                     </li>
 
-                    <li>
-                        <a class="has-arrow" href="{{ route('investment.list') }}" aria-expanded="false">
-                            <i class="fa-solid fa-store"></i>
-                            <span class="nav-text">Investment List</span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a class="has-arrow" href="{{ route('create.investment') }}" aria-expanded="false">
-                            <i class="fa-solid fa-store"></i>
-                            <span class="nav-text">Create Investment</span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a class="has-arrow" href="{{ route('new.project') }}" aria-expanded="false">
-                            <i class="fa-solid fa-store"></i>
-                            <span class="nav-text">Add new Project</span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a class="has-arrow" href="{{ route('project.list') }}" aria-expanded="false">
-                            <i class="fa-solid fa-store"></i>
-                            <span class="nav-text">Project List</span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a class="has-arrow" href="{{ route('add.expense') }}" aria-expanded="false">
-                            <i class="fa-solid fa-store"></i>
-                            <span class="nav-text">Add Expense</span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a class="has-arrow" href="{{ route('expense.list') }}" aria-expanded="false">
-                            <i class="fa-solid fa-store"></i>
-                            <span class="nav-text">Expense List</span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a class="has-arrow" href="{{ route('employee') }}" aria-expanded="false">
-                            <i class="fa-solid fa-store"></i>
+                    {{-- ====== Employee ======= --}}
+                    {{-- @can('view employee') --}}
+                    <li id="employee-parent">
+                        <a class="has-arrow" href="{{ route('employee.list') }}" aria-expanded="false">
+                            <i class="fa-solid fa-user-tie"></i>
                             <span class="nav-text">Employee</span>
                         </a>
                     </li>
+                    {{-- @endcan --}}
+                    {{--======= Employee End =======--}}
 
-                    <li>
-                        <a class="has-arrow" href="{{ route('employee.list') }}" aria-expanded="false">
-                            <i class="fa-solid fa-store"></i>
-                            <span class="nav-text">Employee List</span>
+                    {{--========= Customer ===========--}}
+                    {{-- @can('list customer') --}}
+                    <li id="client-parent">
+                        <a class="has-arrow" href="{{ route('client.list') }}" aria-expanded="false">
+                            <i class="fa-solid fa-users"></i>
+                            <span class="nav-text">Client</span>
                         </a>
                     </li>
+                    {{-- @endcan --}}
+                    {{--========= Customer End ===========--}}
 
-                    <li>
-                        <a class="has-arrow" href="{{ route('customer') }}" aria-expanded="false">
+                    {{-- Expanse --}}
+                    <li id="expanse-parent">
+                        <a class="has-arrow" href="javascript:void(0);" data-bs-toggle="collapse"
+                            data-bs-target="#expanse" aria-expanded="false" aria-controls="expanse">
                             <i class="fa-solid fa-store"></i>
-                            <span class="nav-text">Customer</span>
+                            <span class="nav-text">Expanse </span>
                         </a>
-                    </li>
+                        <div id="expanse" class="accordion-collapse collapse" style="background-color: #1c0f54"
+                            data-bs-parent="#expanse-parent">
+                            <ul class=" metismenu">
+                                <li>
+                                    <a class="has-arrow" href="">
+                                        <i class="fa-solid fa-store"></i>
+                                        <span class="nav-text">Project Expanse</span>
+                                    </a>
+                                </li>
 
-                    <li>
-                        <a class="has-arrow" href="{{ route('customer.list') }}" aria-expanded="false">
-                            <i class="fa-solid fa-store"></i>
-                            <span class="nav-text">Customer List</span>
-                        </a>
-                    </li>
+                                <li>
+                                    <a class="has-arrow" href="">
+                                        <i class="fa-solid fa-store"></i>
+                                        <span class="nav-text">Office Ex Category </span>
+                                    </a>
+                                </li>
 
-                    <li>
-                        <a class="has-arrow" href="#" aria-expanded="false">
-                            <i class="fa-solid fa-store"></i>
-                            <span class="nav-text">TA & DA Bill</span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a class="has-arrow" href="##" aria-expanded="false">
-                            <i class="fa-solid fa-store"></i>
-                            <span class="nav-text">Manage Role </span>
-                        </a>
-                    </li>
-
-                    <li class="">
-                        <a href="javascript:void(0);" class="has-arrow d-flex menu-toggle">
-                            <i class="fa-solid fa-store"></i>
-                            <div data-i18n="Account Settings">Address Manage</div>
-                        </a>
-                        <ul class="menu-sub">
-                            <li class="menu-item">
-                                <a href="n" class="menu-link">
-                                    <div data-i18n="Account">District</div>
-                                </a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="b" class="menu-link">
-                                    <div data-i18n="Notifications">Upazila</div>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="">
-                        <div class="accordion accordion-flush " id="accordionFlushExample" style="background-color: rgba(240, 248, 255, 0)">
-                            <div class="accordion-item">
-                              <h2 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                                  Accordion Item #1
-                                </button>
-                              </h2>
-                              <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                                <div class="accordion-body">
-                                    <ul class="menu-sub">
-                                        <li class="menu-item">
-                                            <a href="n" class="menu-link">
-                                                <div data-i18n="Account">District</div>
-                                            </a>
-                                        </li>
-                                        <li class="menu-item">
-                                            <a href="b" class="menu-link">
-                                                <div data-i18n="Notifications">Upazila</div>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                              </div>
-                            </div>
+                                <li>
+                                    <a class="has-arrow" href="">
+                                        <i class="fa-solid fa-store"></i>
+                                        <span class="nav-text">Office Expanse </span>
+                                    </a>
+                                </li>
+                            </ul>
                         </div>
+                    </li>
+                    {{-- Project End --}}
 
+
+                    <li>
+                        <a class="has-arrow" href="{{ route('users.index') }}">
+                            <i class="fa-solid fa-user"></i>
+                            <span class="nav-text">Users</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="has-arrow" href="{{ route('roles.index') }}">
+                            <i class="fa-solid fa-pen-ruler"></i>
+                            <span class="nav-text">Roles</span>
+                        </a>
                     </li>
 
+                    <li class="nav-label first">Company Info</li>
+                    <li>
+                        <a class="has-arrow" href="{{ route('company.info.list') }}">
+                            <i class="fa-solid fa-pen-ruler"></i>
+                            <span class="nav-text">Company Info</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -360,31 +315,16 @@
             Footer end
         ***********************************-- --}}
     </div>
-    {{-- --**********************************
-        Main wrapper end
-    ***********************************-- --}}
 
-    {{-- --**********************************
-        Scripts
-    ***********************************-- --}}
     {{-- -- Required vendors -- --}}
     <script src="{{ asset('vendor/global/global.min.js') }}"></script>
     <script src="{{ asset('asset/js/quixnav-init.js') }}"></script>
     <script src="{{ asset('asset/js/custom.min.js') }}"></script>
 
-    <script src="{{ asset('vendor/chartist/js/chartist.min.js') }}"></script>
-
     <script src="{{ asset('vendor/moment/moment.min.js') }}"></script>
     <script src="{{ asset('vendor/pg-calendar/js/pignose.calendar.min.js') }}"></script>
 
-    <script src="{{ asset('js/dashboard/dashboard-2.js') }}"></script>
-    {{-- -- Circle progress -- --}}
-
     <script src="{{ asset('asset/js/bootstrap.bundle.min.js') }}"></script>
-
-    {{-- -- Datatable -- --}}
-    <script src="{{ asset('vendor/datatables/js/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('asset/js/plugins-init/datatables.init.js') }}"></script>
 
 </body>
 

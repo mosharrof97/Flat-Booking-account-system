@@ -1,4 +1,4 @@
-@extends('Employee-Panel.partial.Layout')
+@extends('Client-Panel.partial.Layout')
 @section('content')
     <div class="row mx-0 mb-4">
         <div class="col-12 p-md-0">
