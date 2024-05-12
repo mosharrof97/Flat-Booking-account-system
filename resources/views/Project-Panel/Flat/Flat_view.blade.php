@@ -7,7 +7,9 @@
                 <h4> <strong>Flat Details</strong>
                     <a class="btn btn-danger" href="{{ url()-> previous() }}">back</a>
                 </h4>
-                <a class="btn btn-primary" href="{{ route('flat.edit',$flat->id) }}">Edit Flat</a>
+                @if ($flat->sale_status == 0)
+                    <a class="btn btn-primary" href="{{ route('flat.edit',$flat->id) }}">Edit Flat</a>
+                @endif
             </div>
             <div class="card-body">
                 <div>

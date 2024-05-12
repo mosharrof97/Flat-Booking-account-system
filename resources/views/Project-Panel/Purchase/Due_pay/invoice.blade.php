@@ -182,14 +182,8 @@
 </div>
 
 <script>
-    new DataTable('#PurchaseDuePay', {
-        layout: {
-            topStart: {
-                buttons: ['pdf', 'print']
-            }
-        }
-    }
-    );
+    pdfMake.createPdf('PurchaseDuePay').print();
+
 </script>
 
 @endsection

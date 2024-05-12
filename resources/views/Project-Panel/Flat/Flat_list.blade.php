@@ -68,23 +68,20 @@
                                 <td>
                                     @if ($flat->sale_status == 0)
                                         <a href="{{ route('flat.sale.form',$flat->id) }}" class="btn btn-success rounded me-2"><i class="fa-solid fa-share-from-square"></i></a>
+
+                                        <a href="{{ route('flat.edit', $flat->id) }} " class="btn btn-success me-2"> <i class="fa-solid fa-pen-to-square"></i> </a>
+
+                                        <a href="{{ route('flat.delete', $flat->id) }} " class="btn btn-danger me-2"> <i class="fa-solid fa-trash"></i> </a>
                                     @elseif($flat->sale_status == 1)
                                         <a href="{{ route('booking_view',$flat->id) }}" class="btn btn-warning rounded me-2"><i class="fa-solid fa-share-from-square"></i></a>
                                     @elseif($flat->sale_status == 2)
                                         <a href="{{ route('flat.sale.details',$flat->id) }}" class="btn btn-danger rounded me-2"><i class="fa-solid fa-share-from-square"></i></a>
                                     @endif
 
-                                    <a href="{{ route('flat.view', $flat->id) }} " class="btn btn-success me-2">
-                                        <i class="fa-solid fa-eye"></i>
-                                    </a>
+                                    <a href="{{ route('flat.view', $flat->id) }} " class="btn btn-success me-2"> <i class="fa-solid fa-eye"></i></a>
 
-                                    <a href="{{ route('flat.edit', $flat->id) }} " class="btn btn-success me-2">
-                                        <i class="fa-solid fa-pen-to-square"></i>
-                                    </a>
 
-                                    <a href="{{ route('flat.delete', $flat->id) }} " class="btn btn-danger me-2">
-                                        <i class="fa-solid fa-trash"></i>
-                                    </a>
+
                                 </td>
                             </tr>
                             @endforeach

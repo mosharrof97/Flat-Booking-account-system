@@ -98,7 +98,7 @@ class ClientController extends Controller
 
     public function edit(Request $request, $id) {
         $districts = District::get();
-        $employee = Client::where('status',0)->first($id);
+        $employee = Client::where('status',0)->where('id',$id)->first();
 
         return view('Admin-Panel.page.Client.client_edit', [
             'client' => $client,
@@ -164,8 +164,8 @@ class ClientController extends Controller
        return redirect()->route('employee.list')->with('status','User Updated Successfully with roles');
     }
 
-    public function view($Id) {
-        $client = Client::where('status',0)->first($Id);
+    public function view($id) {
+        $client = Client::where('status',0)->where('id',$id)->first();
 
         return view('Admin-Panel.page.Client.client_details',['client' => $client]);
     }
