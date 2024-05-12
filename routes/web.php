@@ -23,6 +23,7 @@ use App\Http\Controllers\Vendor\VendorController;
 use App\Http\Controllers\Project\ProjectController;
 use App\Http\Controllers\Project\InstallmentController;
 use App\Http\Controllers\Project\Purchase\ProjectPurchaseController;
+use App\Http\Controllers\Project\Purchase\PurchaseDuePayController;
 use App\Http\Controllers\Project\Purchase\ProjectReturnPurchaseController;
 use App\Http\Controllers\Project\ProjectExpenseController;
 use App\Http\Controllers\Project\ProjectDashboardController;
@@ -115,6 +116,10 @@ Route::prefix('admin')->middleware('auth')->group(function () {
                 Route::get('/create', [ProjectPurchaseController::class, 'create'])->name('project.purchase');
                 Route::post('/create', [ProjectPurchaseController::class, 'store'])->name('store.project.purchase');
                 Route::get('/{id}/show', [ProjectPurchaseController::class, 'show'])->name('project.purchase.view');
+
+
+                Route::get('/{id}/due=pay', [PurchaseDuePayController::class, 'create'])->name('project.purchase.due.pay');
+                Route::post('/{id}/due=pay', [PurchaseDuePayController::class, 'store'])->name('store.project.purchase.due.pay');
 
 
 

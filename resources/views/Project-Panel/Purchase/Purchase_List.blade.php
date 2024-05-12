@@ -78,6 +78,12 @@
                                 </td>
                                 <td>{{ $purchase->total }}</td> --}}
                                 <td>
+                                    @if($purchase->due == 0)
+                                    <a href="#" class="btn btn-danger">Paid</a>
+                                    @else
+                                    <a href="{{ route('project.purchase.due.pay',$purchase->id) }} " class="btn btn-info">Due</a>
+                                    @endif
+
                                     <a href="{{ route('project.purchase.view',$purchase->id) }} " class="btn btn-success">View</a>
                                 </td>
                             </tr>
