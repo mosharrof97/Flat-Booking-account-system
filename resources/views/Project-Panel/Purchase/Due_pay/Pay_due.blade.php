@@ -16,7 +16,7 @@
 
                         <div class="form-group col-md-6  mb-3">
                             <label for="date" class="col-sm-4 col-form-label text-right bg-info">date</label>
-                            <input type="date" class="form-control col-sm-8" id="date" name="date" value="">
+                            <input type="date" class="form-control col-sm-8" id="date" name="date" value="{{ old('date') }}">
 
                             @error('date')
                             <span class="text-danger">{{ $message }}</span>
@@ -68,7 +68,7 @@
 
 <script>
     $(document).ready(function() {
-        $(document).on('keyup', '#pay', function() {
+        $(document).on('change', '#pay', function() {
             var pre_due = parseFloat($('#due').val()) || 0;
             var pay = parseFloat($('#pay').val()) || 0;
 

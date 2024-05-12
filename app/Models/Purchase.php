@@ -62,4 +62,9 @@ class Purchase extends Model
         return $this->hasMany(ReturnPurchase::class, 'purchase_id');
     }
 
+    public function pur_due_pay() :HasMany
+    {
+        return $this->hasMany(PurchaseDuePay::class, );
+    }
+
 }

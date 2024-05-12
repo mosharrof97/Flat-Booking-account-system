@@ -5,6 +5,7 @@
         <div class="card p-4">
             <div class="card-header bg-info">
                 <h3>Purchase Information</h3>
+                {{-- <a href="{{ route('project.purchase.invoice',$purchase->id) }}" class="btn btn-info" target="_blank" rel="noopener noreferrer">Invoice</a> --}}
             </div>
             <div class="card-body">
                 <div class="table-responsive">

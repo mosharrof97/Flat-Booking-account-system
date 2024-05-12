@@ -21,6 +21,10 @@ return new class extends Migration
             $table->bigInteger('Return_invoice_no')->nullable();
             $table->decimal('due', 15, 2)->nullable();
             $table->decimal('pay',15,2)->nullable();
+
+            $table->foreignId('created_by')
+                    ->constrained('users')
+                    ->onDelete('cascade');
             $table->timestamps();
         });
     }

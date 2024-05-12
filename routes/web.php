@@ -120,6 +120,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 
                 Route::get('/{id}/due=pay', [PurchaseDuePayController::class, 'create'])->name('project.purchase.due.pay');
                 Route::post('/{id}/due=pay', [PurchaseDuePayController::class, 'store'])->name('store.project.purchase.due.pay');
+                Route::get('/{id}/invoice', [PurchaseDuePayController::class, 'invoice'])->name('project.purchase.invoice');
 
 
 

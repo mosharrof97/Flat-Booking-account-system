@@ -70,6 +70,10 @@ class User extends Authenticatable
         return $this->HasMany(Purchase::class);
     }
 
+    public function pur_due_pay() {
+        return $this->HasMany(PurchaseDuePay::class);
+    }
+
     public function re_purchase() {
         return $this->HasMany(ReturnPurchase::class);
     }
