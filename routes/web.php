@@ -171,6 +171,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
             Route::prefix('report')->group(function () {
                 Route::get('/invest_report', [ProjectReportController::class, 'investReport'])->name('invest.report');
                 Route::get('/expense_report', [ProjectReportController::class, 'expenseReport'])->name('expense.report');
+                Route::get('/purchase_report', [ProjectReportController::class, 'purchaseReport'])->name('purchase.report');
                 // Route::get('/invest_report', function(){
                 //     return view('Project-Panel.Report.Invest_Report');
                 // })->name('invest.report');
@@ -236,6 +237,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
             'create' => 'permissions.create',
             'store' => 'permissions.store',
             'edit' => 'permissions.edit',
+
             'update' => 'permissions.update',
         ]);
         Route::get('/{permissionId}/delete', [PermissionController::class, 'destroy'])->name('permissions.delete');

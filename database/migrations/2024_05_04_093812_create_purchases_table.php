@@ -28,6 +28,7 @@ return new class extends Migration
             $table->decimal('shipping_charge',15,2);
             $table->decimal('total_amount',15,2);
             $table->decimal('discount',15,2);
+            $table->decimal('payable_amount',15,2);
             $table->decimal('paid',15,2);
             $table->decimal('due',15,2);
 

@@ -134,6 +134,15 @@
                                                 </td>
                                                 <td></td>
                                             </tr>
+
+                                            <tr>
+                                                <td colspan="4" class="text-right"> Payable Amount </td>
+                                                <td>
+                                                    <input type="decimal" name="payable_amount" class="form-control col-sm-7 payable_amount" id="payable_amount" value="0" required="" readonly="">
+                                                </td>
+                                                <td></td>
+                                            </tr>
+
                                             <tr>
                                                 <td colspan="4" class="text-right"> Paid </td>
                                                 <td>
@@ -236,11 +245,13 @@
 
             // var total = total;
             var total_amount = total + serviceCharge + shippingCharge;
-            var due = total_amount - discount - paid;
+            var payable_amount = total_amount - discount;
+            var due = payable_amount - paid;
 
 
             // $('#total').val(total.toFixed(2));
             $('#total_amount').val(total_amount.toFixed(2));
+            $('#payable_amount').val(payable_amount.toFixed(2));
             $('#re_due').val(due.toFixed(2));
             return total;
         }

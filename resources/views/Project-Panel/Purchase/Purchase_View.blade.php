@@ -116,10 +116,13 @@
                                 <td colspan="4" class="text-right"> Total Amount </td>
                                 <td>{{ $purchase->total_amount  }}</td>
                             </tr>
-
                             <tr>
                                 <td colspan="4" class="text-right"> Discount </td>
                                 <td>{{ $purchase->discount  }}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="4" class="text-right"> Payable Amount </td>
+                                <td>{{ $purchase->payable_amount  }}</td>
                             </tr>
                             <tr>
                                 <td colspan="4" class="text-right"> Paid </td>

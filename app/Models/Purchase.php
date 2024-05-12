@@ -28,6 +28,7 @@ class Purchase extends Model
         'shipping_charge',
         'total_amount',
         'discount',
+        'payable_amount',
         'paid',
         'due',
 

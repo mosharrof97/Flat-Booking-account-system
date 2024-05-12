@@ -85,6 +85,7 @@ class ProjectPurchaseController extends Controller
                     'shipping_charge' => $request->shipping_charge,
                     'total_amount' => $request->total_amount,
                     'discount' => $request->discount,
+                    'payable_amount' => $request->payable_amount,
                     'paid' => $request->paid,
                     'due' => $request->due,
                     'created_by' => auth()->id(),

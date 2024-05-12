@@ -33,7 +33,7 @@
     <title>Flat Booking </title>
 </head>
 
-<body id="body">
+<body id="body" style="background-color: rgb(255, 255, 255)">
 
     {{-- --*******************
         Preloader start
@@ -268,7 +268,7 @@
                                 </li>
 
                                 <li>
-                                    <a class="has-arrow" href="###">
+                                    <a class="has-arrow" href="{{ route('purchase.report') }}">
                                         <i class="fa-solid fa-store"></i>
                                         <span class="nav-text">purchase Report</span>
                                     </a>

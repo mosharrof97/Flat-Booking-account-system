@@ -12,6 +12,8 @@ use App\Models\Investment;
 use App\Models\InvestInstallment;
 use App\Models\Client;
 use App\Models\Expense;
+use App\Models\Vendor;
+use App\Models\Purchase;
 use DB;
 
 class ProjectReportController extends Controller
@@ -82,6 +84,47 @@ class ProjectReportController extends Controller
             }
 
             return view('Project-Panel.Report.Expense_Report', compact('expense'));
+        } else {
+            return redirect()->route('list.project')->with('error', 'Project Id Is Null');
+        }
+    }
+
+    public function purchaseReport(Request $request){
+        $project_id = Session::get('project_id');
+        if ($project_id !== null) {
+            $vendor = Vendor::all();
+            $purchase = "";
+            if ($request->name !== null || ($request->start_date !== null && $request->end_date !== null)) {
+                if ($request->start_date == null && $request->end_date == null) {
+                    $purchase = Purchase::whereHas('purchase.vendor', function ($query) use ($request) {
+                        $query->where('vendors.id', $request->name);
+                    })
+                        ->orderBy('id', 'desc')
+                        ->paginate(15);
+                } elseif($request->name == null){
+                    $purchase = Purchase::orderBy('id', 'desc')
+                        ->when($request->start_date && $request->end_date, function (Builder $builder) use ($request) {
+                        $builder->whereBetween(DB::raw('DATE(updated_at)'), [
+                            $request->start_date,
+                            $request->end_date,
+                        ]);
+                    })->paginate(15);
+                }else {
+                    $purchase = Purchase::orderBy('id', 'desc')
+                        ->whereHas('purchase.vendor', function ($query) use ($request) {
+                            $query->where('vendors.id', $request->name);
+                        })->when($request->start_date && $request->end_date, function (Builder $builder) use ($request) {
+                            $builder->whereBetween(DB::raw('DATE(updated_at)'), [
+                                $request->start_date,
+                                $request->end_date,
+                            ]);
+                        })->paginate(15);
+                }
+            }else{
+                $purchase = Purchase::orderBy('id','desc')->paginate(15);
+            }
+
+            return view('Project-Panel.Report.purchase_Report', compact('purchase','vendor'));
         } else {
             return redirect()->route('list.project')->with('error', 'Project Id Is Null');
         }

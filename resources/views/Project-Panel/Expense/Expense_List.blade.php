@@ -65,7 +65,7 @@
     new DataTable('#projectExpenseTable', {
         layout: {
             topStart: {
-                buttons: ['excel','print']
+                buttons: ['excel','print','pdf']
             }
         }
     }
