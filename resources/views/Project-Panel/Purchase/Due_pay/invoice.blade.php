@@ -18,7 +18,7 @@
                     <h4 class="text-center fw-bold">Purchase Invoice</h4>
                 </div>
                 <div class="row mt-3">
-                    <div class="col-md-8 p-0">
+                    <div class="col-lg-8 ">
                         <div class="table-responsive">
                             <style>
                                 .table-information {
@@ -61,9 +61,9 @@
                                     @endif
                                 </tr>
                                 <tr>
-                                    <th scope="row" style="width: 20%">Create invoice->purchase</th>
+                                    <th scope="row" style="width: 20%">Create invoice purchase</th>
                                     <td colspan="" style="width: 3%">:</td>
-                                    <td colspan="3" style="width: 77%">{{ $invoice->purchase->user->name }}</td>
+                                    <td colspan="3" style="width: 77%">{{ $invoice->user->name }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row" style="width: 20%">vendor</th>
@@ -81,7 +81,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-4 p-0">
+                    <div class="col-lg-4 ">
                         <div class="">
                             <h4 class="fw-bold text-center"> Due Pay</h4>
                             <table class="table table-bordered">
@@ -174,16 +174,29 @@
                     </table>
                 </div>
             </div>
-            <div class="card-footer">
-                <a href="{{ url()->previous() }}" class="btn btn-danger">back</a>
-            </div>
+
+        </div>
+        <div class="card-footer">
+            <button class="btn-block btn btn-success btn-sm" type="button" onclick="printDiv('PurchaseDuePay')">Print</button>
+            <a href="{{ url()->previous() }}" class="btn-block btn btn-danger btn-sm">back</a>
         </div>
     </div>
 </div>
 
-<script>
-    pdfMake.createPdf('PurchaseDuePay').print();
+{{-- <script>
+    function printDiv(divName) {
 
-</script>
+        var printContents = document.getElementById(divName).innerHTML;
+        var originalContents = document.body.innerHTML;
+
+        document.body.innerHTML = printContents;
+
+        window.print();
+        // $('.example-screen').removeClass("none");
+
+        document.body.innerHTML = originalContents;
+
+    }
+ </script> --}}
 
 @endsection

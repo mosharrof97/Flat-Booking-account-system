@@ -98,13 +98,13 @@
                             <tr>
                                 <th class="text-nowrap" scope="row" style="width: 20%">Paid</th>
                                 <td colspan="" style="width: 3%">:</td>
-                                <td colspan="3" style="width: 77%">{{ $payment->sum('amount')}}</td>
+                                <td colspan="3" style="width: 77%">{{ $payments->sum('amount')}}.00</td>
                             </tr>
 
                             <tr>
                                 <th class="text-nowrap" scope="row" style="width: 20%">Due</th>
                                 <td colspan="" style="width: 3%">:</td>
-                                <td colspan="3" style="width: 77%">{{$flatSale->price - $payment->sum('amount')}}</td>
+                                <td colspan="3" style="width: 77%">{{$flatSale->price - $payments->sum('amount')}}.00</td>
                             </tr>
 
 
@@ -161,11 +161,11 @@
                             <td colspan="3" style="width: 77%">{{ $payment->flat->client->tin }}</td>
                         </tr>
 
-                        <tr>
+                        {{--  <tr>
                             <th class="text-nowrap" scope="row" style="width: 20%">Active status</th>
                             <td colspan="" style="width: 3%">:</td>
                             <td colspan="3" style="width: 77%">{{ $payment->flat->client->active_status }}</td>
-                        </tr>
+                        </tr>  --}}
 
                     </table>
                 </div>
@@ -205,7 +205,7 @@
                     </div>
 
                     <div class="col-md-6 col-12">
-                        <h4>Present Address</h4>
+                        <h4>Permanent Address</h4>
                         <table class="table">
                             <tr>
                                 <th class="text-nowrap" scope="row" style="width: 20%">Address</th>
@@ -230,6 +230,7 @@
                         </table>
                     </div>
                 </div>
+
                 <div class="mt-2 p-2" style="background-color:  #abecfc">
                     <h3 class="fw-bold fst-italic p-0">Payment</h3>
                 </div>
@@ -238,6 +239,7 @@
                         <thead class="table-primary">
                             <tr>
                                 <th scope="col" class="flex-wrap text-nowrap">SL</th>
+                                <th scope="col" class="flex-wrap text-nowrap">Date</th>
                                 <th scope="col" class="flex-wrap text-nowrap">Payment Type</th>
                                 <th scope="col" class="flex-wrap text-nowrap">Bank Name</th>
                                 <th scope="col" class="flex-wrap text-nowrap">Branch</th>
@@ -251,6 +253,7 @@
 
                             <tr>
                                 <td scope="row">1</td>
+                                <td>{{ $payment->created_at->format('d-M-y') }}</td>
                                 <td>{{ $payment->payment_type }}</td>
                                 <td>{{ $payment->bank_name }}</td>
                                 <td>{{ $payment->branch }}</td>
@@ -266,17 +269,17 @@
                         <tfoot>
 
                             <tr>
-                                <td colspan="6" class="text-right"> <b>Service Charge</b> </td>
+                                <td colspan="7" class="text-right"> <b>Service Charge</b> </td>
                                 <td>0.00</td>
                             </tr>
 
                             <tr>
-                                <td colspan="6" class="text-right"> <b>Discount</b> </td>
+                                <td colspan="7" class="text-right"> <b>Discount</b> </td>
                                 <td>0.00</td>
                             </tr>
 
                             <tr>
-                                <td colspan="6" class="text-right"> <b>Total</b> </td>
+                                <td colspan="7" class="text-right"> <b>Total</b> </td>
                                 <td colspan="">{{ $payment->amount }}</td>
                             </tr>
                         </tfoot>

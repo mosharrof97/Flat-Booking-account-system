@@ -24,16 +24,72 @@
                 <div class="my-4">
                     <h3 class="fw-bold fst-italic text-center">Payment</h3>
                 </div>
+                <div class="my-3">
+                    <table class="table table-borderless">
+                        <style>
+                            th,
+                            td {
+                                padding: 0.4rem !important;
+                            }
+
+                        </style>
+                        <tbody>
+                                <tr>
+                                    <th class="text-nowrap" scope="row" style="width: 20%">Client Name </th>
+                                    <td colspan="" style="width: 3%">:</td>
+                                    <td colspan="3" style="width: 77%">{{ $flatSaleInfo->flat->client->name }}</td>
+                                </tr>
+
+                                {{-- @php
+                                    dd($flatSaleInfo->flat->client->clientAddress);
+                                @endphp --}}
+
+                                <tr>
+                                    <th class="text-nowrap" scope="row" style="width: 20%">Address </th>
+                                    <td colspan="" style="width: 3%">:</td>
+                                    <td colspan="3" style="width: 77%">
+                                        {{ $flatSaleInfo->flat->client->clientAddress->pre_address.', '.$flatSaleInfo->flat->client->clientAddress->pre_city}}
+                                        {{ $flatSaleInfo->flat->client->clientAddress->per_district.'- '.$flatSaleInfo->flat->client->clientAddress->pre_zipCode}}
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th class="text-nowrap" scope="row" style="width: 20%">Phone </th>
+                                    <td colspan="" style="width: 3%">:</td>
+                                    <td colspan="3" style="width: 77%">{{ $flatSaleInfo->flat->client->phone }}</td>
+                                </tr>
+
+                                <tr>
+                                    <th class="text-nowrap" colspan="">Flat Name / Number </th>
+                                    <td><b>:</b></td>
+                                    <td>{{ $flatSaleInfo->flat->name }}</td>
+                                </tr>
+                        </tbody>
+                    </table>
+                </div>
 
                 <form class="" action="{{ route('payment.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="row g-3">
-                        {{-- Project Investment Installment--}}
-                        {{-- <hr>
-                        <div class="col-md-12">
-                            <h4> Payment </h4>
-                        </div> --}}
                         <input type="hidden" name="flatSaleInfo_id" id="flatSaleInfo_id" value="{{ $flatSaleInfo->id }}">
+
+                        <div class="col-md-6">
+                            <label for="date" class="form-label">Date</label>
+                            <input type="date" class="form-control" id="date"  name="date">
+
+                            @error('date')
+                                <span class="form-text text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="payable_amount" class="form-label">payable amount</label>
+                            <input type="decimal" class="form-control" id="payable_amount" value="{{ $flatSaleInfo->price - $payment->sum('amount')}}" name="payable_amount">
+
+                            @error('payable_amount')
+                                <span class="form-text text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
 
                         <div class="col-md-6">
                             <label for="payment_type" class="form-label">Payment Type</label>

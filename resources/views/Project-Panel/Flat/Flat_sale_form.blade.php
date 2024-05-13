@@ -59,14 +59,15 @@
                             <tr>
                                 <th colspan="">Flat Area </th>
                                 <td><b>:</b></td>
-                                <td>{{ $flat->flat_area }}</td>
+                                <td>{{ $flat->flat_area }} sft</td>
                             </tr>
 
-                            <tr>
+
+                            {{--  <tr>
                                 <th colspan="">Price </th>
                                 <td><b>:</b></td>
                                 <td>{{ $flat->price *  $flat->flat_area}}</td>
-                            </tr>
+                            </tr>  --}}
                         </tbody>
                     </table>
                 </div>

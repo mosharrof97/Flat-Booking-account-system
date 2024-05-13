@@ -89,9 +89,12 @@ class FlatSaleController extends Controller
                 DB::commit();
 
                 $comInfo = ComponyInfo::first();
-                $flatSale = FlatSaleInfo::find($flatSaleInfo->id);
+                $flatSale = FlatSaleInfo::where('flat_id',$flat->id)->first();
+                $payments = Payment::where('flatSale_id',$flatSale->id)->get();
 
-                return view('Project-Panel.Flat.invoice', compact(['payment','flatSale','comInfo']));
+                // dd($payment_amount->sum('amount'));
+
+                return view('Project-Panel.Flat.Voucher', compact(['payment','flatSale','comInfo','payments']));
             } catch (\Exception $e) {
                 DB::rollback();
 
@@ -110,9 +113,12 @@ class FlatSaleController extends Controller
             $flat = Flat::find($id);
             if($flat->sale_status == 2){
                 // dd($flat->flatSaleInfo);
-                $payments = Payment::where('flat_id',$flat->id)->get();
+                $flatSale = FlatSaleInfo::where('flat_id',$flat->id)->first();
+                $payments = Payment::where('flatSale_id',$flatSale->id)->get();
 
-                return view('Project-Panel.Flat.Flat_sale_details', compact(['flat','payments','comInfo']));
+
+
+                return view('Project-Panel.Flat.Flat_sale_details', compact(['flat','payments','comInfo','flatSale']));
             }else{
 
                 return redirect()->route('flat.view.chart');
@@ -128,7 +134,10 @@ class FlatSaleController extends Controller
         if($project_id !== null){
             $flatSaleInfo = FlatSaleInfo::where('flat_id',$id)->first();
             $comInfo = ComponyInfo::first();
-            return view('Project-Panel.Flat.payment', compact('flatSaleInfo','comInfo'));
+            $payment = Payment::where('flatSale_id',$flatSaleInfo->id)->get();
+
+            // dd($flatSaleInfo->id);
+            return view('Project-Panel.Flat.payment', compact('flatSaleInfo','comInfo','payment'));
         }else{
             return redirect()->route('list.project')-> with('error','Project Id Is Null');
         }
@@ -151,9 +160,11 @@ class FlatSaleController extends Controller
                 'received_by'=>auth()->id(),
             ];
         $payment = Payment::create($data);
-        $comInfo = CompanyInfo::first();
+        $comInfo = ComponyInfo::first();
         $flatSale = FlatSaleInfo::find($flatSaleInfo->id);
-            return view('Project-Panel.Flat.invoice', compact(['payment','flatSale','comInfo']));
+        $payments = Payment::where('flatSale_id',$flatSale->id)->get();
+
+            return view('Project-Panel.Flat.invoice', compact(['payment','payments','flatSale','comInfo']));
         }else{
             return redirect()->route('list.project')-> with('error','Project Id Is Null');
         }

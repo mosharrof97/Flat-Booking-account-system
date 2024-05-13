@@ -27,7 +27,7 @@ class Payment extends Model
 
     public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'received_by');
     }
 
     public function flat(): BelongsTo
@@ -37,6 +37,6 @@ class Payment extends Model
 
     public function saleInfo(): BelongsTo
     {
-        return $this->belongsTo(FlatSaleInfo::class);
+        return $this->belongsTo(FlatSaleInfo::class, 'flatSale_id');
     }
 }

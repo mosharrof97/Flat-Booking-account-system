@@ -9,6 +9,9 @@ use Illuminate\Http\Request;
 use App\Models\Project;
 use App\Models\Purchase;
 use App\Models\Vendor;
+use App\Models\PurchaseDuePay;
+use App\Models\ReturnPurchase;
+use App\Models\ComponyInfo;
 
 class ProjectPurchaseController extends Controller
 {
@@ -116,9 +119,13 @@ class ProjectPurchaseController extends Controller
     public function show($id){
         $projectId = Session::get('project_id');
         if($projectId){
+            $comInfo =ComponyInfo::first();
             $purchase = Purchase::where('project_id',$projectId)->where('id',$id)->first();
+            $duePay = PurchaseDuePay::where('purchase_id',$id)->get();
 
-            return view('Project-Panel.Purchase.Purchase_View', compact('purchase'));
+            // return $duePay;
+
+            return view('Project-Panel.Purchase.Purchase_View', compact('purchase','duePay','comInfo'));
         }else{
         return redirect()->route('list.project')-> with('error','Project Id Is Null');
         }

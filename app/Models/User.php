@@ -71,7 +71,7 @@ class User extends Authenticatable
     }
 
     public function pur_due_pay() {
-        return $this->HasMany(PurchaseDuePay::class);
+        return $this->HasMany(PurchaseDuePay::class,'id');
     }
 
     public function re_purchase() {
@@ -79,7 +79,7 @@ class User extends Authenticatable
     }
 
     public function payment() {
-        return $this->HasMany(Payment::class,'received_by');
+        return $this->HasMany(Payment::class,'id');
     }
 
     public function project() {

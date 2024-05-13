@@ -2,70 +2,144 @@
 @section('content')
 <div class="row justify-content-center">
     <div class="col-lg-12 col-sm-12">
-        <div class="card p-4">
-            <div class="card-header bg-info">
-                <h3>Purchase Information</h3>
-                {{-- <a href="{{ route('project.purchase.invoice',$purchase->id) }}" class="btn btn-info" target="_blank" rel="noopener noreferrer">Invoice</a> --}}
+        <div class="card p-4" id="PurInvoice">
+            <div class="card-header justify-content-center">
+                <div class="text-center ">
+                    <img src="{{ asset('upload/CompanyInfo/'. $comInfo->logo) }}" alt="" width="100">
+                    <h2 class="fw-bold">{{ $comInfo->name }}</h2>
+                    <h4 class="fw-semibold"><b>Email:</b> {{ $comInfo->email }}</h4>
+                    <h4 class="fw-bold"><b>Project: </b>{{ $purchase->project->projectName }}</h2>
+                    <h4><b>Address:</b> {{ $purchase->project->address.', '.$purchase->project->city.', '.$purchase->project->address }}</h4>
+                    <h4>{{ $purchase->project->district->name.'- '.$purchase->project->zipCode}}</h4>
+                </div>
             </div>
             <div class="card-body">
-                <div class="table-responsive">
-                    <style>
-                        .table-information {
-                            width: 100%;
-                            margin-bottom: 1rem;
-                            color: #BDBDC7;
-                        }
+                <div class="">
+                    <h4 class="text-center fw-bold">Purchase Information</h4>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-lg-8 ">
+                        <div class="table-responsive">
+                            <style>
+                                .table-information {
+                                    width: 100%;
+                                    margin-bottom: 1rem;
+                                    color: #BDBDC7;
+                                }
 
-                        .table-information th,
-                        .table-information td {
-                            padding: 0.2rem !important;
-                        }
+                                .table-information th,
+                                .table-information td {
+                                    padding: 0.2rem !important;
+                                }
 
-                    </style>
-                    <table class="table-information table table-borderless">
+                            </style>
+                            <table class="table-information table table-borderless">
 
-                        <tr>
-                            <th scope="row" style="width: 20%">Project Name</th>
-                            <td colspan="" style="width: 3%">:</td>
-                            <td colspan="3" style="width: 77%"> {{ $purchase->project->projectName }} </td>
-                        </tr>
-                        <tr>
-                            <th scope="row" style="width: 20%">Project Status </th>
-                            <td colspan="" style="width: 3%">:</td>
-                            @if ($purchase->project->status === 0)
-                                <td colspan="3" style="width: 77%">
-                                    <div class="d-flex align-items-center">
-                                        <span class="bg-info p-2 me-1 rounded-circle "></span>
-                                        <span class="text-info">On going</span>
-                                    </div>
-                                </td>
-                            @elseif ($purchase->project->status === 1)
-                                <td colspan="3" class="text-success" style="width: 77%">
-                                    <div class="d-flex align-items-center">
-                                        <span class="bg-info p-2 me-1 rounded-circle "></span>
-                                        <span class="text-info">completed</span>
-                                    </div>
-                                </td>
-                            @endif
-                        </tr>
-                        <tr>
-                            <th scope="row" style="width: 20%">Create Purchase</th>
-                            <td colspan="" style="width: 3%">:</td>
-                            <td colspan="3" style="width: 77%">{{ $purchase->user->name }}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row" style="width: 20%">vendor</th>
-                            <td colspan="" style="width: 3%">:</td>
-                            <td colspan="3" style="width: 77%">{{ $purchase->vendor->name .' - '. $purchase->vendor->phone}}</td>
-                        </tr>
+                                <tr>
+                                    <th scope="row" style="width: 20%"><h5 class="fw-bold">Project Name </h5></th>
+                                    <td colspan="" style="width: 3%">:</td>
+                                    <td colspan="3" style="width: 77%"> {{ $purchase->project->projectName }} </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" style="width: 20%"><h5 class="fw-bold">Project Status </h5></th>
+                                    <td colspan="" style="width: 3%">:</td>
+                                    @if ($purchase->project->status === 0)
+                                        <td colspan="3" style="width: 77%">
+                                            <div class="d-flex align-items-center">
+                                                <span class="bg-info p-2 me-1 rounded-circle "></span>
+                                                <span class="text-info">On going</span>
+                                            </div>
+                                        </td>
+                                    @elseif ($purchase->project->status === 1)
+                                        <td colspan="3" class="text-success" style="width: 77%">
+                                            <div class="d-flex align-items-center">
+                                                <span class="bg-info p-2 me-1 rounded-circle "></span>
+                                                <span class="text-info">completed</span>
+                                            </div>
+                                        </td>
+                                    @endif
+                                </tr>
+                                <tr>
+                                    <th scope="row" style="width: 20%"><h5 class="fw-bold">Create Purchase</h5></th>
+                                    <td colspan="" style="width: 3%">:</td>
+                                    <td colspan="3" style="width: 77%">{{ $purchase->user->name }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" style="width: 20%"><h5 class="fw-bold">vendor</h5></th>
+                                    <td colspan="" style="width: 3%">:</td>
+                                    <td colspan="3" style="width: 77%">{{ $purchase->vendor->name .' - '. $purchase->vendor->phone}}</td>
+                                </tr>
 
-                        <tr>
-                            <th scope="row" style="width: 20%">Purchase Date</th>
-                            <td colspan="" style="width: 3%">:</td>
-                            <td colspan="3" style="width: 77%">{{ $purchase->date  }}</td>
-                        </tr>
+                                <tr>
+                                    <th scope="row" style="width: 20%"><h5 class="fw-bold">Purchase Date</h5></th>
+                                    <td colspan="" style="width: 3%">:</td>
+                                    <td colspan="3" style="width: 77%">{{ $purchase->date  }}</td>
+                                </tr>
 
-                    </table>
+                                <tr>
+                                    <th scope="row" style="width: 20%"><h5 class="fw-bold">Purchase Amount</h5></th>
+                                    <td colspan="" style="width: 3%">:</td>
+                                    <td colspan="3" style="width: 77%">{{ $purchase->payable_amount  }}</td>
+                                </tr>
+
+                                <tr>
+                                    <th scope="row" style="width: 20%"><h5 class="fw-bold">Purchase Status</h5></th>
+                                    <td colspan="" style="width: 3%">:</td>
+                                    <td colspan="3" style="width: 77%">
+                                        <button class="btn btn-info">
+                                            {{ $purchase->payable_amount == $purchase->paid ? 'paid' : 'Due' }}
+                                        </button>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th scope="row" style="width: 20%"><h5 class="fw-bold">Paid</h5></th>
+                                    <td colspan="" style="width: 3%">:</td>
+                                    <td colspan="3" style="width: 77%">{{ $purchase->paid  }}</td>
+                                </tr>
+
+                                <tr>
+                                    <th scope="row" style="width: 20%"><h5 class="fw-bold">Due</h5></th>
+                                    <td colspan="" style="width: 3%">:</td>
+                                    <td colspan="3" style="width: 77%">{{ $purchase->due  }}</td>
+                                </tr>
+
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="">
+                            <h4 class="fw-bold text-center"> Due Pay</h4>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>SL</th>
+                                        <th>Date</th>
+                                        <th>Amount</th>
+                                        <th>Pay By</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="table-group-divider">
+                                    @foreach($purchase->pur_due_pay as $key => $value)
+                                    <tr>
+                                        <td>{{ $key + 1 }}</td>
+                                        <td>{{ $value->date }}</td>
+                                        <td>{{ $value->pay}}</td>
+                                        <td>{{ $value->user->name}}</td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>SL</th>
+                                        <th>Total</th>
+                                        <th>{{ $purchase->pur_due_pay->sum('pay') }}</th>
+                                        <th>Recived By</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
                 </div>
                 <div class="">
                     @php
@@ -137,9 +211,10 @@
                     </table>
                 </div>
             </div>
-            <div class="card-footer">
-                <a href="{{ url()->previous() }}" class="btn btn-danger">back</a>
-            </div>
+        </div>
+        <div class="card-footer">
+            <button class="btn-block btn btn-success btn-sm" type="button" onclick="printDiv('PurInvoice')">Print</button>
+            <a href="{{ url()->previous() }}" class="btn-block btn btn-danger btn-sm">back</a>
         </div>
     </div>
 </div>

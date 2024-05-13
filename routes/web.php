@@ -171,6 +171,9 @@ Route::prefix('admin')->middleware('auth')->group(function () {
                 Route::get('/{id}/return', [FlatReturnController::class, 'index'])->name('return');
                 Route::post('/return', [FlatReturnController::class, 'flatReturn'])->name('return.store');
 
+                Route::get('voucher', function(){
+                        return view('Project-Panel.Flat.Voucher');
+                    })->name('voucher');
             });
 
             // Project Return
