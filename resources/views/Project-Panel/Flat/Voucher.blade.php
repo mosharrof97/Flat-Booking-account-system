@@ -10,15 +10,13 @@
                             dd($comInfo);
                         @endphp--}}
                         <img src="{{ asset('upload/CompanyInfo/'. $comInfo->logo) }}"
-                            style="width: 343px;height: 167px;/* background: #262323; */" alt="">
+                            style="width: 200px;height: 125px;/* background: #262323; */" alt="">
                         <div style=" font-size: 23px; font-weight: 700; ">
                             <h2 class="fw-bold">{{ $comInfo->name }}</h2>
                             <h4 class="fw-semibold"> {{ $comInfo->email }}</h4>
                             <h4 class="fw-semibold">{{ $comInfo->address }}.</h4>
                         </div>  
                         {{--  <div style=" font-size: 23px; font-weight: 700; ">Mobile : 01700-672492</div><br>  --}}
-
-
                     </div>
 
                     <center>

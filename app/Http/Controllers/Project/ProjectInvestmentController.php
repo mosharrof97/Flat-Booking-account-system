@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Investment;
 use App\Models\InvestInstallment;
 use App\Models\Client;
+use App\Models\ComponyInfo;
 use Auth;
 
 
@@ -110,6 +111,7 @@ class ProjectInvestmentController extends Controller
             // dd($investment);
             if($investment){
                 $data =[
+                    'comInfo' => ComponyInfo::first(),
                     'investment'=> $investment,
                     'installment'=> InvestInstallment::where('investment_id', $investment->id)->get(),
                 ];

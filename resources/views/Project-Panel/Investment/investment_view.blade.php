@@ -2,12 +2,10 @@
 @section('content')
 <div class="row justify-content-center">
     <div class="col-lg-12 col-sm-12">
-        <div class="card p-4">
+        <div class="card">
             <div class="card-header">
-                <h4>Installment Information
-                    <a href="{{ route('project.investment.list') }}" class="btn btn-danger">Back</a>
-                </h4>
-
+                <a href="{{ route('project.investment.list') }}" class="btn btn-danger">Back</a>
+                
                 @if($investment->total_Investment == $installment->sum('installment_amount'))
                 <button class="btn btn-danger">paid</button>
                 @else
@@ -15,84 +13,106 @@
                 @endif
 
             </div>
+        </div>
+        <div class="card p-4">
+           
+            <div class="card-header flex-column justify-content-center p-4">
+                <div style=" text-align: center; ">
+                    <img src="{{ asset('upload/CompanyInfo/'. $comInfo->logo) }}"
+                        style="width: 200px;height: 125px;/* background: #262323; */" alt="">
+                    <div style=" font-size: 23px; font-weight: 700; ">
+                        <h2 class="fw-bold">{{ $comInfo->name }}</h2>
+                        <h4 class="fw-semibold"> {{ $comInfo->email }}</h4>
+                        <h4 class="fw-semibold">{{ $comInfo->address }}.</h4>
+                    </div>  
+                    {{--  <div style=" font-size: 23px; font-weight: 700; ">Mobile : 01700-672492</div><br>  --}}
+                </div>
+
+                <center>
+                    <h3 class="mb-0"><b><u>Payment Voucher</u></b></h3>
+                </center>
+            </div>
             <div class="card-body">
                 <div class="table-responsive">
                     <style>
-                        .table-information {
+                        /* .table-information {
                             width: 100%;
                             margin-bottom: 1rem;
                             color: #BDBDC7;
-                        }
+                        } */
 
-                        .table-information th,
-                        .table-information td {
+                        .table-information tbody th,
+                        .table-information tbody td {
                             padding: 0.2rem !important;
                         }
 
                     </style>
-                    <table class="table-information table table-borderless">
-                        <tr>
-                            <th scope="row" style="width: 20%">Name </th>
-                            <td colspan="" style="width: 3%">:</td>
-                            <td colspan="3" style="width: 77%">{{ $investment->client->name }}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row" style="width: 20%">Phone</th>
-                            <td colspan="" style="width: 3%">:</td>
-                            <td colspan="3" style="width: 77%">{{ $investment->client->phone }}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row" style="width: 20%">Email</th>
-                            <td colspan="" style="width: 3%">:</td>
-                            <td colspan="3" style="width: 77%">{{ $investment->client->email }}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row" style="width: 20%">Project Name</th>
-                            <td colspan="" style="width: 3%">:</td>
-                            <td colspan="3" style="width: 77%">{{ $investment->project->projectName }}</td>
-                        </tr>
-                        <tr>
-                            <th scope="row" style="width: 20%">Project Status </th>
-                            <td colspan="" style="width: 3%">:</td>
-                            @if ($investment->project->status == 0)
-                                <td colspan="3" style="width: 77%">
-                                    <div class="d-flex align-items-center">
-                                        <span class="bg-info p-2 me-1 rounded-circle "></span>
-                                        <span class="text-info">On going</span>
-                                    </div>
-                                </td>
-                            @elseif ($investment->project->status == 1)
-                                <td colspan="3" style="width: 77%">
-                                    <div class="d-flex align-items-center">
-                                        <span class="bg-success p-2 me-1 rounded-circle">.</span>
-                                        <span class="text-success">Complete</span>
-                                    </div>
-                                </td>
-                            @endif
+                    <div class="col-lg-3  col-md-4 col-sm-6">
+                        <table class="table-information table table-borderless">
+                            <tbody>
+                                <tr>
+                                    <th scope="row" ><h4>Name</h4> </th>
+                                    <td colspan="" >:</td>
+                                    <td colspan="3" >{{ $investment->client->name }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" ><h4>Phone</h4></th>
+                                    <td colspan="" >:</td>
+                                    <td colspan="3" >{{ $investment->client->phone }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" ><h4>Email</h4></th>
+                                    <td colspan="" >:</td>
+                                    <td colspan="3" >{{ $investment->client->email }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" >Project Name</th>
+                                    <td colspan="" >:</td>
+                                    <td colspan="3" >{{ $investment->project->projectName }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" >Project Status </th>
+                                    <td colspan="" >:</td>
+                                    @if ($investment->project->status == 0)
+                                        <td colspan="3" >
+                                            <div class="d-flex align-items-center">
+                                                <span class="bg-info p-2 me-1 rounded-circle "></span>
+                                                <span class="text-info">On going</span>
+                                            </div>
+                                        </td>
+                                    @elseif ($investment->project->status == 1)
+                                        <td colspan="3" >
+                                            <div class="d-flex align-items-center">
+                                                <span class="bg-success p-2 me-1 rounded-circle">.</span>
+                                                <span class="text-success">Complete</span>
+                                            </div>
+                                        </td>
+                                    @endif
 
-                        </tr>
-                        <tr>
-                            <th scope="row" style="width: 20%">Investment Total Amount</th>
-                            <td colspan="" style="width: 3%">:</td>
-                            <td colspan="3" style="width: 77%">{{ $investment->total_Investment }} BDT</td>
-                        </tr>
-                        <tr>
-                            <th scope="row" style="width: 20%">Installment</th>
-                            <td colspan="" style="width: 3%">:</td>
-                            <td colspan="3" style="width: 77%">{{ $installment->count() }} Installment</td>
-                        </tr>
-                        <tr>
-                            <th scope="row" style="width: 20%">Paid Amount</th>
-                            <td colspan="" style="width: 3%">:</td>
-                            <td colspan="3" style="width: 77%">{{ $installment->sum('installment_amount') }} BDT</td>
-                        </tr>
-                        <tr>
-                            <th scope="row" style="width: 20%">Due Amount</th>
-                            <td colspan="" style="width: 3%">:</td>
-                            <td colspan="3" style="width: 77%">{{ $investment->total_Investment - $installment->sum('installment_amount') }} BDT</td>
-                        </tr>
-
-                    </table>
+                                </tr>
+                                <tr>
+                                    <th scope="row" >Investment Total Amount</th>
+                                    <td colspan="" >:</td>
+                                    <td colspan="3" >{{ $investment->total_Investment }} BDT</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" >Installment</th>
+                                    <td colspan="" >:</td>
+                                    <td colspan="3" >{{ $installment->count() }} Installment</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" >Paid Amount</th>
+                                    <td colspan="" >:</td>
+                                    <td colspan="3" >{{ $installment->sum('installment_amount') }} BDT</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" >Due Amount</th>
+                                    <td colspan="" >:</td>
+                                    <td colspan="3" >{{ $investment->total_Investment - $installment->sum('installment_amount') }} BDT</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
                 <div class="mt-3">
                     <div class="d-flex align-items-center bg-success p-2 my-3">
