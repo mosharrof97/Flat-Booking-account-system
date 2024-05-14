@@ -30,9 +30,13 @@ class Investment extends Model
         return $this->BelongsTo(Client::class);
     }
 
+    public function user(){
+        return $this->BelongsTo(User::class, 'created_by');
+    }
+
     public function project(): BelongsTo
     {
-        return $this->belongsTo(Project::class );
+        return $this->belongsTo(Project::class, 'project_id' );
     }
 
     public function installment(): HasMany

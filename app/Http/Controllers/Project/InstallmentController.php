@@ -72,7 +72,12 @@ class InstallmentController extends Controller
                 'received_by' => auth()->id(),
             ];
             // dd($InvestInstallment);
-            InvestInstallment::create($InvestInstallment);
+           $installment = InvestInstallment::create($InvestInstallment);
+            $data = [
+                // 'investment'=>$investment,
+                'installment'=>$installment,
+                'comInfo' => ComponyInfo::first(),
+            ];
 
             return redirect()->route('project.investment.view',$request->investment_id)->with('success','Investment Successful');
         }else{

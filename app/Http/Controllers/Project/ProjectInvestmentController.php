@@ -58,12 +58,10 @@ class ProjectInvestmentController extends Controller
                 'installment_amount'=> 'required',
             ]);
 
-            // dd($request->all());
             try {
                 DB::beginTransaction();
 
                 $data=[
-                    // 'user_id' => Auth::id(),
                     'client_id' => $request->client_id,
                     'project_id'=> $project_id,
                     'total_Investment'=> $request->total_Investment,
@@ -73,11 +71,9 @@ class ProjectInvestmentController extends Controller
                     'created_by'=> Auth::id(),
                 ];
 
-                // dd($data);
-                $investmentId = Investment::create($data)->id;
-                // dd($investmentId);
+                $investment = Investment::create($data);
                 $InvestInstallment = [
-                    'investment_id'=> $investmentId,
+                    'investment_id'=> $investment->id,
                     'payment_type'=> $request->payment_type,
                     'installment_amount'=> $request->installment_amount,
                     'bank_name'=> $request->bank_name,
@@ -86,7 +82,13 @@ class ProjectInvestmentController extends Controller
                     'check_number'=> $request->check_number,
                 ];
                 // dd($InvestInstallment);
-                InvestInstallment::create($InvestInstallment);
+                $installment = InvestInstallment::create($InvestInstallment);
+
+                $data = [
+                    'investment'=>$investment,
+                    'installment'=>$installment,
+                    'comInfo' => ComponyInfo::first(),
+                ];
 
                 DB::commit();
 
@@ -97,7 +99,7 @@ class ProjectInvestmentController extends Controller
                 // Optionally, handle the exception
             }
 
-            return redirect()->route('project.investment.view',$investmentId)->with('success','Investment Successful');
+            return view('Project-Panel.Investment.pay_slip', $data);
             // return redirect()->route('project.investment.list')->with('success','Investment Successful');
         }else{
             return redirect()->route('list.project')-> with('error','Project Id Is Null');
