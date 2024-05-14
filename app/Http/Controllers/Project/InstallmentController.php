@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Models\InvestInstallment;
 use App\Models\Investment;
+use App\Models\ComponyInfo;
 
 class InstallmentController extends Controller
 {
@@ -20,6 +21,7 @@ class InstallmentController extends Controller
             $investment = Investment::where('project_id', $project_id)->where('id',$id)->first();
             if($investment){
                 $data =[
+                    'comInfo' => ComponyInfo::first(),
                     'investment'=> $investment,
                     'installment'=> InvestInstallment::where('investment_id', $investment->id)->get(),
                 ];
@@ -60,7 +62,6 @@ class InstallmentController extends Controller
                 ]);
             }
 
-
             $InvestInstallment = [
                 'investment_id'=> $request->investment_id,
                 'payment_type'=> $request->payment_type,
@@ -71,15 +72,14 @@ class InstallmentController extends Controller
                 'check_number'=> $request->check_number,
                 'received_by' => auth()->id(),
             ];
-            // dd($InvestInstallment);
            $installment = InvestInstallment::create($InvestInstallment);
             $data = [
-                // 'investment'=>$investment,
+                'investment'=>Investment::where('project_id', $project_id)->where('id',$request->investment_id)->first(),
                 'installment'=>$installment,
                 'comInfo' => ComponyInfo::first(),
             ];
 
-            return redirect()->route('project.investment.view',$request->investment_id)->with('success','Investment Successful');
+            return view('Project-Panel.Investment.Installment.pay_slip',$data);
         }else{
             return redirect()->route('list.project')-> with('error','Project Id Is Null');
         }

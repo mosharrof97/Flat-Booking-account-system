@@ -2,14 +2,30 @@
 @section('content')
 <div class="row justify-content-center">
     <div class="col-lg-10 col-sm-12">
-
-        <div class="card p-4">
-            <div class="card-header">
-                <h3>Investment Information</h3>
+        <div class="card mb-2 ">
+            <div class="card-header justify-content-end p-2">
                 <a href="{{ url()->previous() }}" class="btn btn-danger">back</a>
 
             </div>
+        </div>
+        <div class="card p-4">
+            
+            <div class="card-header flex-column justify-content-center p-4">
+                <div style=" text-align: center; ">
+                    <img src="{{ asset('upload/CompanyInfo/'. $comInfo->logo) }}"
+                        style="width: 200px;height: 125px;/* background: #262323; */" alt="">
+                    <div style=" font-size: 23px; font-weight: 700; ">
+                        <h2 class="fw-bold">{{ $comInfo->name }}</h2>
+                        <h4 class="fw-semibold"> {{ $comInfo->email }}</h4>
+                        <h4 class="fw-semibold">{{ $comInfo->address }}.</h4>
+                    </div>  
+                    {{--  <div style=" font-size: 23px; font-weight: 700; ">Mobile : 01700-672492</div><br>  --}}
+                </div>                
+            </div>
             <div class="card-body">
+                <center>
+                    <h4 class="mb-3"><b><u>Investment Information</u></b></h4>
+                </center>
                 <div class="table-responsive">
                     <style>
                         .table-information {

@@ -34,6 +34,7 @@
                             <div style=" font-size: 17px; font-weight: 700; color:#000; ">Contact No: {{ $investment->client->phone }},</div>
                             <div style=" font-size: 17px; font-weight: 700; color:#000; ">Project : {{ $investment->project->projectName }}</div>
                             <div style=" font-size: 17px; font-weight: 700; color:#000; "> Unit price -Tk.{{ $investment->total_Investment }}/-  </div>
+                            <div class="" style=" font-size: 17px; font-weight: 700; color:#000; ">Totel Pay -Tk.{{ $investment->installment->sum('installment_amount') }}/-</div>
                         </div>
                         <div class="col-sm-6 " style="text-align: end">
                             <div style=" font-size: 17px; font-weight: 700; color:#000; ">Date:{{ $installment->created_at->format('d-M-y') }}</div>
@@ -56,7 +57,7 @@
                                     {{--  <td style=" font-size: 17px; font-weight: 700; color:#000; " class="center">{{$loop->iteration}}</td>  --}}
                                     <td style=" font-size: 17px; font-weight: 700; color:#000; " class="left strong">Payment Paid</td>
                                     <td style=" font-size: 17px; font-weight: 700; color:#000; " class="left">{{ $installment->installment_amount }} Taka</td>
-                                    <td style=" font-size: 17px; font-weight: 700; color:#000; " class="center">{{ $investment->total_Investment - $investment->installment->sum('installment_amount') }} Taka</td>
+                                    <td style=" font-size: 17px; font-weight: 700; color:#000; " class="center">{{ $investment->total_Investment - $investment->installment->sum('installment_amount') }} Tk</td>
                                 </tr>
                             </tbody>
                         </table>
