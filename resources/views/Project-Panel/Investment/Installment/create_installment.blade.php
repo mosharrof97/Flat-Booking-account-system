@@ -2,7 +2,7 @@
 @section('content')
 <div class="row justify-content-center">
     <div class="col-lg-10 col-sm-12">
-        <div class="card mb-2 ">
+        <div class="card mb-2 px-4">
             <div class="card-header justify-content-end p-2">
                 <a href="{{ url()->previous() }}" class="btn btn-danger">back</a>
 
@@ -23,9 +23,12 @@
                 </div>                
             </div>
             <div class="card-body">
-                <center>
-                    <h4 class="mb-3"><b><u>Investment Information</u></b></h4>
-                </center>
+                <div class="bg-success p-0" style="/*background-color: #ececec;*/">
+                    <center>
+                        <h4 class="mb-3 p-2"><b><u>Investment Information</u></b></h4>
+                    </center>
+                </div>
+                
                 <div class="table-responsive">
                     <style>
                         .table-information {
