@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Hash;
 use Illuminate\Support\Facades\Crypt;
+use App\Models\Project;
 use App\Models\Investment;
 use App\Models\InvestInstallment;
 use App\Models\Client;
@@ -21,6 +22,35 @@ class ProjectReportController extends Controller
     // public function __construct(){
     //     $this->middleware('permission:project report', ['only' => ['investReport','expenseReport',]]);
     // }
+
+    public function projectReport(){
+        $project_id = Session::get('project_id');
+        if ($project_id !== null) {
+            $data = [
+                'projectReport' => Project::find($project_id),
+                'purchases' => Purchase::select('vendor_id', 
+                    DB::raw('SUM(total_amount) as total_amount'),
+                    DB::raw('SUM(payable_amount) as total_payable_amount'),
+                    DB::raw('SUM(paid) as total_paid'),
+                    DB::raw('SUM(due) as total_due'))
+                ->where('project_id', $project_id)
+                ->groupBy('vendor_id')
+                ->with('vendor') // Assuming the Purchase model has a relationship with the Vendor model
+                ->get(),
+            ];
+
+            // $purchases = DB::table('purchases as p')
+            // ->join('vendors as v', 'p.vendor_id', '=', 'v.id')
+            // ->select('v.name', DB::raw('SUM(p.total_amount) as total_amount'))
+            // ->where('p.project_id', $project_id)
+            // ->groupBy('v.name')
+            // ->get();
+
+            return view('Project-Panel.Report.Project_report', $data);
+        } else {
+            return redirect()->route('list.project')->with('error', 'Project Id Is Null');
+        }
+    }
 
     public function investReport(Request $request)
     {
@@ -64,7 +94,6 @@ class ProjectReportController extends Controller
             return redirect()->route('list.project')->with('error', 'Project Id Is Null');
         }
     }
-
 
     public function expenseReport(Request $request){
         $project_id = Session::get('project_id');

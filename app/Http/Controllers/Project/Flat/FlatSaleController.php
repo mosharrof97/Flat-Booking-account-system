@@ -164,6 +164,7 @@ class FlatSaleController extends Controller
         $flatSale = FlatSaleInfo::find($flatSaleInfo->id);
         $payments = Payment::where('flatSale_id',$flatSale->id)->get();
 
+        // dd($payments);
             return view('Project-Panel.Flat.invoice', compact(['payment','payments','flatSale','comInfo']));
         }else{
             return redirect()->route('list.project')-> with('error','Project Id Is Null');

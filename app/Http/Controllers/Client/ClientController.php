@@ -38,8 +38,8 @@ class ClientController extends Controller
             'father_name' => 'required|string|max:255',
             'mother_name' => 'required|string|max:255',
             'phone' => 'required|max:255|unique:clients,phone',
-            'nid' => 'required|max:20|unique:clients,nid',
-            'tin' => 'required|max:20|unique:clients,tin',
+            // 'nid' => 'required|max:20|unique:clients,nid',
+            // 'tin' => 'required|max:20|unique:clients,tin',
             'email' => 'required|email|max:255|unique:clients,email',
             'image' => 'required',
 
@@ -113,8 +113,8 @@ class ClientController extends Controller
             'mother_name' => 'required|string|max:255',
             'phone' => 'required|max:255|unique:employees,phone',
             'email' => 'required|email|max:255|unique:employees,email',
-            'nid' => 'required',
-            'tin' => 'required',
+            // 'nid' => 'required',
+            // 'tin' => 'required',
             // 'image' => 'required',
 
             'pre_address' => 'required|string|max:255',
@@ -138,8 +138,8 @@ class ClientController extends Controller
                 'phone' => $request->phone,
                 'nid' => $request->nid,
                 'tin' => $request->tin,
-                'password'=> 123456789,
-                'image'=> $imageName ?? 'No Image',
+                // 'password'=> 123456789,
+                // 'image'=> $imageName ?? 'No Image',
                 'updated_by' => $request->auth()->id(),
             ]);
 
@@ -170,8 +170,8 @@ class ClientController extends Controller
         return view('Admin-Panel.page.Client.client_details',['client' => $client]);
     }
 
-    public function destroy($id) {
-
+    public function delete($id) {
+        
         $client = Client::findOrFail($id);
         $client->update([
             'status'=>1,

@@ -176,8 +176,9 @@ Route::prefix('admin')->middleware('auth')->group(function () {
                     })->name('voucher');
             });
 
-            // Project Return
+            // Project Report
             Route::prefix('report')->group(function () {
+                Route::get('/project_report', [ProjectReportController::class, 'projectReport'])->name('project.report');
                 Route::get('/invest_report', [ProjectReportController::class, 'investReport'])->name('invest.report');
                 Route::get('/expense_report', [ProjectReportController::class, 'expenseReport'])->name('expense.report');
                 Route::get('/purchase_report', [ProjectReportController::class, 'purchaseReport'])->name('purchase.report');
@@ -199,7 +200,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
         Route::get('/{id}/edit', [EmployeeController::class,'edit'])->name('employee.edit');
         Route::put('/{id}/edit', [EmployeeController::class,'update'])->name('employee.update');
         Route::get('/{id}/view', [EmployeeController::class,'view'])->name('employee.view');
-        Route::get('/{id}/delete', [EmployeeController::class,'destroy'])->name('employee.delete');
+        Route::post('/{id}/delete', [EmployeeController::class,'destroy'])->name('employee.delete');
     });
     /**------------------ Employee End --------------------**/
 
@@ -213,7 +214,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
         Route::get('/{id}/edit', [ClientController::class,'edit'])->name('client.edit');
         Route::put('/{id}/edit', [ClientController::class,'update'])->name('client.update');
         Route::get('/{id}/view', [ClientController::class,'view'])->name('client.view');
-        Route::delete('/{id}/delete', [ClientController::class,'destroy'])->name('client.delete');
+        Route::get('/delete/{id}', [ClientController::class,'delete'])->name('client.delete');
 
         //Investment
         Route::prefix('investment')->group(function () {

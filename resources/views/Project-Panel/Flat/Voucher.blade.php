@@ -59,7 +59,7 @@
                                     {{--  <td style=" font-size: 17px; font-weight: 700; color:#000; " class="center">{{$loop->iteration}}</td>  --}}
                                     <td style=" font-size: 17px; font-weight: 700; color:#000; " class="left strong">Payment Paid</td>
                                     <td style=" font-size: 17px; font-weight: 700; color:#000; " class="left">{{ $payment->amount }} Taka</td>
-                                    <td style=" font-size: 17px; font-weight: 700; color:#000; " class="center">{{ $flatSale->price -$payment->amount }} Taka</td>
+                                    <td style=" font-size: 17px; font-weight: 700; color:#000; " class="center">{{ $flatSale->price - $payments->sum('amount') }} Taka</td>
                                 </tr>
                             </tbody>
                         </table>
