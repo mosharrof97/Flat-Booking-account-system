@@ -132,11 +132,12 @@ class FlatSaleController extends Controller
     public function paySlip($id){
         $project_id = Session::get('project_id');
         if($project_id !== null){
-            $comInfo = ComponyInfo::first();
-            $payment = Payment::find($id);
-            $payments = Payment::where('flatSale_id',$payment->flatSale_id)->where('flat_id',$payment->flat_id)->get();
-            $flatSale = FlatSaleInfo::find($payment->flatSale_id);
-            // dd($payment->SUM('amount'));
+            $comInfo = ComponyInfo::firstOrFail(); 
+            $payment = Payment::findOrFail($id);
+            $payments = Payment::where('flatSale_id', $payment->flatSale_id)
+                               ->where('flat_id', $payment->flat_id)
+                               ->get();
+            $flatSale = FlatSaleInfo::findOrFail($payment->flatSale_id);
 
             return view('Project-Panel.Flat.pay_slip', compact(['payment','payments','flatSale','comInfo']));
         }else{
