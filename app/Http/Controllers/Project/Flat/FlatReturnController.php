@@ -76,13 +76,13 @@ class FlatReturnController extends Controller
                     $saleFlat->delete();
 
                     $flat = Flat::where('project_id', $project_id)->where('status', '!=', 1)->find($request->flat_id);
-                   $update = $flat->update([
+                    $update = $flat->update([
                         'client_id'=> null,
                         'sale_status'=>0,
                     ]);
-// dd($flat );
+                    DB::commit();
                     return redirect()->route('flat.view.chart');
-                DB::commit();
+                
             } catch (\Exception $e) {
                 DB::rollback();
 

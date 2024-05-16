@@ -94,7 +94,8 @@ class FlatSaleController extends Controller
 
                 // dd($payment_amount->sum('amount'));
 
-                return view('Project-Panel.Flat.Voucher', compact(['payment','flatSale','comInfo','payments']));
+                return redirect()->route('paySlip',$payment->id);
+                // return view('Project-Panel.Flat.Voucher', compact(['payment','flatSale','comInfo','payments']));
             } catch (\Exception $e) {
                 DB::rollback();
 
@@ -123,6 +124,21 @@ class FlatSaleController extends Controller
 
                 return redirect()->route('flat.view.chart');
             }
+        }else{
+            return redirect()->route('list.project')-> with('error','Project Id Is Null');
+        }
+    }
+
+    public function paySlip($id){
+        $project_id = Session::get('project_id');
+        if($project_id !== null){
+            $comInfo = ComponyInfo::first();
+            $payment = Payment::find($id);
+            $payments = Payment::where('flatSale_id',$payment->flatSale_id)->where('flat_id',$payment->flat_id)->get();
+            $flatSale = FlatSaleInfo::find($payment->flatSale_id);
+            // dd($payment->SUM('amount'));
+
+            return view('Project-Panel.Flat.pay_slip', compact(['payment','payments','flatSale','comInfo']));
         }else{
             return redirect()->route('list.project')-> with('error','Project Id Is Null');
         }
@@ -160,12 +176,13 @@ class FlatSaleController extends Controller
                 'received_by'=>auth()->id(),
             ];
         $payment = Payment::create($data);
-        $comInfo = ComponyInfo::first();
-        $flatSale = FlatSaleInfo::find($flatSaleInfo->id);
-        $payments = Payment::where('flatSale_id',$flatSale->id)->get();
+        // $comInfo = ComponyInfo::first();
+        // $flatSale = FlatSaleInfo::find($flatSaleInfo->id);
+        // $payments = Payment::where('flatSale_id',$flatSale->id)->get();
 
         // dd($payments);
-            return view('Project-Panel.Flat.invoice', compact(['payment','payments','flatSale','comInfo']));
+            return redirect()->route('paySlip',$payment->id);
+            // return view('Project-Panel.Flat.invoice', compact(['payment','payments','flatSale','comInfo']));
         }else{
             return redirect()->route('list.project')-> with('error','Project Id Is Null');
         }

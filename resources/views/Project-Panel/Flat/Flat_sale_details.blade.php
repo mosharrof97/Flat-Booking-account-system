@@ -128,6 +128,7 @@
                                 <th scope="col" class="flex-wrap">Account Number</th>
                                 <th scope="col" class="flex-wrap">Check Number</th>
                                 <th scope="col" class="flex-wrap">Amount</th>
+                                <th scope="col" class="flex-wrap action-hide">Action</th>
                                 {{-- <th scope="col" class="flex-wrap">Received_by</th> --}}
                             </tr>
                         </thead>
@@ -142,6 +143,9 @@
                                 <td>{{ $payment->account_number }}</td>
                                 <td>{{ $payment->check_number}}</td>
                                 <td>{{ $payment->amount}}</td>
+                                <td class="action-hide">
+                                    <a href="{{ route('paySlip',$payment->id) }}"  class="btn btn-light"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                                </td>
                                 {{-- <td>{{ $payment->user->name}}</td> --}}
                                 {{-- <td>{{ $payment->check_number}}</td>
                                 <td>{{ $total_prices[$key] }}.00</td> --}}
@@ -186,18 +190,20 @@
             </div>
         </div>
         <div class="">
-            <button class="btn btn-info" onclick="printDiv('saleDetails')">Print</button>
+            <button class="btn btn-info" id="paySlipHide"  onclick="printDiv('saleDetails')">Print</button>
         </div>
     </div>
 </div>
 
-
 <script>
-    $(document).ready(function() {
+// $(document).ready(function() {
+//     $('#paySlipHide').on('mouseenter', function() {
+//         $('.action-hide').css('display', 'none');
+//     });
 
-
-
-    });
-
+//     $('#paySlipHide').on('click', function() {
+//         $('.action-hide').css('display', 'block');
+//     });
+// });
 </script>
 @endsection

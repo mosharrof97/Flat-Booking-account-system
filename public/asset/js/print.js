@@ -4,7 +4,6 @@ function printDiv(divName) {
     var originalContents = document.body.innerHTML;
 
     document.body.innerHTML = printContents;
-
     window.print();
     // $('.example-screen').removeClass("none");
 
