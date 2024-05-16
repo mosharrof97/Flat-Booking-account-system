@@ -17,7 +17,7 @@ class Flat extends Model
         'name',
         'floor',
         'flat_area',
-        'price',//Price/per Sqft
+        'price',
         'room',
         'dining_space',
         'bath_room',

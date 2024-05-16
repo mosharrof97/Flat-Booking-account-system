@@ -15,6 +15,9 @@ use App\Models\Client;
 use App\Models\Expense;
 use App\Models\Vendor;
 use App\Models\Purchase;
+use App\Models\FlatSaleInfo;
+use App\Models\Flat;
+use App\Models\Payment;
 use DB;
 
 class ProjectReportController extends Controller
@@ -35,10 +38,30 @@ class ProjectReportController extends Controller
                     DB::raw('SUM(due) as total_due'))
                 ->where('project_id', $project_id)
                 ->groupBy('vendor_id')
-                ->with('vendor') // Assuming the Purchase model has a relationship with the Vendor model
-                ->get(),
+                ->with('vendor') 
+                ->paginate(15),
+
+                'purchaseReport' => Purchase::where('project_id', $project_id)
+                    ->select('date',
+                    DB::raw('SUM(payable_amount) as total_payable_amount'),
+                    DB::raw('SUM(paid) as total_paid'),
+                    DB::raw('SUM(due) as total_due'))
+                    ->groupBy('date')
+                    ->orderBy('id', 'desc')
+                    ->paginate(15),
+
+                'expenses' => Expense::where('project_id', $project_id)
+                    ->select('date',
+                    DB::raw('SUM(total) as total_amount'))
+                    ->groupBy('date')
+                    ->orderBy('id', 'desc')
+                    ->paginate(15),
+
+                'flats' => Flat::where('project_id', $project_id)->where('sale_status',2)->get(),
             ];
 
+            // dd($data['flat']);
+            //DB Query
             // $purchases = DB::table('purchases as p')
             // ->join('vendors as v', 'p.vendor_id', '=', 'v.id')
             // ->select('v.name', DB::raw('SUM(p.total_amount) as total_amount'))
