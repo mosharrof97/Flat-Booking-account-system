@@ -28,7 +28,7 @@ return new class extends Migration
 
             $table->id();
             $table->foreignId('flat_id');
-            $table->foreignId('flatSale_id');
+            $table->foreignId('flatSale_id')->constrained('flat_sale_infos')->onDelete('cascade');
             $table->string('payment_type');
             $table->decimal('amount', 15, 2);
             $table->string('bank_name')->nullable();

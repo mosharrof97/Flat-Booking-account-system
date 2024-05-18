@@ -148,7 +148,6 @@
                     </table>
                 </div>
 
-                <hr>
                 {{-- <form class="" action="{{ route('store.project.installment') }}" method="POST" enctype="multipart/form-data">
                     @csrf
 
@@ -159,10 +158,7 @@
 
                 </form> --}}
             </div>
-        </div>
-
-
-        <div class="card p-4">
+        
             <div class="card-header">
                 <h3>Investment Information</h3>
             </div>

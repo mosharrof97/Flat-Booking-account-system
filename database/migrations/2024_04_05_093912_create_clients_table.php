@@ -13,19 +13,19 @@ return new class extends Migration
     {
         Schema::create('clients', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('father_name');
-            $table->string('mother_name');
-            $table->string('phone',15)->unique();
-            $table->string('email')->unique();
+            $table->string('name')->nullable();
+            $table->string('father_name')->nullable();
+            $table->string('mother_name')->nullable();
+            $table->string('phone',15)->unique()->nullable();
+            $table->string('email')->unique()->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('nid',20)->unique()->nullable();
             $table->string('tin',20)->unique()->nullable();
             $table->foreignId('role_id')->nullable();
             $table->enum('active_status',['active', 'inactive'])->default('inactive');
             $table->string('status')->default(0);
-            $table->string('password');
-            $table->string('image');
+            $table->string('password')->nullable();
+            $table->string('image')->nullable();
 
 
             $table->foreignId('created_by')->nullable();

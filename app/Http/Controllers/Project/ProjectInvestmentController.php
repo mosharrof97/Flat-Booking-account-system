@@ -23,11 +23,17 @@ class ProjectInvestmentController extends Controller
 
     public function index(){
         $project_id = Session::get('project_id');
-        if($project_id !== null){
+        if($project_id !== null){          
 
             $data = [
-                'invest' => Investment::where('project_id',$project_id)->paginate(15),
+                'invest' => Investment::where('project_id', $project_id)
+                            ->whereHas('client', function ($query) {
+                                $query->whereNull('deleted_at');
+                            })
+                            ->orderBy('id','desc')
+                            ->paginate(15),
             ];
+            
             return view('Project-Panel.Investment.investmentList',$data);
         }else{
             return redirect()->route('list.project')-> with('error','Project Id Is Null');
@@ -57,7 +63,7 @@ class ProjectInvestmentController extends Controller
                 'payment_type'=>'required',
                 'installment_amount'=> 'required',
             ]);
-
+            // dd($request->all());
             try {
                 DB::beginTransaction();
 
@@ -73,6 +79,7 @@ class ProjectInvestmentController extends Controller
 
                 $investment = Investment::create($data);
                 $InvestInstallment = [
+                    'project_id'=>$project_id,
                     'investment_id'=> $investment->id,
                     'payment_type'=> $request->payment_type,
                     'installment_amount'=> $request->installment_amount,
@@ -81,26 +88,40 @@ class ProjectInvestmentController extends Controller
                     'account_number'=> $request->account_number,
                     'check_number'=> $request->check_number,
                 ];
-                // dd($InvestInstallment);
+                
                 $installment = InvestInstallment::create($InvestInstallment);
-
-                $data = [
-                    'investment'=>$investment,
-                    'installment'=>$installment,
-                    'comInfo' => ComponyInfo::first(),
-                ];
+                
+                // $data = [
+                //     'investment'=>$investment,
+                //     'installment'=>$installment,
+                //     'comInfo' => ComponyInfo::first(),
+                // ];
 
                 DB::commit();
+                return redirect()->route('project.investment.payslip',$investment->id);
 
             } catch (\Exception $e) {
                 DB::rollback();
 
                 return back()->with('error','Investment error: '.$e->getMessage());
-                // Optionally, handle the exception
             }
+        }else{
+            return redirect()->route('list.project')-> with('error','Project Id Is Null');
+        }
+    }
 
+    public function payslip($id){
+        $project_id = Session::get('project_id');
+        if($project_id !== null){
+            $investment = Investment::find($id);
+            $installment = InvestInstallment::where('investment_id',$investment->id)->first();   
+            // dd($installment);         
+            $data = [
+                'investment'=>$investment,
+                'installment'=>$installment,
+                'comInfo' => ComponyInfo::first(),
+            ];
             return view('Project-Panel.Investment.pay_slip', $data);
-            // return redirect()->route('project.investment.list')->with('success','Investment Successful');
         }else{
             return redirect()->route('list.project')-> with('error','Project Id Is Null');
         }

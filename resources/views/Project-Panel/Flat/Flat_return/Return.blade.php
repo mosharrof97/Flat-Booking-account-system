@@ -367,7 +367,7 @@
                                         {{--*********** Check Details *************--}}
 
                                         <div class="col-md-12 mt-3 text-end">
-                                            <button type="submit" class="btn btn-success">Buy Now</button>
+                                            <button type="submit" class="btn btn-success">Return</button>
                                         </div>
                                     </div>
                                 </form>

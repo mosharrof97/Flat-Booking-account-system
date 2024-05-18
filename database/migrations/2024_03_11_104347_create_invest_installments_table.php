@@ -13,18 +13,19 @@ return new class extends Migration
     {
         Schema::create('invest_installments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('investment_id');
+            $table->foreignId('project_id')->onDelete('cascade');
+            $table->foreignId('investment_id')->constrained()->onDelete('cascade');
             $table->string('payment_type');
-            $table->decimal('installment_amount',15,2);
+            $table->decimal('installment_amount', 15, 2);
             $table->string('bank_name')->nullable();
             $table->string('branch')->nullable();
             $table->bigInteger('account_number')->nullable();
             $table->bigInteger('check_number')->nullable();
-
-            $table->foreignId('received_by')->nullable();
-            $table->foreignId('updated_by')->nullable();
-            $table->foreignId('deleted_by')->nullable();
-
+        
+            $table->foreignId('received_by')->nullable()->constrained('users')->onDelete('set null');
+            $table->foreignId('updated_by')->nullable()->constrained('users')->onDelete('set null');
+            $table->foreignId('deleted_by')->nullable()->constrained('users')->onDelete('set null');
+        
             $table->rememberToken();
             $table->timestamps();
         });

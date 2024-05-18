@@ -25,6 +25,7 @@ class InstallmentController extends Controller
                     'investment'=> $investment,
                     'installment'=> InvestInstallment::where('investment_id', $investment->id)->get(),
                 ];
+                
             }
             return view('Project-Panel.Investment.Installment.create_installment',$data);
         }else{
@@ -63,6 +64,7 @@ class InstallmentController extends Controller
             }
 
             $InvestInstallment = [
+                'project_id'=> $project_id,
                 'investment_id'=> $request->investment_id,
                 'payment_type'=> $request->payment_type,
                 'installment_amount'=> $request->installment_amount,
@@ -73,10 +75,27 @@ class InstallmentController extends Controller
                 'received_by' => auth()->id(),
             ];
            $installment = InvestInstallment::create($InvestInstallment);
+            // $data = [
+            //     'investment'=>Investment::where('project_id', $project_id)->where('id',$request->investment_id)->first(),
+            //     'installment'=>$installment,
+            //     'comInfo' => ComponyInfo::first(),
+            // ];
+
+            return redirect()->route('project.installment.payslip',$installment->id);
+        }else{
+            return redirect()->route('list.project')-> with('error','Project Id Is Null');
+        }
+        
+    }
+
+    public function payslip($id){
+        $project_id = Session::get('project_id');
+        if($project_id !== null){
+            $installment = InvestInstallment::find($id);
             $data = [
-                'investment'=>Investment::where('project_id', $project_id)->where('id',$request->investment_id)->first(),
                 'installment'=>$installment,
-                'comInfo' => ComponyInfo::first(),
+                'investment'=>Investment::where('project_id', $project_id)->where('id',$installment->investment_id)->first(),            
+                'comInfo' => ComponyInfo::first(),            
             ];
 
             return view('Project-Panel.Investment.Installment.pay_slip',$data);

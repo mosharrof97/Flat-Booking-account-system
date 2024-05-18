@@ -36,6 +36,7 @@
 
                                 <td>
                                     <a href="{{route('client.view', $client->id)}}" class="btn btn-success">View</a>
+                                    <a href="{{route('client.edit', $client->id)}}" class="btn btn-success">Edit</a>
                                 
                                     <a href="{{route('client.delete', $client->id)}}" class="btn btn-danger">Delete</a>
                                 </td>

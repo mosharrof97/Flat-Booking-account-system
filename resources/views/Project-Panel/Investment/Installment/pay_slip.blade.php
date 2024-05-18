@@ -48,6 +48,7 @@
                                 <tr>
                                     {{--  <th style=" font-size: 17px; font-weight: 700; " class="center">SL</th>  --}}
                                     <th style=" font-size: 17px; font-weight: 700; color:#000; " class="left strong">Details</th>
+                                    <th style=" font-size: 17px; font-weight: 700; color:#000; " class="left strong">Payment Type</th>
                                     <th style=" font-size: 17px; font-weight: 700; color:#000; " class="left">Paid</th>
                                     <th style=" font-size: 17px; font-weight: 700; color:#000; " class="center">Due</th>
                                 </tr>
@@ -56,6 +57,7 @@
                                 <tr>
                                     {{--  <td style=" font-size: 17px; font-weight: 700; color:#000; " class="center">{{$loop->iteration}}</td>  --}}
                                     <td style=" font-size: 17px; font-weight: 700; color:#000; " class="left strong">Payment Paid</td>
+                                    <td style=" font-size: 17px; font-weight: 700; color:#000; " class="left">{{ $installment->payment_type }}</td>
                                     <td style=" font-size: 17px; font-weight: 700; color:#000; " class="left">{{ $installment->installment_amount }} Taka</td>
                                     <td style=" font-size: 17px; font-weight: 700; color:#000; " class="center">{{ $investment->total_Investment - $investment->installment->sum('installment_amount') }} Tk</td>
                                 </tr>
@@ -94,7 +96,7 @@
             </div>
             <div class="">
                 <button class="btn-block btn btn-success btn-sm" type="button" onclick="printDiv('printArea')">Print</button>
-                <a href="{{ url()->previous() }}" class="btn-block btn btn-danger btn-sm">back</a>
+                <a href="{{ route('project.investment.view',$investment->id) }}" class="btn-block btn btn-danger btn-sm">back</a>
             </div>
         </div>
     </div>

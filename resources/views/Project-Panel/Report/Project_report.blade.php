@@ -152,7 +152,21 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @php
+                                            $totalSoldPrice = 0;
+                                            $totalDebit = 0;
+                                            $totalCredit = 0;
+                                        @endphp
                                         @foreach ($flats as $key => $flat)
+                                        @php
+                                            $soldPrice = $flat->flatSaleInfo->sum('price');
+                                            $debit = $flat->payment->sum('amount');
+                                            $credit = $soldPrice - $debit;
+                    
+                                            $totalSoldPrice += $soldPrice;
+                                            $totalDebit += $debit;
+                                            $totalCredit += $credit;
+                                        @endphp
                                             <tr>
                                                 <th scope="row" style="min-width:50px;">{{ $key + 1 }}</th>
                                                 <td>{{ $flat->name .'-'. $flat->client->name }}</td>
@@ -166,16 +180,64 @@
                                         <tr class="">
                                             <th>SL</th>
                                             <th>Total</th>
-                                            <th>{{ $flats->flatSaleInfo->SUM('price') }}</th>
-                                            <th>{{ $flats->payment->SUM('amount') }}</th>
-                                            <th>{{ $flats->flatSaleInfo->SUM('price') - $flat->payment->SUM('amount') }}</th>
+                            
+                                            <th>{{ $totalSoldPrice }}</th>
+                                            <th>{{ $totalDebit }}</th>
+                                            <th>{{ $totalCredit }}</th>
                                         </tr>
                                     </tfoot>
                                     </tbody>
                                 </table>
                             </div>
                             <div class="mt-3">
-                                {{ $expenses->links('pagination::bootstrap-5') }}
+                                {{ $flats->links('pagination::bootstrap-5') }}
+                            </div>
+                        </div>
+
+                        {{-- Investment Report --}}
+                        <div class="col-md-6">
+                            <div class="">
+                                <h4>Investment Report</h4>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr class="table-info">
+                                            <th>Flat & Client Name</th>
+                                            <th>Sold Price</th>
+                                            <th>debit</th>
+                                            <th>credit</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>                                        
+                                       <tr>
+                                            <th rowspan="3" class="align-middle">{{ $project->projectName }}</th>                                
+                                            <td>Total Investment</td>
+                                            <td>{{ $project->investment->SUM('total_Investment') }}.00</td>                                            
+                                        </tr>
+                                        <tr>                                                                          
+                                            <td>Debit</td>
+                                            <td>{{ $project->installment->SUM('installment_amount') }}.00</td>
+                                        </tr>
+                                        <tr>                                                                          
+                                            <td>Credit</td>
+                                            <td>{{ $project->investment->SUM('total_Investment') - $project->installment->SUM('installment_amount') }}.00</td>
+                                        </tr>
+                                    </tbody>
+                                    {{-- <tfoot>
+                                        <tr class="">
+                                            <th>{{ $project->projectName }}</th>
+                            
+                                            <th>{{ $project->investment->SUM('total_Investment') }}</th>
+                                            <th>{{ $project->installment->SUM('installment_amount') }}</th>
+                                            <th>{{ $project->investment->SUM('total_Investment') - $project->installment->SUM('installment_amount') }}</th>
+                                        </tr>
+                                    </tfoot> --}}
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="mt-3">
+                                {{ $investments->links('pagination::bootstrap-5') }}
                             </div>
                         </div>
                     </div>

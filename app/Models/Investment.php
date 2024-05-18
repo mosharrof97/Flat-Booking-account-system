@@ -41,6 +41,6 @@ class Investment extends Model
 
     public function installment(): HasMany
     {
-        return $this->hasMany(InvestInstallment::class, 'investment_id' );
+        return $this->hasMany(InvestInstallment::class,'investment_id' );
     }
 }

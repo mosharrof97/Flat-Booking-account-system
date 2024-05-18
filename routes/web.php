@@ -102,12 +102,15 @@ Route::prefix('admin')->middleware('auth')->group(function () {
                 Route::get('/create', [ProjectInvestmentController::class, 'create'])->name('create.project.investment');
                 Route::post('/create', [ProjectInvestmentController::class, 'store'])->name('store.project.investment');
                 Route::get('/view/{id}', [ProjectInvestmentController::class, 'show'])->name('project.investment.view');
+                Route::get('/{id}/pay-slip', [ProjectInvestmentController::class, 'payslip'])->name('project.investment.payslip');
             });
 
             // Project Investment Installment
             Route::prefix('installment')->group(function () {
                 Route::get('/create/{id}', [InstallmentController::class, 'create'])->name('project.installment');
                 Route::post('/create', [InstallmentController::class, 'store'])->name('store.project.installment');
+                Route::get('/{id}/pay-slip', [InstallmentController::class, 'payslip'])->name('project.installment.payslip');
+
             });
 
             // Project Purchase

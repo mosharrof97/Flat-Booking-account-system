@@ -34,9 +34,10 @@
                                 $address =$payment->flat->client->clientAddress;
                             @endphp
                             <div style=" font-size: 17px; font-weight: 700; color:#000; ">Address: {{ $address->pre_address.', '. $address->pre_city.', '.$address->pre_district.'- '.$address->pre_zipCode}}.</div>
-                            <div style=" font-size: 17px; font-weight: 700; color:#000; ">Contact No: {{ $payment->flat->client->phone }}, {{ $payment->flat->project->projectName }}-{{ $payment->flat->floor }}, Flat-{{ $payment->flat->name }},
-                                Unit price -Tk.{{ $flatSale->price }}/-, Paid -Tk.{{ $payments->sum('amount') }}/-
-                            </div>
+                            <div style=" font-size: 17px; font-weight: 700; color:#000; ">Contact No: {{ $payment->flat->client->phone }}</div>
+                            <div style=" font-size: 17px; font-weight: 700; color:#000; "> Booked Flat:{{ $payment->flat->project->projectName }}-{{ $payment->flat->floor }} Floor, Flat-{{ $payment->flat->name }}</div>
+                            <div style=" font-size: 17px; font-weight: 700; color:#000; ">Unit price -Tk.{{ $flatSale->price }}/-</div>
+                            <div style=" font-size: 17px; font-weight: 700; color:#000; ">Total Paid -Tk.{{ $payments->sum('amount') }}/-</div>
                         </div>
                         <div class="col-sm-6 " style="text-align: end">
                             <div style=" font-size: 17px; font-weight: 700; color:#000; ">Date:{{ $payment->created_at->format('d-M-y') }}</div>
@@ -50,6 +51,7 @@
                                 <tr>
                                     {{--  <th style=" font-size: 17px; font-weight: 700; " class="center">SL</th>  --}}
                                     <th style=" font-size: 17px; font-weight: 700; color:#000; " class="left strong">Details</th>
+                                    <th style=" font-size: 17px; font-weight: 700; color:#000; " class="left strong">Payment Type</th>
                                     <th style=" font-size: 17px; font-weight: 700; color:#000; " class="left">Paid</th>
                                     <th style=" font-size: 17px; font-weight: 700; color:#000; " class="center">Due</th>
                                 </tr>
@@ -58,6 +60,7 @@
                                 <tr>
                                     {{--  <td style=" font-size: 17px; font-weight: 700; color:#000; " class="center">{{$loop->iteration}}</td>  --}}
                                     <td style=" font-size: 17px; font-weight: 700; color:#000; " class="left strong">Payment Paid</td>
+                                    <td style=" font-size: 17px; font-weight: 700; color:#000; " class="left">{{ $payment->payment_type }}</td>
                                     <td style=" font-size: 17px; font-weight: 700; color:#000; " class="left">{{ $payment->amount }} Taka</td>
                                     <td style=" font-size: 17px; font-weight: 700; color:#000; " class="center">{{ $flatSale->price - $payments->sum('amount') }} Taka</td>
                                 </tr>
@@ -96,7 +99,7 @@
             </div>
             <div class="">
                 <button class="btn-block btn btn-success btn-sm" type="button" onclick="printDiv('printArea')">Print</button>
-                <a href="{{ url()->previous() }}" class="btn-block btn btn-danger btn-sm">back</a>
+                <a href="{{ route('flat.sale.details',$payment->flat->id) }}" class="btn-block btn btn-danger btn-sm">back</a>
             </div>
         </div>
     </div>

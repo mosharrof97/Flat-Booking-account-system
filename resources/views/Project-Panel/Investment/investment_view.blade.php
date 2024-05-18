@@ -135,7 +135,9 @@
                                 <td>{{ $data->created_at->format('d-m-Y') }}</td>
                                 <td>{{ $data->created_at->format('h:i A') }}</td>
                                 <td>{{ $key+1}} Installment</td>
-                                <td>{{ $data->installment_amount }}</td>
+                                <td>{{ $data->installment_amount }}
+                                    <a href="{{ route('project.installment.payslip',$data->id) }}" class="btn btn-light">AS</a>
+                                </td>
                             </tr>
                             @endforeach
 

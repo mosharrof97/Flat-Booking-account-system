@@ -37,30 +37,28 @@ class ProjectController extends Controller
     public function store(Request $request){
         $test = $request->validate([
             'projectName' =>[ 'required','string'],
-            'budget' =>[ 'required'],
-            'land_area' =>[ 'required'],
-            'front_road'=>[ 'required'],
-            'duration' =>[ 'required'],
-            'floor' =>[ 'required'],
-            'flat' =>[ 'required'],
-            'comm_space_size' =>[ 'required'],
-            'num_of_basement' =>[ 'required'],
-            'start_date' =>[ 'required'],
-            'end_date' =>[ 'required'],
-            'address' =>[ 'required','string'],
-            'city' =>[ 'required','string'],
-            'district_id' =>[ 'required'],
-            'zipCode' =>[ 'required'],
-            'image' =>[ 'required','image'],
+            // 'budget' =>[ 'required'],
+            // 'land_area' =>[ 'required'],
+            // 'front_road'=>[ 'required'],
+            // 'duration' =>[ 'required'],
+            // 'floor' =>[ 'required'],
+            // 'flat' =>[ 'required'],
+            // 'comm_space_size' =>[ 'required'],
+            // 'num_of_basement' =>[ 'required'],
+            // 'start_date' =>[ 'required'],
+            // 'end_date' =>[ 'required'],
+            // 'address' =>[ 'required','string'],
+            // 'city' =>[ 'required','string'],
+            // 'district_id' =>[ 'required'],
+            // 'zipCode' =>[ 'required'],
+            // 'image' =>[ 'required','image'],
         ]);
 
-        // dd($request->all());
 
         if($request->hasFile('image')){
             $imageName = 'Project_' . time().'-'.mt_rand(1000000,10000000000).'.'.$request->file('image')->extension();
             $request->image->move(public_path('upload/Project'), $imageName);
         }
-        // dd( $imageName);
 
         $data=[
             'projectName' =>$request->projectName,
@@ -78,10 +76,8 @@ class ProjectController extends Controller
             'city' =>$request->city,
             'district_id' =>$request->district_id,
             'zipCode' =>$request->zipCode,
-            'image' =>$imageName ?? 'No Image',
+            'image' =>$imageName,
         ];
-
-        // dd($data);
 
         Project::create($data);
         return redirect()->route('list.project')->with('message','Create Project Successful');
@@ -104,21 +100,21 @@ class ProjectController extends Controller
 
         $request->validate([
             'projectName' =>[ 'required','string'],
-            'budget' =>[ 'required'],
-            'land_area' =>[ 'required'],
-            'front_road' =>[ 'required'],
-            'duration' =>[ 'required'],
-            'floor' =>[ 'required'],
-            'flat' =>[ 'required'],
-            'comm_space_size' =>[ 'required'],
-            'num_of_basement' =>[ 'required'],
-            'start_date' =>[ 'required'],
-            'end_date' =>[ 'required'],
-            'address' =>[ 'required','string'],
-            'city' =>[ 'required','string'],
-            'district_id' =>[ 'required'],
-            'zipCode' =>[ 'required'],
-            'status' =>[ 'required'],
+            // 'budget' =>[ 'required'],
+            // 'land_area' =>[ 'required'],
+            // 'front_road' =>[ 'required'],
+            // 'duration' =>[ 'required'],
+            // 'floor' =>[ 'required'],
+            // 'flat' =>[ 'required'],
+            // 'comm_space_size' =>[ 'required'],
+            // 'num_of_basement' =>[ 'required'],
+            // 'start_date' =>[ 'required'],
+            // 'end_date' =>[ 'required'],
+            // 'address' =>[ 'required','string'],
+            // 'city' =>[ 'required','string'],
+            // 'district_id' =>[ 'required'],
+            // 'zipCode' =>[ 'required'],
+            // 'status' =>[ 'required'],
             // 'image' =>[ 'required'],
         ]);
 
@@ -154,12 +150,17 @@ class ProjectController extends Controller
         return redirect()->route('list.project')->with('message','Project Update Successful');
     }
 
-    public function delete($id){
-        $project = Project::where('status',0)->find($id);
-        $project->update([
-            'status' => 1,
-        ]);
-
+    public function delete($id) {
+        $client = Project::findOrFail($id);
+        $client->delete();
+        
         return redirect()->route('list.project')->with('message','Project Delete Successful');
+    }
+
+    public function restore($id) {
+        $client = Project::withTrashed()->findOrFail($id);
+        $client->restore();
+
+        return redirect()->route('client.list')->with('status','Project Restore Successfully');
     }
 }

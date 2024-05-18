@@ -178,7 +178,7 @@
         </div>
         <div class="card-footer">
             <button class="btn-block btn btn-success btn-sm" type="button" onclick="printDiv('PurchaseDuePay')">Print</button>
-            <a href="{{ url()->previous() }}" class="btn-block btn btn-danger btn-sm">back</a>
+            <a href="{{ route('project.purchase.view', $invoice->purchase->id) }}" class="btn-block btn btn-danger btn-sm">back</a>
         </div>
     </div>
 </div>

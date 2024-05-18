@@ -57,7 +57,14 @@ class ProjectReportController extends Controller
                     ->orderBy('id', 'desc')
                     ->paginate(15),
 
-                'flats' => Flat::where('project_id', $project_id)->where('sale_status',2)->get(),
+                'flats' => Flat::where('project_id', $project_id)->where('sale_status',2)
+                ->orderBy('id', 'desc')
+                ->paginate(15),
+
+                'project' => Project::find($project_id),
+                'investments' => Investment::where('project_id', $project_id)
+                ->orderBy('id', 'desc')
+                ->paginate(10),
             ];
 
             // dd($data['flat']);

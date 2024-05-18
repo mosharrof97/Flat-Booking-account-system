@@ -11,6 +11,7 @@ class InvestInstallment extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'project_id',
         'investment_id',
         'payment_type',
         'installment_amount',
@@ -24,12 +25,17 @@ class InvestInstallment extends Model
 
     public function investment(): BelongsTo
     {
-        return $this->BelongsTo(Investment::class);
+        return $this->BelongsTo(Investment::class,'id');
     }
 
     public function user(): BelongsTo
     {
         return $this->BelongsTo(User::class, 'id');
+    }
+
+    public function project(): BelongsTo
+    {
+        return $this->BelongsTo(Project::class, 'project_id');
     }
 
 

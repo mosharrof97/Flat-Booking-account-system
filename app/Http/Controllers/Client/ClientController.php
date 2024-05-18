@@ -26,7 +26,6 @@ class ClientController extends Controller
     }
 
     public function create() {
-        // $roles = Role::pluck('name','name')->all();
         $districts = District::get();
         return view('Admin-Panel.page.Client.client', ['districts'=>$districts]);
     }
@@ -35,23 +34,23 @@ class ClientController extends Controller
 
         $request->validate([
             'name' => 'required|string|max:255',
-            'father_name' => 'required|string|max:255',
-            'mother_name' => 'required|string|max:255',
-            'phone' => 'required|max:255|unique:clients,phone',
+            'phone' => 'required|max:255|unique:employees,phone',
+            'email' => 'required|email|max:255|unique:employees,email',
+            // 'father_name' => 'required|string|max:255',
+            // 'mother_name' => 'required|string|max:255',
             // 'nid' => 'required|max:20|unique:clients,nid',
-            // 'tin' => 'required|max:20|unique:clients,tin',
-            'email' => 'required|email|max:255|unique:clients,email',
-            'image' => 'required',
+            // 'tin' => 'required|max:20|unique:clients,tin',,
+            // 'image' => 'required',
 
-            'pre_address' => 'required|string|max:255',
-            'pre_city' => 'required|string|max:255',
-            'pre_district' => 'required|string|max:255',
-            'pre_zipCode' => 'required',
+            // 'pre_address' => 'required|string|max:255',
+            // 'pre_city' => 'required|string|max:255',
+            // 'pre_district' => 'required|string|max:255',
+            // 'pre_zipCode' => 'required',
 
-            'per_address' => 'required|string|max:255',
-            'per_city' => 'required|string|max:255',
-            'per_district' => 'required|string|max:255',
-            'per_zipCode' => 'required',
+            // 'per_address' => 'required|string|max:255',
+            // 'per_city' => 'required|string|max:255',
+            // 'per_district' => 'required|string|max:255',
+            // 'per_zipCode' => 'required',
         ]);
 
         if ($request->hasFile('image')) {
@@ -98,7 +97,7 @@ class ClientController extends Controller
 
     public function edit(Request $request, $id) {
         $districts = District::get();
-        $employee = Client::where('status',0)->where('id',$id)->first();
+        $client = Client::where('id',$id)->first();
 
         return view('Admin-Panel.page.Client.client_edit', [
             'client' => $client,
@@ -106,31 +105,35 @@ class ClientController extends Controller
         ]);
     }
 
-    public function update(Request $request, Client $client) {
+    public function update(Request $request, $id) {
         $request->validate([
             'name' => 'required|string|max:255',
-            'father_name' => 'required|string|max:255',
-            'mother_name' => 'required|string|max:255',
-            'phone' => 'required|max:255|unique:employees,phone',
-            'email' => 'required|email|max:255|unique:employees,email',
+            'phone' => 'required',
+            'email' => 'required',
+            // 'father_name' => 'required|string|max:255',
+            // 'mother_name' => 'required|string|max:255',
             // 'nid' => 'required',
             // 'tin' => 'required',
             // 'image' => 'required',
 
-            'pre_address' => 'required|string|max:255',
-            'pre_city' => 'required|string|max:255',
-            'pre_district' => 'required|string|max:255',
-            'pre_zipCode' => 'required',
+            // 'pre_address' => 'required|string|max:255',
+            // 'pre_city' => 'required|string|max:255',
+            // 'pre_district' => 'required|string|max:255',
+            // 'pre_zipCode' => 'required',
 
-            'per_address' => 'required|string|max:255',
-            'per_city' => 'required|string|max:255',
-            'per_district' => 'required|string|max:255',
-            'per_zipCode' => 'required',
+            // 'per_address' => 'required|string|max:255',
+            // 'per_city' => 'required|string|max:255',
+            // 'per_district' => 'required|string|max:255',
+            // 'per_zipCode' => 'required',
         ]);
+        // dd($request->all());
 
         try {
             DB::beginTransaction();
-            $client = Client::update([
+            $client = Client::find($id);
+            
+           // Update the client
+            $client->update([
                 'name' => $request->name,
                 'father_name' => $request->father_name,
                 'mother_name' => $request->mother_name,
@@ -138,30 +141,32 @@ class ClientController extends Controller
                 'phone' => $request->phone,
                 'nid' => $request->nid,
                 'tin' => $request->tin,
-                // 'password'=> 123456789,
-                // 'image'=> $imageName ?? 'No Image',
-                'updated_by' => $request->auth()->id(),
+                'updated_by' => auth()->id(),
             ]);
 
-            ClientAddress::update([
-                'client_id' => $client->id,
-                'pre_address' => $request->pre_address,
-                'pre_city' => $request->pre_city,
-                'pre_district' => $request->pre_district,
-                'pre_zipCode' => $request->pre_zipCode,
+            // Find the client's address
+            $address = ClientAddress::where('client_id', $client->id)->first();
+            
+            if ($address) {
+                $address->update([
+                    'pre_address' => $request->pre_address,
+                    'pre_city' => $request->pre_city,
+                    'pre_district' => $request->pre_district,
+                    'pre_zipCode' => $request->pre_zipCode,
 
-                'per_address' => $request->per_address,
-                'per_city' => $request->per_city,
-                'per_district' => $request->per_district,
-                'per_zipCode' => $request->per_zipCode,
-            ]);
+                    'per_address' => $request->per_address,
+                    'per_city' => $request->per_city,
+                    'per_district' => $request->per_district,
+                    'per_zipCode' => $request->per_zipCode,
+                ]);
+            }
             DB::commit();
         } catch (\Throwable $e) {
             DB::rollback();
             throw $e;
         }
 
-       return redirect()->route('employee.list')->with('status','User Updated Successfully with roles');
+       return redirect()->route('client.list')->with('status','User Updated Successfully with roles');
     }
 
     public function view($id) {
@@ -171,12 +176,16 @@ class ClientController extends Controller
     }
 
     public function delete($id) {
-        
         $client = Client::findOrFail($id);
-        $client->update([
-            'status'=>1,
-        ]);
+        $client->delete();
 
         return redirect()->route('client.list')->with('status','Client Delete Successfully');
+    }
+
+    public function restore($id) {
+        $client = Client::withTrashed()->findOrFail($id);
+        $client->restore();
+
+        return redirect()->route('client.list')->with('status','Client Restore Successfully');;
     }
 }

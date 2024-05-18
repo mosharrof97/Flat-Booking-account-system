@@ -234,7 +234,7 @@
                                     <input type="hidden" name="client_id" id="client_id" value="{{ $clientInfo->id }}">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <label for="total_Investment" class="form-label">Investment Total Amount</label>
+                                            <label for="total_Investment" class="form-label">Price</label>
                                             <input type="decimal" class="form-control" id="total_Investment" name="total_Investment" placeholder="0.00">
                                             @error('total_Investment')
                                             <span class="form-text text-danger">{{ $message }}</span>

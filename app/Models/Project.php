@@ -76,5 +76,9 @@ class Project extends AuthenticatableUser implements Authenticatable
         return $this->HasMany(Flat::class, 'project_id');
     }
 
+    public function installment() {
+        return $this->HasMany(InvestInstallment::class);
+    }
+
 
 }

@@ -24,7 +24,7 @@
                                 {{-- <th scope="col" class="flex-wrap">Installment</th> --}}
                                 <th scope="col" class="flex-wrap">Paid Amount</th>
                                 <th scope="col" class="flex-wrap">Due Amount</th>
-                                <th scope="col" colspan="" class="flex-wrap">Action</th>
+                                <th scope="col" class="flex-wrap">Action</th>
                             </tr>
                         </thead>
                         <tbody >
@@ -37,14 +37,8 @@
                                     <td>{{ $data->client->email }}</td>
                                     <td>{{ $data->project->projectName }}</td>
                                     <td>{{ $data->total_Investment }}</td>
-                                    {{-- @if ( $data->installment->count()  !== null)
-                                        <td>{{ optional($data->installment)->count() }}</td>
-                                    @else
-                                        <td>0</td>
-                                    @endif --}}
-
-                                    {{-- <td>{{ $data->installment->sum('installment_amount') }}</td> --}}
                                     <td>{{ $data->installment->sum('installment_amount') }}</td>
+                                    
                                     <td>{{$data->total_Investment - $data->installment->sum('installment_amount') }}</td>
                                     <td>
                                         <a href="{{ route('project.investment.view',$data->id) }}" class="btn btn-success">View</a>
