@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 18, 2024 at 07:11 PM
+-- Generation Time: May 19, 2024 at 09:48 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -432,12 +432,12 @@ CREATE TABLE `flats` (
   `project_id` bigint(20) UNSIGNED NOT NULL,
   `client_id` bigint(20) UNSIGNED DEFAULT NULL,
   `name` varchar(255) NOT NULL,
-  `floor` varchar(255) NOT NULL,
-  `flat_area` int(11) NOT NULL,
+  `floor` varchar(255) DEFAULT NULL,
+  `flat_area` int(11) DEFAULT NULL,
   `price` decimal(15,2) NOT NULL,
-  `room` int(11) NOT NULL,
+  `room` int(11) DEFAULT NULL,
   `dining_space` int(11) DEFAULT NULL,
-  `bath_room` int(11) NOT NULL,
+  `bath_room` int(11) DEFAULT NULL,
   `parking` varchar(255) DEFAULT NULL,
   `outdoor` varchar(255) DEFAULT NULL,
   `images` varchar(255) DEFAULT NULL,
@@ -457,8 +457,7 @@ CREATE TABLE `flats` (
 --
 
 INSERT INTO `flats` (`id`, `user_id`, `project_id`, `client_id`, `name`, `floor`, `flat_area`, `price`, `room`, `dining_space`, `bath_room`, `parking`, `outdoor`, `images`, `description`, `active_status`, `sale_status`, `status`, `created_by`, `updated_by`, `deleted_by`, `created_at`, `updated_at`) VALUES
-(1, NULL, 1, 1, 'A-101', '1st', 6000, 3000.00, 3, 500, 3, NULL, NULL, '\"[[\\\"Flat_1716050291-34574746.jpg\\\"]]\"', 'dfryt6yugyt jhtyivght jyuioyty', 0, 2, 0, 1, NULL, NULL, '2024-05-18 10:38:11', '2024-05-18 11:07:37'),
-(2, NULL, 1, 2, 'A-102', '1st', 6000, 3000.00, 5, 500, 4, NULL, NULL, '\"[[\\\"Flat_1716050395-51228930.jpg\\\"]]\"', 'fy5r guyr6t t8u gfyut', 0, 0, 0, 1, NULL, NULL, '2024-05-18 10:39:55', '2024-05-18 10:50:00');
+(1, NULL, 1, NULL, 'Parents Engineering Ltd', NULL, 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-19 00:24:26', '2024-05-19 00:24:26');
 
 -- --------------------------------------------------------
 
@@ -486,13 +485,6 @@ CREATE TABLE `flat_return_infos` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `flat_return_infos`
---
-
-INSERT INTO `flat_return_infos` (`id`, `flat_id`, `client_id`, `buying_price`, `payable_amount`, `payment_type`, `return_amount`, `bank_name`, `branch`, `account_number`, `check_number`, `status`, `sold_by`, `booking_by`, `return_by`, `created_at`, `updated_at`) VALUES
-(2, 1, 1, 10050000.00, 1050000.00, 'cash', 1050000.00, NULL, NULL, NULL, NULL, 0, 1, NULL, NULL, '2024-05-18 11:06:39', '2024-05-18 11:06:39');
-
 -- --------------------------------------------------------
 
 --
@@ -509,13 +501,6 @@ CREATE TABLE `flat_sale_infos` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `flat_sale_infos`
---
-
-INSERT INTO `flat_sale_infos` (`id`, `flat_id`, `price`, `status`, `sold_by`, `created_by`, `created_at`, `updated_at`) VALUES
-(5, 1, 10050000.00, 0, 1, NULL, '2024-05-18 11:07:37', '2024-05-18 11:07:37');
 
 -- --------------------------------------------------------
 
@@ -672,10 +657,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (19, '2024_04_05_093912_create_clients_table', 1),
 (20, '2024_04_05_094056_create_client_addresses_table', 1),
 (21, '2024_04_21_104643_create_vendors_table', 1),
-(22, '2024_04_23_064939_create_flats_table', 1),
 (23, '2024_04_25_083952_create_banks_table', 1),
-(24, '2024_04_29_035152_create_flat_sale_infos_table', 1),
-(25, '2024_04_29_050404_create_flat_return_infos_table', 1),
 (27, '2024_05_04_093812_create_purchases_table', 1),
 (28, '2024_05_04_102018_create_expense_categories_table', 1),
 (29, '2024_05_05_044014_create_compony_infos_table', 1),
@@ -683,7 +665,10 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (31, '2024_05_09_093028_create_return_purchase_balances_table', 1),
 (32, '2024_05_12_090517_create_purchase_due_pays_table', 1),
 (34, '2024_03_19_042621_create_districts_table', 1),
-(35, '2024_04_29_063045_create_payments_table', 2);
+(36, '2024_04_23_064939_create_flats_table', 2),
+(37, '2024_04_29_035152_create_flat_sale_infos_table', 2),
+(38, '2024_04_29_050404_create_flat_return_infos_table', 2),
+(39, '2024_04_29_063045_create_payments_table', 2);
 
 -- --------------------------------------------------------
 
@@ -742,14 +727,6 @@ CREATE TABLE `payments` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `payments`
---
-
-INSERT INTO `payments` (`id`, `flat_id`, `flatSale_id`, `payment_type`, `amount`, `bank_name`, `branch`, `account_number`, `check_number`, `status`, `received_by`, `created_at`, `updated_at`) VALUES
-(2, 1, 5, 'cash', 7000000.00, NULL, NULL, NULL, NULL, 0, 1, '2024-05-18 11:07:37', '2024-05-18 11:07:37'),
-(3, 1, 5, 'cash', 50000.00, NULL, NULL, NULL, NULL, 0, 1, '2024-05-18 11:08:08', '2024-05-18 11:08:08');
 
 -- --------------------------------------------------------
 
@@ -827,7 +804,8 @@ CREATE TABLE `projects` (
 INSERT INTO `projects` (`id`, `projectName`, `budget`, `land_area`, `front_road`, `property_type`, `floor`, `comm_space_size`, `num_of_basement`, `flat`, `duration`, `start_date`, `end_date`, `address`, `city`, `district_id`, `zipCode`, `image`, `status`, `active_status`, `created_by`, `updated_by`, `deleted_by`, `remember_token`, `created_at`, `updated_at`, `deleted_at`) VALUES
 (1, 'Coder De Dhaka', 150000000.00, 30000, '200 feet', NULL, '10', '200-400', '05', 40, '24', '2024-05-19', '2024-06-07', 'Scaton', 'dhaka', 47, 1205, 'Project_1716043666-6000898628.jpg', 0, 0, NULL, NULL, NULL, NULL, '2024-05-18 08:47:46', '2024-05-18 08:47:46', NULL),
 (2, 'Rupa City', 150000000.00, 30000, '120 feet', NULL, '10', '200-400', '05', 40, '25', '2024-05-20', '2024-06-07', 'Scaton, dhaka', 'dhaka', 47, 1205, 'Project_1716043728-6919876183.jpg', 0, 0, NULL, NULL, NULL, NULL, '2024-05-18 08:48:48', '2024-05-18 08:48:48', NULL),
-(3, 'Rupa City Dhaka', 150000000.00, 30000, '120 feet', NULL, '10', '200-400', '05', 40, '25', '2024-05-19', '2024-06-07', 'Scaton', 'dhaka', 46, 1205, 'Project_1716043775-4775512928.jpg', 0, 0, NULL, NULL, NULL, NULL, '2024-05-18 08:49:35', '2024-05-18 08:49:35', NULL);
+(3, 'Rupa City Dhaka', 150000000.00, 30000, '120 feet', NULL, '10', '200-400', '05', 40, '25', '2024-05-19', '2024-06-07', 'Scaton', 'dhaka', 46, 1205, 'Project_1716043775-4775512928.jpg', 0, 0, NULL, NULL, NULL, NULL, '2024-05-18 08:49:35', '2024-05-18 08:49:35', NULL),
+(4, 'Coder De Dhaka 2', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'null', 0, 0, NULL, NULL, NULL, NULL, '2024-05-19 00:10:00', '2024-05-19 00:10:00', NULL);
 
 -- --------------------------------------------------------
 
@@ -1170,7 +1148,8 @@ ALTER TABLE `failed_jobs`
 -- Indexes for table `flats`
 --
 ALTER TABLE `flats`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `flats_project_id_foreign` (`project_id`);
 
 --
 -- Indexes for table `flat_return_infos`
@@ -1415,19 +1394,19 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `flats`
 --
 ALTER TABLE `flats`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `flat_return_infos`
 --
 ALTER TABLE `flat_return_infos`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `flat_sale_infos`
 --
 ALTER TABLE `flat_sale_infos`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `investments`
@@ -1451,13 +1430,13 @@ ALTER TABLE `invest_installments`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `permissions`
@@ -1475,7 +1454,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `projects`
 --
 ALTER TABLE `projects`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `purchases`
@@ -1528,6 +1507,12 @@ ALTER TABLE `vendors`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `flats`
+--
+ALTER TABLE `flats`
+  ADD CONSTRAINT `flats_project_id_foreign` FOREIGN KEY (`project_id`) REFERENCES `projects` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `invest_installments`
