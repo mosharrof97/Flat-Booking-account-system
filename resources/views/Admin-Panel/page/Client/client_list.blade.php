@@ -31,7 +31,7 @@
                                 <td>{{ $client->phone }}</td>
                                 <td>{{ $client->email }}</td>
                                 <td>{{ $client->nid }}</td>
-                                <td>3 Flat</td>
+                                <td>{{ $client->flat->count('client_id') }} Flat</td>
                                 <td> <img src="{{ asset('upload/client/'.$client->image) }}" alt="" width="40"> </td>
 
                                 <td>

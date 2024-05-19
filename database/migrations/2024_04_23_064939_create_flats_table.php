@@ -14,15 +14,15 @@ return new class extends Migration
         Schema::create('flats', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->nullable();
-            $table->foreignId('project_id');
+            $table->foreignId('project_id')->constrained()->onDelete('cascade');;
             $table->foreignId('client_id')->nullable();
             $table->string('name');
-            $table->string('floor');
-            $table->integer('flat_area');
+            $table->string('floor')->nullable();
+            $table->integer('flat_area')->nullable();
             $table->decimal('price',15,2);
-            $table->integer('room');
+            $table->integer('room')->nullable();
             $table->integer('dining_space')->nullable();
-            $table->integer('bath_room');
+            $table->integer('bath_room')->nullable();
             $table->string('parking')->nullable();
             $table->string('outdoor')->nullable();
             $table->string('images')->nullable();

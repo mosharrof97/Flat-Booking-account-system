@@ -76,7 +76,7 @@ class ProjectController extends Controller
             'city' =>$request->city,
             'district_id' =>$request->district_id,
             'zipCode' =>$request->zipCode,
-            'image' =>$imageName,
+            'image' => $imageName ?? 'null',
         ];
 
         Project::create($data);
@@ -142,7 +142,7 @@ class ProjectController extends Controller
             'district_id' =>$request->district_id,
             'zipCode' =>$request->zipCode,
             'status' =>$request->status,
-            // 'image' =>$imageName,
+            // 'image' => $imageName ?? 'null',
         ];
 
         $project = Project::where('status',0)->find($id);
