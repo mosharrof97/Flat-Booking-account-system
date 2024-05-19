@@ -12,6 +12,7 @@
                     @csrf
                     <div class="col-md-12">
                         <label for="name" class="form-label">Client Name</label>
+                        <span class="text-danger">*</span>
                         <input type="text" class="form-control" id="name" name="name">
 
                         @error('name')
@@ -39,6 +40,7 @@
 
                     <div class="col-md-6">
                         <label for="phone" class="form-label">Phone</label>
+                        <span class="text-danger">*</span>
                         <input type="phone" class="form-control" id="phone" name="phone">
 
                         @error('phone')
@@ -47,6 +49,7 @@
                     </div>
                     <div class="col-md-6">
                         <label for="email" class="form-label">Email</label>
+                        <span class="text-danger">*</span>
                         <input type="email" class="form-control" id="email" name="email">
 
                         @error('email')

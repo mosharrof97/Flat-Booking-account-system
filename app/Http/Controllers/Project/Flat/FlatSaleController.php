@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Builder;
 use App\Models\Flat;
 use App\Models\Project;
 use App\Models\District;
@@ -21,13 +22,35 @@ class FlatSaleController extends Controller
     //     $this->middleware('permission:flat sale', ['only' => ['index','create','flatSale','flatSaleDetails','payment','paymentStore']]);
     // }
 
-    public function index(){
+    public function index( Request $request){
 
         $project_id = Session::get('project_id');
         if($project_id !== null){
             $comInfo = ComponyInfo::first();
             $project = Project::find($project_id);
-            $flats = Flat::where('project_id', $project_id)->where('status', 0)->get();
+            $flats = "";
+
+        if ($request->start_date !== null && $request->end_date !== null) {
+            $flats = Flat::where('project_id', $project_id)
+                 ->where('status', 0)
+                 ->where('sale_status', 2)
+                 ->orderBy('id', 'desc')
+                 ->when($request->start_date && $request->end_date, function (Builder $builder) use ($request) {
+                     $builder->whereBetween(DB::raw('DATE(updated_at)'), [
+                         $request->start_date,
+                         $request->end_date,
+                     ]);
+                 })
+                //  ->select('id','client_id', 'floor', 'sale_status', 'name')
+                 ->get()
+                 ->groupBy('floor');
+        } else {
+            $flats = Flat::where('project_id', $project_id)
+                 ->where('status', 0)
+                //  ->select('id','client_id','price', 'floor', 'sale_status', 'name')
+                 ->get()
+                 ->groupBy('floor');
+        }
 
             return view('Project-Panel.Flat.Flat_sale', compact(['flats','project','comInfo']));
         }else{

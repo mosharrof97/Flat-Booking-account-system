@@ -24,6 +24,7 @@
                     <div class="row g-3">
                         <div class="col-md-6">
                             <label for="name" class="form-label">Flat Name</label>
+                            <span class="text-danger">*</span>
                             <input type="text" class="form-control" id="name" name="name" value="{{ $flat->name }}" placeholder="Flat Name.....">
                             @error('name')
                                 <span class="form-text text-danger">{{ $message }}</span>
@@ -32,7 +33,8 @@
 
                         <div class="col-md-6">
                             <label for="floor" class="form-label">Floor</label>
-                            <input type="number" class="form-control" id="floor" name="floor" value="{{ $flat->floor }} " placeholder="Flat Area.....">
+                            <span class="text-danger">*</span>
+                            <input type="text" class="form-control" id="floor" name="floor" value="{{ $flat->floor }} " placeholder="Flat Area.....">
                             @error('floor')
                                 <span class="form-text text-danger">{{ $message }}</span>
                             @enderror
@@ -40,6 +42,7 @@
 
                         <div class="col-md-6">
                             <label for="flat_area" class="form-label">Flat Area</label>
+                            <span class="text-danger">*</span>
                             <input type="number" class="form-control" id="flat_area" name="flat_area" value="{{ $flat->flat_area }}" placeholder="Flat Area.....">
                             @error('flat_area')
                                 <span class="form-text text-danger">{{ $message }}</span>
@@ -48,6 +51,7 @@
 
                         <div class="col-md-6">
                             <label for="price" class="form-label">Price Per squer Fit </label>
+                            <span class="text-danger">*</span>
                             <input type="decimal" class="form-control" id="price" name="price" value="{{ $flat->price }}" placeholder="Price Per squer Fit.....">
 
                             @error('price')

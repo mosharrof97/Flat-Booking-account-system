@@ -27,7 +27,7 @@ class Investment extends Model
     ];
 
     public function client(){
-        return $this->BelongsTo(Client::class);
+        return $this->BelongsTo(Client::class, 'client_id');
     }
 
     public function user(){
@@ -41,6 +41,6 @@ class Investment extends Model
 
     public function installment(): HasMany
     {
-        return $this->hasMany(InvestInstallment::class,'investment_id' );
+        return $this->hasMany(InvestInstallment::class,'id' );
     }
 }

@@ -25,7 +25,7 @@ class InvestInstallment extends Model
 
     public function investment(): BelongsTo
     {
-        return $this->BelongsTo(Investment::class,'id');
+        return $this->BelongsTo(Investment::class,'investment_id');
     }
 
     public function user(): BelongsTo

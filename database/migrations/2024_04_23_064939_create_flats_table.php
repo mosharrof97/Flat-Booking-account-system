@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('flats', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->nullable();
-            $table->foreignId('project_id')->constrained()->onDelete('cascade');;
+            $table->foreignId('project_id')->constrained()->onDelete('cascade');
             $table->foreignId('client_id')->nullable();
             $table->string('name');
-            $table->string('floor')->nullable();
+            $table->string('floor');
             $table->integer('flat_area')->nullable();
             $table->decimal('price',15,2);
             $table->integer('room')->nullable();

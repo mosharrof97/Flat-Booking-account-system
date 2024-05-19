@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 19, 2024 at 09:48 AM
+-- Generation Time: May 19, 2024 at 02:30 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -432,7 +432,7 @@ CREATE TABLE `flats` (
   `project_id` bigint(20) UNSIGNED NOT NULL,
   `client_id` bigint(20) UNSIGNED DEFAULT NULL,
   `name` varchar(255) NOT NULL,
-  `floor` varchar(255) DEFAULT NULL,
+  `floor` varchar(255) NOT NULL,
   `flat_area` int(11) DEFAULT NULL,
   `price` decimal(15,2) NOT NULL,
   `room` int(11) DEFAULT NULL,
@@ -457,7 +457,26 @@ CREATE TABLE `flats` (
 --
 
 INSERT INTO `flats` (`id`, `user_id`, `project_id`, `client_id`, `name`, `floor`, `flat_area`, `price`, `room`, `dining_space`, `bath_room`, `parking`, `outdoor`, `images`, `description`, `active_status`, `sale_status`, `status`, `created_by`, `updated_by`, `deleted_by`, `created_at`, `updated_at`) VALUES
-(1, NULL, 1, NULL, 'Parents Engineering Ltd', NULL, 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-19 00:24:26', '2024-05-19 00:24:26');
+(2, NULL, 1, 1, 'A-101', '1st', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 2, 0, 1, NULL, NULL, '2024-05-19 01:51:51', '2024-05-19 05:56:35'),
+(3, NULL, 1, NULL, 'A-102', '1st', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-19 01:52:06', '2024-05-19 01:52:06'),
+(4, NULL, 1, NULL, 'A-103', '1st', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-19 01:52:21', '2024-05-19 01:52:21'),
+(5, NULL, 1, NULL, 'A-104', '1st', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-19 03:38:23', '2024-05-19 03:38:23'),
+(6, NULL, 1, NULL, 'B-201', '2nd', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-19 03:38:48', '2024-05-19 03:38:48'),
+(7, NULL, 1, NULL, 'B-202', '2nd', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-19 03:53:23', '2024-05-19 03:53:23'),
+(8, NULL, 1, NULL, 'B-203', '2nd', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-19 03:54:17', '2024-05-19 03:54:17'),
+(9, NULL, 1, NULL, 'B-204', '2nd', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-19 03:54:44', '2024-05-19 03:54:44'),
+(10, NULL, 1, NULL, 'C-301', '3th', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-19 03:55:43', '2024-05-19 03:55:43'),
+(11, NULL, 1, NULL, 'C-302', '3th', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-19 03:56:03', '2024-05-19 03:56:03'),
+(12, NULL, 1, NULL, 'C-303', '3th', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-19 03:56:24', '2024-05-19 03:56:24'),
+(13, NULL, 1, NULL, 'C-304', '3th', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-19 03:56:45', '2024-05-19 03:56:45'),
+(14, NULL, 1, NULL, 'D-401', '4th', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-19 03:58:07', '2024-05-19 03:58:07'),
+(15, NULL, 1, NULL, 'D-402', '4th', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-19 03:58:31', '2024-05-19 03:58:31'),
+(16, NULL, 1, NULL, 'D-403', '4th', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-19 03:58:49', '2024-05-19 04:02:18'),
+(17, NULL, 1, NULL, 'D-404', '4th', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-19 04:15:52', '2024-05-19 04:15:52'),
+(18, NULL, 1, NULL, 'E-501', '5th', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-19 04:17:58', '2024-05-19 04:17:58'),
+(19, NULL, 1, NULL, 'E-502', '5th', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-19 04:19:48', '2024-05-19 04:19:48'),
+(20, NULL, 1, NULL, 'E-503', '5th', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-19 04:20:12', '2024-05-19 04:20:12'),
+(21, NULL, 1, NULL, 'E-504', '5th', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-19 04:20:50', '2024-05-19 04:20:50');
 
 -- --------------------------------------------------------
 
@@ -501,6 +520,13 @@ CREATE TABLE `flat_sale_infos` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `flat_sale_infos`
+--
+
+INSERT INTO `flat_sale_infos` (`id`, `flat_id`, `price`, `status`, `sold_by`, `created_by`, `created_at`, `updated_at`) VALUES
+(1, 2, 950000.00, 0, 1, NULL, '2024-05-19 05:56:35', '2024-05-19 05:56:35');
 
 -- --------------------------------------------------------
 
@@ -727,6 +753,13 @@ CREATE TABLE `payments` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `payments`
+--
+
+INSERT INTO `payments` (`id`, `flat_id`, `flatSale_id`, `payment_type`, `amount`, `bank_name`, `branch`, `account_number`, `check_number`, `status`, `received_by`, `created_at`, `updated_at`) VALUES
+(1, 2, 1, 'cash', 10000.00, NULL, NULL, NULL, NULL, 0, 1, '2024-05-19 05:56:35', '2024-05-19 05:56:35');
 
 -- --------------------------------------------------------
 
@@ -1394,7 +1427,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `flats`
 --
 ALTER TABLE `flats`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `flat_return_infos`
@@ -1406,7 +1439,7 @@ ALTER TABLE `flat_return_infos`
 -- AUTO_INCREMENT for table `flat_sale_infos`
 --
 ALTER TABLE `flat_sale_infos`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `investments`
@@ -1436,7 +1469,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `permissions`

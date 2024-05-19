@@ -57,11 +57,11 @@ class Client extends Model
 
 
     public function investment(){
-        return $this->HasMany(Investment::class, 'investor_id');
+        return $this->HasMany(Investment::class,'id');
     }
 
     public function flat(){
-        return $this->hasMany(Flat::class, 'client_id');
+        return $this->hasMany(Flat::class, 'id');
     }
 
     public function clientAddress(): HasOne

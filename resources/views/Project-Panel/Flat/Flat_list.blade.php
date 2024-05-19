@@ -5,7 +5,7 @@
         <div class="card p-4">
             <div class="card-header">
                 <h4>Flat List</h4>
-                <a class="btn btn-primary" href="{{ route('flat.add') }}">Add New Project</a>
+                <a class="btn btn-primary" href="{{ route('flat.add') }}">Add New Flat</a>
             </div>
             <div class="card-body">
                 <div>
@@ -41,14 +41,20 @@
                             <tr>
                                 <th scope="row">{{ $key + 1 }}</th>
                                 <td>{{ $flat->name }}</td>
-                                <td>{{ $flat->floor }} No floor</td>
+                                <td>{{ $flat->floor }} floor</td>
                                 <td>{{ $flat->flat_area }} Squer Fit</td>
                                 <td>{{ $flat->price }} Per Squer Fit</td>
                                 <td>{{ $flat->room }} Room</td>
                                 <td>{{ $flat->bath_room }} Bath Room</td>
                                 <td>{{ $flat->dining_space }} Squer Fit</td>
-                                <td>{{ $flat->status }} Squer Fit</td>
-
+                                <td>
+                                    @if($flat->active_status == 0)
+                                        <span class="bg-info p-2 rounded">Active</span>
+                                    @else
+                                        <span class="bg-danger p-2 rounded text-light">Inactive</span>
+                                    @endif
+                                </td>
+                                
                                 <td>
 
                                     @php

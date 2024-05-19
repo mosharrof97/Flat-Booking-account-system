@@ -23,7 +23,7 @@ class FlatController extends Controller
         $project_id = Session::get('project_id');
         if($project_id !== null){
 
-            $flats = Flat::where('project_id', $project_id)->where('status', '!=', 1)->paginate(15);
+            $flats = Flat::where('project_id', $project_id)->orderBy('id','desc')->paginate(15);
             return view('Project-Panel.Flat.Flat_list', compact('flats'));
         }else{
             return redirect()->route('list.project')-> with('error','Project Id Is Null');
@@ -35,7 +35,7 @@ class FlatController extends Controller
         if($project_id !== null){
             $comInfo = ComponyInfo::first();
             $project = Project::find($project_id);
-            $flats = Flat::where('project_id', $project_id)->where('status', 0)->where('sale_status', 0)->paginate(15);
+            $flats = Flat::where('project_id', $project_id)->where('status', 0)->where('sale_status', 0)->orderBy('id','desc')->paginate(15);
 
             return view('Project-Panel.Flat.UnSold_flat', compact(['flats','project','comInfo']));
         }else{
@@ -48,7 +48,7 @@ class FlatController extends Controller
         if($project_id !== null){
             $comInfo = ComponyInfo::first();
             $project = Project::find($project_id);
-            $flats = Flat::where('project_id', $project_id)->where('status', 0)->where('sale_status', 2)->paginate(15);
+            $flats = Flat::where('project_id', $project_id)->where('status', 0)->where('sale_status', 2)->orderBy('id','desc')->paginate(15);
 
             return view('Project-Panel.Flat.Sold_flat', compact(['flats','project','comInfo']));
         }else{
@@ -74,6 +74,7 @@ class FlatController extends Controller
                 'name' =>[ 'required'],
                 'flat_area' =>[ 'required'],
                 'price' =>[ 'required'],
+                'floor' =>[ 'required'],
                 // 'room' =>[ 'required'],
                 // 'dining_space' =>[ 'required'],
                 // 'bath_room' =>[ 'required'],
@@ -140,10 +141,10 @@ class FlatController extends Controller
                 'floor' => [ 'required'],
                 'flat_area' =>[ 'required'],
                 'price' =>[ 'required'],
-                'room' =>[ 'required'],
-                'dining_space' =>[ 'required'],
-                'bath_room' =>[ 'required'],
-                'description' =>[ 'required'],
+                // 'room' =>[ 'required'],
+                // 'dining_space' =>[ 'required'],
+                // 'bath_room' =>[ 'required'],
+                // 'description' =>[ 'required'],
                 // 'Parking' =>[ 'required'],
                 // 'Outdoor' =>[ 'required'],
             ]);

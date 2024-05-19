@@ -117,6 +117,11 @@ class ProjectReportController extends Controller
                 }
             } else {
                 $installment = InvestInstallment::orderBy('id', 'desc')->paginate(15);
+
+                // foreach ($installment as $key => $value) {
+                //     dd($value->investment->total_Investment);
+                // }
+               
             }
 
             return view('Project-Panel.Report.Invest_Report', compact('installment', 'client'));

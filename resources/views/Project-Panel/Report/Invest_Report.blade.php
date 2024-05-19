@@ -38,7 +38,7 @@
                     </form>
                 </div>
 
-                <div class="table-responsive bg-white" data-mdb-perfect-scrollbar="true" style="position: relative; height: 445px;">
+                <div class="table-responsive bg-white" data-mdb-perfect-scrollbar="true" style="position: relative; height: 745px;">
                     <table class="table">
                         <thead>
                             <tr>

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('flat_sale_infos', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('flat_id');
+            $table->foreignId('flat_id')->constrained()->onDelete('cascade');
             $table->decimal('price',15,2);
             $table->bigInteger('status')->default(0);
             $table->foreignId('sold_by');
