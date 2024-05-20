@@ -40,7 +40,7 @@
                                         <span>{{ $value }}, </span>
                                     @endforeach
                                 </td>
-                                <td>{{ $expense->total }}</td>
+                                <td>{{ number_format( $expense->total,2,'.',',') }}</td>
                                 <td>{{ $expense->project->user->name }}</td>
                                 <td>{{ $expense->date }}</td>
                                 <td>

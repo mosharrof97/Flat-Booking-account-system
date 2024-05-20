@@ -87,7 +87,7 @@
                         <tr>
                             <th scope="row" style="width: 20%">Investment Total Amount</th>
                             <td colspan="" style="width: 3%">:</td>
-                            <td colspan="3" style="width: 77%">{{ $investment->total_Investment }} BDT</td>
+                            <td colspan="3" style="width: 77%">{{ number_format( $investment->total_Investment,2,'.',',') }} BDT</td>
                         </tr>
                         <tr>
                             <th scope="row" style="width: 20%">Installment</th>
@@ -97,12 +97,12 @@
                         <tr>
                             <th scope="row" style="width: 20%">Paid Amount</th>
                             <td colspan="" style="width: 3%">:</td>
-                            <td colspan="3" style="width: 77%">{{ $installment->sum('installment_amount') }} BDT</td>
+                            <td colspan="3" style="width: 77%">{{ number_format( $installment->sum('installment_amount'),2,'.',',') }} BDT</td>
                         </tr>
                         <tr>
                             <th scope="row" style="width: 20%">Due Amount</th>
                             <td colspan="" style="width: 3%">:</td>
-                            <td colspan="3" style="width: 77%">{{ $investment->total_Investment - $installment->sum('installment_amount') }} BDT</td>
+                            <td colspan="3" style="width: 77%">{{ number_format( $investment->total_Investment - $installment->sum('installment_amount'),2,'.',',') }} BDT</td>
                         </tr>
 
                     </table>
@@ -131,7 +131,7 @@
                                 <td>{{ $data->created_at->format('d-m-Y') }}</td>
                                 <td>{{ $data->created_at->format('h:i A') }}</td>
                                 <td>{{ $key+1}} Installment</td>
-                                <td>{{ $data->installment_amount }}</td>
+                                <td>{{ number_format( $data->installment_amount,2,'.',',') }}</td>
                             </tr>
                             @endforeach
 
@@ -142,7 +142,7 @@
                                     <h4>Total</h4>
                                 </td>
                                 <td>{{ $installment->count() }} Installment</td>
-                                <td>{{ $installment->sum('installment_amount') }}.00</td>
+                                <td>{{ number_format( $installment->sum('installment_amount') ,2,'.',',')}}</td>
                             </tr>
                         </tbody>
                     </table>

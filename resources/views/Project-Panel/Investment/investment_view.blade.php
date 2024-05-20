@@ -90,7 +90,7 @@
                                 <tr>
                                     <th scope="row" style=" font-size: 15px; font-weight: 600; color:#000;" >Investment Total Amount</th>
                                     <td colspan="" >:</td>
-                                    <td colspan="3" style=" font-size: 15px; font-weight: 400; color:#000;" >{{ $investment->total_Investment }} BDT</td>
+                                    <td colspan="3" style=" font-size: 15px; font-weight: 400; color:#000;" >{{ number_format( $investment->total_Investment,2,'.',',') }} BDT</td>
                                 </tr>
                                 <tr>
                                     <th scope="row" style=" font-size: 15px; font-weight: 600; color:#000;" >Installment</th>
@@ -100,12 +100,12 @@
                                 <tr>
                                     <th scope="row" style=" font-size: 15px; font-weight: 600; color:#000;" >Paid Amount</th>
                                     <td colspan="" >:</td>
-                                    <td colspan="3" style=" font-size: 15px; font-weight: 400; color:#000;"  >{{ $installment->sum('installment_amount') }} BDT</td>
+                                    <td colspan="3" style=" font-size: 15px; font-weight: 400; color:#000;"  >{{ number_format($installment->sum('installment_amount'),2,'.',',') }} BDT</td>
                                 </tr>
                                 <tr>
                                     <th scope="row" style=" font-size: 15px; font-weight: 600; color:#000;" >Due Amount</th>
                                     <td colspan="" >:</td>
-                                    <td colspan="3" style=" font-size: 15px; font-weight: 400; color:#000;" >{{ $investment->total_Investment - $installment->sum('installment_amount') }} BDT</td>
+                                    <td colspan="3" style=" font-size: 15px; font-weight: 400; color:#000;" >{{ number_format($investment->total_Investment - $installment->sum('installment_amount'),2,'.',',') }} BDT</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -135,7 +135,7 @@
                                 <td>{{ $data->created_at->format('d-m-Y') }}</td>
                                 <td>{{ $data->created_at->format('h:i A') }}</td>
                                 <td>{{ $key+1}} Installment</td>
-                                <td>{{ $data->installment_amount }}
+                                <td>{{ number_format($data->installment_amount,2,'.',',') }}
                                     <a href="{{ route('project.installment.payslip',$data->id) }}" class="btn btn-light">AS</a>
                                 </td>
                             </tr>
@@ -148,7 +148,7 @@
                                     <h4>Total</h4>
                                 </td>
                                 <td>{{ $installment->count() }} Installment</td>
-                                <td>{{ $installment->sum('installment_amount') }}.00</td>
+                                <td>{{ number_format($installment->sum('installment_amount'),2,'.',',') }}</td>
                             </tr>
                         </tbody>
                     </table>

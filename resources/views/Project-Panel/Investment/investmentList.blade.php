@@ -36,8 +36,8 @@
                                     <td>{{ $data->client->phone }}</td>
                                     <td>{{ $data->client->email }}</td>
                                     <td>{{ $data->project->projectName }}</td>
-                                    <td>{{ $data->total_Investment }}</td>
-                                    <td>{{ $data->installment->sum('installment_amount') }}</td>
+                                    <td>{{ number_format( $data->total_Investment,2,'.',',')}}</td>
+                                    <td>{{ number_format( $data->installment->sum('installment_amount'),2,'.',',') }}</td>
                                     
                                     <td>{{$data->total_Investment - $data->installment->sum('installment_amount') }}</td>
                                     <td>

@@ -36,8 +36,8 @@
                             <div style=" font-size: 17px; font-weight: 700; color:#000; ">Address: {{ $address->pre_address.', '. $address->pre_city.', '.$address->pre_district.'- '.$address->pre_zipCode}}.</div>
                             <div style=" font-size: 17px; font-weight: 700; color:#000; ">Contact No: {{ $payment->flat->client->phone }}</div>
                             <div style=" font-size: 17px; font-weight: 700; color:#000; "> Booked Flat:{{ $payment->flat->project->projectName }}-{{ $payment->flat->floor }} Floor, Flat-{{ $payment->flat->name }}</div>
-                            <div style=" font-size: 17px; font-weight: 700; color:#000; ">Unit price -Tk.{{ $flatSale->price }}/-</div>
-                            <div style=" font-size: 17px; font-weight: 700; color:#000; ">Total Paid -Tk.{{ $payments->sum('amount') }}/-</div>
+                            <div style=" font-size: 17px; font-weight: 700; color:#000; ">Unit price -Tk.{{ number_format($flatSale->price, 2, '.',',') }}/-</div>
+                            <div style=" font-size: 17px; font-weight: 700; color:#000; ">Total Paid -Tk.{{ number_format($payments->sum('amount'), 2, '.', ',') }}/-</div>
                         </div>
                         <div class="col-sm-6 " style="text-align: end">
                             <div style=" font-size: 17px; font-weight: 700; color:#000; ">Date:{{ $payment->created_at->format('d-M-y') }}</div>
@@ -61,8 +61,8 @@
                                     {{--  <td style=" font-size: 17px; font-weight: 700; color:#000; " class="center">{{$loop->iteration}}</td>  --}}
                                     <td style=" font-size: 17px; font-weight: 700; color:#000; " class="left strong">Payment Paid</td>
                                     <td style=" font-size: 17px; font-weight: 700; color:#000; " class="left">{{ $payment->payment_type }}</td>
-                                    <td style=" font-size: 17px; font-weight: 700; color:#000; " class="left">{{ $payment->amount }} Taka</td>
-                                    <td style=" font-size: 17px; font-weight: 700; color:#000; " class="center">{{ $flatSale->price - $payments->sum('amount') }} Taka</td>
+                                    <td style=" font-size: 17px; font-weight: 700; color:#000; " class="left">{{ number_format($payment->amount, 2, '.', ',') }} Taka</td>
+                                    <td style=" font-size: 17px; font-weight: 700; color:#000; " class="center"> {{ number_format($flatSale->price - $payments->sum('amount'), 2, '.', ',') }} Taka</td>
                                 </tr>
                             </tbody>
                         </table>

@@ -84,16 +84,16 @@
                             <tr>
                                 <td scope="row">{{ $key + 1 }}</td>
                                 <td>{{ $name }}</td>
-                                <td>{{ $prices[$key] }}.00</td>
+                                <td>{{ number_format( $prices[$key],2,'.',',') }}.00</td>
                                 <td>{{ $quantitys[$key] }}</td>
-                                <td>{{ $total_prices[$key] }}.00</td>
+                                <td>{{ number_format( $total_prices[$key] ,2,'.',',')}}.00</td>
                             </tr>
                             @endforeach
                         </tbody>
                         <tfoot>
                             <tr>
                                 <td colspan="4" class="text-right"> Total </td>
-                                <td colspan="">{{ $expense->total  }}</td>
+                                <td colspan="">{{ number_format( $expense->total ,2,'.',',') }}</td>
                             </tr>
                         </tfoot>
                     </table>

@@ -89,19 +89,19 @@
                             <tr>
                                 <th class="text-nowrap" scope="row" style="width: 20%">Flat Price</th>
                                 <td colspan="" style="width: 3%">:</td>
-                                <td colspan="3" style="width: 77%">{{ $flatSale->price}}</td>
+                                <td colspan="3" style="width: 77%">{{ number_format($flatSale->price,2,'.',',')}}</td>
                             </tr>
 
                             <tr>
                                 <th class="text-nowrap" scope="row" style="width: 20%">Paid</th>
                                 <td colspan="" style="width: 3%">:</td>
-                                <td colspan="3" style="width: 77%">{{ $payment->sum('amount')}}</td>
+                                <td colspan="3" style="width: 77%">{{ number_format($payment->sum('amount'),2,'.',',')}}</td>
                             </tr>
 
                             <tr>
                                 <th class="text-nowrap" scope="row" style="width: 20%">Due</th>
                                 <td colspan="" style="width: 3%">:</td>
-                                <td colspan="3" style="width: 77%">{{$flatSale->price - $payment->sum('amount')}}</td>
+                                <td colspan="3" style="width: 77%">{{number_format($flatSale->price - $payment->sum('amount'),2,'.',',')}}</td>
                             </tr>
 
 
@@ -253,7 +253,7 @@
                                 <td>{{ $payment->branch }}</td>
                                 <td>{{ $payment->account_number }}</td>
                                 <td>{{ $payment->check_number}}</td>
-                                <td>{{ $payment->amount}}</td>
+                                <td>{{number_format( $payment->amount,2,'.',',')}}</td>
                                 {{-- <td>{{ $payment->user->name}}</td> --}}
                                 {{-- <td>{{ $payment->check_number}}</td>
                                 <td>{{ $total_prices[$key] }}.00</td> --}}
@@ -274,7 +274,7 @@
 
                             <tr>
                                 <td colspan="6" class="text-right"> <b>Total</b> </td>
-                                <td colspan="">{{ $payment->amount }}</td>
+                                <td colspan="">{{number_format( $payment->amount,2,'.',',')}}</td>
                             </tr>
                         </tfoot>
                     </table>

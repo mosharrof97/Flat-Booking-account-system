@@ -115,14 +115,14 @@
                             @enderror
                         </div> --}}
 
-                        {{-- <div class="col-md-6">
+                        <div class="col-md-6">
                             <label for="images" class="form-label">image</label>
                             <input type="file" class="form-control" id="images" name="images[]" value="" placeholder="120 Feet Wide....." multiple>
 
                             @error('images')
                                 <span class="form-text text-danger">{{ $message }}</span>
                             @enderror
-                        </div> --}}
+                        </div>
 
                         <div class="col-md-6">
                             <label for="description" class="form-label">Flat Description</label>

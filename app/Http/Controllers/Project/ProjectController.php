@@ -117,13 +117,23 @@ class ProjectController extends Controller
             // 'status' =>[ 'required'],
             // 'image' =>[ 'required'],
         ]);
+        
+        $project = Project::where('status',0)->find($id);
+        if ($request->hasFile('image')) {
+            $oldImages = $project->image; 
+            if(!empty($oldImage)){                    
+                    $oldImagePath = public_path('upload/Flat/' . $oldImage);
+                    if (file_exists($oldImagePath)) {
+                        unlink($oldImagePath);
+                    }
+            }            
+            $project->update(['image' => null]);
+        }
 
-        // if($request->hasFile('image')){
-        //     $imageName = 'Project_' . time().'-'.mt_rand(1000000,10000000000).'.'.$request->image->extension();
-        //     $request->image->move(public_path('upload/Project'), $imageName);
-
-        //     // $request->file('image')->move(public_path('upload/Investor'), $imageName);
-        // }
+        if($request->hasFile('image')){
+            $imageName = 'Project_' . time().'-'.mt_rand(1000000,10000000000).'.'.$request->image->extension();
+            $request->image->move(public_path('upload/Project'), $imageName);
+        }
 
         $data=[
             'projectName' =>$request->projectName,
@@ -141,12 +151,14 @@ class ProjectController extends Controller
             'city' =>$request->city,
             'district_id' =>$request->district_id,
             'zipCode' =>$request->zipCode,
-            'status' =>$request->status,
-            // 'image' => $imageName ?? 'null',
+            'status' =>$request->status,            
+            'updated_by'=>auth()->id(),
         ];
 
-        $project = Project::where('status',0)->find($id);
         $project->update($data);
+        if($request->hasFile('image')){
+            $project->update(['image' => $imageName,]);
+        }
         return redirect()->route('list.project')->with('message','Project Update Successful');
     }
 

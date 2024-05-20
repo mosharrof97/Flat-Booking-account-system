@@ -79,7 +79,7 @@
                                 <tr>
                                     <th scope="row" style="width: 20%"><h5 class="fw-bold">Purchase Amount</h5></th>
                                     <td colspan="" style="width: 3%">:</td>
-                                    <td colspan="3" style="width: 77%">{{ $purchase->payable_amount  }}</td>
+                                    <td colspan="3" style="width: 77%">{{ number_format( $purchase->payable_amount ,2,'.',',') }}</td>
                                 </tr>
 
                                 <tr>
@@ -95,13 +95,13 @@
                                 <tr>
                                     <th scope="row" style="width: 20%"><h5 class="fw-bold">Paid</h5></th>
                                     <td colspan="" style="width: 3%">:</td>
-                                    <td colspan="3" style="width: 77%">{{ $purchase->paid  }}</td>
+                                    <td colspan="3" style="width: 77%">{{ number_format($purchase->paid ,2,'.',',') }}</td>
                                 </tr>
 
                                 <tr>
                                     <th scope="row" style="width: 20%"><h5 class="fw-bold">Due</h5></th>
                                     <td colspan="" style="width: 3%">:</td>
-                                    <td colspan="3" style="width: 77%">{{ $purchase->due  }}</td>
+                                    <td colspan="3" style="width: 77%">{{ number_format($purchase->due ,2,'.',',') }}</td>
                                 </tr>
 
                             </table>
@@ -124,7 +124,7 @@
                                     <tr>
                                         <td>{{ $key + 1 }}</td>
                                         <td>{{ $value->date }}</td>
-                                        <td>{{ $value->pay}}</td>
+                                        <td>{{ number_format($value->pay,2,'.',',')}}</td>
                                         <td>{{ $value->user->name}}</td>
                                     </tr>
                                     @endforeach
@@ -133,7 +133,7 @@
                                     <tr>
                                         <th>SL</th>
                                         <th>Total</th>
-                                        <th>{{ $purchase->pur_due_pay->sum('pay') }}</th>
+                                        <th>{{ number_format($purchase->pur_due_pay->sum('pay'),2,'.',',') }}</th>
                                         <th>Recived By</th>
                                     </tr>
                                 </tfoot>
@@ -166,9 +166,9 @@
                             <tr>
                                 <td scope="row">{{ $key + 1 }}</td>
                                 <td>{{ $name }}</td>
-                                <td>{{ $prices[$key] }}.00</td>
+                                <td>{{ number_format($prices[$key] ,2,'.',',')}}</td>
                                 <td>{{ $quantitys[$key] }} {{ $units[$key] }}</td>
-                                <td>{{ $total_prices[$key] }}.00</td>
+                                <td>{{ number_format($total_prices[$key],2,'.',',') }}</td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -176,36 +176,36 @@
 
                             <tr>
                                 <td colspan="4" class="text-right"> Total </td>
-                                <td colspan="">{{ $purchase->total  }}</td>
+                                <td colspan="">{{ number_format($purchase->total,2,'.',',')  }}</td>
                             </tr>
                             <tr>
                                 <td colspan="4" class="text-right"> Service Charge </td>
-                                <td>{{ $purchase->service_charge  }}</td>
+                                <td>{{ number_format( $purchase->service_charge ,2,'.',',') }}</td>
                             </tr>
                             <tr>
                                 <td colspan="4" class="text-right"> Shipping Charge </td>
-                                <td>{{ $purchase->shipping_charge  }}</td>
+                                <td>{{ number_format($purchase->shipping_charge ,2,'.',',') }}</td>
                             </tr>
 
                             <tr>
                                 <td colspan="4" class="text-right"> Total Amount </td>
-                                <td>{{ $purchase->total_amount  }}</td>
+                                <td>{{ number_format( $purchase->total_amount ,2,'.',',') }}</td>
                             </tr>
                             <tr>
                                 <td colspan="4" class="text-right"> Discount </td>
-                                <td>{{ $purchase->discount  }}</td>
+                                <td>{{ number_format( $purchase->discount ,2,'.',',') }}</td>
                             </tr>
                             <tr>
                                 <td colspan="4" class="text-right"> Payable Amount </td>
-                                <td>{{ $purchase->payable_amount  }}</td>
+                                <td>{{ number_format( $purchase->payable_amount,2,'.',',')  }}</td>
                             </tr>
                             <tr>
                                 <td colspan="4" class="text-right"> Paid </td>
-                                <td>{{ $purchase->paid  }}</td>
+                                <td>{{ number_format( $purchase->paid ,2,'.',',') }}</td>
                             </tr>
                             <tr>
                                 <td colspan="4" class="text-right"> Due </td>
-                                <td>{{ $purchase->due  }}</td>
+                                <td>{{ number_format( $purchase->due,2,'.',',')  }}</td>
                             </tr>
                         </tfoot>
                     </table>

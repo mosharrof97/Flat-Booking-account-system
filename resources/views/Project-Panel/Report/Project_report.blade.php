@@ -159,8 +159,8 @@
                                         @endphp
                                         @foreach ($flats as $key => $flat)
                                         @php
-                                            $soldPrice = $flat->flatSaleInfo->sum('price');
-                                            $debit = $flat->payment->sum('amount');
+                                            $soldPrice = $flat->flatSaleInfo->SUM('price');
+                                            $debit = $flat->payment->SUM('amount');
                                             $credit = $soldPrice - $debit;
                     
                                             $totalSoldPrice += $soldPrice;

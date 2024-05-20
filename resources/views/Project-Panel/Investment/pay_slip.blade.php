@@ -33,7 +33,7 @@
                             <div style=" font-size: 17px; font-weight: 700; color:#000; ">Address: {{ $address->pre_address.', '. $address->pre_city.', '.$address->pre_district.'- '.$address->pre_zipCode}}.</div>
                             <div style=" font-size: 17px; font-weight: 700; color:#000; ">Contact No: {{ $investment->client->phone }},</div>
                             <div style=" font-size: 17px; font-weight: 700; color:#000; ">Project : {{ $investment->project->projectName }}</div>
-                            <div style=" font-size: 17px; font-weight: 700; color:#000; "> Unit price -Tk.{{ $investment->total_Investment }}/-  </div>
+                            <div style=" font-size: 17px; font-weight: 700; color:#000; "> Unit price -Tk.{{ number_format( $investment->total_Investment,2,'.',',') }}/-  </div>
                         </div>
                         <div class="col-sm-6 " style="text-align: end">
                             <div style=" font-size: 17px; font-weight: 700; color:#000; ">Date:{{ $installment->created_at->format('d-M-y') }}</div>
@@ -57,8 +57,8 @@
                                     {{--  <td style=" font-size: 17px; font-weight: 700; color:#000; " class="center">{{$loop->iteration}}</td>  --}}
                                     <td style=" font-size: 17px; font-weight: 700; color:#000; " class="left strong">Payment Paid</td>
                                     <td style=" font-size: 17px; font-weight: 700; color:#000; " class="left">{{ $installment->payment_type }}</td>
-                                    <td style=" font-size: 17px; font-weight: 700; color:#000; " class="left">{{ $installment->installment_amount }} Taka</td>
-                                    <td style=" font-size: 17px; font-weight: 700; color:#000; " class="center">{{ $investment->total_Investment - $investment->installment->sum('installment_amount') }} Taka</td>
+                                    <td style=" font-size: 17px; font-weight: 700; color:#000; " class="left">{{  number_format( $installment->installment_amount,2,'.',',') }} Taka</td>
+                                    <td style=" font-size: 17px; font-weight: 700; color:#000; " class="center">{{ number_format( $investment->total_Investment - $investment->installment->sum('installment_amount'),2,'.',',') }} Taka</td>
                                 </tr>
                             </tbody>
                         </table>

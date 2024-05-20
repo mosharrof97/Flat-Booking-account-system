@@ -38,7 +38,7 @@
                                 <td>{{ $purchase->memo_no  }}</td>
                                 <td>{{ $purchase->vendor->name  }}</td>
                                 <td>{{ $purchase->vendor->phone }}</td>
-                                <td>{{ $purchase->total }}</td>
+                                <td>{{ number_format($purchase->total,2,'.',',') }}</td>
                                 <td>{{ $purchase->date }}</td>
                                 <td>{{ $purchase->project->user->name }}</td>
 

@@ -91,9 +91,9 @@
                             <tr>
                                 <td scope="row">{{ $key + 1 }}</td>
                                 <td>{{ $name }}</td>
-                                <td>{{ $prices[$key] }}.00</td>
+                                <td>{{number_format( $prices[$key] ,2,'.',',')}}</td>
                                 <td>{{ $quantitys[$key] }} {{ $units[$key] }}</td>
-                                <td>{{ $total_prices[$key] }}.00</td>
+                                <td>{{ number_format($total_prices[$key] ,2,'.',',')}}</td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -101,33 +101,33 @@
 
                             <tr>
                                 <td colspan="4" class="text-right"> Total </td>
-                                <td colspan="">{{ $purchase->total  }}</td>
+                                <td colspan="">{{ number_format($purchase->total ,2,'.',',') }}</td>
                             </tr>
                             <tr>
                                 <td colspan="4" class="text-right"> Service Charge </td>
-                                <td>{{ $purchase->service_charge  }}</td>
+                                <td>{{ number_format($purchase->service_charge,2,'.',',')  }}</td>
                             </tr>
                             <tr>
                                 <td colspan="4" class="text-right"> Shipping Charge </td>
-                                <td>{{ $purchase->shipping_charge  }}</td>
+                                <td>{{ number_format($purchase->shipping_charge ,2,'.',',') }}</td>
                             </tr>
 
                             <tr>
                                 <td colspan="4" class="text-right"> Total Amount </td>
-                                <td>{{ $purchase->total_amount  }}</td>
+                                <td>{{ number_format($purchase->total_amount,2,'.',',')  }}</td>
                             </tr>
 
                             <tr>
                                 <td colspan="4" class="text-right"> Discount </td>
-                                <td>{{ $purchase->discount  }}</td>
+                                <td>{{ number_format($purchase->discount,2,'.',',')  }}</td>
                             </tr>
                             <tr>
                                 <td colspan="4" class="text-right"> Paid </td>
-                                <td>{{ $purchase->paid  }}</td>
+                                <td>{{ number_format($purchase->paid ,2,'.',',') }}</td>
                             </tr>
                             <tr>
                                 <td colspan="4" class="text-right"> Due </td>
-                                <td>{{ $purchase->due  }}</td>
+                                <td>{{number_format( $purchase->due,2,'.',',')  }}</td>
                             </tr>
                         </tfoot>
                     </table>

@@ -40,7 +40,7 @@
                                 <td>{{ $re_purchase->purchase->invoice_no }}</td>
                                 <td>{{ $re_purchase->vendor->name  }}</td>
                                 <td>{{ $re_purchase->vendor->phone }}</td>
-                                <td>{{ $re_purchase->total }}</td>
+                                <td>{{ number_format($re_purchase->total,2,'.',',')}}</td>
                                 <td>{{ $re_purchase->date }}</td>
                                 <td>{{ $re_purchase->project->user->name }}</td>
 

@@ -95,7 +95,7 @@
                                 <tbody class="table-group-divider">
                                     <tr>
                                         <td>{{ $invoice->date }}</td>
-                                        <td>{{ $invoice->pay}}</td>
+                                        <td>{{ number_format( $invoice->pay,2,'.',',')}}</td>
                                         <td>{{ $invoice->user->name}}</td>
                                     </tr>
                                 </tbody>
@@ -129,9 +129,9 @@
                             <tr>
                                 <td scope="row">{{ $key + 1 }}</td>
                                 <td>{{ $name }}</td>
-                                <td>{{ $prices[$key] }}.00</td>
+                                <td>{{ number_format($prices[$key] ,2,'.',',')}}</td>
                                 <td>{{ $quantitys[$key] }} {{ $units[$key] }}</td>
-                                <td>{{ $total_prices[$key] }}.00</td>
+                                <td>{{ number_format($total_prices[$key],2,'.',',') }}</td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -139,36 +139,36 @@
 
                             <tr>
                                 <td colspan="4" class="text-right"> Total </td>
-                                <td colspan="">{{ $invoice->purchase->total  }}</td>
+                                <td colspan="">{{ number_format($invoice->purchase->total ,2,'.',',') }}</td>
                             </tr>
                             <tr>
                                 <td colspan="4" class="text-right"> Service Charge </td>
-                                <td>{{ $invoice->purchase->service_charge  }}</td>
+                                <td>{{ number_format($invoice->purchase->service_charge ,2,'.',',') }}</td>
                             </tr>
                             <tr>
                                 <td colspan="4" class="text-right"> Shipping Charge </td>
-                                <td>{{ $invoice->purchase->shipping_charge  }}</td>
+                                <td>{{ number_format($invoice->purchase->shipping_charge,2,'.',',')  }}</td>
                             </tr>
 
                             <tr>
                                 <td colspan="4" class="text-right"> Total Amount </td>
-                                <td>{{ $invoice->purchase->total_amount  }}</td>
+                                <td>{{ number_format($invoice->purchase->total_amount,2,'.',',')  }}</td>
                             </tr>
                             <tr>
                                 <td colspan="4" class="text-right"> Discount </td>
-                                <td>{{ $invoice->purchase->discount  }}</td>
+                                <td>{{ number_format($invoice->purchase->discount ,2,'.',',') }}</td>
                             </tr>
                             <tr>
                                 <td colspan="4" class="text-right"> Payable Amount </td>
-                                <td>{{ $invoice->purchase->payable_amount  }}</td>
+                                <td>{{ number_format($invoice->purchase->payable_amount,2,'.',',')  }}</td>
                             </tr>
                             <tr>
                                 <td colspan="4" class="text-right"> Paid </td>
-                                <td>{{ $invoice->purchase->paid  }}</td>
+                                <td>{{ number_format($invoice->purchase->paid ,2,'.',',') }}</td>
                             </tr>
                             <tr>
                                 <td colspan="4" class="text-right"> Due </td>
-                                <td>{{ $invoice->purchase->due  }}</td>
+                                <td>{{ number_format($invoice->purchase->due ,2,'.',',') }}</td>
                             </tr>
                         </tfoot>
                     </table>

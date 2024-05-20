@@ -35,7 +35,7 @@
                             @endphp
                             <div style=" font-size: 17px; font-weight: 700; color:#000; ">Address: {{ $address->pre_address.', '. $address->pre_city.', '.$address->pre_district.'- '.$address->pre_zipCode}}.</div>
                             <div style=" font-size: 17px; font-weight: 700; color:#000; ">Contact No: {{ $payment->flat->client->phone }}, {{ $payment->flat->project->projectName }}-{{ $payment->flat->floor }}, Flat-{{ $payment->flat->name }},
-                                Unit price -Tk.{{ $flatSale->price }}/- 
+                                Unit price -Tk.{{ number_format($flatSale->price,2,'.',',' ) }}/- 
                             </div>
                         </div>
                         <div class="col-sm-6 " style="text-align: end">
@@ -58,8 +58,8 @@
                                 <tr>
                                     {{--  <td style=" font-size: 17px; font-weight: 700; color:#000; " class="center">{{$loop->iteration}}</td>  --}}
                                     <td style=" font-size: 17px; font-weight: 700; color:#000; " class="left strong">Payment Paid</td>
-                                    <td style=" font-size: 17px; font-weight: 700; color:#000; " class="left">{{ $payment->amount }} Taka</td>
-                                    <td style=" font-size: 17px; font-weight: 700; color:#000; " class="center">{{ $flatSale->price -$payments->sum('amount') }} Taka1</td>
+                                    <td style=" font-size: 17px; font-weight: 700; color:#000; " class="left">{{ number_format($payment->amount,2,'.',',' ) }} Taka</td>
+                                    <td style=" font-size: 17px; font-weight: 700; color:#000; " class="center">{{ number_format($flatSale->price -$payments->sum('amount'),2,'.',',' ) }} Taka1</td>
                                 </tr>
                             </tbody>
                         </table>

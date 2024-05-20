@@ -142,7 +142,7 @@
                                 <td>{{ $payment->branch }}</td>
                                 <td>{{ $payment->account_number }}</td>
                                 <td>{{ $payment->check_number}}</td>
-                                <td>{{ $payment->amount}}</td>
+                                <td>{{ number_format( $payment->amount,2,'.',',')}}</td>
                                 <td class="action-hide">
                                     <a href="{{ route('paySlip',$payment->id) }}"  class="btn btn-light"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                                 </td>
@@ -156,7 +156,7 @@
 
                             <tr>
                                 <td colspan="7" class="text-right"> Total </td>
-                                <td colspan="">{{ $payments->sum('amount') }}.00</td>
+                                <td colspan="">{{number_format(  $payments->sum('amount'),2,'.',',') }}</td>
                             </tr>
                             {{-- <tr>
                                 <td colspan="4" class="text-right"> Service Charge </td>

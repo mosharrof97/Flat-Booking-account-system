@@ -73,19 +73,19 @@
                         <div class="row">
 
                             @php
-                            $images = json_decode($flat->images);
+                             $images = json_decode($flat->images, true);
+                            //  dd($flat->images);
                             @endphp
                             @if($images && is_array($images))
                                 @foreach($images as $key => $image)
-                                    @php
-                                        $image = $images[0];
-                                    @endphp
-                                    <div class="col-md-6">
-                                        <img src="{{ asset('upload/Flat/'.$image[0]) }}" alt="No Image" width="" height="" style="width: 100%" class="m-2">
-                                    </div>
+                                    {{-- @if(is_string($image)) --}}
+                                        <div class="col-md-6">
+                                            <img src="{{ asset('upload/Flat/' . $image[0]) }}" alt="No Image" style="width: 100%" class="m-2">
+                                        </div>
+                                    {{-- @endif --}}
                                 @endforeach
                             @else
-                            <p>No images found.</p>
+                                <p>No images found.</p>
                             @endif
                         </div>
                     </div>

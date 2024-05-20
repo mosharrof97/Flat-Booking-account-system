@@ -96,7 +96,9 @@ class FlatController extends Controller
 
                 }
             }
+            
             $images = json_encode($image);
+            // dd($images);
             $data = [
                 'project_id' => $project_id,
                 'name' => $request->name,
@@ -149,22 +151,59 @@ class FlatController extends Controller
                 // 'Outdoor' =>[ 'required'],
             ]);
 
+            //delete image
+            $flat = Flat::where('project_id', $project_id)->findOrFail($id);
+            if ($request->hasFile('images')) {
+                $oldImages = $flat->images; 
+                if(!empty($oldImages)){
+                    if (is_string($oldImages)) {
+                        $oldImages = json_decode($oldImages, true); 
+                    }
+                    foreach ($oldImages as $oldImage) {
+                        $oldImagePath = public_path('upload/Flat/' . $oldImage);
+                        if (file_exists($oldImagePath)) {
+                            unlink($oldImagePath);
+                        }
+                    }
+                }
+                $flat->update(['images' => null]);
+            }
+
+            //Update Image
+            $image=[];
+            if ($request->hasFile('images')) {
+                $files = $request->file('images');
+
+                foreach( $files as $file){
+                    $ImageName = 'Flat_'. time().'-'. mt_rand(100000, 100000000).'.'.$file->extension();
+                    $file->move(public_path('upload/Flat'), $ImageName);
+
+                    $image[]=[
+                         $ImageName,
+                    ];
+                }
+            }
+            $images = json_encode($image);            
+
             $data = [
                 'project_id' => $project_id,
                 'name' => $request->name,
                 'floor' => $request->floor,
                 'flat_area' =>$request->flat_area,
-                'price' =>$request->price,//Price/per Sqft
+                'price' =>$request->price,
                 'room' =>$request->room,
                 'dining_space' =>$request->dining_space,
                 'bath_room' =>$request->bath_room,
                 'description' =>$request->description,
-                // 'Parking' =>$request->Parking,
-                // 'Outdoor' =>$request->Outdoor,
+                'Parking' =>$request->Parking,
+                'Outdoor' =>$request->Outdoor,
+                'updated_by' =>auth()->id(),
             ];
 
-            $flat = Flat::where('project_id', $project_id)->where('status', '!=', 1)->find($id);
             $flat->update($data);
+            if($request->hasFile('images')){
+                $flat->update(['images'=>$images,]);
+            }
 
             return redirect()->route('flat.list')-> with('success','Flat Update Successful');
         }else{
@@ -176,7 +215,7 @@ class FlatController extends Controller
         $project_id = Session::get('project_id');
         if($project_id !== null){
             $comInfo = ComponyInfo::first();
-            $flat = Flat::where('project_id', $project_id)->where('status', '!=', 1)->find($id);
+            $flat = Flat::where('project_id', $project_id)->find($id);
 
             return view('Project-Panel.Flat.Flat_view', compact('flat','comInfo'));
         }else{
@@ -187,11 +226,8 @@ class FlatController extends Controller
     public function delete($id){
         $project_id = Session::get('project_id');
         if($project_id !== null){
-
-            $flat = Flat::where('project_id', $project_id)->where('status', '!=', 1)->find($id);
-            $flat->update([
-                'status' => 1,
-            ]);
+            $flat = Flat::where('project_id', $project_id)->findOrFail($id);
+            $flat->delete();
             return redirect()->route('flat.list')-> with('success','Flat Delete Successful');
         }else{
             return redirect()->route('list.project')-> with('error','Project Id Is Null');
