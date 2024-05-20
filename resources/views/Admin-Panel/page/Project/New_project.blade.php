@@ -22,6 +22,7 @@
                     <div class="row g-3">
                         <div class="col-md-6">
                             <label for="projectName" class="form-label">Project Name</label>
+                            <span class="text-danger">*</span>
                             <input type="text" class="form-control" id="projectName" name="projectName" value="{{ old('projectName') }}" placeholder="Project Name.....">
                             @error('projectName')
                                 <span class="form-text text-danger">{{ $message }}</span>
