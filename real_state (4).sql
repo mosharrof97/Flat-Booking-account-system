@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 19, 2024 at 02:30 PM
+-- Generation Time: May 20, 2024 at 02:31 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -389,7 +389,8 @@ CREATE TABLE `expenses` (
 --
 
 INSERT INTO `expenses` (`id`, `project_id`, `date`, `name`, `price`, `quantity`, `total_price`, `total`, `created_by`, `updated_by`, `deleted_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 1, '2024-05-18', '\"[\\\"Food\\\"]\"', '\"[\\\"5000\\\"]\"', '\"[\\\"1\\\"]\"', '\"[\\\"5000\\\"]\"', 5000.00, 1, NULL, NULL, '2024-05-18 10:34:56', '2024-05-18 10:34:56', NULL);
+(1, 1, '2024-05-18', '\"[\\\"Food\\\"]\"', '\"[\\\"5000\\\"]\"', '\"[\\\"1\\\"]\"', '\"[\\\"5000\\\"]\"', 5000.00, 1, NULL, NULL, '2024-05-18 10:34:56', '2024-05-18 10:34:56', NULL),
+(2, 1, '2024-05-20', '\"[\\\"Phone\\\",\\\"RC\\\"]\"', '\"[\\\"5\\\",\\\"45\\\"]\"', '\"[\\\"4564\\\",\\\"4564\\\"]\"', '\"[\\\"22820\\\",\\\"205380\\\"]\"', 228200.00, 1, NULL, NULL, '2024-05-20 00:47:21', '2024-05-20 00:47:21', NULL);
 
 -- --------------------------------------------------------
 
@@ -449,34 +450,48 @@ CREATE TABLE `flats` (
   `updated_by` bigint(20) UNSIGNED DEFAULT NULL,
   `deleted_by` bigint(20) UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `flats`
 --
 
-INSERT INTO `flats` (`id`, `user_id`, `project_id`, `client_id`, `name`, `floor`, `flat_area`, `price`, `room`, `dining_space`, `bath_room`, `parking`, `outdoor`, `images`, `description`, `active_status`, `sale_status`, `status`, `created_by`, `updated_by`, `deleted_by`, `created_at`, `updated_at`) VALUES
-(2, NULL, 1, 1, 'A-101', '1st', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 2, 0, 1, NULL, NULL, '2024-05-19 01:51:51', '2024-05-19 05:56:35'),
-(3, NULL, 1, NULL, 'A-102', '1st', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-19 01:52:06', '2024-05-19 01:52:06'),
-(4, NULL, 1, NULL, 'A-103', '1st', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-19 01:52:21', '2024-05-19 01:52:21'),
-(5, NULL, 1, NULL, 'A-104', '1st', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-19 03:38:23', '2024-05-19 03:38:23'),
-(6, NULL, 1, NULL, 'B-201', '2nd', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-19 03:38:48', '2024-05-19 03:38:48'),
-(7, NULL, 1, NULL, 'B-202', '2nd', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-19 03:53:23', '2024-05-19 03:53:23'),
-(8, NULL, 1, NULL, 'B-203', '2nd', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-19 03:54:17', '2024-05-19 03:54:17'),
-(9, NULL, 1, NULL, 'B-204', '2nd', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-19 03:54:44', '2024-05-19 03:54:44'),
-(10, NULL, 1, NULL, 'C-301', '3th', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-19 03:55:43', '2024-05-19 03:55:43'),
-(11, NULL, 1, NULL, 'C-302', '3th', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-19 03:56:03', '2024-05-19 03:56:03'),
-(12, NULL, 1, NULL, 'C-303', '3th', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-19 03:56:24', '2024-05-19 03:56:24'),
-(13, NULL, 1, NULL, 'C-304', '3th', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-19 03:56:45', '2024-05-19 03:56:45'),
-(14, NULL, 1, NULL, 'D-401', '4th', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-19 03:58:07', '2024-05-19 03:58:07'),
-(15, NULL, 1, NULL, 'D-402', '4th', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-19 03:58:31', '2024-05-19 03:58:31'),
-(16, NULL, 1, NULL, 'D-403', '4th', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-19 03:58:49', '2024-05-19 04:02:18'),
-(17, NULL, 1, NULL, 'D-404', '4th', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-19 04:15:52', '2024-05-19 04:15:52'),
-(18, NULL, 1, NULL, 'E-501', '5th', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-19 04:17:58', '2024-05-19 04:17:58'),
-(19, NULL, 1, NULL, 'E-502', '5th', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-19 04:19:48', '2024-05-19 04:19:48'),
-(20, NULL, 1, NULL, 'E-503', '5th', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-19 04:20:12', '2024-05-19 04:20:12'),
-(21, NULL, 1, NULL, 'E-504', '5th', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-19 04:20:50', '2024-05-19 04:20:50');
+INSERT INTO `flats` (`id`, `user_id`, `project_id`, `client_id`, `name`, `floor`, `flat_area`, `price`, `room`, `dining_space`, `bath_room`, `parking`, `outdoor`, `images`, `description`, `active_status`, `sale_status`, `status`, `created_by`, `updated_by`, `deleted_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, NULL, 1, 1, 'A-101', '1st', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 2, 0, 1, NULL, NULL, '2024-05-19 23:30:36', '2024-05-20 03:37:03', NULL),
+(2, NULL, 1, NULL, 'A-102', '1st', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-19 23:30:58', '2024-05-19 23:30:58', NULL),
+(3, NULL, 1, NULL, 'A-103', '1st', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-19 23:31:19', '2024-05-19 23:31:19', NULL),
+(4, NULL, 1, NULL, 'A-104', '1st', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-19 23:31:37', '2024-05-19 23:31:37', NULL),
+(5, NULL, 1, NULL, 'A-105', '1st', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-19 23:31:55', '2024-05-19 23:31:55', NULL),
+(6, NULL, 1, NULL, 'B-201', '2nd', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-19 23:32:23', '2024-05-19 23:32:23', NULL),
+(7, NULL, 1, NULL, 'B-202', '2nd', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-19 23:32:59', '2024-05-19 23:32:59', NULL),
+(8, NULL, 1, NULL, 'B-203', '2nd', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-19 23:33:24', '2024-05-19 23:33:24', NULL),
+(9, NULL, 1, NULL, 'B-204', '2nd', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-19 23:33:50', '2024-05-19 23:41:15', NULL),
+(12, NULL, 1, NULL, 'B-205', '2nd', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-19 23:39:09', '2024-05-19 23:39:09', NULL),
+(13, NULL, 1, NULL, 'C-301', '3th', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-19 23:42:39', '2024-05-19 23:42:39', NULL),
+(14, NULL, 1, NULL, 'C-302', '3th', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-19 23:43:04', '2024-05-19 23:43:04', NULL),
+(15, NULL, 1, NULL, 'C-303', '3th', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-19 23:43:26', '2024-05-19 23:43:26', NULL),
+(16, NULL, 1, NULL, 'C-304', '3th', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-19 23:43:45', '2024-05-19 23:43:45', NULL),
+(17, NULL, 1, NULL, 'C-305', '3th', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-19 23:44:12', '2024-05-19 23:44:12', NULL),
+(18, NULL, 1, NULL, 'D-401', '4th', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-19 23:44:46', '2024-05-19 23:44:46', NULL),
+(19, NULL, 1, NULL, 'D-402', '4th', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-19 23:45:07', '2024-05-19 23:45:07', NULL),
+(20, NULL, 1, NULL, 'D-403', '4th', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-19 23:45:26', '2024-05-19 23:45:39', NULL),
+(21, NULL, 1, NULL, 'D-404', '4th', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-19 23:46:05', '2024-05-19 23:46:05', NULL),
+(22, NULL, 1, NULL, 'D-405', '4th', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-19 23:46:24', '2024-05-19 23:46:24', NULL),
+(23, NULL, 1, NULL, 'E-501', '5th', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-19 23:47:45', '2024-05-19 23:47:45', NULL),
+(24, NULL, 1, NULL, 'E-502', '5th', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-19 23:48:10', '2024-05-19 23:48:10', NULL),
+(25, NULL, 1, NULL, 'E-503', '5th', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-19 23:48:35', '2024-05-19 23:48:35', NULL),
+(26, NULL, 1, NULL, 'E-504', '5th', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, 1, NULL, '2024-05-19 23:49:05', '2024-05-20 02:59:54', NULL),
+(27, NULL, 1, NULL, 'E-505', '5th', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, 1, NULL, '2024-05-19 23:49:25', '2024-05-20 02:58:37', NULL),
+(28, NULL, 1, NULL, 'F-601', '6th', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, 1, NULL, '2024-05-19 23:49:59', '2024-05-20 00:24:22', NULL),
+(29, NULL, 1, NULL, 'F-602', '6th', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, 1, NULL, '2024-05-19 23:50:52', '2024-05-20 03:09:34', NULL),
+(30, NULL, 1, NULL, 'F-603', '6th', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-19 23:51:21', '2024-05-19 23:52:17', '2024-05-19 23:52:17'),
+(31, NULL, 1, NULL, 'F-604', '6th', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-20 00:50:09', '2024-05-20 00:50:09', NULL),
+(32, NULL, 1, NULL, 'F-605', '6th', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, 1, NULL, '2024-05-20 00:53:20', '2024-05-20 02:57:11', NULL),
+(33, NULL, 1, NULL, 'G-701', '7th', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, 1, NULL, '2024-05-20 00:56:41', '2024-05-20 02:53:24', NULL),
+(34, NULL, 1, NULL, 'G-702', '6th', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, 1, NULL, '2024-05-20 00:59:37', '2024-05-20 03:07:36', NULL),
+(35, NULL, 1, NULL, 'H-801', '8th', 6000, 3000.00, 5, NULL, NULL, NULL, NULL, '\"[[\\\"Flat_1716196309-98090095.jpg\\\"],[\\\"Flat_1716196309-84067190.jpg\\\"]]\"', NULL, 0, 0, 0, 1, 1, NULL, '2024-05-20 03:04:36', '2024-05-20 03:12:01', NULL);
 
 -- --------------------------------------------------------
 
@@ -526,7 +541,7 @@ CREATE TABLE `flat_sale_infos` (
 --
 
 INSERT INTO `flat_sale_infos` (`id`, `flat_id`, `price`, `status`, `sold_by`, `created_by`, `created_at`, `updated_at`) VALUES
-(1, 2, 950000.00, 0, 1, NULL, '2024-05-19 05:56:35', '2024-05-19 05:56:35');
+(2, 1, 9500000.00, 0, 1, NULL, '2024-05-20 03:37:03', '2024-05-20 03:37:03');
 
 -- --------------------------------------------------------
 
@@ -691,10 +706,10 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (31, '2024_05_09_093028_create_return_purchase_balances_table', 1),
 (32, '2024_05_12_090517_create_purchase_due_pays_table', 1),
 (34, '2024_03_19_042621_create_districts_table', 1),
-(36, '2024_04_23_064939_create_flats_table', 2),
 (37, '2024_04_29_035152_create_flat_sale_infos_table', 2),
 (38, '2024_04_29_050404_create_flat_return_infos_table', 2),
-(39, '2024_04_29_063045_create_payments_table', 2);
+(39, '2024_04_29_063045_create_payments_table', 2),
+(40, '2024_04_23_064939_create_flats_table', 3);
 
 -- --------------------------------------------------------
 
@@ -759,7 +774,7 @@ CREATE TABLE `payments` (
 --
 
 INSERT INTO `payments` (`id`, `flat_id`, `flatSale_id`, `payment_type`, `amount`, `bank_name`, `branch`, `account_number`, `check_number`, `status`, `received_by`, `created_at`, `updated_at`) VALUES
-(1, 2, 1, 'cash', 10000.00, NULL, NULL, NULL, NULL, 0, 1, '2024-05-19 05:56:35', '2024-05-19 05:56:35');
+(2, 1, 2, 'cash', 7000000.00, NULL, NULL, NULL, NULL, 0, 1, '2024-05-20 03:37:03', '2024-05-20 03:37:03');
 
 -- --------------------------------------------------------
 
@@ -838,7 +853,7 @@ INSERT INTO `projects` (`id`, `projectName`, `budget`, `land_area`, `front_road`
 (1, 'Coder De Dhaka', 150000000.00, 30000, '200 feet', NULL, '10', '200-400', '05', 40, '24', '2024-05-19', '2024-06-07', 'Scaton', 'dhaka', 47, 1205, 'Project_1716043666-6000898628.jpg', 0, 0, NULL, NULL, NULL, NULL, '2024-05-18 08:47:46', '2024-05-18 08:47:46', NULL),
 (2, 'Rupa City', 150000000.00, 30000, '120 feet', NULL, '10', '200-400', '05', 40, '25', '2024-05-20', '2024-06-07', 'Scaton, dhaka', 'dhaka', 47, 1205, 'Project_1716043728-6919876183.jpg', 0, 0, NULL, NULL, NULL, NULL, '2024-05-18 08:48:48', '2024-05-18 08:48:48', NULL),
 (3, 'Rupa City Dhaka', 150000000.00, 30000, '120 feet', NULL, '10', '200-400', '05', 40, '25', '2024-05-19', '2024-06-07', 'Scaton', 'dhaka', 46, 1205, 'Project_1716043775-4775512928.jpg', 0, 0, NULL, NULL, NULL, NULL, '2024-05-18 08:49:35', '2024-05-18 08:49:35', NULL),
-(4, 'Coder De Dhaka 2', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'null', 0, 0, NULL, NULL, NULL, NULL, '2024-05-19 00:10:00', '2024-05-19 00:10:00', NULL);
+(4, 'Coder De Dhaka 2', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Project_1716196670-7700536611.jpg', 0, 0, NULL, 1, NULL, NULL, '2024-05-19 00:10:00', '2024-05-20 03:17:50', NULL);
 
 -- --------------------------------------------------------
 
@@ -1409,7 +1424,7 @@ ALTER TABLE `employee_addresses`
 -- AUTO_INCREMENT for table `expenses`
 --
 ALTER TABLE `expenses`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `expense_categories`
@@ -1427,7 +1442,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `flats`
 --
 ALTER TABLE `flats`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `flat_return_infos`
@@ -1439,7 +1454,7 @@ ALTER TABLE `flat_return_infos`
 -- AUTO_INCREMENT for table `flat_sale_infos`
 --
 ALTER TABLE `flat_sale_infos`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `investments`
@@ -1463,13 +1478,13 @@ ALTER TABLE `invest_installments`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `permissions`
