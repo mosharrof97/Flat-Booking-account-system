@@ -51,13 +51,14 @@
                         <div class="text-center mt-3">
                             <h4 class="fw-bold" style="text-decoration: underline">Flat Chart</h2>
                         </div>
-                        <div class="col-xl-6 col-md-8 col-sm-12 border py-3 text-center mt-2">
+                        <div class="col-lg-10 col-md-12 col-sm-12 border py-3 text-center mt-2">
                             @if ($flats !== null)
                                 @foreach ($flats as $floor => $floorFlats)
                                     <h5 class="fw-bold mt-2 mb-0">Floor: {{ $floor }}</h5>
                                     @foreach ($floorFlats as $flat)
                                         @if ($flat->sale_status == 0)
-                                            <a href="{{ route('flat.sale.form', $flat->id) }}" class="btn btn-success rounded my-1">
+                                            <a href="{{ route('flat.sale.form', $flat->id) }}"
+                                                class="btn btn-success rounded my-1">
                                                 {{ $flat->name }}
                                                 <h6 class="text-light"><b>Price : </b>{{ $flat->price }}</h6>
                                             </a>
@@ -65,7 +66,8 @@
                                             <a href="{{ route('booking_view', $flat->id) }}"
                                                 class="btn btn-warning rounded my-1">{{ $flat->name }}</a>
                                         @elseif($flat->sale_status == 2)
-                                            <a href="{{ route('flat.sale.details', $flat->id) }}" class="btn btn-danger rounded my-1">
+                                            <a href="{{ route('flat.sale.details', $flat->id) }}"
+                                                class="btn btn-danger rounded my-1">
                                                 {{ $flat->name }}
                                                 <h6 class="text-light"><b>Client : </b>{{ $flat->client->name }}</h6>
                                             </a>
