@@ -80,5 +80,10 @@ class Project extends AuthenticatableUser implements Authenticatable
         return $this->HasMany(InvestInstallment::class);
     }
 
+    public function flatReInfo():HasMany
+    {
+        return $this->hasMany(FlatReturnInfo::class);
+    }
+
 
 }

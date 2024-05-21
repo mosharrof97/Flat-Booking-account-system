@@ -5,7 +5,29 @@
         <div class="card p-4">
             <div class="card-header">
                 <h4>Flat List</h4>
-                <a class="btn btn-primary" href="{{ route('flat.add') }}">Add New Flat</a>
+                <div class="d-flex">
+                    <form class="d-flex" action="{{ route('flat.list') }}" method="get">
+                        @csrf
+                        <div class="me-2">
+                            <select class="form-select" name="sale_status" id="sale_status">
+                                <option value="">Select Status....</option>
+                                <option value="2">Sold</option>
+                                <option value="0">Unsold</option>
+                            </select>
+                        </div>
+                        <div class="me-2">
+                            <input type="date" class="form-control" name="start_date" id="start_date">
+                        </div>
+                        <div class="me-2">
+                            <input type="date" class="form-control" name="end_date" id="end_date">
+                        </div>
+                        <div class="me-2">
+                            <button type="submit" class="btn btn-info">Filter</button>
+                        </div>
+
+                    </form>
+                    <a class="btn btn-primary ms-2" href="{{ route('flat.add') }}">Add New Flat</a>
+                </div>
             </div>
             <div class="card-body">
                 <div>
@@ -135,14 +157,7 @@
 
 
 <script>
-    new DataTable('#flatTable' , {
-            layout: {
-                topStart: {
-                    buttons: ['excel','print']
-                }
-            }
-        }
-    );
+    new DataTable('#flatTable');
 
 </script>
 @endsection

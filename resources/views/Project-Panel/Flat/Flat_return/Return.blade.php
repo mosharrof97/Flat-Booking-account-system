@@ -228,12 +228,12 @@
                                 <form action="{{ route('return.store') }}" method="post" class="mx-2">
                                     @csrf
                                     <input type="hidden" name="flat_id" id="flat_id" value="{{ $flat->id }}">
-                                    <input type="hidden" name="sold_by" id="sold_by" value="{{ $flat->flatSaleInfo[0]->sold_by }}">
+                                    <input type="hidden" name="sold_by" id="sold_by" value="{{ $flat->flatSaleInfo->sold_by }}">
                                     <input type="hidden" name="client_id" id="client_id" value="{{ $flat->client->id }}">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <label for="buying_price" class="form-label">Buying Price</label>
-                                            <input type="decimal" class="form-control" id="buying_price" name="buying_price" value="{{ $flat->flatSaleInfo[0]->price }}"  placeholder="0.00"  aria-readonly="true" style="background-color: #e7e7e7">
+                                            <input type="decimal" class="form-control" id="buying_price" name="buying_price" value="{{ $flat->flatSaleInfo->price }}"  placeholder="0.00"  aria-readonly="true" style="background-color: #e7e7e7">
                                             @error('buying_price')
                                             <span class="form-text text-danger">{{ $message }}</span>
                                             @enderror
@@ -264,7 +264,6 @@
 
                                         <div class="col-md-6 mt-3">
                                             <label for="payment_type" class="form-label">Payment Return Method </label>
-                                            {{-- <input type="text" class="form-control" id="payment_type" placeholder="Installment amount" name="payment_type"> --}}
                                             <select name="payment_type" id="payment_type" class="form-select">
                                                 <option value="">select Method...........</option>
                                                 <option value="cash">Cash</option>

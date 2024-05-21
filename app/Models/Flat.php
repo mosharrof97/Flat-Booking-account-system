@@ -48,26 +48,22 @@ class Flat extends Model
         return $this->BelongsTo(Client::class, 'client_id');
     }
 
-    // public function flatImage()
-    // {
-    //     return $this->BelongsTo(FlatImage::class, 'flat_id');
-    // }
-
     public function flatSaleInfo():HasOne
     {
         return $this->hasOne(FlatSaleInfo::class,'flat_id','id');
     } 
-
-    public function flatSale():HasOne
-    {
-        return $this->hasOne(FlatSaleInfo::class, 'flat_id');
-    }
 
     public function payment():HasMany
     {
         return $this->hasMany(Payment::class, 'flat_id');
     }
 
+    public function flatReInfo():HasMany
+    {
+        return $this->hasMany(FlatReturnInfo::class);
+    }
+
+    
 
 
     // public function count(){

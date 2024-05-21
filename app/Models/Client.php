@@ -68,4 +68,9 @@ class Client extends Model
     {
         return $this->hasOne(ClientAddress::class, 'client_id');
     }
+
+    public function flatReInfo():HasMany
+    {
+        return $this->hasMany(FlatReturnInfo::class, 'id');
+    }
 }

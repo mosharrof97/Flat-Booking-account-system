@@ -4,7 +4,7 @@
         <div class="col-lg-12 col-sm-12">
             <div class="card p-4">
                 <div class="card-header">
-                    <h4>Flat List</h4>
+                    <h4>Flat Chart</h4>
                     <div class="d-flex">
                         <form class="d-flex" action="{{ route('flat.view.chart') }}" method="get">
                             @csrf

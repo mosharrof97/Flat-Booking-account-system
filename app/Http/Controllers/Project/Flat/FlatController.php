@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Project\Flat;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Builder;
 use App\Models\Flat;
 use App\Models\ComponyInfo;
 use App\Models\Project;
@@ -19,11 +21,49 @@ class FlatController extends Controller
     //    // $this->middleware('permission:flat delete', ['only' => ['delete']]);
     // }
 
-    public function index(){
+    public function index(Request $request){
         $project_id = Session::get('project_id');
         if($project_id !== null){
 
-            $flats = Flat::where('project_id', $project_id)->orderBy('id','desc')->paginate(15);
+            $flats = "";
+
+            if ($request->sale_status || $request->start_date !== null && $request->end_date !== null) {
+                
+                if($request->start_date == null && $request->end_date == null){
+                    $flats = Flat::where('project_id', $project_id)
+                    ->where('status', 0)
+                    ->where('sale_status', $request->sale_status)
+                    ->orderBy('id','desc')->paginate(15);
+                }elseif($request->sale_status == null){
+                    $flats = Flat::where('project_id', $project_id)
+                    ->where('status', 0)
+                    ->where('sale_status', 2)
+                    ->orderBy('id', 'desc')
+                    ->when($request->start_date && $request->end_date, function (Builder $builder) use ($request) {
+                        $builder->whereBetween(DB::raw('DATE(updated_at)'), [
+                            $request->start_date,
+                            $request->end_date,
+                        ]);
+                    })->paginate(15);
+                }else{
+                    $flats = Flat::where('project_id', $project_id)
+                    ->where('status', 0)
+                    ->where('sale_status', 2)                    
+                    ->where('sale_status', $request->sale_status)
+                    ->when($request->start_date && $request->end_date, function (Builder $builder) use ($request) {
+                        $builder->whereBetween(DB::raw('DATE(updated_at)'), [
+                            $request->start_date,
+                            $request->end_date,
+                        ]);
+                    })
+                    ->orderBy('id', 'desc')->paginate(15);
+                }
+                
+            } else {
+                $flats = Flat::where('project_id', $project_id)->orderBy('id','desc')->paginate(15);
+            }
+
+            
             return view('Project-Panel.Flat.Flat_list', compact('flats'));
         }else{
             return redirect()->route('list.project')-> with('error','Project Id Is Null');
@@ -98,7 +138,6 @@ class FlatController extends Controller
             }
             
             $images = json_encode($image);
-            // dd($images);
             $data = [
                 'project_id' => $project_id,
                 'name' => $request->name,

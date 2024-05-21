@@ -93,4 +93,20 @@ class User extends Authenticatable
     public function investment() {
         return $this->HasMany(Investment::class);
     }
+
+
+    public function re_soldFlats()
+    {
+        return $this->hasMany(FlatReturnInfo::class, 'sold_by');
+    }
+
+    public function re_bookedFlats()
+    {
+        return $this->hasMany(FlatReturnInfo::class, 'booking_by');
+    }
+
+    public function returnedFlats()
+    {
+        return $this->hasMany(FlatReturnInfo::class, 'return_by');
+    }
 }

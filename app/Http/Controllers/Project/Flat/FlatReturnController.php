@@ -10,13 +10,26 @@ use App\Models\Project;
 use App\Models\Flat;
 use App\Models\FlatReturnInfo;
 use App\Models\FlatSaleInfo;
+use App\Models\ComponyInfo;
 class FlatReturnController extends Controller
 {
     // public function __construct(){
-    //     $this->middleware('permission:flat return', ['only' => ['index','flatReturn']]);
+    //     $this->middleware('permission:flat return list', ['only' => ['index']]);
+    //     $this->middleware('permission:flat return', ['only' => ['returnForm','flatReturn']]);
     // }
+    public function index(){
+        $project_id = Session::get('project_id');
+        if($project_id !== null){
 
-    public function index($id){
+            $returnInfo = FlatReturnInfo::where('project_id', $project_id)->paginate(15);
+
+            return view('Project-Panel.Flat.Flat_return.Return_list',compact('returnInfo'));
+        }else{
+            return redirect()->route('list.project')-> with('error','Project Id Is Null');
+        }
+    }
+
+    public function returnForm($id){
         $project_id = Session::get('project_id');
         if($project_id !== null){
 
@@ -52,10 +65,11 @@ class FlatReturnController extends Controller
                     ]);
                 }
             }
-            // dd($request->all());
+
             try {
                 DB::beginTransaction();
                     $data = [
+                        'project_id'=>$project_id,
                         'flat_id' =>$request->flat_id,
                         'client_id' =>$request->client_id,
                         'buying_price' =>$request->buying_price,
@@ -63,12 +77,13 @@ class FlatReturnController extends Controller
                         'payment_type' =>$request->payment_type,
                         'return_amount' =>$request->return_amount,
 
-                        // 'bank_name' =>$request->bank_name,
-                        // 'branch' =>$request->branch,
-                        // 'account_number' =>$request->account_number,
-                        // 'check_number' =>$request->check_number,
+                        'bank_name' =>$request->bank_name,
+                        'branch' =>$request->branch,
+                        'account_number' =>$request->account_number,
+                        'check_number' =>$request->check_number,
 
                         'sold_by' => $request->sold_by,
+                        'return_by'=>auth()->id(),
                     ];
                     FlatReturnInfo::create($data);
 
@@ -92,5 +107,17 @@ class FlatReturnController extends Controller
             return redirect()->route('list.project')-> with('error','Project Id Is Null');
         }
 
+    }
+
+    public function view($id){
+        $project_id = Session::get('project_id');
+        if($project_id !== null){
+            $comInfo = ComponyInfo::first();
+            $project = Project::findOrFail($project_id);
+            $returnInfo = FlatReturnInfo::findOrFail($id);
+            return view('Project-Panel.Flat.Flat_return.Return_details', compact('comInfo','project','returnInfo'));
+        }else{
+            return redirect()->route('list.project')-> with('error','Project Id Is Null');
+        }
     }
 }

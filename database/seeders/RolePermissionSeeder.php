@@ -75,6 +75,7 @@ class RolePermissionSeeder extends Seeder
         Permission::create(['name' => 'flat sale', 'guard_name' => 'web',]);
 
         Permission::create(['name' => 'flat return', 'guard_name' => 'web',]);
+        Permission::create(['name' => 'flat return list', 'guard_name' => 'web',]);
 
         Permission::create(['name' => 'project report', 'guard_name' => 'web',]);
 

@@ -171,8 +171,13 @@ Route::prefix('admin')->middleware('auth')->group(function () {
                 Route::get('/{id}/payment', [FlatSaleController::class, 'payment'])->name('payment.from');
                 Route::post('/payment', [FlatSaleController::class, 'paymentStore'])->name('payment.store');
 
-                Route::get('/{id}/return', [FlatReturnController::class, 'index'])->name('return');
+                //Flat Return                
+                Route::get('/return/list', [FlatReturnController::class, 'index'])->name('return.list');
+                Route::get('/{id}/return', [FlatReturnController::class, 'returnForm'])->name('return');
                 Route::post('/return', [FlatReturnController::class, 'flatReturn'])->name('return.store');
+                Route::get('/{id}/return/view', [FlatReturnController::class, 'view'])->name('return.view');
+
+                            
 
                 //pay Slip
                 Route::get('{id}/pay-slip',[FlatSaleController::class, 'paySlip'])->name('paySlip');

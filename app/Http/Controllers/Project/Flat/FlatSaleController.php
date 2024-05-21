@@ -30,27 +30,27 @@ class FlatSaleController extends Controller
             $project = Project::find($project_id);
             $flats = "";
 
-        if ($request->start_date !== null && $request->end_date !== null) {
-            $flats = Flat::where('project_id', $project_id)
-                 ->where('status', 0)
-                 ->where('sale_status', 2)
-                 ->orderBy('id', 'desc')
-                 ->when($request->start_date && $request->end_date, function (Builder $builder) use ($request) {
-                     $builder->whereBetween(DB::raw('DATE(updated_at)'), [
-                         $request->start_date,
-                         $request->end_date,
-                     ]);
-                 })
-                //  ->select('id','client_id', 'floor', 'sale_status', 'name')
-                 ->get()
-                 ->groupBy('floor');
-        } else {
-            $flats = Flat::where('project_id', $project_id)
-                 ->where('status', 0)
-                //  ->select('id','client_id','price', 'floor', 'sale_status', 'name')
-                 ->get()
-                 ->groupBy('floor');
-        }
+            if ($request->start_date !== null && $request->end_date !== null) {
+                $flats = Flat::where('project_id', $project_id)
+                    ->where('status', 0)
+                    ->where('sale_status', 2)
+                    ->orderBy('id', 'desc')
+                    ->when($request->start_date && $request->end_date, function (Builder $builder) use ($request) {
+                        $builder->whereBetween(DB::raw('DATE(updated_at)'), [
+                            $request->start_date,
+                            $request->end_date,
+                        ]);
+                    })
+                    //  ->select('id','client_id', 'floor', 'sale_status', 'name')
+                    ->get()
+                    ->groupBy('floor');
+            } else {
+                $flats = Flat::where('project_id', $project_id)
+                    ->where('status', 0)
+                    //  ->select('id','client_id','price', 'floor', 'sale_status', 'name')
+                    ->get()
+                    ->groupBy('floor');
+            }
 
             return view('Project-Panel.Flat.Flat_sale', compact(['flats','project','comInfo']));
         }else{

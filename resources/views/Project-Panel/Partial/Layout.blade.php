@@ -223,7 +223,7 @@
                                 </li>
 
                                 <li>
-                                    <a class="has-arrow" href="{{ route('flat.add') }}">
+                                    <a class="has-arrow" href="{{ route('return.list') }}">
                                         <i class="fa-solid fa-cart-flatbed-suitcase"></i>
                                         <span class="nav-text">Flat Return</span>
                                     </a>

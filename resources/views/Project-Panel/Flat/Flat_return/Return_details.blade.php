@@ -5,8 +5,8 @@
         <div class="card mb-2">
             <div class="card-header justify-content-end py-3">
                 <div class="">
-                    <a class="btn btn-success" href="{{ route('payment.from', $flat->id) }}">Payment</a>
-                    <a class="btn btn-success" href="{{ route('return', $flat->id.'part=021364') }}">Flat Return</a>
+                    {{-- <a class="btn btn-success" href="{{ route('payment.from', $flat->id) }}">Payment</a>
+                    <a class="btn btn-success" href="{{ route('return', $flat->id.'part=021364') }}">Flat Return</a> --}}
                     <a class="btn btn-danger" href="{{ url()->previous() }}">back</a>
                 </div>
             </div>
@@ -17,9 +17,9 @@
                     <img src="{{ asset('upload/CompanyInfo/'. $comInfo->logo) }}" alt="" width="100">
                     <h2 class="fw-bold">{{ $comInfo->name }}</h2>
                     <h4 class="fw-semibold"><b>Email: </b> {{ $comInfo->email }}</h4>
-                    <h3 class="fw-bold"><b>Project:</b>{{ $flat->project->projectName }}</h3>
-                    <h4><b>Address:</b> {{ $flat->project->address.', '.$flat->project->city.', '.$flat->project->address }}</h4>
-                    <h4>{{ $flat->project->district->name.'- '.$flat->project->zipCode}}</h4>
+                    <h3 class="fw-bold"><b>Project:</b>{{ $project->projectName }}</h3>
+                    <h4><b>Address:</b> {{ $project->address.', '.$project->city.', '.$project->address }}</h4>
+                    <h4>{{ $project->district->name.'- '.$project->zipCode}}</h4>
                 </div>
             </div>
             <div class="card-body">
@@ -34,10 +34,10 @@
                 </div>
 
                 <div class="col-sm-12 p-2 " style="background-color: #c0f0fc">
-                    <h4 class="fst-italic fw-bold p-0">Flat Information</h3>
+                    <h4 class="fst-italic fw-bold p-0">Return Flat Information</h3>
                 </div>
 
-                <div class="col-lg-3  col-md-4 col-sm-6">
+                <div class="col-lg-3  col-md-4 col-sm-12">
                     <table class="table table-borderless">
                         <tbody>
 
@@ -53,20 +53,20 @@
                             <tr>
                                 <th scope="row" style="width: 20%">Name </th>
                                 <td colspan="" style="width: 3%">:</td>
-                                <td colspan="3" style="width: 77%">{{ $flat->client->name }}</td>
+                                <td colspan="3" style="width: 77%">{{ $returnInfo->client->name }}</td>
                             </tr>
                             <tr>
                                 <th scope="row" style="width: 20%">Phone</th>
                                 <td colspan="" style="width: 3%">:</td>
-                                <td colspan="3" style="width: 77%">{{ $flat->client->phone }}</td>
+                                <td colspan="3" style="width: 77%">{{ $returnInfo->client->phone }}</td>
                             </tr>
                             <tr>
                                 <th scope="row" style="width: 20%">Email</th>
                                 <td colspan="" style="width: 3%">:</td>
-                                <td colspan="3" style="width: 77%">{{ $flat->client->email }}</td>
+                                <td colspan="3" style="width: 77%">{{ $returnInfo->client->email }}</td>
                             </tr>
                             @php
-                                $address =$flat->client->clientAddress;
+                                $address =$returnInfo->client->clientAddress;
                             @endphp
                             <tr>
                                 <th scope="row" style="width: 20%">Address</th>
@@ -76,41 +76,49 @@
                             <tr>
                                 <th colspan="">Flat Name / Number </th>
                                 <td><b>:</b></td>
-                                <td>{{ $flat->name }}</td>
+                                <td>{{ $returnInfo->flat->name }}</td>
                             </tr>
 
                             <tr>
                                 <th colspan="">Floor </th>
                                 <td><b>:</b></td>
-                                <td>{{ $flat->floor }}</td>
+                                <td>{{ $returnInfo->flat->floor }}</td>
                             </tr>
 
                             <tr>
-                                <th colspan="">Flat Area </th>
+                                <th colspan="">Sale Price </th>
                                 <td><b>:</b></td>
-                                <td>{{ $flat->flat_area }}</td>
+                                <td>{{ number_format( $returnInfo->buying_price,2,'.',',') }}</td>
                             </tr>
 
                             <tr>
-                                <th colspan="">Price </th>
+                                <th colspan="">Return Amount </th>
                                 <td><b>:</b></td>
-                                <td>{{ $flatSale->price }}</td>
+                                <td>{{ number_format( $returnInfo->payable_amount,2,'.',',')}}</td>
                             </tr>
 
                             <tr>
-                                <th colspan="">Paid </th>
+                                <th colspan="">Payable Amount </th>
                                 <td><b>:</b></td>
-                                <td>{{ $payments->sum('amount')}}</td>
+                                <td>{{ $returnInfo->payment_type}}</td>
                             </tr>
 
                             <tr>
-                                <th colspan="">Due </th>
+                                <th colspan="">Return Amount </th>
                                 <td><b>:</b></td>
-                                <td>{{ $flatSale->price - $payments->sum("amount") }}</td>
+                                <td>{{ number_format( $returnInfo->payable_amount,2,'.',',')}}</td>
                             </tr>
                                 
                         </tbody>
                     </table>
+                </div>
+                
+                <div class="col-lg-9  col-md-8 col-sm-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img src="" alt="">
+                        </div>
+                    </div>
                 </div>
                 
                 <div class="my-4 bg-success p-2" style="background-color: #abecfc">
@@ -132,8 +140,8 @@
                                 {{-- <th scope="col" class="flex-wrap">Received_by</th> --}}
                             </tr>
                         </thead>
-                        <tbody>
-                            @foreach ( $payments as $key => $payment )
+                        {{-- <tbody>
+                            @foreach ( $returnPayments as $key => $payment )
                             <tr>
                                 <th scope="row">{{ $key + 1 }}</th>
                                 <td>{{ $payment->created_at->format('d-M-y') }}</td>
@@ -156,7 +164,7 @@
                                 <td colspan="">{{number_format(  $payments->sum('amount'),2,'.',',') }}</td>
                             </tr>
                             
-                        </tfoot>
+                        </tfoot> --}}
                     </table>
                 </div>
             </div>

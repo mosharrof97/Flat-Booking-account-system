@@ -13,22 +13,23 @@ return new class extends Migration
     {
         Schema::create('flat_return_infos', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('flat_id');
-            $table->foreignId('client_id');
-            $table->decimal('buying_price',15,2);
-            $table->decimal('payable_amount',15,2);
+            $table->foreignId('project_id')->constrained('projects');
+            $table->foreignId('flat_id')->constrained('flats');
+            $table->foreignId('client_id')->constrained('clients');
+            $table->decimal('buying_price', 15, 2);
+            $table->decimal('payable_amount', 15, 2);
             $table->string('payment_type');
-            $table->decimal('return_amount',15,2);
+            $table->decimal('return_amount', 15, 2);
 
             $table->string('bank_name')->nullable();
             $table->string('branch')->nullable();
-            $table->string('account_number',20)->nullable();
-            $table->string('check_number',20)->nullable();
+            $table->string('account_number', 20)->nullable();
+            $table->string('check_number', 20)->nullable();
 
             $table->bigInteger('status')->default(0);
-            $table->foreignId('sold_by')->nullable();
-            $table->foreignId('booking_by')->nullable();
-            $table->foreignId('return_by')->nullable();
+            $table->foreignId('sold_by')->nullable()->constrained('users'); 
+            $table->foreignId('booking_by')->nullable()->constrained('users');
+            $table->foreignId('return_by')->nullable()->constrained('users'); 
             $table->timestamps();
         });
     }
