@@ -10,8 +10,7 @@ class PaymentReturn extends Model
     use HasFactory;
 
     protected $fillable = [
-        'flat_id',
-        'flatSale_id',
+        'flatReturn_id',
         'payment_type',
         'amount',
         'bank_name',

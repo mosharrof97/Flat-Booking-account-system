@@ -74,18 +74,26 @@ class FlatReturnController extends Controller
                         'client_id' =>$request->client_id,
                         'buying_price' =>$request->buying_price,
                         'payable_amount' =>$request->payable_amount,
-                        'payment_type' =>$request->payment_type,
-                        'return_amount' =>$request->return_amount,
-
-                        'bank_name' =>$request->bank_name,
-                        'branch' =>$request->branch,
-                        'account_number' =>$request->account_number,
-                        'check_number' =>$request->check_number,
-
+                        
                         'sold_by' => $request->sold_by,
                         'return_by'=>auth()->id(),
                     ];
-                    FlatReturnInfo::create($data);
+                   $flatReturn = FlatReturnInfo::create($data);
+
+                    if($request->payment_type && $request->return_amount){
+                        $returnAmount = [
+                            'payment_type' =>$request->payment_type,
+                            'amount' =>$request->return_amount,
+
+                            'bank_name' =>$request->bank_name,
+                            'branch' =>$request->branch,
+                            'account_number' =>$request->account_number,
+                            'check_number' =>$request->check_number,
+                            'received_by'=>auth()->id(),
+                        ];
+                        dd($returnAmount);
+                       PaymentReturn::create($returnAmount);
+                    }
 
                     $saleFlat = FlatSaleInfo::where('flat_id', $request->flat_id)->first();
                     $saleFlat->delete();

@@ -122,6 +122,7 @@ class FlatController extends Controller
                 // 'Parking' =>[ 'required'],
                 // 'Outdoor' =>[ 'required'],
             ]);
+            // dd($request->file('images'));
             $image=[];
             if ($request->hasFile('images')) {
                 $files = $request->file('images');
@@ -130,14 +131,16 @@ class FlatController extends Controller
                     $ImageName = 'Flat_'. time().'-'. mt_rand(100000, 100000000).'.'.$file->extension();
                     $file->move(public_path('upload/Flat'), $ImageName);
 
-                    $image[]=[
-                         $ImageName,
-                    ];
+                    // return $ImageName;
 
+                    $image[]= $ImageName;
+                    
                 }
             }
             
             $images = json_encode($image);
+            // dd($images);
+
             $data = [
                 'project_id' => $project_id,
                 'name' => $request->name,

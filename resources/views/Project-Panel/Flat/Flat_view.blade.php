@@ -76,13 +76,12 @@
 
                                 @php
                                     $images = json_decode($flat->images, true);
-                                    //  dd($flat->images);
                                 @endphp
                                 @if ($images && is_array($images))
                                     @foreach ($images as $key => $image)
                                         {{-- @if (is_string($image)) --}}
                                         <div class="col-md-6">
-                                            <img src="{{ asset('upload/Flat/' . $image[0]) }}" alt="No Image"
+                                            <img src="{{ asset('upload/Flat/' . $image) }}" alt="No Image"
                                                 style="width: 100%" class="m-2">
                                         </div>
                                         {{-- @endif --}}
