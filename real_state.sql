@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 21, 2024 at 01:30 PM
+-- Generation Time: May 21, 2024 at 10:42 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -490,8 +490,10 @@ INSERT INTO `flats` (`id`, `user_id`, `project_id`, `client_id`, `name`, `floor`
 (31, NULL, 1, NULL, 'F-604', '6th', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-20 00:50:09', '2024-05-20 00:50:09', NULL),
 (32, NULL, 1, NULL, 'F-605', '6th', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, 1, NULL, '2024-05-20 00:53:20', '2024-05-20 02:57:11', NULL),
 (33, NULL, 1, NULL, 'G-701', '7th', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, 1, NULL, '2024-05-20 00:56:41', '2024-05-20 02:53:24', NULL),
-(34, NULL, 1, NULL, 'G-702', '6th', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, 1, NULL, '2024-05-20 00:59:37', '2024-05-20 03:07:36', NULL),
-(35, NULL, 1, 2, 'H-801', '8th', 6000, 3000.00, 5, NULL, NULL, NULL, NULL, '\"[[\\\"Flat_1716196309-98090095.jpg\\\"],[\\\"Flat_1716196309-84067190.jpg\\\"]]\"', NULL, 0, 2, 0, 1, 1, NULL, '2024-05-20 03:04:36', '2024-05-21 04:41:02', NULL);
+(34, NULL, 1, 3, 'G-702', '6th', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 2, 0, 1, 1, NULL, '2024-05-20 00:59:37', '2024-05-21 12:04:58', NULL),
+(35, NULL, 1, 2, 'H-801', '8th', 6000, 3000.00, 5, NULL, NULL, NULL, NULL, NULL, NULL, 0, 2, 0, 1, 1, NULL, '2024-05-20 03:04:36', '2024-05-21 04:41:02', NULL),
+(36, NULL, 1, NULL, 'G-703', '7th', 6000, 6000.00, NULL, NULL, NULL, NULL, NULL, '\"[\\\"Flat_1716319322-24096377.jpg\\\"]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-21 12:58:16', '2024-05-21 12:58:16', NULL),
+(37, NULL, 1, NULL, 'G-704', '7th', 6000, 6000.00, NULL, NULL, NULL, NULL, NULL, '\"[\\\"Flat_1716319322-24096377.jpg\\\"]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-21 13:22:03', '2024-05-21 13:22:03', NULL);
 
 -- --------------------------------------------------------
 
@@ -549,7 +551,8 @@ CREATE TABLE `flat_sale_infos` (
 --
 
 INSERT INTO `flat_sale_infos` (`id`, `flat_id`, `price`, `status`, `sold_by`, `created_by`, `created_at`, `updated_at`) VALUES
-(2, 35, 950000.00, 0, 1, NULL, '2024-05-21 04:41:02', '2024-05-21 04:41:02');
+(2, 35, 950000.00, 0, 1, NULL, '2024-05-21 04:41:02', '2024-05-21 04:41:02'),
+(3, 34, 9000000.00, 0, 1, NULL, '2024-05-21 12:04:58', '2024-05-21 12:04:58');
 
 -- --------------------------------------------------------
 
@@ -717,7 +720,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (39, '2024_04_29_063045_create_payments_table', 2),
 (40, '2024_04_23_064939_create_flats_table', 3),
 (41, '2024_04_29_035152_create_flat_sale_infos_table', 4),
-(42, '2024_04_29_050404_create_flat_return_infos_table', 4);
+(42, '2024_04_29_050404_create_flat_return_infos_table', 4),
+(43, '2024_05_21_111913_create_payment_returns_table', 5);
 
 -- --------------------------------------------------------
 
@@ -782,7 +786,29 @@ CREATE TABLE `payments` (
 --
 
 INSERT INTO `payments` (`id`, `flat_id`, `flatSale_id`, `payment_type`, `amount`, `bank_name`, `branch`, `account_number`, `check_number`, `status`, `received_by`, `created_at`, `updated_at`) VALUES
-(4, 35, 2, 'cash', 5000.00, NULL, NULL, NULL, NULL, 0, 1, '2024-05-21 04:41:02', '2024-05-21 04:41:02');
+(4, 35, 2, 'cash', 5000.00, NULL, NULL, NULL, NULL, 0, 1, '2024-05-21 04:41:02', '2024-05-21 04:41:02'),
+(5, 34, 3, 'cash', 1000000.00, NULL, NULL, NULL, NULL, 0, 1, '2024-05-21 12:04:58', '2024-05-21 12:04:58');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `payment_returns`
+--
+
+CREATE TABLE `payment_returns` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `flatReturn_id` bigint(20) UNSIGNED NOT NULL,
+  `payment_type` varchar(255) NOT NULL,
+  `amount` decimal(15,2) NOT NULL,
+  `bank_name` varchar(255) DEFAULT NULL,
+  `branch` varchar(255) DEFAULT NULL,
+  `account_number` varchar(20) DEFAULT NULL,
+  `check_number` varchar(20) DEFAULT NULL,
+  `status` bigint(20) NOT NULL DEFAULT 0,
+  `received_by` bigint(20) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -1284,6 +1310,13 @@ ALTER TABLE `payments`
   ADD KEY `payments_flatsale_id_foreign` (`flatSale_id`);
 
 --
+-- Indexes for table `payment_returns`
+--
+ALTER TABLE `payment_returns`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `payment_returns_flatreturn_id_foreign` (`flatReturn_id`);
+
+--
 -- Indexes for table `permissions`
 --
 ALTER TABLE `permissions`
@@ -1457,7 +1490,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `flats`
 --
 ALTER TABLE `flats`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `flat_return_infos`
@@ -1469,7 +1502,7 @@ ALTER TABLE `flat_return_infos`
 -- AUTO_INCREMENT for table `flat_sale_infos`
 --
 ALTER TABLE `flat_sale_infos`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `investments`
@@ -1493,13 +1526,19 @@ ALTER TABLE `invest_installments`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `payment_returns`
+--
+ALTER TABLE `payment_returns`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `permissions`
@@ -1620,6 +1659,12 @@ ALTER TABLE `model_has_roles`
 --
 ALTER TABLE `payments`
   ADD CONSTRAINT `payments_flatsale_id_foreign` FOREIGN KEY (`flatSale_id`) REFERENCES `flat_sale_infos` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `payment_returns`
+--
+ALTER TABLE `payment_returns`
+  ADD CONSTRAINT `payment_returns_flatreturn_id_foreign` FOREIGN KEY (`flatReturn_id`) REFERENCES `flat_return_infos` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `purchase_due_pays`
