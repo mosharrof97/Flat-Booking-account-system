@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 20, 2024 at 02:31 PM
+-- Generation Time: May 21, 2024 at 01:30 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -459,7 +459,7 @@ CREATE TABLE `flats` (
 --
 
 INSERT INTO `flats` (`id`, `user_id`, `project_id`, `client_id`, `name`, `floor`, `flat_area`, `price`, `room`, `dining_space`, `bath_room`, `parking`, `outdoor`, `images`, `description`, `active_status`, `sale_status`, `status`, `created_by`, `updated_by`, `deleted_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, NULL, 1, 1, 'A-101', '1st', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 2, 0, 1, NULL, NULL, '2024-05-19 23:30:36', '2024-05-20 03:37:03', NULL),
+(1, NULL, 1, NULL, 'A-101', '1st', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-19 23:30:36', '2024-05-20 03:37:03', NULL),
 (2, NULL, 1, NULL, 'A-102', '1st', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-19 23:30:58', '2024-05-19 23:30:58', NULL),
 (3, NULL, 1, NULL, 'A-103', '1st', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-19 23:31:19', '2024-05-19 23:31:19', NULL),
 (4, NULL, 1, NULL, 'A-104', '1st', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-19 23:31:37', '2024-05-19 23:31:37', NULL),
@@ -491,7 +491,7 @@ INSERT INTO `flats` (`id`, `user_id`, `project_id`, `client_id`, `name`, `floor`
 (32, NULL, 1, NULL, 'F-605', '6th', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, 1, NULL, '2024-05-20 00:53:20', '2024-05-20 02:57:11', NULL),
 (33, NULL, 1, NULL, 'G-701', '7th', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, 1, NULL, '2024-05-20 00:56:41', '2024-05-20 02:53:24', NULL),
 (34, NULL, 1, NULL, 'G-702', '6th', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, 1, NULL, '2024-05-20 00:59:37', '2024-05-20 03:07:36', NULL),
-(35, NULL, 1, NULL, 'H-801', '8th', 6000, 3000.00, 5, NULL, NULL, NULL, NULL, '\"[[\\\"Flat_1716196309-98090095.jpg\\\"],[\\\"Flat_1716196309-84067190.jpg\\\"]]\"', NULL, 0, 0, 0, 1, 1, NULL, '2024-05-20 03:04:36', '2024-05-20 03:12:01', NULL);
+(35, NULL, 1, 2, 'H-801', '8th', 6000, 3000.00, 5, NULL, NULL, NULL, NULL, '\"[[\\\"Flat_1716196309-98090095.jpg\\\"],[\\\"Flat_1716196309-84067190.jpg\\\"]]\"', NULL, 0, 2, 0, 1, 1, NULL, '2024-05-20 03:04:36', '2024-05-21 04:41:02', NULL);
 
 -- --------------------------------------------------------
 
@@ -501,6 +501,7 @@ INSERT INTO `flats` (`id`, `user_id`, `project_id`, `client_id`, `name`, `floor`
 
 CREATE TABLE `flat_return_infos` (
   `id` bigint(20) UNSIGNED NOT NULL,
+  `project_id` bigint(20) UNSIGNED NOT NULL,
   `flat_id` bigint(20) UNSIGNED NOT NULL,
   `client_id` bigint(20) UNSIGNED NOT NULL,
   `buying_price` decimal(15,2) NOT NULL,
@@ -518,6 +519,13 @@ CREATE TABLE `flat_return_infos` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `flat_return_infos`
+--
+
+INSERT INTO `flat_return_infos` (`id`, `project_id`, `flat_id`, `client_id`, `buying_price`, `payable_amount`, `payment_type`, `return_amount`, `bank_name`, `branch`, `account_number`, `check_number`, `status`, `sold_by`, `booking_by`, `return_by`, `created_at`, `updated_at`) VALUES
+(1, 1, 35, 1, 9500000.00, 950000.00, 'cash', 950000.00, NULL, NULL, NULL, NULL, 0, 1, NULL, 1, '2024-05-21 00:51:22', '2024-05-21 00:51:22');
 
 -- --------------------------------------------------------
 
@@ -541,7 +549,7 @@ CREATE TABLE `flat_sale_infos` (
 --
 
 INSERT INTO `flat_sale_infos` (`id`, `flat_id`, `price`, `status`, `sold_by`, `created_by`, `created_at`, `updated_at`) VALUES
-(2, 1, 9500000.00, 0, 1, NULL, '2024-05-20 03:37:03', '2024-05-20 03:37:03');
+(2, 35, 950000.00, 0, 1, NULL, '2024-05-21 04:41:02', '2024-05-21 04:41:02');
 
 -- --------------------------------------------------------
 
@@ -706,10 +714,10 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (31, '2024_05_09_093028_create_return_purchase_balances_table', 1),
 (32, '2024_05_12_090517_create_purchase_due_pays_table', 1),
 (34, '2024_03_19_042621_create_districts_table', 1),
-(37, '2024_04_29_035152_create_flat_sale_infos_table', 2),
-(38, '2024_04_29_050404_create_flat_return_infos_table', 2),
 (39, '2024_04_29_063045_create_payments_table', 2),
-(40, '2024_04_23_064939_create_flats_table', 3);
+(40, '2024_04_23_064939_create_flats_table', 3),
+(41, '2024_04_29_035152_create_flat_sale_infos_table', 4),
+(42, '2024_04_29_050404_create_flat_return_infos_table', 4);
 
 -- --------------------------------------------------------
 
@@ -774,7 +782,7 @@ CREATE TABLE `payments` (
 --
 
 INSERT INTO `payments` (`id`, `flat_id`, `flatSale_id`, `payment_type`, `amount`, `bank_name`, `branch`, `account_number`, `check_number`, `status`, `received_by`, `created_at`, `updated_at`) VALUES
-(2, 1, 2, 'cash', 7000000.00, NULL, NULL, NULL, NULL, 0, 1, '2024-05-20 03:37:03', '2024-05-20 03:37:03');
+(4, 35, 2, 'cash', 5000.00, NULL, NULL, NULL, NULL, 0, 1, '2024-05-21 04:41:02', '2024-05-21 04:41:02');
 
 -- --------------------------------------------------------
 
@@ -1203,13 +1211,20 @@ ALTER TABLE `flats`
 -- Indexes for table `flat_return_infos`
 --
 ALTER TABLE `flat_return_infos`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `flat_return_infos_project_id_foreign` (`project_id`),
+  ADD KEY `flat_return_infos_flat_id_foreign` (`flat_id`),
+  ADD KEY `flat_return_infos_client_id_foreign` (`client_id`),
+  ADD KEY `flat_return_infos_sold_by_foreign` (`sold_by`),
+  ADD KEY `flat_return_infos_booking_by_foreign` (`booking_by`),
+  ADD KEY `flat_return_infos_return_by_foreign` (`return_by`);
 
 --
 -- Indexes for table `flat_sale_infos`
 --
 ALTER TABLE `flat_sale_infos`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `flat_sale_infos_flat_id_foreign` (`flat_id`);
 
 --
 -- Indexes for table `investments`
@@ -1448,7 +1463,7 @@ ALTER TABLE `flats`
 -- AUTO_INCREMENT for table `flat_return_infos`
 --
 ALTER TABLE `flat_return_infos`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `flat_sale_infos`
@@ -1478,13 +1493,13 @@ ALTER TABLE `invest_installments`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `permissions`
@@ -1561,6 +1576,23 @@ ALTER TABLE `vendors`
 --
 ALTER TABLE `flats`
   ADD CONSTRAINT `flats_project_id_foreign` FOREIGN KEY (`project_id`) REFERENCES `projects` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `flat_return_infos`
+--
+ALTER TABLE `flat_return_infos`
+  ADD CONSTRAINT `flat_return_infos_booking_by_foreign` FOREIGN KEY (`booking_by`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `flat_return_infos_client_id_foreign` FOREIGN KEY (`client_id`) REFERENCES `clients` (`id`),
+  ADD CONSTRAINT `flat_return_infos_flat_id_foreign` FOREIGN KEY (`flat_id`) REFERENCES `flats` (`id`),
+  ADD CONSTRAINT `flat_return_infos_project_id_foreign` FOREIGN KEY (`project_id`) REFERENCES `projects` (`id`),
+  ADD CONSTRAINT `flat_return_infos_return_by_foreign` FOREIGN KEY (`return_by`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `flat_return_infos_sold_by_foreign` FOREIGN KEY (`sold_by`) REFERENCES `users` (`id`);
+
+--
+-- Constraints for table `flat_sale_infos`
+--
+ALTER TABLE `flat_sale_infos`
+  ADD CONSTRAINT `flat_sale_infos_flat_id_foreign` FOREIGN KEY (`flat_id`) REFERENCES `flats` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `invest_installments`
