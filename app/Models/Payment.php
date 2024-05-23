@@ -32,7 +32,7 @@ class Payment extends Model
 
     public function flat(): BelongsTo
     {
-        return $this->belongsTo(Flat::class);
+        return $this->belongsTo(Flat::class, 'flat_id');
     }
 
     public function saleInfo(): BelongsTo

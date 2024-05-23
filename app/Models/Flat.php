@@ -40,7 +40,7 @@ class Flat extends Model
     ];
     public function project(): BelongsTo
     {
-        return $this->BelongsTo(Project::class);
+        return $this->BelongsTo(Project::class, 'project_id');
     }
 
     public function client(): BelongsTo

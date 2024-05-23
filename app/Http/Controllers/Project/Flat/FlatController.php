@@ -88,7 +88,24 @@ class FlatController extends Controller
         if($project_id !== null){
             $comInfo = ComponyInfo::first();
             $project = Project::find($project_id);
-            $flats = Flat::where('project_id', $project_id)->where('status', 0)->where('sale_status', 2)->orderBy('id','desc')->paginate(15);
+
+            $flats = "";
+
+            if ($request->start_date !== null && $request->end_date !== null) {
+                $flats = Flat::where('project_id', $project_id)
+                    ->where('status', 0)
+                    ->where('sale_status', 2)
+                    ->orderBy('id', 'desc')
+                    ->when($request->start_date && $request->end_date, function (Builder $builder) use ($request) {
+                        $builder->whereBetween(DB::raw('DATE(updated_at)'), [
+                            $request->start_date,
+                            $request->end_date,
+                        ]);
+                    })
+                    ->paginate(20);
+            } else {
+                $flats = Flat::where('project_id', $project_id)->where('status', 0)->where('sale_status', 2)->orderBy('id','desc')->paginate(20);
+            }            
 
             return view('Project-Panel.Flat.Sold_flat', compact(['flats','project','comInfo']));
         }else{

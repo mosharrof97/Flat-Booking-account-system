@@ -163,12 +163,12 @@
                         </a>
                     </li>
 
-                    <li>
+                    {{-- <li>
                         <a class="has-arrow" href="{{ route('project.investment.list')}}">
                             <i class="fa-solid fa-dollar-sign"></i>
                             <span class="nav-text">Investment</span>
                         </a>
-                    </li>
+                    </li> --}}
 
                     <li>
                         <a class="has-arrow" href="{{ route('project.purchase.list') }}">

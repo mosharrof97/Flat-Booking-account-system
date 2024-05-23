@@ -19,6 +19,9 @@
                             </div>
 
                         </form>
+                        <a class="btn btn-info ms-2" href="{{ route('flat.sold') }}">
+                            <span class="nav-text">Sold Flat</span>
+                        </a>
                         <a class="btn btn-primary ms-2" href="{{ route('flat.add') }}">Add New Flat</a>
                     </div>
 
@@ -57,17 +60,17 @@
                                     <h5 class="fw-bold mt-2 mb-0">Floor: {{ $floor }}</h5>
                                     @foreach ($floorFlats as $flat)
                                         @if ($flat->sale_status == 0)
-                                            <a href="{{ route('flat.sale.form', $flat->id) }}"
-                                                class="btn btn-success rounded my-1">
+                                            <a href="{{ route('flat.sale.form', $flat->id) }}" 
+                                                class="btn btn-success rounded my-1" style="width:150px; height:70px;">
                                                 {{ $flat->name }}
-                                                <h6 class="text-light"><b>Price : </b>{{ $flat->price }}</h6>
+                                                {{-- <h6 class="text-light"><b>Price : </b>{{ $flat->price }}</h6> --}}
                                             </a>
                                         @elseif($flat->sale_status == 1)
                                             <a href="{{ route('booking_view', $flat->id) }}"
                                                 class="btn btn-warning rounded my-1">{{ $flat->name }}</a>
                                         @elseif($flat->sale_status == 2)
                                             <a href="{{ route('flat.sale.details', $flat->id) }}"
-                                                class="btn btn-danger rounded my-1">
+                                                class="btn btn-danger rounded my-1 " style="width:150px; height:70px; ">
                                                 {{ $flat->name }}
                                                 <h6 class="text-light"><b>Client : </b>{{ $flat->client->name }}</h6>
                                             </a>
