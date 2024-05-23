@@ -82,6 +82,10 @@ class User extends Authenticatable
         return $this->HasMany(Payment::class,'id');
     }
 
+    public function paymentReturn() {
+        return $this->HasMany(PaymentReturn::class,'id');
+    }
+
     public function project() {
         return $this->HasMany(Project::class,'created_by');
     }

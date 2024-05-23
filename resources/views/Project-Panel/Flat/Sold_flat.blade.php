@@ -27,7 +27,7 @@
                 <h4>
                     <b>Project Name : </b>{{ $project->projectName }}
                 </h4>
-                <form class="d-flex" action="{{ route('flat.view.chart') }}" method="get" id="flatSoldFilter">
+                <form class="d-flex" action="{{ route('flat.sold') }}" method="get" id="flatSoldFilter">
                     @csrf
                     <div class="me-2">
                         <input type="date" class="form-control" name="start_date" id="start_date">
@@ -117,6 +117,7 @@
                             </tr>
                             @endforeach
                         </tbody>
+                       
                     </table>
                 </div>
                 <div class="mt-3">

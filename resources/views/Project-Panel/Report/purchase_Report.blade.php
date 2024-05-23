@@ -16,7 +16,7 @@
                         <div class="row">
                             <div class="col-lg-4 mt-3">
                                 <select name="name" id="name" class="form-select" value="{{ old('name') }}">>
-                                    <option value="">All Client</option>
+                                    <option value="">All Vendor</option>
                                     @foreach($vendor as $key => $value)
                                     <option value="{{ $value->id }}">{{ $value->name }}</option >
                                     @endforeach

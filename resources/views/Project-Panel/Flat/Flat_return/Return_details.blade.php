@@ -89,25 +89,25 @@
                                 <tr>
                                     <th colspan="">Sale Price </th>
                                     <td><b>:</b></td>
-                                    <td>{{ number_format($returnInfo->buying_price, 2, '.', ',') }}</td>
+                                    <td>{{ number_format($returnInfo->buying_price, 2, '.', ',') }}/-</td>
                                 </tr>
 
                                 <tr>
-                                    <th colspan="">Return Amount </th>
+                                    <th colspan="">Total Payable Amount </th>
                                     <td><b>:</b></td>
-                                    <td>{{ number_format($returnInfo->payable_amount, 2, '.', ',') }}</td>
+                                    <td>{{ number_format($returnInfo->payable_amount, 2, '.', ',') }}/-</td>
                                 </tr>
 
                                 <tr>
-                                    <th colspan="">Payable Amount </th>
+                                    <th colspan="">Total Return Amount </th>
                                     <td><b>:</b></td>
-                                    <td>{{ $returnInfo->payment_type }}</td>
+                                    <td>{{  number_format($returnPayment->SUM('amount'), 2, '.', ',') }}/-</td>
                                 </tr>
 
                                 <tr>
-                                    <th colspan="">Return Amount </th>
+                                    <th colspan="">Payable Amount Due </th>
                                     <td><b>:</b></td>
-                                    <td>{{ number_format($returnInfo->payable_amount, 2, '.', ',') }}</td>
+                                    <td>{{  number_format( $returnInfo->payable_amount - $returnPayment->SUM('amount'), 2, '.', ',') }}/-</td>
                                 </tr>
 
                             </tbody>
@@ -141,8 +141,8 @@
                                     {{-- <th scope="col" class="flex-wrap">Received_by</th> --}}
                                 </tr>
                             </thead>
-                            {{-- <tbody>
-                            @foreach ($returnPayments as $key => $payment)
+                            <tbody>
+                            @foreach ($returnPayment as $key => $payment)
                             <tr>
                                 <th scope="row">{{ $key + 1 }}</th>
                                 <td>{{ $payment->created_at->format('d-M-y') }}</td>
@@ -162,10 +162,10 @@
 
                             <tr>
                                 <td colspan="7" class="text-right"> Total </td>
-                                <td colspan="">{{number_format(  $payments->sum('amount'),2,'.',',') }}</td>
+                                <td colspan="">{{number_format(  $returnPayment->sum('amount'),2,'.',',') }}</td>
                             </tr>
                             
-                        </tfoot> --}}
+                        </tfoot>
                         </table>
                     </div>
                 </div>

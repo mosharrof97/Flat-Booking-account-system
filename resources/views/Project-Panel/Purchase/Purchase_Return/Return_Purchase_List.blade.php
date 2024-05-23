@@ -80,7 +80,7 @@
                                 </td>
                                 <td>{{ $purchase->total }}</td> --}}
                                 <td>
-                                    <a href="{{ route('project.purchase.view',$re_purchase->id) }} " class="btn btn-success">View</a>
+                                    <a href="{{ route('project.return.purchase.view',$re_purchase->id) }} " class="btn btn-success">View</a>
                                 </td>
                             </tr>
                             @endforeach

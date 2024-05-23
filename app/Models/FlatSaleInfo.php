@@ -22,7 +22,7 @@ class FlatSaleInfo extends Model
 
     public function flat(): BelongsTo
     {
-        return $this->belongsTo(Flat::class,'flat_id','id');
+        return $this->belongsTo(Flat::class,'flat_id');
     }
 
     public function payment(): HasMany

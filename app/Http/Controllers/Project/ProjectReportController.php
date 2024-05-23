@@ -160,9 +160,7 @@ class ProjectReportController extends Controller
             $purchase = "";
             if ($request->name !== null || ($request->start_date !== null && $request->end_date !== null)) {
                 if ($request->start_date == null && $request->end_date == null) {
-                    $purchase = Purchase::whereHas('purchase.vendor', function ($query) use ($request) {
-                        $query->where('vendors.id', $request->name);
-                    })
+                    $purchase = Purchase::where('vendor_id', $request->name)
                         ->orderBy('id', 'desc')
                         ->paginate(15);
                 } elseif($request->name == null){

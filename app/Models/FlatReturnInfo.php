@@ -17,19 +17,17 @@ class FlatReturnInfo extends Model
         'client_id',
         'buying_price',
         'payable_amount',
-        'payment_type',
-        'return_amount',
-
-        'bank_name',
-        'branch',
-        'account_number',
-        'check_number',
-
+        
         'status',
         'sold_by',
         'booking_by',
         'return_by',
     ];
+
+    public function paymentReturn():HasMany
+    {
+        return $this->hasMany(PaymentReturn::class);
+    }
 
     public function project(){
         return $this->BelongsTo(Project::class,'project_id');

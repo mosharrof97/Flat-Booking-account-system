@@ -98,7 +98,7 @@ class ProjectReturnPurchaseController extends Controller
         if($projectId){
             $purchase = ReturnPurchase::where('project_id',$projectId)->where('id',$id)->first();
 
-            return view('Project-Panel.Purchase.Purchase_Return.Purchase_View', compact('purchase'));
+            return view('Project-Panel.Purchase.Purchase_Return.Return_Purchase_View', compact('purchase'));
         }else{
         return redirect()->route('list.project')-> with('error','Project Id Is Null');
         }

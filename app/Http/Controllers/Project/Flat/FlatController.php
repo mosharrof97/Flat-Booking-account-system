@@ -83,7 +83,7 @@ class FlatController extends Controller
         }
     }
 
-    public function soldFlat(){
+    public function soldFlat( Request $request ){
         $project_id = Session::get('project_id');
         if($project_id !== null){
             $comInfo = ComponyInfo::first();
@@ -106,7 +106,7 @@ class FlatController extends Controller
             } else {
                 $flats = Flat::where('project_id', $project_id)->where('status', 0)->where('sale_status', 2)->orderBy('id','desc')->paginate(20);
             }            
-
+            
             return view('Project-Panel.Flat.Sold_flat', compact(['flats','project','comInfo']));
         }else{
             return redirect()->route('list.project')-> with('error','Project Id Is Null');

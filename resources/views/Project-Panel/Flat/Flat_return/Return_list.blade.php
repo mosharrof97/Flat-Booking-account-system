@@ -63,6 +63,10 @@
                                 </td> --}}
 
                                 <td>
+                                    <a href="{{ route('return.payment.from', $value->id) }} " class="btn btn-info me-2">
+                                        <i class="fa-solid fa-eye"></i>
+                                    </a>
+
                                     <a href="{{ route('return.view', $value->id) }} " class="btn btn-success me-2">
                                         <i class="fa-solid fa-eye"></i>
                                     </a>

@@ -50,7 +50,7 @@ class Flat extends Model
 
     public function flatSaleInfo():HasOne
     {
-        return $this->hasOne(FlatSaleInfo::class,'flat_id','id');
+        return $this->hasOne(FlatSaleInfo::class,'flat_id');
     } 
 
     public function payment():HasMany

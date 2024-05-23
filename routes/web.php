@@ -176,7 +176,10 @@ Route::prefix('admin')->middleware('auth')->group(function () {
                 Route::get('/{id}/return', [FlatReturnController::class, 'returnForm'])->name('return');
                 Route::post('/return', [FlatReturnController::class, 'flatReturn'])->name('return.store');
                 Route::get('/{id}/return/view', [FlatReturnController::class, 'view'])->name('return.view');
-
+                Route::get('/return/{id}/payment', [FlatReturnController::class, 'payment'])->name('return.payment.from');
+                Route::post('/return/payment', [FlatReturnController::class, 'paymentStore'])->name('return.payment.store');
+                //pay Slip
+                Route::get('/return/{id}/pay-slip',[FlatReturnController::class, 'paySlip'])->name('return.paySlip');
                             
 
                 //pay Slip

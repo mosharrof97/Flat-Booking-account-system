@@ -11,6 +11,7 @@ use App\Models\Flat;
 use App\Models\FlatReturnInfo;
 use App\Models\FlatSaleInfo;
 use App\Models\ComponyInfo;
+use App\Models\PaymentReturn;
 class FlatReturnController extends Controller
 {
     // public function __construct(){
@@ -49,20 +50,26 @@ class FlatReturnController extends Controller
                 'client_id' =>[ 'required'],
                 'buying_price' =>[ 'required'],
                 'payable_amount' =>[ 'required'],
-                'payment_type' =>[ 'required'],
-                'return_amount' =>[ 'required'],
+                
             ]);
 
-            if($request->payment_type == 'bank' || $request->payment_type == 'check'){
+            if($request->payment_type){
+
                 $request->validate([
-                    'bank_name' =>[ 'required'],
-                    'branch' =>[ 'required'],
-                    'account_number' =>[ 'required'],
+                    'payment_type' =>[ 'required'],
+                    'return_amount' =>[ 'required'],
                 ]);
-                if($request->payment_type == 'check'){
+                if($request->payment_type == 'bank' || $request->payment_type == 'check'){
                     $request->validate([
-                        'check_number' =>[ 'required'],
+                        'bank_name' =>[ 'required'],
+                        'branch' =>[ 'required'],
+                        'account_number' =>[ 'required'],
                     ]);
+                    if($request->payment_type == 'check'){
+                        $request->validate([
+                            'check_number' =>[ 'required'],
+                        ]);
+                    }
                 }
             }
 
@@ -80,7 +87,7 @@ class FlatReturnController extends Controller
                     ];
                    $flatReturn = FlatReturnInfo::create($data);
 
-                    if($request->payment_type && $request->return_amount){
+                    if($request->payment_type !== null && $request->return_amount !== null){
                         $returnAmount = [
                             'payment_type' =>$request->payment_type,
                             'amount' =>$request->return_amount,
@@ -91,14 +98,13 @@ class FlatReturnController extends Controller
                             'check_number' =>$request->check_number,
                             'received_by'=>auth()->id(),
                         ];
-                        dd($returnAmount);
                        PaymentReturn::create($returnAmount);
                     }
 
                     $saleFlat = FlatSaleInfo::where('flat_id', $request->flat_id)->first();
                     $saleFlat->delete();
 
-                    $flat = Flat::where('project_id', $project_id)->where('status', '!=', 1)->find($request->flat_id);
+                    $flat = Flat::where('project_id', $project_id)->find($request->flat_id);
                     $update = $flat->update([
                         'client_id'=> null,
                         'sale_status'=>0,
@@ -123,7 +129,64 @@ class FlatReturnController extends Controller
             $comInfo = ComponyInfo::first();
             $project = Project::findOrFail($project_id);
             $returnInfo = FlatReturnInfo::findOrFail($id);
-            return view('Project-Panel.Flat.Flat_return.Return_details', compact('comInfo','project','returnInfo'));
+            $returnPayment = PaymentReturn::where('flatReturn_id',$returnInfo->id)->get();
+
+            // dd($returnPayment);
+            return view('Project-Panel.Flat.Flat_return.Return_details', compact('returnPayment','comInfo','project','returnInfo'));
+        }else{
+            return redirect()->route('list.project')-> with('error','Project Id Is Null');
+        }
+    }
+
+    public function payment($id){
+        $project_id = Session::get('project_id');
+        if($project_id !== null){
+            $returnInfo = FlatReturnInfo::findOrFail($id);
+            $comInfo = ComponyInfo::first();
+            $payment = PaymentReturn::where('flatReturn_id',$returnInfo->id)->get();
+
+            return view('Project-Panel.Flat.Flat_return.Return_Payment', compact('returnInfo','comInfo','payment'));
+        }else{
+            return redirect()->route('list.project')-> with('error','Project Id Is Null');
+        }
+    }
+
+    public function paymentStore(Request $request){
+        $project_id = Session::get('project_id');
+        if($project_id !== null){
+
+            $flatReturnInfo = FlatReturnInfo::find($request->returnInfo_id);
+
+            // dd($flatReturnInfo);
+            $data = [
+                // 'flat_id'=> $flatReturnInfo->flat->id,
+                'flatReturn_id'=> $flatReturnInfo->id,
+                'payment_type'=> $request->payment_type,
+                'amount'=> $request->amount,
+                'bank_name'=> $request->bank_name,
+                'branch'=> $request->branch,
+                'account_number'=> $request->account_number,
+                'check_number'=> $request->check_number,
+                'received_by'=>auth()->id(),
+            ];
+            $payment = PaymentReturn::create($data);
+        
+            return redirect()->route('return.paySlip',$payment->id);
+        }else{
+            return redirect()->route('list.project')-> with('error','Project Id Is Null');
+        }
+    }
+
+    public function paySlip($id){
+        $project_id = Session::get('project_id');
+        if($project_id !== null){
+            $comInfo = ComponyInfo::firstOrFail(); 
+            $payment = PaymentReturn::findOrFail($id);
+            $payments = PaymentReturn::where('flatReturn_id', $payment->flatReturn_id)
+                               ->get();
+            $flatReturn = FlatReturnInfo::findOrFail($payment->flatReturn_id);
+
+            return view('Project-Panel.Flat.pay_slip', compact(['payment','payments','flatReturn','comInfo']));
         }else{
             return redirect()->route('list.project')-> with('error','Project Id Is Null');
         }
