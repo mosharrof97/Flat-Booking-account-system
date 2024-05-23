@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 21, 2024 at 10:42 PM
+-- Generation Time: May 23, 2024 at 02:41 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -459,7 +459,7 @@ CREATE TABLE `flats` (
 --
 
 INSERT INTO `flats` (`id`, `user_id`, `project_id`, `client_id`, `name`, `floor`, `flat_area`, `price`, `room`, `dining_space`, `bath_room`, `parking`, `outdoor`, `images`, `description`, `active_status`, `sale_status`, `status`, `created_by`, `updated_by`, `deleted_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, NULL, 1, NULL, 'A-101', '1st', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-19 23:30:36', '2024-05-20 03:37:03', NULL),
+(1, NULL, 1, NULL, 'A-101', '1st', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-19 23:30:36', '2024-05-23 05:19:47', NULL),
 (2, NULL, 1, NULL, 'A-102', '1st', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-19 23:30:58', '2024-05-19 23:30:58', NULL),
 (3, NULL, 1, NULL, 'A-103', '1st', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-19 23:31:19', '2024-05-19 23:31:19', NULL),
 (4, NULL, 1, NULL, 'A-104', '1st', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-19 23:31:37', '2024-05-19 23:31:37', NULL),
@@ -508,12 +508,6 @@ CREATE TABLE `flat_return_infos` (
   `client_id` bigint(20) UNSIGNED NOT NULL,
   `buying_price` decimal(15,2) NOT NULL,
   `payable_amount` decimal(15,2) NOT NULL,
-  `payment_type` varchar(255) NOT NULL,
-  `return_amount` decimal(15,2) NOT NULL,
-  `bank_name` varchar(255) DEFAULT NULL,
-  `branch` varchar(255) DEFAULT NULL,
-  `account_number` varchar(20) DEFAULT NULL,
-  `check_number` varchar(20) DEFAULT NULL,
   `status` bigint(20) NOT NULL DEFAULT 0,
   `sold_by` bigint(20) UNSIGNED DEFAULT NULL,
   `booking_by` bigint(20) UNSIGNED DEFAULT NULL,
@@ -526,8 +520,10 @@ CREATE TABLE `flat_return_infos` (
 -- Dumping data for table `flat_return_infos`
 --
 
-INSERT INTO `flat_return_infos` (`id`, `project_id`, `flat_id`, `client_id`, `buying_price`, `payable_amount`, `payment_type`, `return_amount`, `bank_name`, `branch`, `account_number`, `check_number`, `status`, `sold_by`, `booking_by`, `return_by`, `created_at`, `updated_at`) VALUES
-(1, 1, 35, 1, 9500000.00, 950000.00, 'cash', 950000.00, NULL, NULL, NULL, NULL, 0, 1, NULL, 1, '2024-05-21 00:51:22', '2024-05-21 00:51:22');
+INSERT INTO `flat_return_infos` (`id`, `project_id`, `flat_id`, `client_id`, `buying_price`, `payable_amount`, `status`, `sold_by`, `booking_by`, `return_by`, `created_at`, `updated_at`) VALUES
+(1, 1, 35, 1, 9500000.00, 950000.00, 0, 1, NULL, 1, '2024-05-21 00:51:22', '2024-05-21 00:51:22'),
+(2, 1, 1, 1, 950000.00, 10000.00, 0, 1, NULL, 1, '2024-05-23 04:58:48', '2024-05-23 04:58:48'),
+(6, 1, 1, 2, 9500000.00, 10000.00, 0, 1, NULL, 1, '2024-05-23 05:19:47', '2024-05-23 05:19:47');
 
 -- --------------------------------------------------------
 
@@ -810,6 +806,16 @@ CREATE TABLE `payment_returns` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `payment_returns`
+--
+
+INSERT INTO `payment_returns` (`id`, `flatReturn_id`, `payment_type`, `amount`, `bank_name`, `branch`, `account_number`, `check_number`, `status`, `received_by`, `created_at`, `updated_at`) VALUES
+(1, 1, 'cash', 50000.00, NULL, NULL, NULL, NULL, 0, 1, '2024-05-23 05:47:29', '2024-05-23 05:47:29'),
+(2, 1, 'cash', 10000.00, NULL, NULL, NULL, NULL, 0, 1, '2024-05-23 06:09:58', '2024-05-23 06:09:58'),
+(3, 1, 'cash', 10000.00, NULL, NULL, NULL, NULL, 0, 1, '2024-05-23 06:10:37', '2024-05-23 06:10:37'),
+(4, 1, 'cash', 10000.00, NULL, NULL, NULL, NULL, 0, 1, '2024-05-23 06:11:41', '2024-05-23 06:11:41');
+
 -- --------------------------------------------------------
 
 --
@@ -928,7 +934,8 @@ CREATE TABLE `purchases` (
 --
 
 INSERT INTO `purchases` (`id`, `project_id`, `vendor_id`, `memo_no`, `date`, `invoice_no`, `name`, `price`, `quantity`, `unit`, `total_price`, `total`, `service_charge`, `shipping_charge`, `total_amount`, `discount`, `payable_amount`, `paid`, `due`, `created_by`, `updated_by`, `deleted_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 1, 1, '652', '2024-05-18', 10001, '\"[\\\"Phone\\\",\\\"RC\\\"]\"', '\"[\\\"154442\\\",\\\"50\\\"]\"', '\"[\\\"10\\\",\\\"100\\\"]\"', '\"[\\\"pc\\\",\\\"pc\\\"]\"', '\"[\\\"1544420\\\",\\\"5000\\\"]\"', 1549420.00, 0.00, 0.00, 1549420.00, 0.00, 1549420.00, 1499420.00, 50000.00, 1, NULL, NULL, '2024-05-18 10:26:41', '2024-05-18 10:31:11', NULL);
+(1, 1, 1, '652', '2024-05-18', 10001, '\"[\\\"Phone\\\",\\\"RC\\\"]\"', '\"[\\\"154442\\\",\\\"50\\\"]\"', '\"[\\\"10\\\",\\\"100\\\"]\"', '\"[\\\"pc\\\",\\\"pc\\\"]\"', '\"[\\\"1544420\\\",\\\"5000\\\"]\"', 1549420.00, 0.00, 0.00, 1549420.00, 0.00, 1549420.00, 1499420.00, 50000.00, 1, NULL, NULL, '2024-05-18 10:26:41', '2024-05-18 10:31:11', NULL),
+(2, 1, 2, '6502', '2024-05-23', 20002, '\"[\\\"Phone\\\",\\\"Phone2\\\"]\"', '\"[\\\"52\\\",\\\"40\\\"]\"', '\"[\\\"10\\\",\\\"10\\\"]\"', '\"[\\\"kg\\\",\\\"kg\\\"]\"', '\"[\\\"520\\\",\\\"400\\\"]\"', 920.00, 10.00, 10.00, 940.00, 10.00, 930.00, 930.00, 0.00, 1, NULL, NULL, '2024-05-23 04:22:35', '2024-05-23 04:23:23', NULL);
 
 -- --------------------------------------------------------
 
@@ -955,7 +962,9 @@ CREATE TABLE `purchase_due_pays` (
 
 INSERT INTO `purchase_due_pays` (`id`, `date`, `purchase_id`, `invoice_no`, `Return_invoice_no`, `due`, `pay`, `created_by`, `created_at`, `updated_at`) VALUES
 (1, '2024-05-18', 1, 10001, NULL, 100000.00, 1449420.00, 1, '2024-05-18 10:27:41', '2024-05-18 10:27:41'),
-(2, '2024-05-18', 1, 10001, NULL, 50000.00, 50000.00, 1, '2024-05-18 10:31:11', '2024-05-18 10:31:11');
+(2, '2024-05-18', 1, 10001, NULL, 50000.00, 50000.00, 1, '2024-05-18 10:31:11', '2024-05-18 10:31:11'),
+(3, '2024-05-23', 2, 20002, NULL, 30.00, 400.00, 1, '2024-05-23 04:23:00', '2024-05-23 04:23:00'),
+(4, '2024-05-23', 2, 20002, NULL, 0.00, 30.00, 1, '2024-05-23 04:23:23', '2024-05-23 04:23:23');
 
 -- --------------------------------------------------------
 
@@ -992,7 +1001,8 @@ CREATE TABLE `return_purchases` (
 --
 
 INSERT INTO `return_purchases` (`id`, `project_id`, `vendor_id`, `memo_no`, `purchase_id`, `invoice_no`, `date`, `name`, `price`, `quantity`, `unit`, `total_price`, `total`, `paid`, `due`, `status`, `created_by`, `updated_by`, `deleted_by`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, '652', 1, 10001, '2024-05-18', '\"[\\\"RC\\\"]\"', '\"[\\\"50\\\"]\"', '\"[\\\"10\\\"]\"', '\"[\\\"pc\\\"]\"', '\"[\\\"500\\\"]\"', 500.00, 0.00, 500.00, 0, 1, NULL, NULL, '2024-05-18 10:33:43', '2024-05-18 10:33:43');
+(1, 1, 1, '652', 1, 10001, '2024-05-18', '\"[\\\"RC\\\"]\"', '\"[\\\"50\\\"]\"', '\"[\\\"10\\\"]\"', '\"[\\\"pc\\\"]\"', '\"[\\\"500\\\"]\"', 500.00, 0.00, 500.00, 0, 1, NULL, NULL, '2024-05-18 10:33:43', '2024-05-18 10:33:43'),
+(2, 1, 2, '6502', 1, 20002, '2024-05-23', '\"[\\\"Phone\\\"]\"', '\"[\\\"154442\\\"]\"', '\"[\\\"5\\\"]\"', '\"[\\\"pc\\\"]\"', '\"[\\\"772210\\\"]\"', 772210.00, 772210.00, 0.00, 0, 1, NULL, NULL, '2024-05-23 04:31:14', '2024-05-23 04:31:14');
 
 -- --------------------------------------------------------
 
@@ -1496,13 +1506,13 @@ ALTER TABLE `flats`
 -- AUTO_INCREMENT for table `flat_return_infos`
 --
 ALTER TABLE `flat_return_infos`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `flat_sale_infos`
 --
 ALTER TABLE `flat_sale_infos`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `investments`
@@ -1532,13 +1542,13 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `payment_returns`
 --
 ALTER TABLE `payment_returns`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `permissions`
@@ -1562,19 +1572,19 @@ ALTER TABLE `projects`
 -- AUTO_INCREMENT for table `purchases`
 --
 ALTER TABLE `purchases`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `purchase_due_pays`
 --
 ALTER TABLE `purchase_due_pays`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `return_purchases`
 --
 ALTER TABLE `return_purchases`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `return_purchase_balances`
