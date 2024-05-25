@@ -23,6 +23,10 @@ return new class extends Migration
             $table->bigInteger('status')->default(0);
             $table->foreignId('received_by');
             $table->timestamps();
+
+             // $table->foreign('vcard_id')->references('id')->on('vcards')
+             //    ->onUpdate('cascade')
+             //    ->onDelete('cascade');
         });
     }
 
