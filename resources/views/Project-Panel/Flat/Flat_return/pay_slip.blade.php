@@ -28,16 +28,16 @@
                     <div class="row mb-4">
                         <div class="col-sm-6">
                             <div style=" font-size: 17px; font-weight: 700; color:#000; "> 
-                                Name: {{ $payment->flat->client->name }} 
+                                Name: {{ $payment->flatReturn->flat->client->name }} 
                             </div>
                             @php
-                                $address =$payment->flat->client->clientAddress;
+                                $address =$payment->flatReturn->flat->client->clientAddress;
                             @endphp
                             <div style=" font-size: 17px; font-weight: 700; color:#000; ">Address: {{ $address->pre_address.', '. $address->pre_city.', '.$address->pre_district.'- '.$address->pre_zipCode}}.</div>
-                            <div style=" font-size: 17px; font-weight: 700; color:#000; ">Contact No: {{ $payment->flat->client->phone }}</div>
-                            <div style=" font-size: 17px; font-weight: 700; color:#000; "> Booked Flat:{{ $payment->flat->project->projectName }}-{{ $payment->flat->floor }} Floor, Flat-{{ $payment->flat->name }}</div>
-                            <div style=" font-size: 17px; font-weight: 700; color:#000; ">Flat Price -Tk.{{ number_format($flatSale->price, 2, '.',',') }}/-</div>
-                            <div style=" font-size: 17px; font-weight: 700; color:#000; ">Total Pay -Tk.{{ number_format($payments->sum('amount'), 2, '.', ',') }}/-</div>
+                            <div style=" font-size: 17px; font-weight: 700; color:#000; ">Contact No: {{ $payment->flatReturn->flat->client->phone }}</div>
+                            <div style=" font-size: 17px; font-weight: 700; color:#000; "> Booked Flat:{{ $payment->flatReturn->flat->project->projectName }}-{{ $payment->flatReturn->flat->floor }} Floor, Flat-{{ $payment->flatReturn->flat->name }}</div>
+                            <div style=" font-size: 17px; font-weight: 700; color:#000; ">Payable Amount -Tk.{{ number_format($flatReturn->payable_amount, 2, '.',',') }}/-</div>
+                            <div style=" font-size: 17px; font-weight: 700; color:#000; ">Total Return -Tk.{{ number_format($payments->sum('amount'), 2, '.', ',') }}/-</div>
                         </div>
                         <div class="col-sm-6 " style="text-align: end">
                             <div style=" font-size: 17px; font-weight: 700; color:#000; ">Date:{{ $payment->created_at->format('d-M-y') }}</div>
@@ -62,7 +62,7 @@
                                     <td style=" font-size: 17px; font-weight: 700; color:#000; " class="left strong">Payment Paid</td>
                                     <td style=" font-size: 17px; font-weight: 700; color:#000; " class="left">{{ $payment->payment_type }}</td>
                                     <td style=" font-size: 17px; font-weight: 700; color:#000; " class="left">{{ number_format($payment->amount, 2, '.', ',') }} Taka</td>
-                                    <td style=" font-size: 17px; font-weight: 700; color:#000; " class="center"> {{ number_format($flatSale->price - $payments->sum('amount'), 2, '.', ',') }} Taka</td>
+                                    <td style=" font-size: 17px; font-weight: 700; color:#000; " class="center"> {{ number_format($flatReturn->payable_amount - $payments->sum('amount'), 2, '.', ',') }} Taka</td>
                                 </tr>
                             </tbody>
                         </table>

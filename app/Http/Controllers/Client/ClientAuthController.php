@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\Auth\ClientLoginRequest;
 use App\Models\Client;
 use Auth;
@@ -23,13 +24,13 @@ class ClientAuthController extends Controller
         ]);
 
         $credentials = $request->only('email', 'password');
-        dd($credentials);
+        // dd($credentials);
         if (Auth::guard('client')->attempt($credentials)) {
-            $user = Auth::guard('client')->user(); // Get the authenticated client user
-            Auth::guard('admin')->login($user); // Log in the user as admin
-            return redirect()->route('admin_dashboard')->with('success', 'Login Successful');
+            $user = Auth::guard('client')->user(); 
+            Auth::guard('client')->login($user); 
+            return redirect()->route('client.dashboard')->with('success', 'Login Successful');
         } else {
-            return redirect()->route('admin_login')->with('error', 'Login unsuccessful');
+            return redirect()->route('client.login')->with('error', 'Login unsuccessful');
         }
 
         // dd($request->authenticate());
@@ -43,7 +44,7 @@ class ClientAuthController extends Controller
 
     public function destroy(Request $request): RedirectResponse
     {
-        Auth::guard('web')->logout();
+        Auth::guard('client')->logout();
 
         $request->session()->invalidate();
 

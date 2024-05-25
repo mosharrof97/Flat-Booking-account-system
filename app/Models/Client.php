@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Client extends Model
+class Client extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
     protected $fillable = [
@@ -57,11 +57,12 @@ class Client extends Model
 
 
     public function investment(){
-        return $this->HasMany(Investment::class,'id');
+        return $this->HasMany(Investment::class);
     }
 
-    public function flat(){
-        return $this->hasMany(Flat::class, 'id');
+    public function flat():HasMany
+    {
+        return $this->hasMany(Flat::class, 'client_id','id');
     }
 
     public function clientAddress(): HasOne
@@ -71,6 +72,6 @@ class Client extends Model
 
     public function flatReInfo():HasMany
     {
-        return $this->hasMany(FlatReturnInfo::class, 'id');
+        return $this->hasMany(FlatReturnInfo::class);
     }
 }

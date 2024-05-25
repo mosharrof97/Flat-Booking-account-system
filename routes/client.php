@@ -9,6 +9,9 @@ Route::get('client/login', [ClientAuthController::class, 'create'])->name('clien
 Route::post('client/login', [ClientAuthController::class, 'store'])->name('client.login.store');
 
 Route::middleware(['client'])->prefix('client')->group(function () {
-    Route::post('dashboard', [ClientDashboardController::class, 'dashboard'])->name('client.dashboard');
+    Route::get('dashboard', [ClientDashboardController::class, 'dashboard'])->name('client.dashboard');
+
+    //Logout
+    Route::post('/logout', [ClientAuthController::class, 'destroy'])->name('client.logout');
 });
 

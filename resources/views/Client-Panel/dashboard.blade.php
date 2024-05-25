@@ -24,18 +24,21 @@
             <div class="card border-1 border-primary">
                 <div class="stat-widget-one card-body p-3">
                     <div class=" text-center">
-                        <h5>100</h5>
+                        <h5>{{ $client->flat->SUM('client_id') }}</h5>
                         <h5>Total Flat </h5>
                     </div>
                 </div>
             </div>
         </div>
+        
         <div class="col-lg-3 col-sm-6">
             <div class="card border-1 border-primary">
                 <div class="stat-widget-one card-body p-3">
                     <div class=" text-center">
-                        <h5>100</h5>
-                        <h5>Complate Flat</h5>
+                        <h5>{{number_format( $client->flat->sum(function ($flat) {
+                            return $flat->flatSaleInfo->price ?? 0;
+                        }),2,'.',',') }}</h5>
+                        <h5>Total Flat Price</h5>
                     </div>
                 </div>
             </div>
@@ -44,18 +47,19 @@
             <div class="card border-1 border-primary">
                 <div class="stat-widget-one card-body p-3">
                     <div class=" text-center">
-                        <h5>100</h5>
-                        <h5>Under Constraction Flat</h5>
+                        <h5>0</h5>
+                        <h5>Totel Paid Amount</h5>
                     </div>
                 </div>
             </div>
         </div>
+
         <div class="col-lg-3 col-sm-6">
             <div class="card border-1 border-primary">
                 <div class="stat-widget-one card-body p-3">
                     <div class=" text-center">
-                        <h5>1000</h5>
-                        <h5>Totel Customer</h5>
+                        <h5>{{ $client->flatReInfo->SUM('client_id') }}</h5>
+                        <h5>Flat Return</h5>
                     </div>
                 </div>
             </div>

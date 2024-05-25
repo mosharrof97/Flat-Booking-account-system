@@ -132,8 +132,8 @@
                             <li class="nav-item dropdown header-profile">
                                 <a class="nav-link" href="#" role="button" data-toggle="dropdown">
                                     <i class="fa-solid fa-user"></i>
-                                    @if (auth()->guards('client')->user())
-                                        <span>{{ auth()->guards('client')->user()->name }}</span>
+                                    @if (auth()->guard('client')->user())
+                                        <span>{{ auth()->guard('client')->user()->name }}</span>
                                     @endif
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right">
@@ -146,9 +146,9 @@
                                         <span class="ml-2">Inbox </span>
                                     </a>
 
-                                    <form method="POST" action="{{ route('logout') }}">
+                                    <form method="POST" action="{{ route('client.logout') }}">
                                         @csrf
-                                        <a class="dropdown-item ms-2" href="{{ route('logout') }}"
+                                        <a class="dropdown-item ms-2" href="{{ route('client.logout') }}"
                                             onclick="event.preventDefault(); this.closest('form').submit();">Log
                                             out</a>
                                     </form>
@@ -179,107 +179,11 @@
                     <li class="nav-label first">Main Menu</li>
 
                     <li>
-                        <a class="has-arrow" href="{{ route('dashboard') }}" aria-expanded="false">
+                        <a class="has-arrow" href="{{ route('client.dashboard') }}" aria-expanded="false">
                             <i class="fa-solid fa-gauge"></i>
                             <span class="nav-text">Dashboard</span>
                         </a>
-                    </li>
-                    {{-- @can('list project') --}}
-                        <li>
-                            <a class="has-arrow" href="{{ route('list.project') }}" aria-expanded="false">
-                                <i class="fa-solid fa-diagram-project"></i>
-                                <span class="nav-text">Project</span>
-                            </a>
-                        </li>
-                    {{-- @endcan --}}
-
-
-
-                    <li>
-                        <a class="has-arrow" href="{{ route('vendor.list') }}" aria-expanded="false">
-                            <i class="fa-solid fa-store"></i>
-                            <span class="nav-text">Vandor</span>
-                        </a>
-                    </li>
-
-                    {{-- ====== Employee ======= --}}
-                    {{-- @can('view employee') --}}
-                    <li id="employee-parent">
-                        <a class="has-arrow" href="{{ route('employee.list') }}" aria-expanded="false">
-                            <i class="fa-solid fa-user-tie"></i>
-                            <span class="nav-text">Employee</span>
-                        </a>
-                    </li>
-                    {{-- @endcan --}}
-                    {{--======= Employee End =======--}}
-
-                    {{--========= Customer ===========--}}
-                    {{-- @can('list customer') --}}
-                    <li id="client-parent">
-                        <a class="has-arrow" href="{{ route('client.list') }}" aria-expanded="false">
-                            <i class="fa-solid fa-users"></i>
-                            <span class="nav-text">Client</span>
-                        </a>
-                    </li>
-                    {{-- @endcan --}}
-                    {{--========= Customer End ===========--}}
-
-                    {{-- Expanse --}}
-                    <li id="expanse-parent">
-                        <a class="has-arrow" href="javascript:void(0);" data-bs-toggle="collapse"
-                            data-bs-target="#expanse" aria-expanded="false" aria-controls="expanse">
-                            <i class="fa-solid fa-store"></i>
-                            <span class="nav-text">Expanse </span>
-                        </a>
-                        <div id="expanse" class="accordion-collapse collapse" style="background-color: #1c0f54"
-                            data-bs-parent="#expanse-parent">
-                            <ul class=" metismenu">
-                                <li>
-                                    <a class="has-arrow" href="">
-                                        <i class="fa-solid fa-store"></i>
-                                        <span class="nav-text">Project Expanse</span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a class="has-arrow" href="">
-                                        <i class="fa-solid fa-store"></i>
-                                        <span class="nav-text">Office Ex Category </span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a class="has-arrow" href="">
-                                        <i class="fa-solid fa-store"></i>
-                                        <span class="nav-text">Office Expanse </span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                    {{-- Project End --}}
-
-
-                    <li>
-                        <a class="has-arrow" href="{{ route('users.index') }}">
-                            <i class="fa-solid fa-user"></i>
-                            <span class="nav-text">Users</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="has-arrow" href="{{ route('roles.index') }}">
-                            <i class="fa-solid fa-pen-ruler"></i>
-                            <span class="nav-text">Roles</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-label first">Company Info</li>
-                    <li>
-                        <a class="has-arrow" href="{{ route('company.info.list') }}">
-                            <i class="fa-solid fa-pen-ruler"></i>
-                            <span class="nav-text">Company Info</span>
-                        </a>
-                    </li>
+                    </li>                    
                 </ul>
             </div>
         </div>
