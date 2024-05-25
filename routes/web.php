@@ -193,7 +193,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
                 Route::get('/expense_report', [ProjectReportController::class, 'expenseReport'])->name('expense.report');
                 Route::get('/purchase_report', [ProjectReportController::class, 'purchaseReport'])->name('purchase.report');
                 // Route::get('/invest_report', function(){
-                //     return view('Project-Panel.Report.Invest_Report');
+                //     return view('Project-Panel.Report.Invest_Report'); 
                 // })->name('invest.report');
 
             });
