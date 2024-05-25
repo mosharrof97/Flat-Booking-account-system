@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 23, 2024 at 02:41 PM
+-- Generation Time: May 25, 2024 at 02:36 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -459,10 +459,10 @@ CREATE TABLE `flats` (
 --
 
 INSERT INTO `flats` (`id`, `user_id`, `project_id`, `client_id`, `name`, `floor`, `flat_area`, `price`, `room`, `dining_space`, `bath_room`, `parking`, `outdoor`, `images`, `description`, `active_status`, `sale_status`, `status`, `created_by`, `updated_by`, `deleted_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, NULL, 1, NULL, 'A-101', '1st', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-19 23:30:36', '2024-05-23 05:19:47', NULL),
-(2, NULL, 1, NULL, 'A-102', '1st', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-19 23:30:58', '2024-05-19 23:30:58', NULL),
-(3, NULL, 1, NULL, 'A-103', '1st', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-19 23:31:19', '2024-05-19 23:31:19', NULL),
-(4, NULL, 1, NULL, 'A-104', '1st', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-19 23:31:37', '2024-05-19 23:31:37', NULL),
+(1, NULL, 1, 1, 'A-101', '1st', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 2, 0, 1, NULL, NULL, '2024-05-19 23:30:36', '2024-05-25 05:43:26', NULL),
+(2, NULL, 1, 2, 'A-102', '1st', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 2, 0, 1, NULL, NULL, '2024-05-19 23:30:58', '2024-05-25 05:45:41', NULL),
+(3, NULL, 1, 3, 'A-103', '1st', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 2, 0, 1, NULL, NULL, '2024-05-19 23:31:19', '2024-05-25 05:46:40', NULL),
+(4, NULL, 1, 1, 'A-104', '1st', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 2, 0, 1, NULL, NULL, '2024-05-19 23:31:37', '2024-05-25 05:47:18', NULL),
 (5, NULL, 1, NULL, 'A-105', '1st', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-19 23:31:55', '2024-05-19 23:31:55', NULL),
 (6, NULL, 1, NULL, 'B-201', '2nd', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-19 23:32:23', '2024-05-19 23:32:23', NULL),
 (7, NULL, 1, NULL, 'B-202', '2nd', 6000, 3000.00, NULL, NULL, NULL, NULL, NULL, '\"[]\"', NULL, 0, 0, 0, 1, NULL, NULL, '2024-05-19 23:32:59', '2024-05-19 23:32:59', NULL),
@@ -548,7 +548,11 @@ CREATE TABLE `flat_sale_infos` (
 
 INSERT INTO `flat_sale_infos` (`id`, `flat_id`, `price`, `status`, `sold_by`, `created_by`, `created_at`, `updated_at`) VALUES
 (2, 35, 950000.00, 0, 1, NULL, '2024-05-21 04:41:02', '2024-05-21 04:41:02'),
-(3, 34, 9000000.00, 0, 1, NULL, '2024-05-21 12:04:58', '2024-05-21 12:04:58');
+(3, 34, 9000000.00, 0, 1, NULL, '2024-05-21 12:04:58', '2024-05-21 12:04:58'),
+(6, 1, 9500000.00, 0, 1, NULL, '2024-05-25 05:43:27', '2024-05-25 05:43:27'),
+(7, 2, 10050000.00, 0, 1, NULL, '2024-05-25 05:45:41', '2024-05-25 05:45:41'),
+(8, 3, 9000000.00, 0, 1, NULL, '2024-05-25 05:46:40', '2024-05-25 05:46:40'),
+(9, 4, 9000000.00, 0, 1, NULL, '2024-05-25 05:47:18', '2024-05-25 05:47:18');
 
 -- --------------------------------------------------------
 
@@ -783,7 +787,11 @@ CREATE TABLE `payments` (
 
 INSERT INTO `payments` (`id`, `flat_id`, `flatSale_id`, `payment_type`, `amount`, `bank_name`, `branch`, `account_number`, `check_number`, `status`, `received_by`, `created_at`, `updated_at`) VALUES
 (4, 35, 2, 'cash', 5000.00, NULL, NULL, NULL, NULL, 0, 1, '2024-05-21 04:41:02', '2024-05-21 04:41:02'),
-(5, 34, 3, 'cash', 1000000.00, NULL, NULL, NULL, NULL, 0, 1, '2024-05-21 12:04:58', '2024-05-21 12:04:58');
+(5, 34, 3, 'cash', 1000000.00, NULL, NULL, NULL, NULL, 0, 1, '2024-05-21 12:04:58', '2024-05-21 12:04:58'),
+(8, 1, 6, 'cash', 10000.00, NULL, NULL, NULL, NULL, 0, 1, '2024-05-25 05:43:27', '2024-05-25 05:43:27'),
+(9, 2, 7, 'cash', 500000.00, NULL, NULL, NULL, NULL, 0, 1, '2024-05-25 05:45:41', '2024-05-25 05:45:41'),
+(10, 3, 8, 'cash', 100000.00, NULL, NULL, NULL, NULL, 0, 1, '2024-05-25 05:46:40', '2024-05-25 05:46:40'),
+(11, 4, 9, 'cash', 110000.00, NULL, NULL, NULL, NULL, 0, 1, '2024-05-25 05:47:18', '2024-05-25 05:47:18');
 
 -- --------------------------------------------------------
 
@@ -814,7 +822,8 @@ INSERT INTO `payment_returns` (`id`, `flatReturn_id`, `payment_type`, `amount`, 
 (1, 1, 'cash', 50000.00, NULL, NULL, NULL, NULL, 0, 1, '2024-05-23 05:47:29', '2024-05-23 05:47:29'),
 (2, 1, 'cash', 10000.00, NULL, NULL, NULL, NULL, 0, 1, '2024-05-23 06:09:58', '2024-05-23 06:09:58'),
 (3, 1, 'cash', 10000.00, NULL, NULL, NULL, NULL, 0, 1, '2024-05-23 06:10:37', '2024-05-23 06:10:37'),
-(4, 1, 'cash', 10000.00, NULL, NULL, NULL, NULL, 0, 1, '2024-05-23 06:11:41', '2024-05-23 06:11:41');
+(4, 1, 'cash', 10000.00, NULL, NULL, NULL, NULL, 0, 1, '2024-05-23 06:11:41', '2024-05-23 06:11:41'),
+(5, 1, 'cash', 50000.00, NULL, NULL, NULL, NULL, 0, 1, '2024-05-25 05:55:28', '2024-05-25 05:55:28');
 
 -- --------------------------------------------------------
 
@@ -1512,7 +1521,7 @@ ALTER TABLE `flat_return_infos`
 -- AUTO_INCREMENT for table `flat_sale_infos`
 --
 ALTER TABLE `flat_sale_infos`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `investments`
@@ -1542,13 +1551,13 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `payment_returns`
 --
 ALTER TABLE `payment_returns`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `permissions`
