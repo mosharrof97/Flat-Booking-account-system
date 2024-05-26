@@ -1,46 +1,32 @@
 @extends('Admin-Panel.partial.Layout')
 @section('content')
-    {{-- <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot> --}}
-
-    {{-- <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    <h1>Hello Admin</h1>
-                     @php
-                        dd(auth()->guard('admin')->user());
-                    @endphp
-                     @if (auth()->user())
-                        @if (auth()->user()->role_id == 2)
-                            <p>{{ auth()->user()->name }} are User logged in! </p>
-                        @elseif (auth()->user()->role_id == 1)
-                            <p>{{ auth()->user()->name }} are Admin logged in! </p>
-                        @else
-                            {{ __("You're logged in! -- ok") }}
-                        @endif
-                    @else
-                        {{ __("You're logged in! -- ok") }}
-                    @endif
-
-                </div>
-            </div>
-        </div>
-    </div> --}}
-
+    
     <section class="content">
         <div class="container-fluid">
-            <div class="block-header">
+            <div class="block-header bg-white p-3 mb-3 shadow-sm">
                 <h2>DASHBOARD</h2>
             </div>
 
             <!-- Widgets -->
             <div class="row ">
 
-                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+                <div class="col-lg-3 col-sm-6">
+                    <div class="card border-primary dash-card">
+                        <div class="card-body p-3 d-flex justify-content-between d-flex justify-content-between">
+                            <div class=" text-center">
+                                <h5 class="card-result">0</h5>
+                                <h5 class="card-text">Total Flat </h5>
+                            </div>
+                            <div class="">
+                                <div class="icon-circle bg-primary text-white">
+                                    <i class="fas fa-project-diagram material-icons" width="50"></i> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {{-- <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
                     <div class="card gradient-16 p-3">
                         <div class="icon">
                             <i class="fas fa-project-diagram"></i>
@@ -52,10 +38,10 @@
                                  data-fresh-interval="0"></div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
 
-                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+                {{-- <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
                     <div class="card gradient-3 p-3">
                         <div class="icon">
                             <i class="fas fa-boxes"></i>
@@ -67,9 +53,42 @@
                                  data-fresh-interval="0"></div>
                         </div>
                     </div>
-                </div>
+
+                </div> --}}
 
                 <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+                    <div class="card  dash-card" style="border-color:rgb(163, 80, 3)">
+                        <div class="card-body p-3 d-flex justify-content-between d-flex justify-content-between">
+                            <div class=" text-center">
+                                <h5 class="card-result">0</h5>
+                                <h5 class="card-text">Complate Flat</h5>
+                            </div>
+                            <div class="">
+                                <div class="icon-circle  text-white" style="background-color: rgb(163, 80, 3)">
+                                    <i class="fas fa-boxes material-icons" width="50"></i> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-sm-6">
+                    <div class="card  dash-card" style="border-color:#9ac500">
+                        <div class="card-body p-3 d-flex justify-content-between d-flex justify-content-between">
+                            <div class=" text-center">
+                                <h5 class="card-result">0</h5>
+                                <h5 class="card-text">Under Constraction Flat</h5>
+                            </div>
+                            <div class="">
+                                <div class="icon-circle  text-white" style="background-color: #9ac500">
+                                    <i class="fas fa-dolly material-icons" width="50"></i> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {{-- <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
                     <div class="card gradient-13 p-3">
                         <div class="icon">
                             <i class="fas fa-dolly"></i>
@@ -81,9 +100,9 @@
                                  data-fresh-interval="0"></div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
-                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+                {{-- <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
                     <div class="card gradient-15 p-3">
                         <div class="icon">
                             <i class="fas fa-shopping-cart"></i>
@@ -95,9 +114,41 @@
                                  data-fresh-interval="0"></div>
                         </div>
                     </div>
+                </div> --}}
+
+                <div class="col-lg-3 col-sm-6">
+                    <div class="card  dash-card" style="border-color:#01b4b4">
+                        <div class="card-body p-3 d-flex justify-content-between d-flex justify-content-between">
+                            <div class=" text-center">
+                                <h5 class="card-result">1000</h5>
+                                <h5 class="card-text">Totel Customer</h5>
+                            </div>
+                            <div class="">
+                                <div class="icon-circle  text-white" style="background-color: #01b4b4">
+                                    <i class="fas fa-shopping-cart material-icons" width="50"></i> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+                <div class="col-lg-3 col-sm-6">
+                    <div class="card border-warning dash-card">
+                        <div class="card-body p-3 d-flex justify-content-between d-flex justify-content-between">
+                            <div class=" text-center">
+                                <h5 class="card-result">1000</h5>
+                                <h5 class="card-text">Totel Investor</h5>
+                            </div>
+                            <div class="">
+                                <div class="icon-circle bg-warning text-white">
+                                    <i class="fas fa-shopping-cart material-icons" width="50"></i> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {{-- <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
                     <div class="card gradient-18 p-3">
                         <div class="icon">
                             <i class="fas fa-shopping-cart"></i>
@@ -109,10 +160,10 @@
                                  data-fresh-interval="0"></div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
 
-                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+                {{-- <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
                     <div class="card gradient-9 p-3">
                         <div class="icon">
                             <i class="fas fa-file-invoice-dollar"></i>
@@ -124,9 +175,25 @@
                                  data-fresh-interval="20"></div>
                         </div>
                     </div>
+                </div> --}}
+
+                <div class="col-lg-3 col-sm-6">
+                    <div class="card  dash-card" style="border-color:#4b5819">
+                        <div class="card-body p-3 d-flex justify-content-between d-flex justify-content-between">
+                            <div class=" text-center">
+                                <h5 class="card-result">0</h5>
+                                <h5 class="card-text">Totel Sold</h5>
+                            </div>
+                            <div class="">
+                                <div class="icon-circle  text-white" style="background-color: #4b5819">
+                                    <i class="fas fa-file-invoice-dollar material-icons" width="50"></i> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+                {{-- <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
                     <div class="card gradient-6 p-3">
                         <div class="icon">
                             <i class="fas fa-file-invoice-dollar"></i>
@@ -138,9 +205,9 @@
                                  data-fresh-interval="20"></div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
-                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+                {{-- <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
                     <div class="card gradient-4 p-3">
                         <div class="icon">
                             <i class="fas fa-file-invoice-dollar"></i>
@@ -152,10 +219,41 @@
                                  data-fresh-interval="20"></div>
                         </div>
                     </div>
+                </div> --}}
+
+                <div class="col-lg-3 col-sm-6">
+                    <div class="card  dash-card" style="border-color:#940368">
+                        <div class="card-body p-3 d-flex justify-content-between d-flex justify-content-between">
+                            <div class=" text-center">
+                                <h5 class="card-result">0</h5>
+                                <h5 class="card-text">Totel Unsold Flat</h5>
+                            </div>
+                            <div class="">
+                                <div class="icon-circle  text-white" style="background-color: #940368">
+                                    <i class="fa-solid fa-download material-icons" width="50"></i> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
+                <div class="col-lg-3 col-sm-6">
+                    <div class="card  dash-card" style="border-color:#b62c65">
+                        <div class="card-body p-3 d-flex justify-content-between d-flex justify-content-between">
+                            <div class=" text-center">
+                                <h5 class="card-result">1000</h5>
+                                <h5 class="card-text">Totel Invest Amount</h5>
+                            </div>
+                            <div class="">
+                                <div class="icon-circle  text-white" style="background-color: #b62c65">
+                                    <i class="fas fa-university material-icons" width="50"></i> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+                {{-- <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
                     <div class="card gradient-11 p-3">
                         <div class="icon">
                             <i class="fas fa-university"></i>
@@ -167,9 +265,9 @@
                                  data-fresh-interval="20"></div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
-                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+                {{-- <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
                     <div class="card gradient-12 p-3">
                         <div class="icon">
                             <i class="fas fa-user"></i>
@@ -181,9 +279,57 @@
                                  data-fresh-interval="20"></div>
                         </div>
                     </div>
+                </div> --}}
+
+                <div class="col-lg-3 col-sm-6">
+                    <div class="card  dash-card" style="border-color:#3c768d">
+                        <div class="card-body p-3 d-flex justify-content-between d-flex justify-content-between">
+                            <div class=" text-center">
+                                <h5 class="card-result">0</h5>
+                                <h5 class="card-text">Totel Purchase Amount</h5>
+                            </div>
+                            <div class="">
+                                <div class="icon-circle  text-white" style="background-color: #3c768d">
+                                    <i class="fas fa-user material-icons" width="50"></i> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+                <div class="col-lg-3 col-sm-6">
+                    <div class="card  dash-card" style="border-color:#6c2ffa">
+                        <div class="card-body p-3 d-flex justify-content-between d-flex justify-content-between">
+                            <div class=" text-center">
+                                <h5 class="card-result">0</h5>
+                                <h5 class="card-text">Paid Purchase Amount</h5>
+                            </div>
+                            <div class="">
+                                <div class="icon-circle  text-white" style="background-color: #6c2ffa">
+                                    <i class="fas fa-user-lock material-icons" width="50"></i> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-sm-6">
+                    <div class="card  dash-card" style="border-color:#53a885">
+                        <div class="card-body p-3 d-flex justify-content-between d-flex justify-content-between">
+                            <div class=" text-center">
+                                <h5 class="card-result" >0</h5>
+                                <h5 class="card-text" >Due Purchase Amount</h5>
+                            </div>
+                            <div class="">
+                                <div class="icon-circle  text-white" style="background-color: #53a885">
+                                    <i class="fas fa-receipt material-icons" width="50"></i> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {{-- <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
                     <div class="card gradient-1 p-3">
                         <div class="icon">
                             <i class="fas fa-user-lock "></i>
@@ -192,15 +338,15 @@
                             <div class="text"><h4>Role Manage</h4></div>
                             {{-- <div class="number count-to" data-from="0" data-to="{{  count(App\RoleManage::all()) }}"
                                  data-speed="1000"
-                                 data-fresh-interval="20"></div> --}}
+                                 data-fresh-interval="20"></div> 
                                  <div class="number count-to" data-from="0" data-to="500"
                                  data-speed="1000"
                                  data-fresh-interval="20"></div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
-                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+                {{-- <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
                     <div class="card gradient-2 p-3">
                         <div class="icon">
                             <i class="fas fa-receipt"></i>
@@ -212,7 +358,7 @@
                                  data-fresh-interval="20"></div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
                 <!-- #END# Widgets -->
             </div>
 

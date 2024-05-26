@@ -97,7 +97,7 @@ class FlatSaleController extends Controller
 
                 $data = [
                     'flat_id' => $flat->id,
-                    'flatSale_id' => $flatSaleInfo->id,
+                    'flat_sale_id' => $flatSaleInfo->id,
                     'payment_type' => $request->payment_type,
                     'amount' => $request->amount,
                     'bank_name'=> $request->bank_name,
@@ -113,7 +113,7 @@ class FlatSaleController extends Controller
 
                 $comInfo = ComponyInfo::first();
                 $flatSale = FlatSaleInfo::where('flat_id',$flat->id)->first();
-                $payments = Payment::where('flatSale_id',$flatSale->id)->get();
+                $payments = Payment::where('flat_sale_id',$flatSale->id)->get();
 
                 // dd($payment_amount->sum('amount'));
 
@@ -138,7 +138,7 @@ class FlatSaleController extends Controller
             if($flat->sale_status == 2){
                 // dd($flat->flatSaleInfo);
                 $flatSale = FlatSaleInfo::where('flat_id',$flat->id)->first();
-                $payments = Payment::where('flatSale_id',$flatSale->id)->get();
+                $payments = Payment::where('flat_sale_id',$flatSale->id)->get();
 
 
 
@@ -157,10 +157,10 @@ class FlatSaleController extends Controller
         if($project_id !== null){
             $comInfo = ComponyInfo::firstOrFail(); 
             $payment = Payment::findOrFail($id);
-            $payments = Payment::where('flatSale_id', $payment->flatSale_id)
+            $payments = Payment::where('flat_sale_id', $payment->flat_sale_id)
                                ->where('flat_id', $payment->flat_id)
                                ->get();
-            $flatSale = FlatSaleInfo::findOrFail($payment->flatSale_id);
+            $flatSale = FlatSaleInfo::findOrFail($payment->flat_sale_id);
 
             return view('Project-Panel.Flat.pay_slip', compact(['payment','payments','flatSale','comInfo']));
         }else{
@@ -174,7 +174,7 @@ class FlatSaleController extends Controller
         if($project_id !== null){
             $flatSaleInfo = FlatSaleInfo::where('flat_id',$id)->first();
             $comInfo = ComponyInfo::first();
-            $payment = Payment::where('flatSale_id',$flatSaleInfo->id)->get();
+            $payment = Payment::where('flat_sale_id',$flatSaleInfo->id)->get();
 
             // dd($flatSaleInfo->id);
             return view('Project-Panel.Flat.Payment', compact('flatSaleInfo','comInfo','payment'));
@@ -190,7 +190,7 @@ class FlatSaleController extends Controller
             $flatSaleInfo = FlatSaleInfo::find($request->flatSaleInfo_id);
             $data = [
                 'flat_id'=> $flatSaleInfo->flat->id,
-                'flatSale_id'=> $flatSaleInfo->id,
+                'flat_sale_id'=> $flatSaleInfo->id,
                 'payment_type'=> $request->payment_type,
                 'amount'=> $request->amount,
                 'bank_name'=> $request->bank_name,
@@ -202,7 +202,7 @@ class FlatSaleController extends Controller
         $payment = Payment::create($data);
         // $comInfo = ComponyInfo::first();
         // $flatSale = FlatSaleInfo::find($flatSaleInfo->id);
-        // $payments = Payment::where('flatSale_id',$flatSale->id)->get();
+        // $payments = Payment::where('flat_sale_id',$flatSale->id)->get();
 
         // dd($payments);
             return redirect()->route('paySlip',$payment->id);

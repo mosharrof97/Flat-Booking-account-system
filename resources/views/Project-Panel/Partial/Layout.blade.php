@@ -10,6 +10,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/favicon.png') }}">
     <link href="{{ asset('asset/css/bootstrap.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('asset/css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('asset/css/custom-style.css') }}" rel="stylesheet">
 
     {{---- Datatable ----}}
         {{-- CSS --}}

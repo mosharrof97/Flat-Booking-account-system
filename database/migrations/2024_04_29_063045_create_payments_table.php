@@ -12,23 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('payments', function (Blueprint $table) {
-            // $table->id();
-            // $table->foreignId('flat_id');
-            // $table->foreignId('flatSale_id');
-            // $table->string('payment_type');
-            // $table->decimal('amount',15,2);
-            // $table->string('bank_name')->nullable();
-            // $table->string('branch')->nullable();
-            // $table->bigInteger('account_number',20)->nullable();
-            // $table->bigInteger('check_number',20)->nullable();
-
-            // $table->bigInteger('status')->default(0);
-            // $table->foreignId('received_by');
-            // $table->timestamps();
-
             $table->id();
-            $table->foreignId('flat_id');
-            $table->foreignId('flatSale_id')->constrained('flat_sale_infos')->onDelete('cascade');
+            $table->unsignedBigInteger('flat_id');
+            $table->unsignedBigInteger('flat_sale_id');
             $table->string('payment_type');
             $table->decimal('amount', 15, 2);
             $table->string('bank_name')->nullable();
@@ -36,8 +22,24 @@ return new class extends Migration
             $table->string('account_number',20)->nullable();
             $table->string('check_number',20)->nullable();
             $table->bigInteger('status')->default(0);
-            $table->foreignId('received_by');
+            $table->unsignedBigInteger('received_by');
             $table->timestamps();
+            $table->softDeletes();
+            
+            // Adding foreign keys
+            $table->foreign('flat_id')->references('id')->on('flats')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+            $table->foreign('flat_sale_id')->references('id')->on('flat_sale_infos')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+            $table->foreign('received_by')->references('id')->on('users')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+
+            // Adding indexes
+            $table->index('flat_sale_id');
+            $table->index('received_by');
         });
     }
 

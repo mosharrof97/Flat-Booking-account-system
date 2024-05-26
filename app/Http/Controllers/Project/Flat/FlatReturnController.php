@@ -22,9 +22,11 @@ class FlatReturnController extends Controller
         $project_id = Session::get('project_id');
         if($project_id !== null){
 
-            $returnInfo = Flat::where('project_id', $project_id)->paginate(15);
-
-            return view('Project-Panel.Flat.Flat_return.Return_list',compact('returnInfo'));
+            $data = [
+                'returnInfo' => FlatReturnInfo::where('project_id', $project_id)->paginate(20),
+                // 'PaymentReturn' => PaymentReturn::where('project_id', $project_id)->paginate(15),
+            ];
+            return view('Project-Panel.Flat.Flat_return.Return_list', $data);
         }else{
             return redirect()->route('list.project')-> with('error','Project Id Is Null');
         }
@@ -145,7 +147,7 @@ class FlatReturnController extends Controller
         if($project_id !== null){
             $returnInfo = FlatReturnInfo::findOrFail($id);
             $comInfo = ComponyInfo::first();
-            $payment = PaymentReturn::where('flatReturn_id',$returnInfo->id)->get();
+            $payment = PaymentReturn::where('flat_return_id',$returnInfo->id)->get();
 
             return view('Project-Panel.Flat.Flat_return.Return_Payment', compact('returnInfo','comInfo','payment'));
         }else{
@@ -162,7 +164,7 @@ class FlatReturnController extends Controller
             // dd($flatReturnInfo);
             $data = [
                 // 'flat_id'=> $flatReturnInfo->flat->id,
-                'flatReturn_id'=> $flatReturnInfo->id,
+                'flat_return_id'=> $flatReturnInfo->id,
                 'payment_type'=> $request->payment_type,
                 'amount'=> $request->amount,
                 'bank_name'=> $request->bank_name,
@@ -184,9 +186,9 @@ class FlatReturnController extends Controller
         if($project_id !== null){
             $comInfo = ComponyInfo::firstOrFail(); 
             $payment = PaymentReturn::findOrFail($id);
-            $payments = PaymentReturn::where('flatReturn_id', $payment->flatReturn_id)
+            $payments = PaymentReturn::where('flat_return_id', $payment->flat_return_id)
                                ->get();
-            $flatReturn = FlatReturnInfo::findOrFail($payment->flatReturn_id);
+            $flatReturn = FlatReturnInfo::findOrFail($payment->flat_return_id);
 
             return view('Project-Panel.Flat.Flat_return.pay_slip', compact(['payment','payments','flatReturn','comInfo']));
         }else{

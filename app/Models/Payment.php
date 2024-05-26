@@ -13,7 +13,7 @@ class Payment extends Model
     use HasFactory;
     protected $fillable = [
         'flat_id',
-        'flatSale_id',
+        'flat_sale_id',
         'payment_type',
         'amount',
         'bank_name',
@@ -37,6 +37,6 @@ class Payment extends Model
 
     public function saleInfo(): BelongsTo
     {
-        return $this->belongsTo(FlatSaleInfo::class, 'flatSale_id');
+        return $this->belongsTo(FlatSaleInfo::class, 'flat_sale_id');
     }
 }

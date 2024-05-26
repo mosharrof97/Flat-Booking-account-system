@@ -84,7 +84,7 @@
 
                         <div class="col-md-6">
                             <label for="payable_amount" class="form-label">payable amount</label>
-                            <input type="decimal" class="form-control" id="payable_amount" value="{{ $flatSaleInfo->price - $payment->sum('amount')}}" name="payable_amount">
+                            <input type="decimal" class="form-control" id="payable_amount" value="{{number_format($flatSaleInfo->price - $payment->sum('amount'),2,'.',',') }}" name="payable_amount">
 
                             @error('payable_amount')
                                 <span class="form-text text-danger">{{ $message }}</span>

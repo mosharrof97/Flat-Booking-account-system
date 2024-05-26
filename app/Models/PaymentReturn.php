@@ -12,7 +12,7 @@ class PaymentReturn extends Model
     use HasFactory;
 
     protected $fillable = [
-        'flatReturn_id',
+        'flat_return_id',
         'payment_type',
         'amount',
         'bank_name',
@@ -25,7 +25,7 @@ class PaymentReturn extends Model
     ];
 
     public function flatReturn(){
-        return $this->BelongsTo(FlatReturnInfo::class,'flatReturn_id');
+        return $this->BelongsTo(FlatReturnInfo::class,'flat_return_id');
     }
 
     public function user()

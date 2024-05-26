@@ -45,7 +45,7 @@ class Flat extends Model
 
     public function client(): BelongsTo
     {
-        return $this->BelongsTo(Client::class, 'client_id','id');
+        return $this->BelongsTo(Client::class, 'client_id');
     }
 
     public function flatSaleInfo():HasOne

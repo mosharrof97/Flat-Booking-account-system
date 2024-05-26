@@ -28,14 +28,14 @@
                     <div class="row mb-4">
                         <div class="col-sm-6">
                             <div style=" font-size: 17px; font-weight: 700; color:#000; "> 
-                                Name: {{ $payment->flatReturn->flat->client->name }} 
+                                Name: {{ $payment->flatReturn->client->name }} 
                             </div>
                             @php
-                                $address =$payment->flatReturn->flat->client->clientAddress;
+                                $address =$payment->flatReturn->client->clientAddress;
                             @endphp
                             <div style=" font-size: 17px; font-weight: 700; color:#000; ">Address: {{ $address->pre_address.', '. $address->pre_city.', '.$address->pre_district.'- '.$address->pre_zipCode}}.</div>
-                            <div style=" font-size: 17px; font-weight: 700; color:#000; ">Contact No: {{ $payment->flatReturn->flat->client->phone }}</div>
-                            <div style=" font-size: 17px; font-weight: 700; color:#000; "> Booked Flat:{{ $payment->flatReturn->flat->project->projectName }}-{{ $payment->flatReturn->flat->floor }} Floor, Flat-{{ $payment->flatReturn->flat->name }}</div>
+                            <div style=" font-size: 17px; font-weight: 700; color:#000; ">Contact No: {{ $payment->flatReturn->client->phone }}</div>
+                            <div style=" font-size: 17px; font-weight: 700; color:#000; "> Booked Flat:{{ $payment->flatReturn->project->projectName }}-{{ $payment->flatReturn->floor }} Floor, Flat-{{ $payment->flatReturn->flat->name }}</div>
                             <div style=" font-size: 17px; font-weight: 700; color:#000; ">Payable Amount -Tk.{{ number_format($flatReturn->payable_amount, 2, '.',',') }}/-</div>
                             <div style=" font-size: 17px; font-weight: 700; color:#000; ">Total Return -Tk.{{ number_format($payments->sum('amount'), 2, '.', ',') }}/-</div>
                         </div>

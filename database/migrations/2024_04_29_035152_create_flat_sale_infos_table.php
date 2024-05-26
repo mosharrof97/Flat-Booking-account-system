@@ -13,12 +13,29 @@ return new class extends Migration
     {
         Schema::create('flat_sale_infos', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('flat_id')->constrained()->onDelete('cascade');
+            $table->unsignedBigInteger('flat_id');
             $table->decimal('price',15,2);
             $table->bigInteger('status')->default(0);
-            $table->foreignId('sold_by');
-            $table->foreignId('created_by')->nullable();
+            $table->unsignedBigInteger('sold_by');
+            $table->unsignedBigInteger('created_by')->nullable();
             $table->timestamps();
+            $table->softDeletes();
+
+            // Adding foreign keys
+            $table->foreign('flat_id')->references('id')->on('flats')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+            $table->foreign('sold_by')->references('id')->on('users')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+            $table->foreign('created_by')->references('id')->on('users')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+
+            // Adding indexes
+            $table->index('flat_id');
+            $table->index('sold_by');
+            $table->index('created_by');
         });
     }
 

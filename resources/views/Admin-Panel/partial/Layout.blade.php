@@ -17,6 +17,7 @@
 
     <link href="{{ asset('vendor/pg-calendar/css/pignose.calendar.min.css') }}" rel="stylesheet">
     <link href="{{ asset('asset/css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('asset/css/custom-style.css') }}" rel="stylesheet">
 
     {{---- Datatable ----}}
         {{-- CSS --}}

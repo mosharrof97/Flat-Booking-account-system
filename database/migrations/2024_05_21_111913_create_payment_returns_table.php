@@ -13,20 +13,28 @@ return new class extends Migration
     {
         Schema::create('payment_returns', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('flatReturn_id')->constrained('flat_return_infos')->onDelete('cascade');
+            $table->unsignedBigInteger('flat_return_id');
             $table->string('payment_type');
             $table->decimal('amount', 15, 2);
             $table->string('bank_name')->nullable();
             $table->string('branch')->nullable();
-            $table->string('account_number',20)->nullable();
-            $table->string('check_number',20)->nullable();
+            $table->string('account_number', 20)->nullable();
+            $table->string('check_number', 20)->nullable();
             $table->bigInteger('status')->default(0);
-            $table->foreignId('received_by');
+            $table->unsignedBigInteger('received_by');
             $table->timestamps();
 
-             // $table->foreign('vcard_id')->references('id')->on('vcards')
-             //    ->onUpdate('cascade')
-             //    ->onDelete('cascade');
+            // Adding foreign keys
+            $table->foreign('flat_return_id')->references('id')->on('flat_return_infos')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+            $table->foreign('received_by')->references('id')->on('users')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+
+            // Adding indexes
+            $table->index('flat_return_id');
+            $table->index('received_by');
         });
     }
 
@@ -38,3 +46,4 @@ return new class extends Migration
         Schema::dropIfExists('payment_returns');
     }
 };
+

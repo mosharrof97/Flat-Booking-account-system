@@ -26,7 +26,7 @@ class FlatReturnInfo extends Model
 
     public function paymentReturn():HasMany
     {
-        return $this->hasMany(PaymentReturn::class);
+        return $this->hasMany(PaymentReturn::class,'flat_return_id');
     }
 
     public function project(){

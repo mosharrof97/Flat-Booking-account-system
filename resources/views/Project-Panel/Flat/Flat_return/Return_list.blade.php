@@ -28,7 +28,6 @@
                                 <th rowspan="" class="text-nowrap">Floor</th>
                                 <th rowspan="" class="text-nowrap">Sale price</th>
                                 <th rowspan="" class="text-nowrap">Payable Amount</th>
-                                <th colspan="" class="text-nowrap">Type</th>
                                 <th colspan="" class="text-nowrap">Return Amount</th>
                                 <th colspan="" class="text-nowrap">Return By</th>
                                 <th colspan="" class="text-nowrap">Action</th>
@@ -43,9 +42,8 @@
                                 <td>{{ $value->flat->name }}</td>
                                 <td>{{ $value->flat->floor }} floor</td>
                                 <td>{{ $value->buying_price }}/-</td>
-                                <td>{{ $value->payable_amount   }}/-</td>
-                                <td>{{ $value->payment_type }}</td>
-                                <td>{{ $value->return_amount }}/-</td>
+                                <td>{{ $value->payable_amount - $value->paymentReturn->sum('amount') }}/-</td>
+                                <td>{{ $value->paymentReturn->sum('amount') }}/-</td>
                                 <td>{{ $value->returnedBy->name }}</td>
                             {{--<td>
                                     @php

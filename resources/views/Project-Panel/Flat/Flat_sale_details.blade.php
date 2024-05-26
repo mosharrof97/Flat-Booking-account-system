@@ -94,19 +94,19 @@
                             <tr>
                                 <th colspan="">Price </th>
                                 <td><b>:</b></td>
-                                <td>{{ $flatSale->price }}</td>
+                                <td>{{ number_format($flatSale->price,2,'.',',') }}</td>
                             </tr>
 
                             <tr>
                                 <th colspan="">Paid </th>
                                 <td><b>:</b></td>
-                                <td>{{ $payments->sum('amount')}}</td>
+                                <td>{{ number_format($payments->sum('amount'),2,'.',',')}}</td>
                             </tr>
 
                             <tr>
                                 <th colspan="">Due </th>
                                 <td><b>:</b></td>
-                                <td>{{ $flatSale->price - $payments->sum("amount") }}</td>
+                                <td>{{ number_format($flatSale->price - $payments->sum("amount"),2,'.',',')  }}</td>
                             </tr>
                                 
                         </tbody>
