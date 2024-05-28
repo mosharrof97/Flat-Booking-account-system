@@ -28,7 +28,7 @@
                         <h4 class="fw-semibold"><b>Email:</b> {{ $comInfo->email }}</h4>
                         <h4>Project: {{ $flat->project->projectName }}</h4>
                         <h5>Address:
-                            {{ $flat->project->address . ', ' . $flat->project->city . ', ' . $flat->project->address }}
+                            {{ $flat->project->address . ', ' . $flat->project->city }}
                         </h5>
                         <h5>{{ $flat->project->district->name . '- ' . $flat->project->zipCode }}</h5>
 

@@ -23,7 +23,7 @@
                         <h2 class="fw-bold">{{ $comInfo->name }}</h2>
                         <h4 class="fw-semibold"><b>Email: </b> {{ $comInfo->email }}</h4>
                         <h2 class="fw-bold"><b>Project:</b>{{ $project->projectName }}</h2>
-                        <h4><b>Address:</b> {{ $project->address.', '.$project->city.', '.$project->address }}</h4>
+                        <h4><b>Address:</b> {{ $project->address.', '.$project->city }}</h4>
                         <h4>{{ $project->district->name.'- '.$project->zipCode}}</h4>
                     </div>
                 </div>

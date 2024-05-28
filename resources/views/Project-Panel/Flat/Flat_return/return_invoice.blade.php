@@ -41,7 +41,7 @@
                 <div class="col-md-12" style="background-color: rgb(255, 255, 255)">
                     <div class="text-center">
                         <h2 class="fw-bold">{{ $payment->flat->project->projectName }}</h2>
-                        <h4><b>Address:</b> {{ $payment->flat->project->address.', '.$payment->flat->project->city.', '.$payment->flat->project->address }}</h4>
+                        <h4><b>Address:</b> {{ $payment->flat->project->address.', '.$payment->flat->project->city }}</h4>
                         <h4>{{ $payment->flat->project->district->name.'- '.$payment->flat->project->zipCode}}</h4>
                     </div>
                 </div>

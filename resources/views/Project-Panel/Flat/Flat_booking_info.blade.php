@@ -22,7 +22,7 @@
                     <h1 class="fw-bold">Flat Booking System</h1>
                     <h3 class="fw-bold"><b>Email :</b> flat@bookingsystem.com</h3>
                     <h4 class="fw-bold"><b>Project :</b> {{ $booking->flat->project->projectName }}</h3>
-                        <h4><b>Address:</b> {{ $booking->flat->project->address.', '.$booking->flat->project->city.', '.$booking->flat->project->address }}</h4>
+                        <h4><b>Address:</b> {{ $booking->flat->project->address.', '.$booking->flat->project->city}}</h4>
                         <h4>{{ $booking->flat->project->district->name.'- '.$booking->flat->project->zipCode}}</h4>
                 </div>
             </div>

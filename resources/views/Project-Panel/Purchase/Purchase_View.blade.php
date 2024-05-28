@@ -9,7 +9,7 @@
                     <h2 class="fw-bold">{{ $comInfo->name }}</h2>
                     <h4 class="fw-semibold"><b>Email:</b> {{ $comInfo->email }}</h4>
                     <h4 class="fw-bold"><b>Project: </b>{{ $purchase->project->projectName }}</h2>
-                    <h4><b>Address:</b> {{ $purchase->project->address.', '.$purchase->project->city.', '.$purchase->project->address }}</h4>
+                    <h4><b>Address:</b> {{ $purchase->project->address.', '.$purchase->project->city}}</h4>
                     <h4>{{ $purchase->project->district->name.'- '.$purchase->project->zipCode}}</h4>
                 </div>
             </div>

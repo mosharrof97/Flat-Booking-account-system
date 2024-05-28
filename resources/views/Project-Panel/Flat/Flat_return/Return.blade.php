@@ -20,7 +20,7 @@
                 <div class="col-md-12">
                     <div class="text-center">
                         <h2 class="fw-bold">{{ $flat->project->projectName }}</h2>
-                        <h4><b>Address:</b> {{ $flat->project->address.', '.$flat->project->city.', '.$flat->project->address }}</h4>
+                        <h4><b>Address:</b> {{ $flat->project->address.', '.$flat->project->city}}</h4>
                         <h4>{{ $flat->project->district->name.'- '.$flat->project->zipCode}}</h4>
                     </div>
                 </div>

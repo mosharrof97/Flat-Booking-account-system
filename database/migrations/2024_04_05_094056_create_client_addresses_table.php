@@ -14,15 +14,15 @@ return new class extends Migration
         Schema::create('client_addresses', function (Blueprint $table) {
             $table->id();
             $table->foreignId('client_id')->onDelete('cascade');
-            $table->string('pre_address');
-            $table->string('pre_city');
-            $table->string('pre_district');
-            $table->integer('pre_zipCode');
+            $table->string('pre_address')->nullable();
+            $table->string('pre_city')->nullable();
+            $table->string('pre_district')->nullable();
+            $table->integer('pre_zipCode')->nullable();
 
-            $table->string('per_address');
-            $table->string('per_city');
-            $table->string('per_district');
-            $table->integer('per_zipCode');
+            $table->string('per_address')->nullable();
+            $table->string('per_city')->nullable();
+            $table->string('per_district')->nullable();
+            $table->integer('per_zipCode')->nullable();
             $table->timestamps();
         });
     }
