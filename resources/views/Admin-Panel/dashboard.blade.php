@@ -9,12 +9,27 @@
 
             <!-- Widgets -->
             <div class="row ">
+                <div class="col-lg-3 col-sm-6">
+                    <div class="card border-warning dash-card">
+                        <div class="card-body p-3 d-flex justify-content-between d-flex justify-content-between">
+                            <div class=" text-center">
+                                <h5 class="card-result">{{ $projects->count() }}</h5>
+                                <h5 class="card-text">Totel Project</h5>
+                            </div>
+                            <div class="">
+                                <div class="icon-circle bg-warning text-white">
+                                    <i class="fas fa-shopping-cart material-icons" width="50"></i> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="col-lg-3 col-sm-6">
                     <div class="card border-primary dash-card">
                         <div class="card-body p-3 d-flex justify-content-between d-flex justify-content-between">
                             <div class=" text-center">
-                                <h5 class="card-result">0</h5>
+                                <h5 class="card-result">{{ $flats->count() }}</h5>
                                 <h5 class="card-text">Total Flat </h5>
                             </div>
                             <div class="">
@@ -26,41 +41,12 @@
                     </div>
                 </div>
 
-                {{-- <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
-                    <div class="card gradient-16 p-3">
-                        <div class="icon">
-                            <i class="fas fa-project-diagram"></i>
-                        </div>
-                        <div class="content">
-                            <div class="text"><h4>Project</h4></div>
-                            <div class="number count-to" data-from="0" data-to="985"
-                                 data-speed="1000"
-                                 data-fresh-interval="0"></div>
-                        </div>
-                    </div>
-                </div> --}}
-
-
-                {{-- <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
-                    <div class="card gradient-3 p-3">
-                        <div class="icon">
-                            <i class="fas fa-boxes"></i>
-                        </div>
-                        <div class="content">
-                            <div class="text"><h4>Product</h4></div>
-                            <div class="number count-to" data-from="0" data-to="325"
-                                 data-speed="1000"
-                                 data-fresh-interval="0"></div>
-                        </div>
-                    </div>
-
-                </div> --}}
 
                 <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
                     <div class="card  dash-card" style="border-color:rgb(163, 80, 3)">
                         <div class="card-body p-3 d-flex justify-content-between d-flex justify-content-between">
                             <div class=" text-center">
-                                <h5 class="card-result">0</h5>
+                                <h5 class="card-result">{{ $flats->count() }}</h5>
                                 <h5 class="card-text">Complate Flat</h5>
                             </div>
                             <div class="">
@@ -88,40 +74,13 @@
                     </div>
                 </div>
 
-                {{-- <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
-                    <div class="card gradient-13 p-3">
-                        <div class="icon">
-                            <i class="fas fa-dolly"></i>
-                        </div>
-                        <div class="content">
-                            <div class="text"><h4>Sell</h4></div>
-                            <div class="number count-to" data-from="0" data-to="784"
-                                 data-speed="1000"
-                                 data-fresh-interval="0"></div>
-                        </div>
-                    </div>
-                </div> --}}
-
-                {{-- <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
-                    <div class="card gradient-15 p-3">
-                        <div class="icon">
-                            <i class="fas fa-shopping-cart"></i>
-                        </div>
-                        <div class="content">
-                            <div class="text"><h4>Purchase RQN</h4></div>
-                            <div class="number count-to" data-from="0" data-to="659"
-                                 data-speed="1000"
-                                 data-fresh-interval="0"></div>
-                        </div>
-                    </div>
-                </div> --}}
 
                 <div class="col-lg-3 col-sm-6">
                     <div class="card  dash-card" style="border-color:#01b4b4">
                         <div class="card-body p-3 d-flex justify-content-between d-flex justify-content-between">
                             <div class=" text-center">
-                                <h5 class="card-result">1000</h5>
-                                <h5 class="card-text">Totel Customer</h5>
+                                <h5 class="card-result">{{ $client->count() }}</h5>
+                                <h5 class="card-text">Totel Client</h5>
                             </div>
                             <div class="">
                                 <div class="icon-circle  text-white" style="background-color: #01b4b4">
@@ -133,55 +92,10 @@
                 </div>
 
                 <div class="col-lg-3 col-sm-6">
-                    <div class="card border-warning dash-card">
-                        <div class="card-body p-3 d-flex justify-content-between d-flex justify-content-between">
-                            <div class=" text-center">
-                                <h5 class="card-result">1000</h5>
-                                <h5 class="card-text">Totel Investor</h5>
-                            </div>
-                            <div class="">
-                                <div class="icon-circle bg-warning text-white">
-                                    <i class="fas fa-shopping-cart material-icons" width="50"></i> 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {{-- <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
-                    <div class="card gradient-18 p-3">
-                        <div class="icon">
-                            <i class="fas fa-shopping-cart"></i>
-                        </div>
-                        <div class="content">
-                            <div class="text"><h4>Purchase Order</h4></div>
-                            <div class="number count-to" data-from="0" data-to="451"
-                                 data-speed="1000"
-                                 data-fresh-interval="0"></div>
-                        </div>
-                    </div>
-                </div> --}}
-
-
-                {{-- <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
-                    <div class="card gradient-9 p-3">
-                        <div class="icon">
-                            <i class="fas fa-file-invoice-dollar"></i>
-                        </div>
-                        <div class="content">
-                            <div class="text"><h4>Ledger Type</h4></div>
-                            <div class="number count-to" data-from="0"
-                                 data-to="702" data-speed="1000"
-                                 data-fresh-interval="20"></div>
-                        </div>
-                    </div>
-                </div> --}}
-
-                <div class="col-lg-3 col-sm-6">
                     <div class="card  dash-card" style="border-color:#4b5819">
                         <div class="card-body p-3 d-flex justify-content-between d-flex justify-content-between">
                             <div class=" text-center">
-                                <h5 class="card-result">0</h5>
+                                <h5 class="card-result">{{ $soldFlat->count() }}</h5>
                                 <h5 class="card-text">Totel Sold</h5>
                             </div>
                             <div class="">
@@ -193,39 +107,11 @@
                     </div>
                 </div>
 
-                {{-- <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
-                    <div class="card gradient-6 p-3">
-                        <div class="icon">
-                            <i class="fas fa-file-invoice-dollar"></i>
-                        </div>
-                        <div class="content">
-                            <div class="text"><h4>Ledger Group</h4></div>
-                            <div class="number count-to" data-from="0"
-                                 data-to="300" data-speed="1000"
-                                 data-fresh-interval="20"></div>
-                        </div>
-                    </div>
-                </div> --}}
-
-                {{-- <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
-                    <div class="card gradient-4 p-3">
-                        <div class="icon">
-                            <i class="fas fa-file-invoice-dollar"></i>
-                        </div>
-                        <div class="content">
-                            <div class="text"><h4>Ledger </h4></div>
-                            <div class="number count-to" data-from="0"
-                                 data-to="1200" data-speed="1000"
-                                 data-fresh-interval="20"></div>
-                        </div>
-                    </div>
-                </div> --}}
-
                 <div class="col-lg-3 col-sm-6">
                     <div class="card  dash-card" style="border-color:#940368">
                         <div class="card-body p-3 d-flex justify-content-between d-flex justify-content-between">
                             <div class=" text-center">
-                                <h5 class="card-result">0</h5>
+                                <h5 class="card-result">{{ $unSoldFlat->count() }}</h5>
                                 <h5 class="card-text">Totel Unsold Flat</h5>
                             </div>
                             <div class="">
@@ -252,34 +138,6 @@
                         </div>
                     </div>
                 </div>
-
-                {{-- <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
-                    <div class="card gradient-11 p-3">
-                        <div class="icon">
-                            <i class="fas fa-university"></i>
-                        </div>
-                        <div class="content">
-                            <div class="text"><h4>Bank Or Cash</h4></div>
-                            <div class="number count-to" data-from="0" data-to="900"
-                                 data-speed="1000"
-                                 data-fresh-interval="20"></div>
-                        </div>
-                    </div>
-                </div> --}}
-
-                {{-- <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
-                    <div class="card gradient-12 p-3">
-                        <div class="icon">
-                            <i class="fas fa-user"></i>
-                        </div>
-                        <div class="content">
-                            <div class="text"><h4>User</h4></div>
-                            <div class="number count-to" data-from="0" data-to="800"
-                                 data-speed="1000"
-                                 data-fresh-interval="20"></div>
-                        </div>
-                    </div>
-                </div> --}}
 
                 <div class="col-lg-3 col-sm-6">
                     <div class="card  dash-card" style="border-color:#3c768d">
@@ -328,38 +186,6 @@
                         </div>
                     </div>
                 </div>
-
-                {{-- <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
-                    <div class="card gradient-1 p-3">
-                        <div class="icon">
-                            <i class="fas fa-user-lock "></i>
-                        </div>
-                        <div class="content">
-                            <div class="text"><h4>Role Manage</h4></div>
-                            {{-- <div class="number count-to" data-from="0" data-to="{{  count(App\RoleManage::all()) }}"
-                                 data-speed="1000"
-                                 data-fresh-interval="20"></div> 
-                                 <div class="number count-to" data-from="0" data-to="500"
-                                 data-speed="1000"
-                                 data-fresh-interval="20"></div>
-                        </div>
-                    </div>
-                </div> --}}
-
-                {{-- <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
-                    <div class="card gradient-2 p-3">
-                        <div class="icon">
-                            <i class="fas fa-receipt"></i>
-                        </div>
-                        <div class="content">
-                            <div class="text"><h4>Report</h4></div>
-                            <div class="number count-to" data-from="0" data-to="14"
-                                 data-speed="1000"
-                                 data-fresh-interval="20"></div>
-                        </div>
-                    </div>
-                </div> --}}
-                <!-- #END# Widgets -->
             </div>
 
 

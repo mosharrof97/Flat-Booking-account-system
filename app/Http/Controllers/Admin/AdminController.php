@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Admin;
+use App\Models\Project;
+use App\Models\Flat;
+use App\Models\Payment;
+use App\Models\Client;
+use App\Models\Purchase;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rules;
 use Illuminate\Auth\Events\Registered;
@@ -15,8 +20,19 @@ class AdminController extends Controller
 {
     public function dashboard(){
         // dd(auth()->user());
+        $data = [
+            'projects' => Project::get(),
+            'flats'=> Flat::get(),
+            'soldFlat'=> Flat::where('sale_status',2)->get(),
+            'unSoldFlat'=> Flat::where('sale_status',0)->get(),
+            'payment'=> Payment::get(),   
+            'client'=> Client::get(), 
+            'purchase'=> Purchase:: get(),    
+            'purchasePay' => PurchaseDuePay::get(),    
+        ];
+        
 
-        return view('Admin-Panel.dashboard');
+        return view('Admin-Panel.dashboard', $data);
     }
 
 
