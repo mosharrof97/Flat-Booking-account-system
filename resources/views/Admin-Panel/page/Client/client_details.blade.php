@@ -7,7 +7,7 @@
             <div class="card-body">
                 
                 <style>
-                    .table-information {
+                    /* .table-information {
                         width: 100%;
                         margin-bottom: 1rem;
                         color: #BDBDC7;
@@ -19,7 +19,7 @@
                         font-size: 15px;
                         font-style: italic;
                         font-family: emoji;
-                    }
+                    } */
                     .client-info th,
                     .client-info td {
                         padding: 0.2rem !important;
