@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('nid',20)->unique()->nullable();
             $table->string('tin',20)->unique()->nullable();
             $table->foreignId('role_id')->nullable();
-            $table->enum('active_status',['active', 'inactive'])->default('inactive');
+            $table->enum('active_status',['active', 'inactive'])->default('active');
             $table->string('status')->default(0);
             $table->string('password')->nullable();
             $table->string('image')->nullable();

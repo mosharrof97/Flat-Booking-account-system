@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\Client;
 use App\Models\District;
 use App\Models\ClientAddress;
+use App\Models\Payment;
+use App\Models\Flat;
 use DB;
 
 class ClientController extends Controller
@@ -170,9 +172,21 @@ class ClientController extends Controller
     }
 
     public function view($id) {
-        $client = Client::where('status',0)->where('id',$id)->first();
-
-        return view('Admin-Panel.page.Client.client_details',['client' => $client]);
+        $client = Client::where('status', 0)->where('id', $id)->first();
+    
+        if (!$client) {
+            abort(404, 'Client not found');
+        }
+    
+        $flats = Flat::where('client_id', $client->id)->get();
+        $flatIds = $flats->pluck('id'); 
+        $payments = Payment::whereIn('flat_id', $flatIds)->get();
+    
+        return view('Admin-Panel.page.Client.client_details', [
+            'client' => $client,
+            'flats' => $flats,
+            'payments' => $payments
+        ]);
     }
 
     public function delete($id) {
