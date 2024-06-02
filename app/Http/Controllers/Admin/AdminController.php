@@ -6,15 +6,17 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
+use Illuminate\Validation\Rules;
+use Illuminate\Auth\Events\Registered;
 use App\Models\Admin;
 use App\Models\Project;
 use App\Models\Flat;
 use App\Models\Payment;
 use App\Models\Client;
 use App\Models\Purchase;
-use Illuminate\Support\Str;
-use Illuminate\Validation\Rules;
-use Illuminate\Auth\Events\Registered;
+use App\Models\PurchaseDuePay;
+
 
 class AdminController extends Controller
 {
@@ -30,7 +32,7 @@ class AdminController extends Controller
             'purchase'=> Purchase:: get(),    
             'purchasePay' => PurchaseDuePay::get(),    
         ];
-        
+       //return$data['purchasePay'];
 
         return view('Admin-Panel.dashboard', $data);
     }

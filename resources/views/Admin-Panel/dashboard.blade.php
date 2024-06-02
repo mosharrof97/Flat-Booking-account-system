@@ -143,7 +143,7 @@
                     <div class="card  dash-card" style="border-color:#3c768d">
                         <div class="card-body p-3 d-flex justify-content-between d-flex justify-content-between">
                             <div class=" text-center">
-                                <h5 class="card-result">0</h5>
+                                <h5 class="card-result">{{ number_format( $purchase->sum('payable_amount'),2,'.',',') }}</h5>
                                 <h5 class="card-text">Totel Purchase Amount</h5>
                             </div>
                             <div class="">
@@ -159,7 +159,7 @@
                     <div class="card  dash-card" style="border-color:#6c2ffa">
                         <div class="card-body p-3 d-flex justify-content-between d-flex justify-content-between">
                             <div class=" text-center">
-                                <h5 class="card-result">0</h5>
+                                <h5 class="card-result">{{ number_format( $purchase->sum('paid'),2,'.',',') }}</h5>
                                 <h5 class="card-text">Paid Purchase Amount</h5>
                             </div>
                             <div class="">
@@ -175,7 +175,7 @@
                     <div class="card  dash-card" style="border-color:#53a885">
                         <div class="card-body p-3 d-flex justify-content-between d-flex justify-content-between">
                             <div class=" text-center">
-                                <h5 class="card-result" >0</h5>
+                                <h5 class="card-result" >{{ number_format( $purchase->sum('due'),2,'.',',') }}</h5>
                                 <h5 class="card-text" >Due Purchase Amount</h5>
                             </div>
                             <div class="">
