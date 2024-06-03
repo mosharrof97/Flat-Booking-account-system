@@ -36,7 +36,7 @@ class ClientController extends Controller
 
         $request->validate([
             'name' => 'required|string|max:255',
-            'phone' => 'required|max:255|unique:employees,phone',
+            'phone' => 'required|max:15|unique:employees,phone',
             'email' => 'required|email|max:255|unique:employees,email',
             // 'father_name' => 'required|string|max:255',
             // 'mother_name' => 'required|string|max:255',

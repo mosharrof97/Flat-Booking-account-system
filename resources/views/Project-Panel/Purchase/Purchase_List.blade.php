@@ -17,12 +17,13 @@
 
                             <tr>
                                 <th scope="col" class="flex-wrap">SL</th>
+                                <th scope="col" class="flex-wrap">Date</th>
                                 <th scope="col" class="flex-wrap">Invoice No</th>
                                 <th scope="col" class="flex-wrap">Memo No</th>
                                 <th scope="col" class="flex-wrap">Vendor Name</th>
                                 <th scope="col" class="flex-wrap">Phone</th>
                                 <th scope="col" class="flex-wrap">Amount</th>
-                                <th scope="col" class="flex-wrap">Date</th>
+                                <th scope="col" class="flex-wrap">Due</th>
                                 <th scope="col" class="flex-wrap">Created By</th>
                                 <th scope="col" class="flex-wrap">Action</th>
                             </tr>
@@ -32,14 +33,14 @@
                             @foreach ($purchases as $key => $purchase )
                             <tr>
                                 <th scope="row">{{  $key + 1 }}</th>
-
+                                <td>{{ $purchase->date->format('d-M-y') }}</td>
                                 {{-- <td>{{ $purchase->order_no }}</td> --}}
                                 <td>{{  $purchase->invoice_no }}</td>
                                 <td>{{ $purchase->memo_no  }}</td>
                                 <td>{{ $purchase->vendor->name  }}</td>
                                 <td>{{ $purchase->vendor->phone }}</td>
-                                <td>{{ number_format($purchase->total,2,'.',',') }}</td>
-                                <td>{{ $purchase->date }}</td>
+                                <td>{{ number_format($purchase->payable_amount,2,'.',',') }}</td>
+                                <td>{{ number_format($purchase->due,2,'.',',') }}</td>
                                 <td>{{ $purchase->project->user->name }}</td>
 
                                 {{-- @php

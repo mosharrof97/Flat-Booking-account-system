@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Investor;
 use App\Models\District;
 use App\Models\Project;
+use App\Models\ComponyInfo;
 
 
 class ProjectController extends Controller
@@ -85,7 +86,8 @@ class ProjectController extends Controller
 
     public function view($id){
         $project = Project::where('status',0)->where('id', $id)->first();
-        return view('Admin-Panel.page.Project.Project_View', compact('project'));
+        $comInfo = ComponyInfo::firstOrFail(); 
+        return view('Admin-Panel.page.Project.Project_View', compact(['project', 'comInfo']));
     }
 
     public function edit($id){
@@ -173,6 +175,6 @@ class ProjectController extends Controller
         $client = Project::withTrashed()->findOrFail($id);
         $client->restore();
 
-        return redirect()->route('client.list')->with('status','Project Restore Successfully');
+        return redirect()->route('client.list')->with('message','Project Restore Successfully');
     }
 }

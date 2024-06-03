@@ -103,6 +103,18 @@ class ProjectPurchaseController extends Controller
                 ];
                 $Purchases = Purchase::create($purchasesData);
 
+                //========== Purchase Due Pay Table ============//
+                $data = [
+                    'date'=>$request->date,
+                    'purchase_id'=>$Purchases->id,
+                    'invoice_no'=>$Purchases->invoice_no,
+                    'due'=>$request->due,
+                    'pay'=>$request->paid,
+                    'created_by'=>auth()->id(),
+                ];
+                PurchaseDuePay::create($data);
+                //========== Purchase Due Pay Table ============//
+
                 DB::commit();
 
                 return redirect()->route('project.purchase.list')-> with('success','Purchase Add Successful.');

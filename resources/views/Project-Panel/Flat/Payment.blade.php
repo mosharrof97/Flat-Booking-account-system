@@ -7,9 +7,6 @@
 
             <div class="card-body">
 
-                @php
-                    // dd($installment->flatSale_id);
-                @endphp
                 <div class="col-md-12">
                     <div class="text-center">
                         <img src="{{ asset('upload/CompanyInfo/'. $comInfo->logo) }}" alt="" width="100">

@@ -46,6 +46,11 @@ class Project extends AuthenticatableUser implements Authenticatable
         'deleted_by',
     ];
 
+    protected $casts=[
+        'start_date' =>'datetime',
+        'end_date' =>'datetime',
+    ];
+
     public function district(): BelongsTo
     {
         return $this->BelongsTo(District::class);

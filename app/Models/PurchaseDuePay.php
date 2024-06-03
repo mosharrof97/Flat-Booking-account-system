@@ -20,6 +20,12 @@ class PurchaseDuePay extends Model
         'created_by',
     ];
 
+    protected $casts=[
+        'date' =>'datetime',
+    ];
+
+    
+
     public function purchase() {
         return $this->BelongsTo(Purchase::class);
     }

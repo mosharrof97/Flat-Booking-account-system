@@ -14,7 +14,10 @@ return new class extends Migration
         Schema::create('purchases', function (Blueprint $table) {
             $table->id();
             $table->foreignId('project_id')->nullable();
-            $table->foreignId('vendor_id')->nullable();
+            $table->foreignId('vendor_id')
+                    ->constrained('vendors')
+                    ->onUpdate('cascade')
+                    ->onDelete('cascade')->nullable();
             $table->string('memo_no');
             $table->date('date');
             $table->bigInteger('invoice_no');

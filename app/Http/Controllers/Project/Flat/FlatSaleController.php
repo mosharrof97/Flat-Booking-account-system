@@ -167,7 +167,7 @@ class FlatSaleController extends Controller
             return redirect()->route('list.project')-> with('error','Project Id Is Null');
         }
     }
-
+    
 
     public function payment($id){
         $project_id = Session::get('project_id');
@@ -210,5 +210,13 @@ class FlatSaleController extends Controller
         }else{
             return redirect()->route('list.project')-> with('error','Project Id Is Null');
         }
+    }
+
+    public function paymentDelete($id){
+       $payment = Payment::find($id);
+
+       $payment->delete();
+
+       return back();
     }
 }

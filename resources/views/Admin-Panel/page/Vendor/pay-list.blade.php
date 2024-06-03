@@ -54,7 +54,6 @@
                                             <tr>
                                                 <th style="width: 50px !important;">Sl</th>
                                                 <th> Date</th>
-                                                <th> Project</th>
                                                 <th>Debit</th>
                                                 <th> Credit</th>
                                                 <th> Received By</th>
@@ -62,27 +61,26 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($purchases as $key => $purchase)
+                                            @foreach ($pay as $key => $data)
                                                 <tr>
                                                     <td style="width: 50px !important;">{{ $key + 1 }}</td>
-                                                    <td>{{ $purchase->date->format('d-M-y') }}</td>
-                                                    <td>{{ $purchase->project->projectName }}</td>
+                                                    <td>{{ $data->date->format('d-M-y') }}</td>
                                                     <td>
                                                         <font color="blue">
-                                                            {{ number_format($purchase->paid == 0 ? 0 : $purchase->paid, 2, '.', ',') }}
+                                                            {{ number_format($data->pay == 0 ? 0 : $data->pay, 2, '.', ',') }}
                                                             Taka</font>
                                                     </td>
                                                     <td>
                                                         <font color="blue">
-                                                            {{ number_format($purchase->due == 0 ? 0 : $purchase->due, 2, '.', ',') }}
+                                                            {{ number_format($data->due == 0 ? 0 : $data->due, 2, '.', ',') }}
                                                             Taka</font>
                                                     </td>
                                                     <td>
-                                                        <span class="" style="color:green; font-weight: 700; font-size:14px">{{ $purchase->user->name }}</span>
+                                                        <span class="" style="color:green; font-weight: 700; font-size:14px">{{ $data->user->name }}</span>
 
                                                     </td>
                                                     <td class="action">
-                                                        <a href="{{ route('vendor.pay.list',$purchase->id) }}"  class="btn btn-light"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                                                        <a href="{{ route('vendor.pay.delete',$data->id) }}"  class="btn btn-light"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                                                     </td> 
                                                 </tr>
                                             @endforeach

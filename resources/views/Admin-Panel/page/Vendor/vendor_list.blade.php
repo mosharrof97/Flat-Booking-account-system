@@ -56,7 +56,7 @@
     <script>
         new DataTable('#vendorTable'
         // , {
-        //     layout: {
+        //     layout: {0..
         //         topStart: {
         //             buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
         //         }

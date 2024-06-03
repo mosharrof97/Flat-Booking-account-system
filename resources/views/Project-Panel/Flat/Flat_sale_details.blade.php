@@ -128,7 +128,7 @@
                                 <th scope="col" class="flex-wrap">Account Number</th>
                                 <th scope="col" class="flex-wrap">Check Number</th>
                                 <th scope="col" class="flex-wrap">Amount</th>
-                                <th scope="col" class="flex-wrap action-hide">Action</th>
+                                <th scope="col" class="flex-wrap action">Action</th>
                                 {{-- <th scope="col" class="flex-wrap">Received_by</th> --}}
                             </tr>
                         </thead>
@@ -143,8 +143,9 @@
                                 <td>{{ $payment->account_number }}</td>
                                 <td>{{ $payment->check_number}}</td>
                                 <td>{{ number_format( $payment->amount,2,'.',',')}}</td>
-                                <td class="action-hide">
+                                <td class="action">
                                     <a href="{{ route('paySlip',$payment->id) }}"  class="btn btn-light"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                                    <a href="{{ route('payment.delete',$payment->id) }}"  class="btn btn-light"><i class="fa-solid fa-trash-can"></i></a>
                                 </td>                                
                             </tr>
                             @endforeach

@@ -54,7 +54,7 @@
     new DataTable('#claintTable', {
         layout: {
             topStart: {
-                buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+                buttons: ['pdf', 'print']
             }
         }
     });

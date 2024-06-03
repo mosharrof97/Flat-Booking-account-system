@@ -55,9 +55,9 @@
                                                 <span class="fa fa-check"></span>
                                               </button>
                                         </td>
-                                        <td>{{ $project->budget }}</td>
-                                        <td>{{ $project->land_area }} Squer Fit</td>
-                                        <td>{{ $project->duration }} Year</td>
+                                        <td>{{ number_format( $project->budget == 0 ? '0.00':$project->budget,2,'.',',') }}</td>
+                                        <td>{{ $project->land_area == 0 ? '0' : $project->land_area  }} Squer Fit</td>
+                                        <td>{{ $project->duration == null ? '0 Year': $project->duration.' Year' }} </td>
 
                                         <td>
                                             <a href="{{ route('project.dashboard', $project->id) }} "
@@ -134,7 +134,7 @@
         new DataTable('#projectTable', {
             layout: {
                 topStart: {
-                    buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+                    buttons: ['pdf', 'print']
                 }
             }
         });

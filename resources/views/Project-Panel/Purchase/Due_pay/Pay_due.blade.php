@@ -37,7 +37,7 @@
 
                         <div class="form-group col-md-6 ">
                             <label for="due" class="col-sm-4 col-form-label text-right bg-info">Due</label>
-                            <input type="decimal" name="due" class="form-control col-sm-8" id="due" style="background-color: rgb(218, 218, 218)" value="{{ $purchase->due }}" required="" readonly="">
+                            <input type="decimal" name="due" class="form-control col-sm-8" id="due" style="background-color: rgb(218, 218, 218)" value="{{  $purchase->due }}" required="" readonly="">
                             @error('due')
                             <span class="text-danger">{{ $message }}</span>
                             @enderror

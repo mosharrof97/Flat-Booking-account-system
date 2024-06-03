@@ -13,30 +13,43 @@
                     @csrf
                     <div class="form-group col-md-6 mb-3">
                         <label for="name" class="col-sm-4 col-form-label text-right">Vandor Name</label>
-                        <input type="text" name="name" class="form-control col-sm-8" placeholder="Vandor Name" value="" id="name" required="">
+                        <div class="col-sm-8">
+                            <div class="row">
+                                <input type="text" name="name" class="form-control col-sm-12" placeholder="Vandor Name" value="" id="name" required="">
 
-                        @error('name')
-                        <span class="text-danger">{{ $message }}</span>
-                        @enderror
+                                @error('name')
+                                <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>                            
+                        </div>
+                        
                     </div>
                     <div class="form-group col-md-6 mb-3">
                         <label for="phone" class="col-sm-4 col-form-label text-right">Phone Number</label>
-                        <input type="text" name="phone" class="form-control col-sm-8" placeholder="Phone Number" value="" id="phone" required="">
+                        <div class="col-sm-8">
+                            <div class="row">
+                                <input type="text" name="phone" class="form-control col-sm-12" placeholder="Phone Number" value="" id="phone" required="">
 
-                        @error('phone')
-                        <span class="text-danger">{{ $message }}</span>
-                        @enderror
+                                @error('phone')
+                                <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        
                     </div>
 
                     <div class="form-group col-md-6 mb-3">
                         <label for="address" class="col-sm-4 col-form-label text-right">Address</label>
-                        <input type="text" name="address" class="form-control col-sm-8" placeholder="Address" id="address" required="">
+                        <div class="col-sm-8 ">
+                            <div class="row">
+                                <input type="text" name="address" class="form-control col-sm-12" placeholder="Address" id="address" required="">
 
-                        @error('address')
-                        <span class="text-danger">{{ $message }}</span>
-                        @enderror
+                                @error('address')
+                                <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>                           
+                        </div>                        
                     </div>
-
 
                     <div class="form-group col-md-12 mb-3">
                         <button type="submit" class="btn btn-success">Save</button>

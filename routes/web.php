@@ -170,6 +170,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 
                 Route::get('/{id}/payment', [FlatSaleController::class, 'payment'])->name('payment.from');
                 Route::post('/payment', [FlatSaleController::class, 'paymentStore'])->name('payment.store');
+                Route::get('{id}/payment/delete',[FlatSaleController::class, 'paymentDelete'])->name('payment.delete');
 
                 //Flat Return                
                 Route::get('/return/list', [FlatReturnController::class, 'index'])->name('return.list');
@@ -178,11 +179,11 @@ Route::prefix('admin')->middleware('auth')->group(function () {
                 Route::get('/{id}/return/view', [FlatReturnController::class, 'view'])->name('return.view');
                 Route::get('/return/{id}/payment', [FlatReturnController::class, 'payment'])->name('return.payment.from');
                 Route::post('/return/payment', [FlatReturnController::class, 'paymentStore'])->name('return.payment.store');
-                //pay Slip
+                //Return pay Slip
                 Route::get('/return/{id}/pay-slip',[FlatReturnController::class, 'paySlip'])->name('return.paySlip');
                             
 
-                //pay Slip
+                //Sale pay Slip
                 Route::get('{id}/pay-slip',[FlatSaleController::class, 'paySlip'])->name('paySlip');
             });
 
@@ -242,6 +243,8 @@ Route::prefix('admin')->middleware('auth')->group(function () {
         Route::get('/create', [VendorController::class, 'create'])->name('vendor.create');
         Route::post('/create', [VendorController::class, 'store'])->name('vendor.store');
         Route::get('/{id}/view', [VendorController::class,'show'])->name('vendor.view');
+        Route::get('/{id}/pay/list', [VendorController::class,'payList'])->name('vendor.pay.list');
+        Route::get('/{id}/pay/delete', [VendorController::class,'payDelete'])->name('vendor.pay.delete');
         // Route::get('/{id}/edit', [VendorController::class,'edit'])->name('vendor.edit');
         // Route::put('/{id}/edit', [VendorController::class,'update'])->name('vendor.update');
         Route::get('/{id}/delete', [VendorController::class,'destroy'])->name('vendor.delete');

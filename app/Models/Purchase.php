@@ -43,6 +43,7 @@ class Purchase extends Model
         'unit' => 'array',
         'price' => 'array',
         'total_price' => 'array',
+        'date' => 'datetime',
     ];
 
     public function project() {
