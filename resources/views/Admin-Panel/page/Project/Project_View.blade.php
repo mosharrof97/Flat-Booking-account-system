@@ -64,7 +64,7 @@
                             <tr>
                                 <th scope="row" style="width: 20%">Investor</th>
                                 <td colspan="" style="width: 3%">:</td>
-                                <td colspan="3" style="width: 77%">1 </td>
+                                <td colspan="3" style="width: 77%">{{ $investment->groupBy('client_id')->count() }} </td>
                             </tr>
 
                             <tr>
@@ -131,38 +131,39 @@
                 <div class="">
                     <div class="table-responsive">
                         <table class="table">
-                            <thead>
+                            <thead class="table-success p-2">
                                 <tr>
                                     <th scope="col">SL</th>
                                     <th scope="col">Investor Name</th>
                                     <th scope="col"> Phone</th>
                                     <th scope="col">Email</th>
-                                    <th scope="col">Investment Total Amount</th>
                                     <th scope="col">Installment</th>
+                                    <th scope="col">Investment Total Amount</th>
                                     <th scope="col">Paid Amount</th>
                                     <th scope="col">Due Amount</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach($investment as $key => $value)
                                 <tr>
-                                    <th scope="row">1</th>
-                                    <td>Md. Rakid Hasan</td>
-                                    <td>0214587842</td>
-                                    <td>Rakid@mdo.com</td>
-                                    <td>5000000 Tk</td>
-                                    <td>3</td>
-                                    <td>3000000 TK</td>
-                                    <td>2000000 TK</td>
+                                    <th scope="row">{{ $key + 1 }}</th>
+                                    <td>{{ $value ->client->name }}</td>
+                                    <td>{{ $value ->client->phone }}</td>
+                                    <td>{{ $value ->client->email }}</td>
+                                    <td>{{ $value ->installment->count() }}</td>
+                                    <td>{{ number_format($value ->total_Investment,2,'.',',') }}</td>
+                                    <td>{{ number_format($value ->installment->sum('installment_amount'),2,'.',',') }} TK</td>
+                                    <td>{{ number_format($value ->total_Investment - $value ->installment->sum('installment_amount'),2,'.',',') }}  TK</td>
                                 </tr>
-                                <tr>
-                                    <th scope="row"></th>
-                                    <td colspan="3">Totel</td>
-                                    <td>5000000 Tk</td>
-                                    <td></td>
-                                    <td>3000000 TK</td>
-                                    <td>2000000 TK</td>
-                                </tr>
+                                @endforeach                               
                             </tbody>
+                            <tfoot class=" p-2">
+                                <th scope="col">SL</th>
+                                <th scope="col" colspan="4" class="text-center h4">Total</th>
+                                <th scope="col">{{ number_format($investment->sum('total_Investment'),2,'.',',') }}</th>
+                                <th scope="col">{{ number_format($investment->sum(function($data){return $data->installment->sum('installment_amount');}),2,'.',',') }} TK</th>
+                                <th scope="col">{{ number_format($investment->sum('total_Investment') - $investment->sum(function($data){return $data->installment->sum('installment_amount');}),2,'.',',') }}  TK</th>
+                            </tfoot>
                         </table>
                     </div>
                 </div>

@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Project;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Investor;
 use App\Models\District;
 use App\Models\Project;
 use App\Models\ComponyInfo;
+use App\Models\Investment;
 
 
 class ProjectController extends Controller
@@ -87,7 +87,9 @@ class ProjectController extends Controller
     public function view($id){
         $project = Project::where('status',0)->where('id', $id)->first();
         $comInfo = ComponyInfo::firstOrFail(); 
-        return view('Admin-Panel.page.Project.Project_View', compact(['project', 'comInfo']));
+        $investment = Investment::where('project_id', $project->id)->get();
+        //return $investment;
+        return view('Admin-Panel.page.Project.Project_View', compact(['project', 'comInfo', 'investment']));
     }
 
     public function edit($id){

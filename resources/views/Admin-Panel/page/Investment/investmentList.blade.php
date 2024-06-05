@@ -35,7 +35,7 @@
                                 <td>3000000</td>
                                 <td>2000000</td>
                                 <td>
-                                    <a href="{{route('investment.view')}} " class="btn btn-success">View</a>
+                                    <a href="{{route('view.investment')}} " class="btn btn-success">View</a>
                                 </td>
                             </tr>
                         </tbody>
