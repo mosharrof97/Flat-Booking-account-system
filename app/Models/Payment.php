@@ -14,6 +14,7 @@ class Payment extends Model
     protected $fillable = [
         'flat_id',
         'flat_sale_id',
+        'date',
         'payment_type',
         'amount',
         'bank_name',
@@ -23,6 +24,10 @@ class Payment extends Model
         'status',
 
         'received_by',
+    ];
+
+    protected $casts = [
+        'date' => 'datetime',
     ];
 
     public function user(): BelongsTo

@@ -40,7 +40,7 @@
                             <div style=" font-size: 17px; font-weight: 700; color:#000; ">Total Pay -Tk.{{ number_format($payments->sum('amount'), 2, '.', ',') }}/-</div>
                         </div>
                         <div class="col-sm-6 " style="text-align: end">
-                            <div style=" font-size: 17px; font-weight: 700; color:#000; ">Date:{{ $payment->created_at->format('d-M-y') }}</div>
+                            <div style=" font-size: 17px; font-weight: 700; color:#000; ">Date:{{ $payment->date->format('d-M-y') }}</div>
                             <div style=" font-size: 17px; font-weight: 700; color:#000; ">Payment No:{{ $payment->id + 500 }}</div>
                             <div style=" font-size: 17px; font-weight: 700; color:#000; ">Biller by: {{ $payment->user->name }}</div>
                         </div>

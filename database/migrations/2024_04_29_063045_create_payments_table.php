@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('flat_id');
             $table->unsignedBigInteger('flat_sale_id');
+            $table->date('date');
             $table->string('payment_type');
             $table->decimal('amount', 15, 2);
             $table->string('bank_name')->nullable();

@@ -191,6 +191,7 @@ class FlatSaleController extends Controller
             $data = [
                 'flat_id'=> $flatSaleInfo->flat->id,
                 'flat_sale_id'=> $flatSaleInfo->id,
+                'date'=>$request->date,
                 'payment_type'=> $request->payment_type,
                 'amount'=> $request->amount,
                 'bank_name'=> $request->bank_name,
