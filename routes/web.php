@@ -169,8 +169,14 @@ Route::prefix('admin')->middleware('auth')->group(function () {
                 Route::get('/{id}/sale', [FlatSaleController::class, 'flatSaleDetails'])->name('flat.sale.details');
 
                 Route::get('/{id}/payment', [FlatSaleController::class, 'payment'])->name('payment.from');
-                Route::post('/payment', [FlatSaleController::class, 'paymentStore'])->name('payment.store');
+                Route::post('/payment', [FlatSaleController::class, 'paymentStore'])->name('payment.store');                
                 Route::get('{id}/payment/delete',[FlatSaleController::class, 'paymentDelete'])->name('payment.delete');
+
+                Route::get('/{id}/refund', [FlatSaleController::class, 'refund'])->name('refund.from');
+                Route::post('/refund', [FlatSaleController::class, 'refundStore'])->name('refund.store');
+                Route::get('{id}/refund-details',[FlatSaleController::class, 'refundDetails'])->name('refund.details');
+                Route::get('{id}/refund-slip',[FlatSaleController::class, 'refundSlip'])->name('refundSlip');       
+                Route::get('{id}/refund/delete',[FlatSaleController::class, 'refundDelete'])->name('refund.delete');
 
                 //Flat Return                
                 Route::get('/return/list', [FlatReturnController::class, 'index'])->name('return.list');

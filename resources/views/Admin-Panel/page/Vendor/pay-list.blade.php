@@ -80,7 +80,7 @@
 
                                                     </td>
                                                     <td class="action">
-                                                        <a href="{{ route('vendor.pay.delete',$data->id) }}"  class="btn btn-light"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                                                        <a href="{{ route('vendor.pay.delete',$data->id) }}"  class="btn btn-light" style="background-color: #ff8a16 !important;"><i class="fa-solid fa-trash"></i></a>
                                                     </td> 
                                                 </tr>
                                             @endforeach

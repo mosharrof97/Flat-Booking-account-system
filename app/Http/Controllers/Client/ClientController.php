@@ -10,6 +10,7 @@ use App\Models\Client;
 use App\Models\District;
 use App\Models\ClientAddress;
 use App\Models\Payment;
+use App\Models\Refund;
 use App\Models\Flat;
 use DB;
 
@@ -181,11 +182,13 @@ class ClientController extends Controller
         $flats = Flat::where('client_id', $client->id)->get();
         $flatIds = $flats->pluck('id'); 
         $payments = Payment::whereIn('flat_id', $flatIds)->get();
+        $refunds = Refund::whereIn('flat_id', $flatIds)->get();
     
         return view('Admin-Panel.page.Client.client_details', [
             'client' => $client,
             'flats' => $flats,
-            'payments' => $payments
+            'payments' => $payments,
+            'refunds' => $refunds
         ]);
     }
 
