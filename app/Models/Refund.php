@@ -7,14 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-
-class Payment extends Model
+class Refund extends Model
 {
     use HasFactory;
     protected $fillable = [
         'flat_id',
         'flat_sale_id',
         'date',
+        'refund_no',
         'payment_type',
         'amount',
         'bank_name',

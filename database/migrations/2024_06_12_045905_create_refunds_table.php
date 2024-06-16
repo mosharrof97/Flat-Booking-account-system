@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('payments', function (Blueprint $table) {
+        Schema::create('refunds', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('flat_id');
             $table->unsignedBigInteger('flat_sale_id');
             $table->date('date');
+            $table->string('refund_no')->nullable();
             $table->string('payment_type');
             $table->decimal('amount', 15, 2);
             $table->string('bank_name')->nullable();
@@ -26,7 +27,8 @@ return new class extends Migration
             $table->unsignedBigInteger('received_by');
             $table->timestamps();
             $table->softDeletes();
-            
+
+
             // Adding foreign keys
             $table->foreign('flat_id')->references('id')->on('flats')
                 ->onUpdate('cascade')
@@ -49,6 +51,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('payments');
+        Schema::dropIfExists('refunds');
     }
 };

@@ -82,6 +82,10 @@ class User extends Authenticatable
         return $this->HasMany(Payment::class,'received_by');
     }
 
+    public function refund() {
+        return $this->HasMany(Refund::class,'received_by');
+    }
+
     public function paymentReturn() {
         return $this->HasMany(PaymentReturn::class,'id');
     }

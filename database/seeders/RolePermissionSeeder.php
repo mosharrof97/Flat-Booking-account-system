@@ -93,15 +93,15 @@ class RolePermissionSeeder extends Seeder
 
 
         // Create Roles
-        $superAdminRole = Role::create(['name' => 'super-admin']); //as super-admin
-        $adminRole = Role::create(['name' => 'admin']);
+        // $superAdminRole = Role::create(['name' => 'super-admin']); //as super-admin
+        // $adminRole = Role::create(['name' => 'admin']);
         // $staffRole = Role::create(['name' => 'staff']);
         // $userRole = Role::create(['name' => 'user']);
 
         // Lets give all permission to super-admin role.
-        $allPermissionNames = Permission::pluck('name')->toArray();
+        // $allPermissionNames = Permission::pluck('name')->toArray();
 
-        $superAdminRole->givePermissionTo($allPermissionNames);
+        // $superAdminRole->givePermissionTo($allPermissionNames);
 
         // // Let's give few permissions to admin role.
         // $adminRole->givePermissionTo(['create role', 'view role', 'update role']);
@@ -112,17 +112,17 @@ class RolePermissionSeeder extends Seeder
 
         // Let's Create User and assign Role to it.
 
-        $superAdminUser = User::firstOrCreate([
-                    'email' => 'superadmin@gmail.com',
-                ], [
-                    'name' => 'Super Admin',
-                    'phone' => '01774656835',
-                    'email' => 'superadmin@gmail.com',
-                    'designation' => 'Super Admin',
-                    'password' => Hash::make ('12345678'),
-                ]);
+        // $superAdminUser = User::firstOrCreate([
+        //             'email' => 'superadmin@gmail.com',
+        //         ], [
+        //             'name' => 'Super Admin',
+        //             'phone' => '01774656835',
+        //             'email' => 'superadmin@gmail.com',
+        //             'designation' => 'Super Admin',
+        //             'password' => Hash::make ('12345678'),
+        //         ]);
 
-        $superAdminUser->assignRole($superAdminRole);
+        // $superAdminUser->assignRole($superAdminRole);
 
 
         // $adminUser = User::firstOrCreate([

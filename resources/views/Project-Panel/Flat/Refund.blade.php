@@ -19,7 +19,7 @@
                 </div>
 
                 <div class="my-4">
-                    <h3 class="fw-bold fst-italic text-center">Payment</h3>
+                    <h3 class="fw-bold fst-italic text-center">Refund</h3>
                 </div>
                 <div class="my-3">
                     <table class="table table-borderless">
@@ -65,7 +65,7 @@
                     </table>
                 </div>
 
-                <form class="" action="{{ route('payment.store') }}" method="POST" enctype="multipart/form-data">
+                <form class="" action="{{ route('refund.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="row g-3">
                         <input type="hidden" name="flatSaleInfo_id" id="flatSaleInfo_id" value="{{ $flatSaleInfo->id }}">
@@ -81,7 +81,7 @@
 
                         <div class="col-md-6">
                             <label for="payable_amount" class="form-label">payable amount</label>
-                            <input type="decimal" class="form-control" id="payable_amount" value="{{number_format($flatSaleInfo->price - $payment->sum('amount'),2,'.',',') }}" name="payable_amount" readonly>
+                            <input type="decimal" class="form-control" id="payable_amount" value="{{number_format($payment->sum('amount') - $refund->sum('amount'),2,'.',',') }}" name="payable_amount" readonly>
 
                             @error('payable_amount')
                                 <span class="form-text text-danger">{{ $message }}</span>

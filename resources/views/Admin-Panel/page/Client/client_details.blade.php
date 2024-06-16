@@ -151,7 +151,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table class="table client-info">
+                                    <table class="table client-info table-bordered">
                                         <thead class="table-success p-2">
                                             <tr >
                                                 <th scope="col">SL</th>
@@ -161,6 +161,7 @@
                                                 <th scope="col">flat Area</th>
                                                 <th scope="col">flat Price</th>
                                                 <th scope="col">Pay Amount</th>
+                                                <th scope="col">Refund Amount</th>
                                                 <th scope="col">Due Amount</th>
                                             </tr>
                                         </thead>
@@ -174,6 +175,7 @@
                                                 <td>{{ $flat->flat_area }} Squer Fit</td>
                                                 <td>{{ number_format($flat->flatSaleInfo->price,2,'.',',') }}</td>
                                                 <td>{{ number_format($flat->flatSaleInfo->price - $flat->payment->sum('amount'),2,'.',',') }}</td>
+                                                <td>{{ number_format($flat->refund->sum('amount'),2,'.',',') }}</td>
                                                 <td>{{ number_format($flat->payment->sum('amount'),2,'.',',') }}</td>
                                             </tr>
                                             @endforeach
@@ -219,8 +221,20 @@
                                         <tfoot>
                 
                                             <tr>
-                                                <td colspan="7" class="text-right"> Total </td>
+                                                <td colspan="7" class="text-right fw-bold"> Total </td>
                                                 <td colspan="">{{number_format(  $payments->sum('amount'),2,'.',',') }}</td>
+                                                <td colspan=""></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td colspan="7" class="text-right fw-bold"> Total Refund </td>
+                                                <td colspan="">{{number_format(  $refunds->sum('amount'),2,'.',',') }}</td>
+                                                <td colspan=""></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td colspan="7" class="text-right fw-bold"> Total Amount </td>
+                                                <td colspan="">{{number_format(  $payments->sum('amount') - $refunds->sum('amount'),2,'.',',') }}</td>
                                                 <td colspan=""></td>
                                             </tr>
                                             

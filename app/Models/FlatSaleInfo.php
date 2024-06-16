@@ -29,4 +29,9 @@ class FlatSaleInfo extends Model
     {
         return $this->hasMany(Payment::class, 'flat_sale_id' );
     }
+
+    public function refund(): HasMany
+    {
+        return $this->hasMany(Refund::class, 'flat_sale_id' );
+    }
 }

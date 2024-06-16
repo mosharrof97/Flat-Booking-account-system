@@ -5,12 +5,7 @@
         <div class="card mb-2">
             <div class="card-header justify-content-end py-3">
                 <div class="">
-                    <a class="btn btn-primary" href="{{ route('refund.from', $flat->id) }}">Refund</a>
-                    {{-- @if (empty($refunds))
-                    <a href="{{ route('refund.details',$flatSale->flat_id) }}"  class="btn btn-info">Refund Details</a>
-                    @endif --}}
-                    <a class="btn btn-success" href="{{ route('payment.from', $flat->id) }}">Payment</a>
-                    <a class="btn btn-success" href="{{ route('return', $flat->id.'part=021364') }}">Flat Return</a>
+                    {{-- <a class="btn btn-success" href="{{ route('refund.pay.from', $flat->id) }}">Refun</a> --}}
                     <a class="btn btn-danger" href="{{ url()->previous() }}">back</a>
                 </div>
             </div>
@@ -38,7 +33,7 @@
                 </div>
 
                 <div class="col-sm-12 p-2 " style="background-color: #c0f0fc">
-                    <h4 class="fst-italic fw-bold p-0">Flat Information</h3>
+                    <h4 class="fst-italic fw-bold p-0">Refund Details</h3>
                 </div>
 
                 <div class="col-lg-3  col-md-4 col-sm-6">
@@ -145,19 +140,19 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ( $payments as $key => $payment )
+                            @foreach ( $refunds as $key => $refund )
                             <tr>
                                 <th scope="row">{{ $key + 1 }}</th>
-                                <td>{{ $payment->created_at->format('d-M-y') }}</td>
-                                <td>{{ $payment->payment_type }}</td>
-                                <td>{{ $payment->bank_name }}</td>
-                                <td>{{ $payment->branch }}</td>
-                                <td>{{ $payment->account_number }}</td>
-                                <td>{{ $payment->check_number}}</td>
-                                <td>{{ number_format( $payment->amount,2,'.',',')}}</td>
+                                <td>{{ $refund->created_at->format('d-M-y') }}</td>
+                                <td>{{ $refund->payment_type }}</td>
+                                <td>{{ $refund->bank_name }}</td>
+                                <td>{{ $refund->branch }}</td>
+                                <td>{{ $refund->account_number }}</td>
+                                <td>{{ $refund->check_number}}</td>
+                                <td>{{ number_format( $refund->amount,2,'.',',')}}</td>
                                 <td class="action">
-                                    <a href="{{ route('paySlip',$payment->id) }}"  class="btn btn-light"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                                    <a href="{{ route('payment.delete',$payment->id) }}"  class="btn btn-light"><i class="fa-solid fa-trash-can"></i></a>
+                                    <a href="{{ route('refundSlip',$refund->id) }}"  class="btn btn-light"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                                    <a href="{{ route('refund.delete',$refund->id) }}"  class="btn btn-light"><i class="fa-solid fa-trash-can"></i></a>
                                 </td>                                
                             </tr>
                             @endforeach
@@ -166,18 +161,7 @@
 
                             <tr>
                                 <td colspan="7" class="text-right fw-bold"> Total </td>
-                                <td colspan="">{{number_format(  $payments->sum('amount'),2,'.',',') }}</td>
-                            </tr>
-                            <tr>
-                                <td colspan="7" class="text-right fw-bold"> Total refunt</td>
                                 <td colspan="">{{number_format(  $refunds->sum('amount'),2,'.',',') }}</td>
-                                <td class="action">
-                                    <a href="{{ route('refund.details',$flatSale->flat_id) }}"  class="btn btn-light"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                                </td>  
-                            </tr>
-                            <tr>
-                                <td colspan="7" class="text-right fw-bold"> Total Amount</td>
-                                <td colspan="">{{number_format(  $payments->sum('amount') - $refunds->sum('amount'),2,'.',',') }}</td>
                             </tr>
                             
                         </tfoot>

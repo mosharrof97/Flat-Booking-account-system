@@ -13,6 +13,7 @@ use App\Models\District;
 use App\Models\Client;
 use App\Models\FlatSaleInfo;
 use App\Models\Payment;
+use App\Models\Refund;
 use App\Models\ComponyInfo;
 
 
@@ -139,10 +140,11 @@ class FlatSaleController extends Controller
                 // dd($flat->flatSaleInfo);
                 $flatSale = FlatSaleInfo::where('flat_id',$flat->id)->first();
                 $payments = Payment::where('flat_sale_id',$flatSale->id)->get();
+                $refunds = Refund::where('flat_sale_id',$flatSale->id)->get();
 
 
 
-                return view('Project-Panel.Flat.Flat_sale_details', compact(['flat','payments','comInfo','flatSale']));
+                return view('Project-Panel.Flat.Flat_sale_details', compact(['flat','payments','refunds','comInfo','flatSale']));
             }else{
 
                 return redirect()->route('flat.view.chart');
@@ -160,15 +162,18 @@ class FlatSaleController extends Controller
             $payments = Payment::where('flat_sale_id', $payment->flat_sale_id)
                                ->where('flat_id', $payment->flat_id)
                                ->get();
+            $refunds = Refund::where('flat_sale_id', $payment->flat_sale_id)
+                        ->where('flat_id', $payment->flat_id)
+                        ->get();
             $flatSale = FlatSaleInfo::findOrFail($payment->flat_sale_id);
 
-            return view('Project-Panel.Flat.pay_slip', compact(['payment','payments','flatSale','comInfo']));
+            return view('Project-Panel.Flat.pay_slip', compact(['payment','payments','refunds','flatSale','comInfo']));
         }else{
             return redirect()->route('list.project')-> with('error','Project Id Is Null');
         }
     }
     
-
+    // Payment 
     public function payment($id){
         $project_id = Session::get('project_id');
         if($project_id !== null){
@@ -191,6 +196,7 @@ class FlatSaleController extends Controller
             $data = [
                 'flat_id'=> $flatSaleInfo->flat->id,
                 'flat_sale_id'=> $flatSaleInfo->id,
+                'date'=>$request->date,
                 'payment_type'=> $request->payment_type,
                 'amount'=> $request->amount,
                 'bank_name'=> $request->bank_name,
@@ -213,10 +219,114 @@ class FlatSaleController extends Controller
     }
 
     public function paymentDelete($id){
-       $payment = Payment::find($id);
+        $payment = Payment::find($id);
+ 
+        $payment->delete();
+ 
+        return back();
+     }
+    // Payment
 
-       $payment->delete();
+    // Refund nclcakhtersalena24@gmail.com
+    public function refund($id){
+        $project_id = Session::get('project_id');
+        if($project_id !== null){
+            $flatSaleInfo = FlatSaleInfo::where('flat_id',$id)->first();
+            $comInfo = ComponyInfo::first();
+            $payment = Payment::where('flat_sale_id',$flatSaleInfo->id)->get();
+            $refund = Refund::where('flat_sale_id',$flatSaleInfo->id)->get();
 
-       return back();
+            // dd($flatSaleInfo->id);
+            return view('Project-Panel.Flat.Refund', compact('flatSaleInfo','comInfo','payment','refund'));
+        }else{
+            return redirect()->route('list.project')-> with('error','Project Id Is Null');
+        }
     }
+
+    public function refundStore(Request $request){
+        $project_id = Session::get('project_id');
+        if($project_id !== null){
+
+            $flatSaleInfo = FlatSaleInfo::find($request->flatSaleInfo_id);
+            $data = [
+                'flat_id'=> $flatSaleInfo->flat->id,
+                'flat_sale_id'=> $flatSaleInfo->id,
+                'date'=>$request->date,
+                'payment_type'=> $request->payment_type,
+                'amount'=> $request->amount,
+                'bank_name'=> $request->bank_name,
+                'branch'=> $request->branch,
+                'account_number'=> $request->account_number,
+                'check_number'=> $request->check_number,
+                'received_by'=>auth()->id(),
+            ];
+        $refund = Refund::create($data);
+        $refund->update(['refund_no'=>$refund->id + 1000]);
+
+
+        // $comInfo = ComponyInfo::first();
+        // $flatSale = FlatSaleInfo::find($flatSaleInfo->id);
+        // $payments = Payment::where('flat_sale_id',$flatSale->id)->get();
+
+        // dd($payments);
+            return redirect()->route('refundSlip',$refund->id);
+            // return view('Project-Panel.Flat.invoice', compact(['payment','payments','flatSale','comInfo']));
+        }else{
+            return redirect()->route('list.project')-> with('error','Project Id Is Null');
+        }
+    }
+
+    public function refundDetails($id){
+
+        $project_id = Session::get('project_id');
+        if($project_id !== null){
+            $comInfo = ComponyInfo::first();
+            $flat = Flat::find($id);
+            if($flat->sale_status == 2){
+                // dd($flat->flatSaleInfo);
+                $flatSale = FlatSaleInfo::where('flat_id',$flat->id)->first();
+                $payments = Payment::where('flat_sale_id',$flatSale->id)->get();
+                $refunds = Refund::where('flat_sale_id',$flatSale->id)->get();
+
+
+
+                return view('Project-Panel.Flat.Refund_details', compact(['flat','payments','refunds','comInfo','flatSale']));
+            }else{
+
+                return redirect()->route('flat.view.chart');
+            }
+        }else{
+            return redirect()->route('list.project')-> with('error','Project Id Is Null');
+        }
+    }
+
+    public function refundSlip($id){
+        $project_id = Session::get('project_id');
+        if($project_id !== null){
+            $comInfo = ComponyInfo::firstOrFail(); 
+            $refund = Refund::findOrFail($id);
+            $refunds = Refund::where('flat_sale_id', $refund->flat_sale_id)
+                               ->where('flat_id', $refund->flat_id)
+                               ->get();
+            $payments = Payment::where('flat_sale_id', $refund->flat_sale_id)
+                               ->where('flat_id', $refund->flat_id)
+                               ->get();
+            $flatSale = FlatSaleInfo::findOrFail($refund->flat_sale_id);
+
+            return view('Project-Panel.Flat.refund_slip', compact(['refund','refunds','payments','flatSale','comInfo']));
+        }else{
+            return redirect()->route('list.project')-> with('error','Project Id Is Null');
+        }
+    }
+
+    public function refundDelete($id){
+        $refund = Refund::find($id);
+ 
+        $refund->delete();
+ 
+        return back();
+     }
+    // Refund
+
+    
 }
