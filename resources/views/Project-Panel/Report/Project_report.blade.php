@@ -74,7 +74,7 @@
                                         @foreach ($purchaseReport as $key => $value)
                                             <tr>
                                                 <th scope="row" style="min-width:50px;">{{ $key + 1 }}</th>
-                                                <td>{{ $value->date->format('d-M-y')}}</td>
+                                                <td>{{ $value->date }}</td>
                                                 <td>{{ $value->total_payable_amount }}</td>
                                                 <td>{{ $value->total_paid }}</td>
                                                 <td>{{ $value->total_due }}</td>
@@ -203,10 +203,10 @@
                                 <table class="table">
                                     <thead>
                                         <tr class="table-info">
-                                            <th>Project Name</th>
+                                            <th>Flat & Client Name</th>
                                             <th>Sold Price</th>
-                                            <th>Amount</th>
-                                            {{-- <th>credit</th> --}}
+                                            <th>debit</th>
+                                            <th>credit</th>
                                         </tr>
                                     </thead>
                                     <tbody>                                        

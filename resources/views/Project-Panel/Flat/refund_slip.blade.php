@@ -20,7 +20,7 @@
                     </div>
 
                     <center>
-                        <h3 class="mb-0"><b><u>Refund Voucher</u></b></h3>
+                        <h3 class="mb-0"><b><u>Extra Misc Voucher</u></b></h3>
                     </center>
                 </div>
 
@@ -38,12 +38,16 @@
                             <div style=" font-size: 17px; font-weight: 700; color:#000; "> Booked Flat:{{ $refund->flat->project->projectName }}-{{ $refund->flat->floor }} Floor, Flat-{{ $refund->flat->name }}</div>
                             <div style=" font-size: 17px; font-weight: 700; color:#000; ">Flat Price -Tk.{{ number_format($flatSale->price, 2, '.',',') }}/-</div>
                             <div style=" font-size: 17px; font-weight: 700; color:#000; ">Total Pay -Tk.{{ number_format($payments->sum('amount'), 2, '.', ',') }}/-</div>
-                            <div style=" font-size: 17px; font-weight: 700; color:#000; ">Total Refund -Tk.{{ number_format($refunds->sum('amount'), 2, '.', ',') }}/-</div>
-                            <div style=" font-size: 17px; font-weight: 700; color:#000; ">Net Pay Amount -Tk.{{ number_format($payments->sum('amount') - $refunds->sum('amount'), 2, '.', ',') }}/-</div>
+                            <div style=" font-size: 17px; font-weight: 700; color:#000; ">Total Extra Misc -Tk.{{ number_format($refunds->sum('amount'), 2, '.', ',') }}/-</div>
+                            @php
+                                $refuntAmount =$payments->sum('amount') - $refunds->sum('amount');
+                            @endphp
+                            <div style=" font-size: 17px; font-weight: 700; color:#000; ">Net Pay Amount -Tk.{{ number_format($refuntAmount, 2, '.', ',') }}/-</div>
+                            {{--<!--<div style=" font-size: 17px; font-weight: 700; color:#000; ">Due Amount -Tk.{{ number_format($flatSale->price - $refuntAmount, 2, '.', ',') }}/-</div>-->--}}
                         </div>
                         <div class="col-sm-6 " style="text-align: end">
                             <div style=" font-size: 17px; font-weight: 700; color:#000; ">Date:{{ $refund->date->format('d-M-y') }}</div>
-                            <div style=" font-size: 17px; font-weight: 700; color:#000; ">Refund No:{{ $refund->refund_no }}</div>
+                            <div style=" font-size: 17px; font-weight: 700; color:#000; ">Extra Misc No:{{ $refund->refund_no }}</div>
                             <div style=" font-size: 17px; font-weight: 700; color:#000; ">Biller by: {{ $refund->user->name }}</div>
                         </div>
                     </div>
@@ -54,17 +58,18 @@
                                     {{--  <th style=" font-size: 17px; font-weight: 700; " class="center">SL</th>  --}}
                                     <th style=" font-size: 17px; font-weight: 700; color:#000; " class="left strong">Details</th>
                                     <th style=" font-size: 17px; font-weight: 700; color:#000; " class="left strong">Payment Type</th>
-                                    <th style=" font-size: 17px; font-weight: 700; color:#000; " class="center">Refund</th>
-                                    {{-- <th style=" font-size: 17px; font-weight: 700; color:#000; " class="center">Due</th> --}}
+                                    <th style=" font-size: 17px; font-weight: 700; color:#000; " class="center">Extra Misc</th>
+                                    <th style=" font-size: 17px; font-weight: 700; color:#000; " class="center">Total Due Amount</th> 
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    {{--  <td style=" font-size: 17px; font-weight: 700; color:#000; " class="center">{{$loop->iteration}}</td>  --}}
-                                    <td style=" font-size: 17px; font-weight: 700; color:#000; " class="left strong">Refund</td>
-                                    <td style=" font-size: 17px; font-weight: 700; color:#000; " class="left">{{ $refund->payment_type }}</td>
+                                    {{--  <!--<td style=" font-size: 17px; font-weight: 700; color:#000; " class="center">{{$loop->iteration}}</td>-->  --}}
+                                    <td style=" font-size: 17px; font-weight: 700; color:#000; " class="left strong">Extra Misc</td>
+                                    {{--<!--<td style=" font-size: 17px; font-weight: 700; color:#000; " class="left">{{ $refund->payment_type }}</td>--> --}}
+                                    <td style=" font-size: 17px; font-weight: 700; color:#000; " class="left">Others</td>
                                     <td style=" font-size: 17px; font-weight: 700; color:#000; " class="center">{{ number_format($refund->amount, 2, '.', ',') }} Taka</td>
-                                    {{-- <td style=" font-size: 17px; font-weight: 700; color:#000; " class="center"> {{ number_format($flatSale->price - $payments->sum('amount'), 2, '.', ',') }} Taka</td> --}}
+                                    <td style=" font-size: 17px; font-weight: 700; color:#000; " class="center"> {{ number_format($flatSale->price - $refuntAmount, 2, '.', ',') }} Taka</td>
                                 </tr>
                             </tbody>
                         </table>

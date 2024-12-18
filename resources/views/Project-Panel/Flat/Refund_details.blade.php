@@ -5,7 +5,7 @@
         <div class="card mb-2">
             <div class="card-header justify-content-end py-3">
                 <div class="">
-                    {{-- <a class="btn btn-success" href="{{ route('refund.pay.from', $flat->id) }}">Refun</a> --}}
+                    {{-- <a class="btn btn-success" href="{{ route('refund.pay.from', $flat->id) }}">Extra Misc</a> --}}
                     <a class="btn btn-danger" href="{{ url()->previous() }}">back</a>
                 </div>
             </div>
@@ -33,7 +33,7 @@
                 </div>
 
                 <div class="col-sm-12 p-2 " style="background-color: #c0f0fc">
-                    <h4 class="fst-italic fw-bold p-0">Refund Details</h3>
+                    <h4 class="fst-italic fw-bold p-0">Extra Misc Details</h3>
                 </div>
 
                 <div class="col-lg-3  col-md-4 col-sm-6">
@@ -99,11 +99,14 @@
                             <tr>
                                 <th colspan="">Paid </th>
                                 <td><b>:</b></td>
-                                <td>{{ number_format($payments->sum('amount'),2,'.',',')}}</td>
+                                @php
+                                    $dueAmount = $payments->sum('amount') - $refunds->sum("amount");
+                                @endphp
+                                <td>{{ number_format($dueAmount,2,'.',',')}}</td>
                             </tr>
 
                             <tr>
-                                <th colspan="">Refund </th>
+                                <th colspan="">Extra Misc </th>
                                 <td><b>:</b></td>
                                 <td>{{ number_format($refunds->sum("amount"),2,'.',',')  }}</td>
                             </tr>
@@ -111,7 +114,7 @@
                             <tr>
                                 <th colspan="">Due </th>
                                 <td><b>:</b></td>
-                                <td>{{ number_format($flatSale->price - $payments->sum("amount"),2,'.',',')  }}</td>
+                                <td>{{ number_format($flatSale->price - $dueAmount,2,'.',',')  }}</td>
                             </tr>
 
                             

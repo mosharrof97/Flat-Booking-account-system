@@ -19,9 +19,9 @@
                 </div>
                 <div class="col-md-12">
                     <div class="text-center">
-                        <h2 class="fw-bold">{{ $flat->project->projectName }}</h2>
-                        <h4><b>Address:</b> {{ $flat->project->address.', '.$flat->project->city}}</h4>
-                        <h4>{{ $flat->project->district->name.'- '.$flat->project->zipCode}}</h4>
+                        <h3 class="fw-bold">{{ $flat->project->projectName }}</h3>
+                        <h5><b>Address:</b> {{ $flat->project->address.', '.$flat->project->city}}</h5>
+                        <h5>{{ $flat->project->district->name.'- '.$flat->project->zipCode}}</h5>
                     </div>
                 </div>
 
@@ -100,7 +100,7 @@
                         {{-- @if($clientInfo !== "") --}}
                         {{-- --}}
                         <div class="card-body">
-                            <div class="mb-5">
+                            <div class=" row mb-5">
                                 <style>
                                     .table-information {
                                         width: 100%;
@@ -114,47 +114,54 @@
                                     }
 
                                 </style>
-                                <table class="table-information table table-borderless">
-                                    <tr>
-                                        <th scope="row" style="width: 20%">Name </th>
-                                        <td colspan="" style="width: 3%">:</td>
-                                        <td colspan="3" style="width: 77%">{{ $flat->client->name }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row" style="width: 20%">Phone</th>
-                                        <td colspan="" style="width: 3%">:</td>
-                                        <td colspan="3" style="width: 77%">{{ $flat->client->phone }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row" style="width: 20%">Email</th>
-                                        <td colspan="" style="width: 3%">:</td>
-                                        <td colspan="3" style="width: 77%">{{ $flat->client->email }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row" style="width: 20%">NID</th>
-                                        <td colspan="" style="width: 3%">:</td>
-                                        <td colspan="3" style="width: 77%">{{ $flat->client->nid }}</td>
-                                    </tr>
-
-                                    <tr>
-                                        <th scope="row" style="width: 20%">TIN</th>
-                                        <td colspan="" style="width: 3%">:</td>
-                                        <td colspan="3" style="width: 77%">{{ $flat->client->tin }}</td>
-                                    </tr>
-
-                                    <tr>
-                                        <th scope="row" style="width: 20%">Flat Booking</th>
-                                        <td colspan="" style="width: 3%">:</td>
-                                        <td colspan="3" style="width: 77%">3 Flat</td>
-                                    </tr>
-
-                                    <tr>
-                                        <th scope="row" style="width: 20%">Active status</th>
-                                        <td colspan="" style="width: 3%">:</td>
-                                        <td colspan="3" style="width: 77%">{{ $flat->client->active_status }}</td>
-                                    </tr>
-
-                                </table>
+                                <div class="col-md-6">
+                                    <div class="table-responsive">
+                                        <table class="table-information table table-borderless">
+                                        <tr>
+                                            <th scope="row" style="width: 20%">Name </th>
+                                            <td colspan="" style="width: 3%">:</td>
+                                            <td colspan="3" style="width: 77%">{{ $flat->client->name }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" style="width: 20%">Phone</th>
+                                            <td colspan="" style="width: 3%">:</td>
+                                            <td colspan="3" style="width: 77%">{{ $flat->client->phone }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" style="width: 20%">Email</th>
+                                            <td colspan="" style="width: 3%">:</td>
+                                            <td colspan="3" style="width: 77%">{{ $flat->client->email }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" style="width: 20%">NID</th>
+                                            <td colspan="" style="width: 3%">:</td>
+                                            <td colspan="3" style="width: 77%">{{ $flat->client->nid }}</td>
+                                        </tr>
+    
+                                        <tr>
+                                            <th scope="row" style="width: 20%">TIN</th>
+                                            <td colspan="" style="width: 3%">:</td>
+                                            <td colspan="3" style="width: 77%">{{ $flat->client->tin }}</td>
+                                        </tr>
+    
+                                        <tr>
+                                            <th scope="row" style="width: 20%">Flat Booking</th>
+                                            <td colspan="" style="width: 3%">:</td>
+                                            <td colspan="3" style="width: 77%">3 Flat</td>
+                                        </tr>
+    
+                                        <tr>
+                                            <th scope="row" style="width: 20%">Active status</th>
+                                            <td colspan="" style="width: 3%">:</td>
+                                            <td colspan="3" style="width: 77%">{{ $flat->client->active_status }}</td>
+                                        </tr>
+    
+                                    </table>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 text-end">
+                                    <img src="{{ asset('upload/client/'.$flat->client->image) }}" alt="" class="border border-3 p-1" style="height:150px; width:150px">
+                                </div>
                             </div>
 
                             <div class="row">
@@ -233,7 +240,7 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <label for="buying_price" class="form-label">Buying Price</label>
-                                            <input type="decimal" class="form-control" id="buying_price" name="buying_price" value="{{ $flat->flatSaleInfo->price }}"  placeholder="0.00"  aria-readonly="true" style="background-color: #e7e7e7">
+                                            <input type="decimal" class="form-control" id="buying_price" name="buying_price" value="{{ $flat->flatSaleInfo->price }}"  placeholder="0.00"  @readonly(true) style="background-color: #e7e7e7">
                                             @error('buying_price')
                                             <span class="form-text text-danger">{{ $message }}</span>
                                             @enderror
@@ -241,7 +248,7 @@
 
                                         <div class="col-md-6">
                                             <label for="payable_amount" class="form-label">Payable Amount</label>
-                                            <input type="decimal" class="form-control" id="payable_amount" name="payable_amount" value="{{ $flat->payment->sum('amount') }}.00"  placeholder="0.00"  aria-readonly="true" style="background-color: #e7e7e7">
+                                            <input type="decimal" class="form-control" id="payable_amount" name="payable_amount" value="{{ $flat->payment->sum('amount') }}.00"  placeholder="0.00"  @readonly(true) style="background-color: #e7e7e7">
                                             @error('payable_amount')
                                             <span class="form-text text-danger">{{ $message }}</span>
                                             @enderror

@@ -43,7 +43,7 @@
                         <tbody>
                             @foreach($expense as $key => $value)
                             @php
-
+                            
                                 $names = json_decode($value->name)
                             @endphp
                             <tr>
@@ -54,7 +54,7 @@
                                         <span>{{ $name }}, </span>
                                     @endforeach
                                 </td>
-                                <td>{{ $value->project->user->name}}</td>
+                                <td>{{ $value->user !== null ? '$value->user->name' : ''}}</td>
                                 <td>{{ $value->total}}</td>
                             </tr>
                             @endforeach

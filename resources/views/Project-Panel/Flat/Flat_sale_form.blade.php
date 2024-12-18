@@ -103,62 +103,67 @@
                         </div>
                         @if($clientInfo !== "")
                         {{-- --}}
-                        <div class="card-body">
-                            <div class="mb-5">
-                                <style>
-                                    .table-information {
-                                        width: 100%;
-                                        margin-bottom: 1rem;
-                                        color: #BDBDC7;
-                                    }
-
-                                    .table-information th,
-                                    .table-information td {
-                                        padding: 0.2rem !important;
-                                    }
-
-                                </style>
-                                <table class="table-information table table-borderless">
-                                    <tr>
-                                        <th scope="row" style="width: 20%">Name </th>
-                                        <td colspan="" style="width: 3%">:</td>
-                                        <td colspan="3" style="width: 77%">{{ $clientInfo->name }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row" style="width: 20%">Phone</th>
-                                        <td colspan="" style="width: 3%">:</td>
-                                        <td colspan="3" style="width: 77%">{{ $clientInfo->phone }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row" style="width: 20%">Email</th>
-                                        <td colspan="" style="width: 3%">:</td>
-                                        <td colspan="3" style="width: 77%">{{ $clientInfo->email }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row" style="width: 20%">NID</th>
-                                        <td colspan="" style="width: 3%">:</td>
-                                        <td colspan="3" style="width: 77%">{{ $clientInfo->nid }}</td>
-                                    </tr>
-
-                                    <tr>
-                                        <th scope="row" style="width: 20%">TIN</th>
-                                        <td colspan="" style="width: 3%">:</td>
-                                        <td colspan="3" style="width: 77%">{{ $clientInfo->tin }}</td>
-                                    </tr>
-
-                                    <tr>
-                                        <th scope="row" style="width: 20%">Flat Booking</th>
-                                        <td colspan="" style="width: 3%">:</td>
-                                        <td colspan="3" style="width: 77%">3 Flat</td>
-                                    </tr>
-
-                                    <tr>
-                                        <th scope="row" style="width: 20%">Active status</th>
-                                        <td colspan="" style="width: 3%">:</td>
-                                        <td colspan="3" style="width: 77%">{{ $clientInfo->active_status }}</td>
-                                    </tr>
-
-                                </table>
+                        <div class="card-body row">
+                            <div class="card-body row">
+                                <div class="col-md-6 mb-5">
+                                    <style>
+                                        .table-information {
+                                            width: 100%;
+                                            margin-bottom: 1rem;
+                                            color: #BDBDC7;
+                                        }
+    
+                                        .table-information th,
+                                        .table-information td {
+                                            padding: 0.2rem !important;
+                                        }
+    
+                                    </style>
+                                    <table class="table-information table table-borderless">
+                                        <tr>
+                                            <th scope="row" style="width: 20%">Name </th>
+                                            <td colspan="" style="width: 3%">:</td>
+                                            <td colspan="3" style="width: 77%">{{ $clientInfo->name }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" style="width: 20%">Phone</th>
+                                            <td colspan="" style="width: 3%">:</td>
+                                            <td colspan="3" style="width: 77%">{{ $clientInfo->phone }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" style="width: 20%">Email</th>
+                                            <td colspan="" style="width: 3%">:</td>
+                                            <td colspan="3" style="width: 77%">{{ $clientInfo->email }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" style="width: 20%">NID</th>
+                                            <td colspan="" style="width: 3%">:</td>
+                                            <td colspan="3" style="width: 77%">{{ $clientInfo->nid }}</td>
+                                        </tr>
+    
+                                        <tr>
+                                            <th scope="row" style="width: 20%">TIN</th>
+                                            <td colspan="" style="width: 3%">:</td>
+                                            <td colspan="3" style="width: 77%">{{ $clientInfo->tin }}</td>
+                                        </tr>
+    
+                                        <tr>
+                                            <th scope="row" style="width: 20%">Flat Booking</th>
+                                            <td colspan="" style="width: 3%">:</td>
+                                            <td colspan="3" style="width: 77%">3 Flat</td>
+                                        </tr>
+    
+                                        <tr>
+                                            <th scope="row" style="width: 20%">Active status</th>
+                                            <td colspan="" style="width: 3%">:</td>
+                                            <td colspan="3" style="width: 77%">{{ $clientInfo->active_status }}</td>
+                                        </tr>
+    
+                                    </table>
+                                </div>
+                                <div class="col-md-6 text-end">
+                                    <img src="{{ asset('upload/client/'.$clientInfo->image) }}" alt="" class="border border-3 p-1" style="height:200px; width:200px">
+                                </div>
                             </div>
 
                             <div class="row">

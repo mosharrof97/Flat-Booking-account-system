@@ -41,7 +41,7 @@
                                     @endforeach
                                 </td>
                                 <td>{{ number_format( $expense->total,2,'.',',') }}</td>
-                                <td>{{ $expense->project->user->name }}</td>
+                                {{--<td>{{ $expense->project->user->name }}</td>--}}
                                 <td>{{ $expense->date }}</td>
                                 <td>
                                     <a href="{{ route('project.expense.view',$expense->id) }} " class="btn btn-success"><i class="fa-solid fa-eye"></i></a>

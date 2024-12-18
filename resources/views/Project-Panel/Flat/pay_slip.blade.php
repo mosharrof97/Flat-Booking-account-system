@@ -37,9 +37,11 @@
                             <div style=" font-size: 17px; font-weight: 700; color:#000; ">Contact No: {{ $payment->flat->client->phone }}</div>
                             <div style=" font-size: 17px; font-weight: 700; color:#000; "> Booked Flat:{{ $payment->flat->project->projectName }}-{{ $payment->flat->floor }} Floor, Flat-{{ $payment->flat->name }}</div>
                             <div style=" font-size: 17px; font-weight: 700; color:#000; ">Flat Price -Tk.{{ number_format($flatSale->price, 2, '.',',') }}/-</div>
-                            <div style=" font-size: 17px; font-weight: 700; color:#000; ">Total Pay -Tk.{{ number_format($payments->sum('amount'), 2, '.', ',') }}/-</div>
-                            <div style=" font-size: 17px; font-weight: 700; color:#000; ">Total Refund -Tk.{{ number_format($refunds->sum('amount'), 2, '.', ',') }}/-</div>
-                            <div style=" font-size: 17px; font-weight: 700; color:#000; ">Net Pay Amount -Tk.{{ number_format($payments->sum('amount') - $refunds->sum('amount'), 2, '.', ',') }}/-</div>
+                            {{--<div style=" font-size: 17px; font-weight: 700; color:#000; ">Total Pay -Tk.{{ number_format($payments->sum('amount'), 2, '.', ',') }}/-</div>--}}
+                            <div style=" font-size: 17px; font-weight: 700; color:#000; ">Total Pay -Tk.{{ number_format($conditionPayment->sum('amount'), 2, '.', ',') }}/-</div>
+                            <div style=" font-size: 17px; font-weight: 700; color:#000; ">Total Extra Misc -Tk.{{ number_format($refunds->sum('amount'), 2, '.', ',') }}/-</div>
+                            <div style=" font-size: 17px; font-weight: 700; color:#000; ">Net Pay Amount -Tk.{{ number_format($conditionPayment->sum('amount') - $refunds->sum('amount'), 2, '.', ',') }}/-</div>
+                            {{--<div style=" font-size: 17px; font-weight: 700; color:#000; ">Flat & Extra Misc Due -Tk.{{ number_format((($flatSale->price + $refunds->sum('amount')) - $payments->sum('amount')), 2, '.', ',') }}/-</div>--}}
                         </div>
                         <div class="col-sm-6 " style="text-align: end">
                             <div style=" font-size: 17px; font-weight: 700; color:#000; ">Date:{{ $payment->date->format('d-M-y') }}</div>
@@ -64,7 +66,7 @@
                                     <td style=" font-size: 17px; font-weight: 700; color:#000; " class="left strong">Payment Paid</td>
                                     <td style=" font-size: 17px; font-weight: 700; color:#000; " class="left">{{ $payment->payment_type }}</td>
                                     <td style=" font-size: 17px; font-weight: 700; color:#000; " class="left">{{ number_format($payment->amount, 2, '.', ',') }} Taka</td>
-                                    <td style=" font-size: 17px; font-weight: 700; color:#000; " class="center"> {{ number_format($flatSale->price - $payments->sum('amount'), 2, '.', ',') }} Taka</td>
+                                    <td style=" font-size: 17px; font-weight: 700; color:#000; " class="center"> {{ number_format((($flatSale->price + $refunds->sum('amount')) - $conditionPayment->sum('amount')), 2, '.', ',') }} Taka</td>
                                 </tr>
                             </tbody>
                         </table>

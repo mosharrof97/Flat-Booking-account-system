@@ -13,6 +13,11 @@ class ClientDashboardController extends Controller
         $authId = auth()->guard('client')->id();
 
         $client = Client::where('id',$authId)->first();
-        return view('Client-Panel.dashboard',compact('client'));
+        $flat = Flat::where('client_id',$client->id)->get();
+        $data = [
+            'client' => $client,
+            'flat'=> $flat,
+        ];
+        return view('Client-Panel.dashboard',$data);
     }
 }

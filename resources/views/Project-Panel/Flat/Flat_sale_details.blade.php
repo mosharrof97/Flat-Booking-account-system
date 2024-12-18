@@ -5,9 +5,9 @@
         <div class="card mb-2">
             <div class="card-header justify-content-end py-3">
                 <div class="">
-                    <a class="btn btn-primary" href="{{ route('refund.from', $flat->id) }}">Refund</a>
+                    <a class="btn btn-primary" href="{{ route('refund.from', $flat->id) }}">Extra Misc</a>
                     {{-- @if (empty($refunds))
-                    <a href="{{ route('refund.details',$flatSale->flat_id) }}"  class="btn btn-info">Refund Details</a>
+                    <a href="{{ route('refund.details',$flatSale->flat_id) }}"  class="btn btn-info">Extra Misc Details</a>
                     @endif --}}
                     <a class="btn btn-success" href="{{ route('payment.from', $flat->id) }}">Payment</a>
                     <a class="btn btn-success" href="{{ route('return', $flat->id.'part=021364') }}">Flat Return</a>
@@ -18,31 +18,32 @@
         <div class="card p-4" id="saleDetails">
             <div class="card-header justify-content-center">
                 <div class="text-center">
-                    <img src="{{ asset('upload/CompanyInfo/'. $comInfo->logo) }}" alt="" width="100">
-                    <h2 class="fw-bold">{{ $comInfo->name }}</h2>
-                    <h4 class="fw-semibold"><b>Email: </b> {{ $comInfo->email }}</h4>
-                    <h3 class="fw-bold"><b>Project:</b>{{ $flat->project->projectName }}</h3>
-                    <h4><b>Address:</b> {{ $flat->project->address.', '.$flat->project->city }}</h4>
-                    <h4>{{ $flat->project->district->name.'- '.$flat->project->zipCode}}</h4>
+                    <img src="{{ asset('upload/CompanyInfo/'. $comInfo->logo) }}" alt="" width="150">
+                    <h3 class="fw-bold">{{ $comInfo->name }}</h3>
+                    <h5 class="fw-semibold"><b>Email: </b> {{ $comInfo->email }}</h5>
+                    <h4 class="fw-bold"><b>Project:</b>{{ $flat->project->projectName }}</h4>
+                    <h5><b>Address:</b> {{ $flat->project->address.', '.$flat->project->city }}</h5>
+                    <h5>{{ $flat->project->district->name.'- '.$flat->project->zipCode}}</h5>
                 </div>
             </div>
             <div class="card-body">
-                <div>
-                    @if (Session::has('message'))
-                    <h4 class="text-success ">{{ Session::get('message') }}</h4>
-                    @endif
+                    <div>
+                        @if (Session::has('message'))
+                        <h4 class="text-success ">{{ Session::get('message') }}</h4>
+                        @endif
+    
+                        @if (Session::has('error'))
+                        <h4 class="text-danger">{{ Session::get('error') }}</h4>
+                        @endif
+                    </div>
+                <div class="row">
+                    <div class="col-sm-12 p-2 mb-3" style="background-color: #c0f0fc">
+                        <h4 class="fst-italic fw-bold p-0">Flat Information</h3>
+                    </div>
 
-                    @if (Session::has('error'))
-                    <h4 class="text-danger">{{ Session::get('error') }}</h4>
-                    @endif
-                </div>
-
-                <div class="col-sm-12 p-2 " style="background-color: #c0f0fc">
-                    <h4 class="fst-italic fw-bold p-0">Flat Information</h3>
-                </div>
-
-                <div class="col-lg-3  col-md-4 col-sm-6">
-                    <table class="table table-borderless">
+                    <div class="col-lg-6  col-md-6 col-sm-12">
+                    <div class="table-responsive">
+                        <table class="table table-borderless">
                         <tbody>
 
                             <style>
@@ -100,15 +101,18 @@
                                 <td><b>:</b></td>
                                 <td>{{ number_format($flatSale->price,2,'.',',') }}</td>
                             </tr>
-
+                            
                             <tr>
                                 <th colspan="">Paid </th>
                                 <td><b>:</b></td>
-                                <td>{{ number_format($payments->sum('amount'),2,'.',',')}}</td>
+                                @php
+                                    $dueAmount = $payments->sum('amount') - $refunds->sum("amount");
+                                @endphp
+                                <td>{{ number_format($dueAmount,2,'.',',')}}</td>
                             </tr>
 
                             <tr>
-                                <th colspan="">Refund </th>
+                                <th colspan="">Extra Misc </th>
                                 <td><b>:</b></td>
                                 <td>{{ number_format($refunds->sum("amount"),2,'.',',')  }}</td>
                             </tr>
@@ -116,19 +120,24 @@
                             <tr>
                                 <th colspan="">Due </th>
                                 <td><b>:</b></td>
-                                <td>{{ number_format($flatSale->price - $payments->sum("amount"),2,'.',',')  }}</td>
+                                <td>{{ number_format($flatSale->price - $dueAmount,2,'.',',')  }}</td>
                             </tr>
 
                             
                                 
                         </tbody>
                     </table>
+                    </div>
+                </div>
+                    <div class="col-lg-6  col-md-6 col-sm-12 text-end">
+                    <img src="{{ asset('upload/client/'.$flat->client->image) }}" alt="" class="border border-3 p-1" style="height:200px; width:200px">
+                </div>
                 </div>
                 
                 <div class="my-4 bg-success p-2" style="background-color: #abecfc">
                     <h4 class="fw-bold fst-italic text-center">Payment</h4>
                 </div>
-                <div class="">
+                <div class="table-responsive">
                     <table class="table table-bordered">
                         <thead class="table-primary">
                             <tr>
@@ -148,7 +157,7 @@
                             @foreach ( $payments as $key => $payment )
                             <tr>
                                 <th scope="row">{{ $key + 1 }}</th>
-                                <td>{{ $payment->created_at->format('d-M-y') }}</td>
+                                <td> {{ $payment->date ? $payment->date->format('d-M-y') : $payment->created_at->format('d-M-y') }} </td>
                                 <td>{{ $payment->payment_type }}</td>
                                 <td>{{ $payment->bank_name }}</td>
                                 <td>{{ $payment->branch }}</td>
@@ -169,7 +178,7 @@
                                 <td colspan="">{{number_format(  $payments->sum('amount'),2,'.',',') }}</td>
                             </tr>
                             <tr>
-                                <td colspan="7" class="text-right fw-bold"> Total refunt</td>
+                                <td colspan="7" class="text-right fw-bold"> Total Extra Misc</td>
                                 <td colspan="">{{number_format(  $refunds->sum('amount'),2,'.',',') }}</td>
                                 <td class="action">
                                     <a href="{{ route('refund.details',$flatSale->flat_id) }}"  class="btn btn-light"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>

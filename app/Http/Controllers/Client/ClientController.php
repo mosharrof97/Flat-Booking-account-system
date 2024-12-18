@@ -34,6 +34,8 @@ class ClientController extends Controller
     }
 
     public function store(Request $request) {
+        
+        
 
         $request->validate([
             'name' => 'required|string|max:255',
@@ -72,7 +74,7 @@ class ClientController extends Controller
                 'nid' => $request->nid,
                 'tin' => $request->nid,
                 'password' => 123456789,
-                'image'=> $imageName ?? 'No Image',
+                'image'=> $imageName,
                 'created_by' => auth()->id(),
             ]);
 
@@ -109,6 +111,7 @@ class ClientController extends Controller
     }
 
     public function update(Request $request, $id) {
+        
         $request->validate([
             'name' => 'required|string|max:255',
             'phone' => 'required',
@@ -129,23 +132,50 @@ class ClientController extends Controller
             // 'per_district' => 'required|string|max:255',
             // 'per_zipCode' => 'required',
         ]);
-        // dd($request->all());
+       
 
         try {
             DB::beginTransaction();
             $client = Client::find($id);
             
            // Update the client
-            $client->update([
-                'name' => $request->name,
-                'father_name' => $request->father_name,
-                'mother_name' => $request->mother_name,
-                'email' => $request->email,
-                'phone' => $request->phone,
-                'nid' => $request->nid,
-                'tin' => $request->tin,
-                'updated_by' => auth()->id(),
-            ]);
+            if ($request->hasFile('image')) {
+                // Store the new image
+                $imageName = 'Client_' . time() . '_' . mt_rand(100000, 9999999999) . '.' . $request->file('image')->extension();
+                $request->file('image')->move(public_path('upload/client'), $imageName);
+            
+                // Delete the old image if it exists
+                if ($client->image) {
+                    $oldImagePath = public_path('upload/client/' . $client->image);
+                    if (file_exists($oldImagePath)) {
+                        unlink($oldImagePath);
+                    }
+                }
+    
+                // Update the client
+                $client->update([
+                    'name' => $request->name,
+                    'father_name' => $request->father_name,
+                    'mother_name' => $request->mother_name,
+                    'email' => $request->email,
+                    'phone' => $request->phone,
+                    'nid' => $request->nid,
+                    'tin' => $request->tin,
+                    'image' => $imageName,
+                    'updated_by' => auth()->id(),
+                ]);
+            } else {
+                $client->update([
+                    'name' => $request->name,
+                    'father_name' => $request->father_name,
+                    'mother_name' => $request->mother_name,
+                    'email' => $request->email,
+                    'phone' => $request->phone,
+                    'nid' => $request->nid,
+                    'tin' => $request->tin,
+                    'updated_by' => auth()->id(),
+                ]);
+            }
 
             // Find the client's address
             $address = ClientAddress::where('client_id', $client->id)->first();

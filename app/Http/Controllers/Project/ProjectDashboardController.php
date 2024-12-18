@@ -20,6 +20,7 @@ class ProjectDashboardController extends Controller
     //     $this->middleware('permission:logout project', ['only' => ['sessionDelete']]);
     // }
 
+    
     public function index(Request $request,$id){
 
         $request->session()->put('project_id',$id);
@@ -28,8 +29,9 @@ class ProjectDashboardController extends Controller
        $project_id = Session::get('project_id');
         if($project_id !== null){
 
-            $flat = Flat::where('project_id', $project_id)->where('status', 0 );
+            $flat = Flat::where('project_id', $project_id)->where('status', 0);
             $purchase = Purchase::where('project_id', $project_id)->get();
+            
             $data = [
                 'project' => Project::where('id', $project_id)->first(),
                 'allFlat' => $flat->count(),
@@ -47,7 +49,6 @@ class ProjectDashboardController extends Controller
 
 
 
-            // dd($flat);
             return view('Project-Panel.dashboard', $data);
         }else{
             return redirect()->route('list.project')-> with('error','Project Id Is Null');

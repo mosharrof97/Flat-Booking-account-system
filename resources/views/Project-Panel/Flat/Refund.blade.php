@@ -6,63 +6,68 @@
         <div class="card p-4">
 
             <div class="card-body">
-
-                <div class="col-md-12">
-                    <div class="text-center">
-                        <img src="{{ asset('upload/CompanyInfo/'. $comInfo->logo) }}" alt="" width="100">
-                        <h2 class="fw-bold">{{ $comInfo->name }}</h2>
-                        <h4 class="fw-semibold"><b>Email: </b> {{ $comInfo->email }}</h4>
-                        <h4 class="fw-bold"><b>Project :</b> {{ $flatSaleInfo->flat->project->projectName }}</h3>
-                        <h4><b>Address:</b> {{ $flatSaleInfo->flat->project->address.', '.$flatSaleInfo->flat->project->city }}</h4>
-                        <h4>{{ $flatSaleInfo->flat->project->district->name.'- '.$flatSaleInfo->flat->project->zipCode}}</h4>
+                <div class="row">
+                    <div class="col-md-12">
+                        {{--<!--<div class="text-center">-->
+                        <!--    <img src="{{ asset('upload/CompanyInfo/'. $comInfo->logo) }}" alt="" width="100">-->
+                        <!--    <h2 class="fw-bold">{{ $comInfo->name }}</h2>-->
+                        <!--    <h4 class="fw-semibold"><b>Email: </b> {{ $comInfo->email }}</h4>-->
+                        <!--    <h4 class="fw-bold"><b>Project :</b> {{ $flatSaleInfo->flat->project->projectName }}</h3>-->
+                        <!--    <h4><b>Address:</b> {{ $flatSaleInfo->flat->project->address.', '.$flatSaleInfo->flat->project->city }}</h4>-->
+                        <!--    <h4>{{ $flatSaleInfo->flat->project->district->name.'- '.$flatSaleInfo->flat->project->zipCode}}</h4>-->
+                        <!--</div>-->--}}
+                        @include('common.CompanyInfo')
                     </div>
-                </div>
-
-                <div class="my-4">
-                    <h3 class="fw-bold fst-italic text-center">Refund</h3>
-                </div>
-                <div class="my-3">
-                    <table class="table table-borderless">
-                        <style>
-                            th,
-                            td {
-                                padding: 0.4rem !important;
-                            }
-
-                        </style>
-                        <tbody>
-                                <tr>
-                                    <th class="text-nowrap" scope="row" style="width: 20%">Client Name </th>
-                                    <td colspan="" style="width: 3%">:</td>
-                                    <td colspan="3" style="width: 77%">{{ $flatSaleInfo->flat->client->name }}</td>
-                                </tr>
-
-                                {{-- @php
-                                    dd($flatSaleInfo->flat->client->clientAddress);
-                                @endphp --}}
-
-                                <tr>
-                                    <th class="text-nowrap" scope="row" style="width: 20%">Address </th>
-                                    <td colspan="" style="width: 3%">:</td>
-                                    <td colspan="3" style="width: 77%">
-                                        {{ $flatSaleInfo->flat->client->clientAddress->pre_address.', '.$flatSaleInfo->flat->client->clientAddress->pre_city}}
-                                        {{ $flatSaleInfo->flat->client->clientAddress->per_district.'- '.$flatSaleInfo->flat->client->clientAddress->pre_zipCode}}
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <th class="text-nowrap" scope="row" style="width: 20%">Phone </th>
-                                    <td colspan="" style="width: 3%">:</td>
-                                    <td colspan="3" style="width: 77%">{{ $flatSaleInfo->flat->client->phone }}</td>
-                                </tr>
-
-                                <tr>
-                                    <th class="text-nowrap" colspan="">Flat Name / Number </th>
-                                    <td><b>:</b></td>
-                                    <td>{{ $flatSaleInfo->flat->name }}</td>
-                                </tr>
-                        </tbody>
-                    </table>
+    
+                    <div class="col-md-12 my-4">
+                        <h3 class="fw-bold fst-italic text-center">Extra Misc</h3>
+                    </div>
+                    <div class="col-md-6 my-3">
+                        <table class="table table-borderless">
+                            <style>
+                                th,
+                                td {
+                                    padding: 0.4rem !important;
+                                }
+    
+                            </style>
+                            <tbody>
+                                    <tr>
+                                        <th class="text-nowrap" scope="row" style="width: 20%">Client Name </th>
+                                        <td colspan="" style="width: 3%">:</td>
+                                        <td colspan="3" style="width: 77%">{{ $flatSaleInfo->flat->client->name }}</td>
+                                    </tr>
+    
+                                    {{-- @php
+                                        dd($flatSaleInfo->flat->client->clientAddress);
+                                    @endphp --}}
+    
+                                    <tr>
+                                        <th class="text-nowrap" scope="row" style="width: 20%">Address </th>
+                                        <td colspan="" style="width: 3%">:</td>
+                                        <td colspan="3" style="width: 77%">
+                                            {{ $flatSaleInfo->flat->client->clientAddress->pre_address.', '.$flatSaleInfo->flat->client->clientAddress->pre_city}}
+                                            {{ $flatSaleInfo->flat->client->clientAddress->per_district.'- '.$flatSaleInfo->flat->client->clientAddress->pre_zipCode}}
+                                        </td>
+                                    </tr>
+    
+                                    <tr>
+                                        <th class="text-nowrap" scope="row" style="width: 20%">Phone </th>
+                                        <td colspan="" style="width: 3%">:</td>
+                                        <td colspan="3" style="width: 77%">{{ $flatSaleInfo->flat->client->phone }}</td>
+                                    </tr>
+    
+                                    <tr>
+                                        <th class="text-nowrap" colspan="">Flat Name / Number </th>
+                                        <td><b>:</b></td>
+                                        <td>{{ $flatSaleInfo->flat->name }}</td>
+                                    </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-6 text-end">
+                        <img src="{{ asset('upload/client/'.$flatSaleInfo->flat->client->image) }}" alt="" class="border border-3 p-1" style="height:150px; width:150px">
+                    </div>
                 </div>
 
                 <form class="" action="{{ route('refund.store') }}" method="POST" enctype="multipart/form-data">
@@ -93,6 +98,7 @@
                             {{-- <input type="text" class="form-control" id="payment_type" placeholder="Installment amount" name="payment_type"> --}}
                             <select name="payment_type" id="payment_type" class="form-select">
                                 <option value="">select Payment Type...........</option>
+                                <option value="cash">Extra Misc</option>
                                 <option value="cash">Cash</option>
                                 <option value="bank">Bank</option>
                                 <option value="check">Check</option>

@@ -19,8 +19,8 @@
                                 <th scope="col" class="text-wrap">Email</th>
                                 <th scope="col" class="text-wrap">NID</th>
                                 <th scope="col" class="text-wrap">Flat Booking</th>
-                                <th scope="col" class="text-wrap">Action</th>
                                 <th scope="col" class="text-wrap">Image</th>
+                                <th scope="col" class="text-wrap">Action</th>
                             </tr>
                         </thead>
                         <tbody>

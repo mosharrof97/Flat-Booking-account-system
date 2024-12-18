@@ -41,7 +41,7 @@
                                 <td>{{ $purchase->vendor->phone }}</td>
                                 <td>{{ number_format($purchase->payable_amount,2,'.',',') }}</td>
                                 <td>{{ number_format($purchase->due,2,'.',',') }}</td>
-                                <td>{{ $purchase->project->user->name }}</td>
+                                <td>{{ $purchase->user->name }}</td>
 
                                 {{-- @php
                                     // $names = explode("**",$purchase->name);

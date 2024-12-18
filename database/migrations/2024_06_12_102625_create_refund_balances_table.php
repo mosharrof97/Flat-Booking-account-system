@@ -20,7 +20,7 @@ return new class extends Migration
             $table->foreign('flat_id')->references('id')->on('flats')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-            $table->index('refund_id');
+            $table->index('flat_id');
         });
     }
 

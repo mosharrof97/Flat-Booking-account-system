@@ -74,21 +74,4 @@ class Client extends Authenticatable
     {
         return $this->hasMany(FlatReturnInfo::class);
     }
-
-
-    // Non relation Function
-    public function allFlatPrice(){
-        return $this->flat->sum('flatSaleInfo.price');
-    }
-    public function allFlatPaid():float{
-        $total=0;
-         $this->flat->each(function($flat) use (&$total){
-            $flat->payment->each(function($payment) use (&$total){
-                $total += $payment->amount;
-            });
-        });
-        return $total;
-    }
-
-
 }
