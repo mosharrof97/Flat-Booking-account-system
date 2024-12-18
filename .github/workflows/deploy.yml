@@ -8,14 +8,9 @@ jobs:
     - name: 🚚 Get latest code
       uses: actions/checkout@v3
     
-    - name: 📂 Sync files via FTP
+    - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
         server: ${{ secrets.FTP_SERVER }}
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
-        local-dir: ./  
-        server-dir: /path/to/server/directory
-
-
-
