@@ -8,9 +8,14 @@ jobs:
     - name: 🚚 Get latest code
       uses: actions/checkout@v3
     
-    - name: 📂 Sync files
-      uses: mosharrof97/Flat-Booking-account-system@v1.0.0
+    - name: 📂 Sync files via FTP
+      uses: SamKirkland/FTP-Deploy-Action@4.5.0
       with:
         server: ${{ secrets.FTP_SERVER }}
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
+        local-dir: ./  # Adjust to the folder containing files to deploy
+        server-dir: /path/to/server/directory
+
+
+
