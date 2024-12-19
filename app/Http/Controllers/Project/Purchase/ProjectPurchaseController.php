@@ -23,7 +23,7 @@ class ProjectPurchaseController extends Controller
     public function index(){
         $projectId = Session::get('project_id');
         if($projectId){
-             $purchases = Purchase::where('project_id',$projectId)->orderBy('id', 'desc')->paginate(15);
+             $purchases = Purchase::where('project_id',$projectId)->where('deleted_at',NULL)->orderBy('id', 'desc')->paginate(15);
 
              // dd($purchases);
              return view('Project-Panel.Purchase.Purchase_List', compact('purchases' ));
