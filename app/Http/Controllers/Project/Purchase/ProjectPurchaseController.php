@@ -142,4 +142,17 @@ class ProjectPurchaseController extends Controller
         return redirect()->route('list.project')-> with('error','Project Id Is Null');
         }
     }
+
+    public function destroy($id){
+        $purchase = Purchase::findOrFail($id);
+        $purchase->delete();
+        return back()-> with('message', 'Purchase Delete Successful');
+    }
+
+    public function restore($id) {
+        $purchase = Purchase::withTrashed()->findOrFail($id);
+        $purchase->restore();
+
+        return redirect()->route('Purchase.list')->with('message','Purchase Restore Successfully');
+    }
 }

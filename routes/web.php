@@ -119,6 +119,8 @@ Route::prefix('admin')->middleware('auth')->group(function () {
                 Route::get('/create', [ProjectPurchaseController::class, 'create'])->name('project.purchase');
                 Route::post('/create', [ProjectPurchaseController::class, 'store'])->name('store.project.purchase');
                 Route::get('/{id}/show', [ProjectPurchaseController::class, 'show'])->name('project.purchase.view');
+                Route::get('/{id}/delete', [ProjectPurchaseController::class, 'delete'])->name('project.purchase.delete');
+                Route::get('/{id}/restore', [ProjectPurchaseController::class, 'restore'])->name('project.purchase.restore');
 
 
                 Route::get('/{id}/due=pay', [PurchaseDuePayController::class, 'create'])->name('project.purchase.due.pay');
