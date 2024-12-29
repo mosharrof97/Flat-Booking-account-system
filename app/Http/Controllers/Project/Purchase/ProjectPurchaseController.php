@@ -12,6 +12,7 @@ use App\Models\Vendor;
 use App\Models\PurchaseDuePay;
 use App\Models\ReturnPurchase;
 use App\Models\ComponyInfo;
+use App\Models\VendorPay;
 
 class ProjectPurchaseController extends Controller
 {
@@ -103,6 +104,28 @@ class ProjectPurchaseController extends Controller
                 ];
                 $Purchases = Purchase::create($purchasesData);
 
+                //========== Vendor pay  ============//
+                $vendor = Vendor::find($request->vendor_id);
+                $vendorData = [
+                    'payable_amount' => $vendor->payable_amount + $request->payable_amount,
+                    'paid' => $vendor->paid + $request->paid,
+                    'due' => $vendor->due + $request->due,
+                ];
+                
+                
+                $vendorPay = [
+                    'date'=>$request->date,
+                    'vendor_id'=>$request->vendor_id,
+                    'pay'=>$request->paid,
+                    'due' => $vendor->due + $request->due,
+                    'created_by'=>auth()->id(),
+                ];
+                VendorPay::create($vendorPay);
+                
+                $vendor->update($vendorData);
+                
+                //========== Vendor Pay  ============//
+
                 //========== Purchase Due Pay Table ============//
                 $data = [
                     'date'=>$request->date,
@@ -141,5 +164,18 @@ class ProjectPurchaseController extends Controller
         }else{
         return redirect()->route('list.project')-> with('error','Project Id Is Null');
         }
+    }
+
+    public function destroy($id){
+        $purchase = Purchase::findOrFail($id);
+        $purchase->delete();
+        return back()-> with('message', 'Purchase Delete Successful');
+    }
+
+    public function restore($id) {
+        $purchase = Purchase::withTrashed()->findOrFail($id);
+        $purchase->restore();
+
+        return redirect()->route('Purchase.list')->with('message','Purchase Restore Successfully');
     }
 }

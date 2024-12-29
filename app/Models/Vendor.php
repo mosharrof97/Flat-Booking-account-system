@@ -13,6 +13,11 @@ class Vendor extends Model
         'name',
         'phone',
         'address',
+
+        'payable_amount',
+        'paid',
+        'due',
+        
         'active_status',
         'status',
         'created_by',

@@ -41,6 +41,7 @@ use App\Http\Controllers\Role_permission\UserController;
 use App\Http\Controllers\Role_permission\PermissionController;
 
 use App\Http\Controllers\ComponyInfoController;
+use App\Http\Controllers\Vendor\VendorDuePayController;
 
 
 
@@ -120,11 +121,12 @@ Route::prefix('admin')->middleware('auth')->group(function () {
                 Route::post('/create', [ProjectPurchaseController::class, 'store'])->name('store.project.purchase');
                 Route::get('/{id}/show', [ProjectPurchaseController::class, 'show'])->name('project.purchase.view');
 
+                Route::get('/{id}/delete', [ProjectPurchaseController::class, 'destroy'])->name('project.purchase.delete');
+                Route::get('/{id}/restore', [ProjectPurchaseController::class, 'restore'])->name('project.purchase.restore');
 
                 Route::get('/{id}/due=pay', [PurchaseDuePayController::class, 'create'])->name('project.purchase.due.pay');
                 Route::post('/{id}/due=pay', [PurchaseDuePayController::class, 'store'])->name('store.project.purchase.due.pay');
                 Route::get('/{id}/invoice', [PurchaseDuePayController::class, 'invoice'])->name('project.purchase.invoice');
-
 
 
                 // Project Return Purchase
@@ -133,7 +135,6 @@ Route::prefix('admin')->middleware('auth')->group(function () {
                     Route::get('/create', [ProjectReturnPurchaseController::class, 'create'])->name('project.return.purchase');
                     Route::post('/create', [ProjectReturnPurchaseController::class, 'store'])->name('store.project.return.purchase');
                     Route::get('/{id}/show', [ProjectReturnPurchaseController::class, 'show'])->name('project.return.purchase.view');
-
                 });
             });
 
@@ -249,11 +250,21 @@ Route::prefix('admin')->middleware('auth')->group(function () {
         Route::get('/create', [VendorController::class, 'create'])->name('vendor.create');
         Route::post('/create', [VendorController::class, 'store'])->name('vendor.store');
         Route::get('/{id}/view', [VendorController::class,'show'])->name('vendor.view');
+
+        // Purchase Pay list
         Route::get('/{id}/pay/list', [VendorController::class,'payList'])->name('vendor.pay.list');
         Route::get('/{id}/pay/delete', [VendorController::class,'payDelete'])->name('vendor.pay.delete');
+
+        // Vendor Pay list
+        Route::get('/{id}/v/pay/list', [VendorController::class,'vendorPayList'])->name('vendor.all.pay.list');
+        Route::get('/{id}/v/pay/delete', [VendorController::class,'vendorPayDelete'])->name('vendor.pay.data.delete');
         // Route::get('/{id}/edit', [VendorController::class,'edit'])->name('vendor.edit');
         // Route::put('/{id}/edit', [VendorController::class,'update'])->name('vendor.update');
         Route::get('/{id}/delete', [VendorController::class,'destroy'])->name('vendor.delete');
+
+        Route::get('/{id}/pay', [VendorDuePayController::class, 'create'])->name('vendor.purchase.due.pay');
+        Route::post('/{id}/pay', [VendorDuePayController::class, 'store'])->name('store.vendor.purchase.due.pay');
+        Route::get('/{id}/invoice', [VendorDuePayController::class, 'invoice'])->name('vendor.purchase.invoice');
     });
     /**-------------- Vendor End ------------------**/
 

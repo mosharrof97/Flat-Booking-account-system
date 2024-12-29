@@ -1,0 +1,43 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
+class VendorPay extends Model
+{
+    use HasFactory;
+    protected $fillable = [
+        'vendor_id',
+        'date',
+        // 'total_amount',
+        // 'payable_amount',
+        'pay',
+        'due',        
+        'payment_type',
+        'bank_name',
+        'branch',
+        'account_number',
+        'check_number',        
+        'created_by',
+    ];
+
+    protected $casts=[
+        'date' =>'datetime',
+    ];
+
+    
+
+    public function vendor() {
+        return $this->BelongsTo(Vendor::class);
+    }
+
+    public function user() {
+        return $this->BelongsTo(User::class, 'created_by');
+    }
+
+}

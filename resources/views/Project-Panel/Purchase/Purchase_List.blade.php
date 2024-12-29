@@ -10,9 +10,9 @@
                 </a>
             </div>
             <div class="card-body">
-                <div class="">
+                <div class="table-responsive">
                     {{-- <table class="table"> --}}
-                    <table id="projectExpenseTable" class="display nowrap" style="width:100%">
+                    <table id="projectExpenseTable" class="display nowrap table" style="width:100%">
                         <thead>
 
                             <tr>
@@ -29,19 +29,19 @@
                             </tr>
                         </thead>
 
-                        <tbody >
+                        <tbody>
                             @foreach ($purchases as $key => $purchase )
                             <tr>
-                                <th scope="row">{{  $key + 1 }}</th>
+                                <th scope="row">{{ $key + 1 }}</th>
                                 <td>{{ $purchase->date->format('d-M-y') }}</td>
                                 {{-- <td>{{ $purchase->order_no }}</td> --}}
-                                <td>{{  $purchase->invoice_no }}</td>
+                                <td>{{ $purchase->invoice_no }}</td>
                                 <td>{{ $purchase->memo_no  }}</td>
-                                <td>{{ $purchase->vendor->name  }}</td>
-                                <td>{{ $purchase->vendor->phone }}</td>
+                                <td>{{ $purchase->vendor->name ?? 'Not Found' }}</td>
+                                <td>{{ $purchase->vendor->phone ?? 'Not Found' }}</td>
                                 <td>{{ number_format($purchase->payable_amount,2,'.',',') }}</td>
                                 <td>{{ number_format($purchase->due,2,'.',',') }}</td>
-                                <td>{{ $purchase->project->user->name }}</td>
+                                <td>{{ $purchase->user->name }}</td>
 
                                 {{-- @php
                                     // $names = explode("**",$purchase->name);
@@ -55,37 +55,38 @@
                                 <td>
                                     @foreach ( $names as $key => $name)
                                         <p class="p-0 m-0">({{ $key+ 1}}). {{ $name }}, </p>
-                                    @endforeach
+                                @endforeach
                                 </td>
                                 <td>
                                     @foreach ( $quantitys as $key => $quantity)
-                                        <p class="p-0 m-0">({{ $key+ 1}}). {{ $quantity }}, </p>
+                                    <p class="p-0 m-0">({{ $key+ 1}}). {{ $quantity }}, </p>
                                     @endforeach
                                 </td>
                                 <td>
                                     @foreach ( $units as $key => $unit)
-                                        <p class="p-0 m-0">({{ $key+ 1}}). {{ $unit }}, </p>
+                                    <p class="p-0 m-0">({{ $key+ 1}}). {{ $unit }}, </p>
                                     @endforeach
                                 </td>
                                 <td>
                                     @foreach ( $prices as $key => $price)
-                                        <p class="p-0 m-0">({{ $key+ 1}}). {{ $price }}, </p>
+                                    <p class="p-0 m-0">({{ $key+ 1}}). {{ $price }}, </p>
                                     @endforeach
                                 </td>
                                 <td>
                                     @foreach ( $total_prices as $key => $totalPrice)
-                                        <p class="p-0 m-0">({{ $key+ 1}}). {{ $totalPrice }}, </p>
+                                    <p class="p-0 m-0">({{ $key+ 1}}). {{ $totalPrice }}, </p>
                                     @endforeach
                                 </td>
                                 <td>{{ $purchase->total }}</td> --}}
                                 <td>
-                                    @if($purchase->due == 0)
+                                    {{-- @if($purchase->due == 0)
                                     <a href="#" class="btn btn-danger">Paid</a>
                                     @else
                                     <a href="{{ route('project.purchase.due.pay',$purchase->id) }} " class="btn btn-info">Due</a>
-                                    @endif
+                                    @endif --}}
 
                                     <a href="{{ route('project.purchase.view',$purchase->id) }} " class="btn btn-success">View</a>
+                                    <a href="{{ route('project.purchase.delete',$purchase->id) }} " class="btn btn-danger">delete</a>
                                 </td>
                             </tr>
                             @endforeach
@@ -108,7 +109,7 @@
                 buttons: ['excel', 'print']
             }
         }
-    }
-    );
+    });
+
 </script>
 @endsection

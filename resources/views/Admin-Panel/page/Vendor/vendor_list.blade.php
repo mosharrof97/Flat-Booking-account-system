@@ -29,6 +29,9 @@
                                     <th scope="col" class="text-wrap">Name</th>
                                     <th scope="col" class="text-wrap">Phone</th>
                                     <th scope="col" class="text-wrap">Address</th>
+                                    <th scope="col" class="text-wrap">Total Purchase</th>
+                                    <th scope="col" class="text-wrap">Total Pay</th>
+                                    <th scope="col" class="text-wrap">Total Due</th>
                                     <th scope="col" class="text-wrap">Action</th>
                                 </tr>
                             </thead>
@@ -39,7 +42,14 @@
                                     <td>{{ $vendor->name }}</td>
                                     <td>{{ $vendor->phone }}</td>
                                     <td>{{ $vendor->address }}</td>
+                                    <td>{{ $vendor->payable_amount }} tk</td>
+                                    <td>{{ $vendor->paid }} tk</td>
+                                    <td>{{ $vendor->due }} tk</td>
                                     <td>
+                                        @if ($vendor->due > 0)
+                                        <a href="{{route('vendor.purchase.due.pay', $vendor->id)}}" class="btn btn-primary">due</a>
+                                        @endif                                        
+                                        <a href="{{route('vendor.all.pay.list', $vendor->id)}}" class="btn btn-success">Memo list</a>
                                         <a href="{{route('vendor.delete', $vendor->id)}}" class="btn btn-danger"><i class="fa fa-trash"></i></a>
                                         <a href="{{route('vendor.view', $vendor->id)}}" class="btn btn-success"><i class="fa fa-eye"></i></a>
                                     </td>

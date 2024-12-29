@@ -67,7 +67,7 @@
                                 <tr>
                                     <th scope="row" style="width: 20%"><h5 class="fw-bold">vendor</h5></th>
                                     <td colspan="" style="width: 3%">:</td>
-                                    <td colspan="3" style="width: 77%">{{ $purchase->vendor->name .' - '. $purchase->vendor->phone}}</td>
+                                    <td colspan="3" style="width: 77%">{{ $purchase->vendor == null ?  'Not Found' : $purchase->vendor->name .' - '. $purchase->vendor->phone }}</td>
                                 </tr>
 
                                 <tr>
@@ -82,7 +82,7 @@
                                     <td colspan="3" style="width: 77%">{{ number_format( $purchase->payable_amount ,2,'.',',') }}</td>
                                 </tr>
 
-                                <tr>
+                                {{-- <tr>
                                     <th scope="row" style="width: 20%"><h5 class="fw-bold">Purchase Status</h5></th>
                                     <td colspan="" style="width: 3%">:</td>
                                     <td colspan="3" style="width: 77%">
@@ -102,12 +102,12 @@
                                     <th scope="row" style="width: 20%"><h5 class="fw-bold">Due</h5></th>
                                     <td colspan="" style="width: 3%">:</td>
                                     <td colspan="3" style="width: 77%">{{ number_format($purchase->due ,2,'.',',') }}</td>
-                                </tr>
+                                </tr> --}}
 
                             </table>
                         </div>
                     </div>
-                    <div class="col-lg-4">
+                    {{-- <div class="col-lg-4">
                         <div class="">
                             <h4 class="fw-bold text-center"> Due Pay</h4>
                             <table class="table table-bordered">
@@ -139,7 +139,7 @@
                                 </tfoot>
                             </table>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
                 <div class="">
                     @php
@@ -196,17 +196,17 @@
                                 <td>{{ number_format( $purchase->discount ,2,'.',',') }}</td>
                             </tr>
                             <tr>
-                                <td colspan="4" class="text-right"> Payable Amount </td>
+                                <td colspan="4" class="text-right"> Total Amount </td>
                                 <td>{{ number_format( $purchase->payable_amount,2,'.',',')  }}</td>
                             </tr>
-                            <tr>
+                            {{-- <tr>
                                 <td colspan="4" class="text-right"> Paid </td>
                                 <td>{{ number_format( $purchase->paid ,2,'.',',') }}</td>
                             </tr>
                             <tr>
                                 <td colspan="4" class="text-right"> Due </td>
                                 <td>{{ number_format( $purchase->due,2,'.',',')  }}</td>
-                            </tr>
+                            </tr> --}}
                         </tfoot>
                     </table>
                 </div>

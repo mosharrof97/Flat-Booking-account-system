@@ -9,6 +9,7 @@ use App\Models\Vendor;
 use App\Models\Purchase;
 use App\Models\ComponyInfo;
 use App\Models\PurchaseDuePay;
+use App\Models\VendorPay;
 
 class VendorController extends Controller
 {
@@ -59,7 +60,7 @@ class VendorController extends Controller
 
     public function payList($id){
         $comInfo = ComponyInfo::first();        
-        $purchases = Purchase::find($id);;
+        $purchases = Purchase::find($id);
         $pay = PurchaseDuePay::where('purchase_id',$id)->get();
         $vendor = Vendor::where('status', 0)->find($purchases->vendor_id);
 
@@ -81,6 +82,40 @@ class VendorController extends Controller
             ];
             $data = $purchase->update($update);
             //return $data;
+            DB::commit();
+
+            return back()->with('message', 'Delete Successful..!!!');
+        } catch (\Exception $e) {
+            DB::rollback();
+
+            return back()->with('message','Due Pay error: '.$e->getMessage());
+        }
+    }
+
+    public function vendorPayList($id){
+        $comInfo = ComponyInfo::first();        
+        $vendor = Vendor::find($id);
+        $pay = VendorPay::where('vendor_id',$id)->get();
+        // $vendor = Vendor::where('status', 0)->find($purchases->vendor_id);
+
+       // return $pay;
+        return view('Admin-Panel.page.Vendor.vendor-pay-list',compact(['pay','vendor','comInfo']));
+    }
+
+    public function vendorPayDelete($id){
+        try {
+            DB::beginTransaction();
+            $pay = VendorPay::findOrFail($id);
+            $pay->delete();
+            
+            $vendor=Vendor::find($pay->vendor_id);
+
+            $update=[
+                'paid' => $vendor->paid - $pay->pay,
+                'due' => $vendor->due + $pay->pay,
+            ];
+            $data = $vendor->update($update);
+            // return $data;
             DB::commit();
 
             return back()->with('message', 'Delete Successful..!!!');

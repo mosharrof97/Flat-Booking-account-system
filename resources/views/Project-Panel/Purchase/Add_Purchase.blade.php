@@ -138,7 +138,7 @@
                                             <tr>
                                                 <td colspan="4" class="text-right"> Payable Amount </td>
                                                 <td>
-                                                    <input type="decimal" name="payable_amount" class="form-control col-sm-7 payable_amount" id="payable_amount" value="0" required="" readonly="">
+                                                    <input type="decimal" name="payable_amount" class="form-control col-sm-7 payable_amount" id="payable_amount" value="0" style="background-color: rgb(218, 218, 218)" readonly="">
                                                 </td>
                                                 <td></td>
                                             </tr>
@@ -146,14 +146,14 @@
                                             <tr>
                                                 <td colspan="4" class="text-right"> Paid </td>
                                                 <td>
-                                                    <input type="number" name="paid" class="form-control col-sm-7 re_paid" id="re_paid" value="0" required="">
+                                                    <input type="number" name="paid" class="form-control col-sm-7 re_paid" id="re_paid" value="0"  style="background-color: rgb(218, 218, 218)" readonly>
                                                 </td>
                                                 <td></td>
                                             </tr>
                                             <tr>
                                                 <td colspan="4" class="text-right"> Due </td>
                                                 <td>
-                                                    <input type="text" name="due" class="form-control col-sm-7 re_due" id="re_due" style="background-color: rgb(218, 218, 218)" value="0" required="" readonly="">
+                                                    <input type="text" name="due" class="form-control col-sm-7 re_due" id="re_due" style="background-color: rgb(218, 218, 218)" value="0" readonly="">
                                                 </td>
                                                 <td></td>
                                             </tr>

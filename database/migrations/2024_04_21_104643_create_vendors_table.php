@@ -16,6 +16,11 @@ return new class extends Migration
             $table->string('name');
             $table->string('phone',15)->unique();
             $table->string('address');
+            
+            $table->decimal('payable_amount',15,2)->default(0.00);
+            $table->decimal('paid',15,2)->default(0.00);
+            $table->decimal('due',15,2)->default(0.00);
+
             $table->enum('active_status',['active', 'inactive'])->default('inactive');
             $table->string('status')->default(0);
 
