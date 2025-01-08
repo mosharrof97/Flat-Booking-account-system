@@ -18,13 +18,13 @@ use App\Http\Controllers\Employee\EmployeeController;
 use App\Http\Controllers\Client\ClientController;
 use App\Http\Controllers\Invest\InvestmentController;
 use App\Http\Controllers\Vendor\VendorController;
+use App\Http\Controllers\Purchase\ProjectPurchaseController;
+use App\Http\Controllers\Purchase\PurchaseDuePayController;
+use App\Http\Controllers\Purchase\ProjectReturnPurchaseController;
 
 
 use App\Http\Controllers\Project\ProjectController;
 use App\Http\Controllers\Project\InstallmentController;
-use App\Http\Controllers\Project\Purchase\ProjectPurchaseController;
-use App\Http\Controllers\Project\Purchase\PurchaseDuePayController;
-use App\Http\Controllers\Project\Purchase\ProjectReturnPurchaseController;
 use App\Http\Controllers\Project\ProjectExpenseController;
 use App\Http\Controllers\Project\ProjectDashboardController;
 use App\Http\Controllers\Project\ProjectInvestmentController;
@@ -81,6 +81,32 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 
     Route::get('/', [AdminController::class, 'dashboard'])->name('dashboard');
 
+    // Project Purchase
+    Route::prefix('purchase')->group(function () {
+        Route::get('/list', [ProjectPurchaseController::class, 'index'])->name('project.purchase.list');
+        Route::get('/create', [ProjectPurchaseController::class, 'create'])->name('project.purchase');
+        Route::post('/create', [ProjectPurchaseController::class, 'store'])->name('store.project.purchase');
+        Route::get('/{id}/show', [ProjectPurchaseController::class, 'show'])->name('project.purchase.view');
+        Route::get('/{id}/delete', [ProjectPurchaseController::class, 'delete'])->name('project.purchase.delete');
+        Route::get('/{id}/restore', [ProjectPurchaseController::class, 'restore'])->name('project.purchase.restore');
+
+        Route::get('/{id}/delete', [ProjectPurchaseController::class, 'destroy'])->name('project.purchase.delete');
+        Route::get('/{id}/restore', [ProjectPurchaseController::class, 'restore'])->name('project.purchase.restore');
+
+        Route::get('/{id}/due=pay', [PurchaseDuePayController::class, 'create'])->name('project.purchase.due.pay');
+        Route::post('/{id}/due=pay', [PurchaseDuePayController::class, 'store'])->name('store.project.purchase.due.pay');
+        Route::get('/{id}/invoice', [PurchaseDuePayController::class, 'invoice'])->name('project.purchase.invoice');
+
+
+        // Project Return Purchase
+        Route::prefix('return')->group(function () {
+            Route::get('/list', [ProjectReturnPurchaseController::class, 'index'])->name('project.return.purchase.list');
+            Route::get('/create', [ProjectReturnPurchaseController::class, 'create'])->name('project.return.purchase');
+            Route::post('/create', [ProjectReturnPurchaseController::class, 'store'])->name('store.project.return.purchase');
+            Route::get('/{id}/show', [ProjectReturnPurchaseController::class, 'show'])->name('project.return.purchase.view');
+        });
+    });
+
     /**------------------ Project --------------------**/
     Route::prefix('project')->group(function () {
         Route::get('/list', [ProjectController::class,'index'])->name('list.project');
@@ -113,32 +139,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
                 Route::get('/{id}/pay-slip', [InstallmentController::class, 'payslip'])->name('project.installment.payslip');
 
             });
-
-            // Project Purchase
-            Route::prefix('purchase')->group(function () {
-                Route::get('/list', [ProjectPurchaseController::class, 'index'])->name('project.purchase.list');
-                Route::get('/create', [ProjectPurchaseController::class, 'create'])->name('project.purchase');
-                Route::post('/create', [ProjectPurchaseController::class, 'store'])->name('store.project.purchase');
-                Route::get('/{id}/show', [ProjectPurchaseController::class, 'show'])->name('project.purchase.view');
-                Route::get('/{id}/delete', [ProjectPurchaseController::class, 'delete'])->name('project.purchase.delete');
-                Route::get('/{id}/restore', [ProjectPurchaseController::class, 'restore'])->name('project.purchase.restore');
-
-                Route::get('/{id}/delete', [ProjectPurchaseController::class, 'destroy'])->name('project.purchase.delete');
-                Route::get('/{id}/restore', [ProjectPurchaseController::class, 'restore'])->name('project.purchase.restore');
-
-                Route::get('/{id}/due=pay', [PurchaseDuePayController::class, 'create'])->name('project.purchase.due.pay');
-                Route::post('/{id}/due=pay', [PurchaseDuePayController::class, 'store'])->name('store.project.purchase.due.pay');
-                Route::get('/{id}/invoice', [PurchaseDuePayController::class, 'invoice'])->name('project.purchase.invoice');
-
-
-                // Project Return Purchase
-                Route::prefix('return')->group(function () {
-                    Route::get('/list', [ProjectReturnPurchaseController::class, 'index'])->name('project.return.purchase.list');
-                    Route::get('/create', [ProjectReturnPurchaseController::class, 'create'])->name('project.return.purchase');
-                    Route::post('/create', [ProjectReturnPurchaseController::class, 'store'])->name('store.project.return.purchase');
-                    Route::get('/{id}/show', [ProjectReturnPurchaseController::class, 'show'])->name('project.return.purchase.view');
-                });
-            });
+            
 
             // Project Expense
             Route::prefix('expense')->group(function () {

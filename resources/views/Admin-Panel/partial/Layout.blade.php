@@ -194,7 +194,21 @@
                         </li>
                     {{-- @endcan --}}
 
+                    
 
+                    <li>
+                        <a class="has-arrow" href="{{ route('project.purchase.list') }}">
+                            <i class="fa-solid fa-store"></i>
+                            <span class="nav-text">Purchase</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="has-arrow" href="{{ route('project.return.purchase.list') }}">
+                            <i class="fa-solid fa-store"></i>
+                            <span class="nav-text">Purchase Return</span>
+                        </a>
+                    </li>
 
                     <li>
                         <a class="has-arrow" href="{{ route('vendor.list') }}" aria-expanded="false">

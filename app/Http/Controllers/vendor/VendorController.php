@@ -128,16 +128,76 @@ class VendorController extends Controller
 
     public function destroy($id){
         $vendor = Vendor::findOrFail($id);
+        $purchase = Purchase::where('vendor_id',$id)->get();        
+        $pay = VendorPay::where('vendor_id',$id)->get();
+        foreach ($purchase as $key => $value) {
+            $duePay = PurchaseDuePay::where('purchase_id',$value->id)->first();
+            foreach ($duePay as $key => $data) {
+                $data->delete();
+            }
+            $value->delete();
+        }
+        foreach ($pay as $key => $value) {
+            $value->delete();
+        }
         $vendor->delete();
         return back()-> with('message', 'Vendor Delete Successful');
     }
 
-    public function restore($id) {
+    // public function destroy($id)
+    // {
+    //     DB::transaction(function () use ($id) {
+    //         $vendor = Vendor::findOrFail($id);
+
+    //         $purchases = Purchase::where('vendor_id', $id)->get();
+    //         $purchaseIds = $purchases->pluck('id');
+
+    //         PurchaseDuePay::whereIn('purchase_id', $purchaseIds)->delete();
+    //         $purchases->each->delete();
+
+    //         VendorPay::where('vendor_id', $id)->delete();
+
+    //         $vendor->delete();
+    //     });
+
+    //     return back()->with('message', 'Vendor deleted successfully');
+    // }
+
+    public function restore($id)
+    {
         $vendor = Vendor::withTrashed()->findOrFail($id);
         $vendor->restore();
 
-        return redirect()->route('vendor.list')->with('message','Vendor Restore Successfully');
+        $purchases = Purchase::where('vendor_id', $id)->withTrashed()->get();
+        $purchaseIds = $purchases->pluck('id');
+
+        PurchaseDuePay::whereIn('purchase_id', $purchaseIds)->withTrashed()->restore();
+        $purchases->each->restore();
+
+        VendorPay::where('vendor_id', $id)->withTrashed()->restore();
+
+        return redirect()->route('vendor.list')->with('message', 'Vendor restored successfully');
     }
+
+
+    // public function restore($id) {
+    //     $vendor = Vendor::withTrashed()->findOrFail($id);
+    //     $purchase = Purchase::where('vendor_id',$id)->withTrashed()->get();        
+    //     $pay = VendorPay::where('vendor_id',$id)->withTrashed()->get();
+    //     foreach ($purchase as $key => $value) {
+    //         $duePay = PurchaseDuePay::where('purchase_id',$purchase->id)->withTrashed()->get();
+    //         foreach ($duePay as $key => $data) {
+    //             $data->restore();
+    //         }
+    //         $value->restore();
+    //     }
+    //     foreach ($pay as $key => $value) {
+    //         $value->restore();
+    //     }
+    //     $vendor->restore();
+
+    //     return redirect()->route('vendor.list')->with('message','Vendor Restore Successfully');
+    // }
 
 
 }
