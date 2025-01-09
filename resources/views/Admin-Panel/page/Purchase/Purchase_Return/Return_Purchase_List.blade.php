@@ -81,6 +81,7 @@
                                 <td>{{ $purchase->total }}</td> --}}
                                 <td>
                                     <a href="{{ route('project.return.purchase.view',$re_purchase->id) }} " class="btn btn-success">View</a>
+                                    <a href="{{ route('project.return.purchase.delete',$re_purchase->id) }} " class="btn btn-danger">Delete</a>
                                 </td>
                             </tr>
                             @endforeach

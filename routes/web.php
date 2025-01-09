@@ -104,6 +104,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
             Route::get('/create', [ProjectReturnPurchaseController::class, 'create'])->name('project.return.purchase');
             Route::post('/create', [ProjectReturnPurchaseController::class, 'store'])->name('store.project.return.purchase');
             Route::get('/{id}/show', [ProjectReturnPurchaseController::class, 'show'])->name('project.return.purchase.view');
+            Route::get('/{id}/delete', [ProjectReturnPurchaseController::class, 'delete'])->name('project.return.purchase.delete');
         });
     });
 

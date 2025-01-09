@@ -49,7 +49,7 @@ class ProjectPurchaseController extends Controller
             $total_prices = $request->input('total_price');
 
             $lastInvoice = Purchase::orderBy('id', 'desc')->first();
-            $invoiceNumber = $lastInvoice ? ++$lastInvoice->invoice_no : 1;
+            $invoiceNumber = $lastInvoice ? ++$lastInvoice->invoice_no : 10001;
 
             try {
                 DB::beginTransaction();
@@ -57,7 +57,7 @@ class ProjectPurchaseController extends Controller
                     'vendor_id' => $request->vendor_id,
                     'memo_no' => $request->memo_no,
                     'date' => $request->date,
-                    'invoice_no'=> 10000 + $invoiceNumber,
+                    'invoice_no'=> $invoiceNumber,
 
                     // ---------Use json_encode---------//
                     'name' =>json_encode($names),

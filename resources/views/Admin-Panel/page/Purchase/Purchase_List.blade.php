@@ -24,7 +24,7 @@
                                     <th scope="col" class="flex-wrap">Vendor Name</th>
                                     <th scope="col" class="flex-wrap">Phone</th>
                                     <th scope="col" class="flex-wrap">Amount</th>
-                                    <th scope="col" class="flex-wrap">Due</th>
+                                    {{-- <th scope="col" class="flex-wrap">Due</th> --}}
                                     <th scope="col" class="flex-wrap">Created By</th>
                                     <th scope="col" class="flex-wrap">Action</th>
                                 </tr>
@@ -55,7 +55,7 @@
                                         <td>{{ $purchase->vendor->name ?? 'Not Found' }}</td>
                                         <td>{{ $purchase->vendor->phone ?? 'Not Found' }}</td>
                                         <td>{{ number_format($purchase->payable_amount, 2, '.', ',') }}</td>
-                                        <td>{{ number_format($purchase->due, 2, '.', ',') }}</td>
+                                        {{-- <td>{{ number_format($purchase->due, 2, '.', ',') }}</td> --}}
                                         <td>{{ $purchase->user->name }}</td>
 
                                         {{-- @php

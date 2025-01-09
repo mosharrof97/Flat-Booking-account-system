@@ -88,4 +88,16 @@ class ProjectReturnPurchaseController extends Controller
         return view('Admin-Panel.page.Purchase.Purchase_Return.Return_Purchase_View', compact('purchase'));
         
     }
+
+    public function delete($id){        
+        $purchase = ReturnPurchase::find($id);
+        $vendor = Vendor::find($purchase->vendor_id);
+
+        $vendor->update([
+            'due' => $vendor->due + $purchase->due,
+        ]);
+        $purchase->delete();
+        return redirect()->route('project.return.purchase.list')->with('success', 'Delete Successful!');
+        
+    }
 }

@@ -22,31 +22,7 @@
 
                     </style>
                     <table class="table-information table table-borderless">
-
-                        <tr>
-                            <th scope="row" style="width: 20%">Project Name</th>
-                            <td colspan="" style="width: 3%">:</td>
-                            <td colspan="3" style="width: 77%"> {{ $purchase->project->projectName }} </td>
-                        </tr>
-                        <tr>
-                            <th scope="row" style="width: 20%">Project Status </th>
-                            <td colspan="" style="width: 3%">:</td>
-                            @if ($purchase->project->status === 0)
-                                <td colspan="3" style="width: 77%">
-                                    <div class="d-flex align-items-center">
-                                        <span class="bg-info p-2 me-1 rounded-circle "></span>
-                                        <span class="text-info">On going</span>
-                                    </div>
-                                </td>
-                            @elseif ($purchase->project->status === 1)
-                                <td colspan="3" class="text-success" style="width: 77%">
-                                    <div class="d-flex align-items-center">
-                                        <span class="bg-info p-2 me-1 rounded-circle "></span>
-                                        <span class="text-info">completed</span>
-                                    </div>
-                                </td>
-                            @endif
-                        </tr>
+                        
                         <tr>
                             <th scope="row" style="width: 20%">Create Purchase</th>
                             <td colspan="" style="width: 3%">:</td>
