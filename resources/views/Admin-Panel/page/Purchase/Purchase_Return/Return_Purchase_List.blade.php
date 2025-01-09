@@ -42,7 +42,7 @@
                                 <td>{{ $re_purchase->vendor->phone }}</td>
                                 <td>{{ number_format($re_purchase->total,2,'.',',')}}</td>
                                 <td>{{ $re_purchase->date }}</td>
-                                <td>{{ $re_purchase->project->user->name }}</td>
+                                <td>{{ $re_purchase->user->name }}</td>
 
                                 {{-- @php
                                     // $names = explode("**",$purchase->name);

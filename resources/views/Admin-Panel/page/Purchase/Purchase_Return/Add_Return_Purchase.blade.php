@@ -99,7 +99,7 @@
                                             <tr>
                                                 <td colspan="4" class="text-right"> Paid </td>
                                                 <td>
-                                                    <input type="number" name="paid" class="form-control col-sm-7 re_paid" id="re_paid" value="0" required="">
+                                                    <input type="number" name="paid" class="form-control col-sm-7 re_paid" id="re_paid" style="background-color: rgb(218, 218, 218)" value="0" required="" readonly="">
                                                 </td>
                                                 <td></td>
                                             </tr>

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('return_purchases', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('project_id');
+            $table->foreignId('project_id')->nullable();
             $table->foreignId('vendor_id');
             $table->string('memo_no');
             $table->foreignId('purchase_id');

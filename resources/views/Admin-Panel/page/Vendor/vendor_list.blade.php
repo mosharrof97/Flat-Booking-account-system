@@ -31,7 +31,8 @@
                                     <th scope="col" class="text-wrap">Address</th>
                                     <th scope="col" class="text-wrap">Total Purchase</th>
                                     <th scope="col" class="text-wrap">Total Pay</th>
-                                    <th scope="col" class="text-wrap">Total Due</th>
+                                    <th scope="col" class="text-wrap">Total Due</th>re_purchase
+                                    <th scope="col" class="text-wrap">Total Return</th>re_purchase
                                     <th scope="col" class="text-wrap">Action</th>
                                 </tr>
                             </thead>
@@ -45,6 +46,7 @@
                                     <td>{{ $vendor->payable_amount }} tk</td>
                                     <td>{{ $vendor->paid }} tk</td>
                                     <td>{{ $vendor->due }} tk</td>
+                                    <td>{{ $vendor->re_purchase ? $vendor->re_purchase->sum('due') : 0 }} tk</td>
                                     <td>
                                         @if ($vendor->due > 0)
                                         <a href="{{route('vendor.purchase.due.pay', $vendor->id)}}" class="btn btn-primary">due</a>

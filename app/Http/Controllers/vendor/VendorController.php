@@ -126,42 +126,56 @@ class VendorController extends Controller
         }
     }
 
-    public function destroy($id){
-        $vendor = Vendor::findOrFail($id);
-        $purchase = Purchase::where('vendor_id',$id)->get();        
-        $pay = VendorPay::where('vendor_id',$id)->get();
-        foreach ($purchase as $key => $value) {
-            $duePay = PurchaseDuePay::where('purchase_id',$value->id)->first();
-            foreach ($duePay as $key => $data) {
-                $data->delete();
-            }
-            $value->delete();
-        }
-        foreach ($pay as $key => $value) {
-            $value->delete();
-        }
-        $vendor->delete();
-        return back()-> with('message', 'Vendor Delete Successful');
-    }
-
-    // public function destroy($id)
-    // {
-    //     DB::transaction(function () use ($id) {
+    // public function destroy($id){
+    //     try {
+    //         DB::beginTransaction();
     //         $vendor = Vendor::findOrFail($id);
-
-    //         $purchases = Purchase::where('vendor_id', $id)->get();
-    //         $purchaseIds = $purchases->pluck('id');
-
-    //         PurchaseDuePay::whereIn('purchase_id', $purchaseIds)->delete();
-    //         $purchases->each->delete();
-
-    //         VendorPay::where('vendor_id', $id)->delete();
-
+    //         $purchase = Purchase::where('vendor_id',$id)->get();        
+    //         $pay = VendorPay::where('vendor_id',$id)->get();
+    //         if($purchase){
+    //             foreach ($purchase as $key => $value) {
+    //                 $duePay = PurchaseDuePay::where('purchase_id',$value->id)->get();
+    //                 if($duePay){
+    //                     foreach ($duePay as $key => $data) {
+                            
+    //                         $data->delete();
+    //                     }
+    //                 }
+    //                 $value->delete();
+    //             }
+    //         }
+    //         if($pay){
+    //             foreach ($pay as $key => $value) {
+    //                 $value->delete();
+    //             }
+    //         }            
     //         $vendor->delete();
-    //     });
+    //         return back()-> with('message', 'Vendor Delete Successful');
+    //     } catch (\Exception $e) {
+    //         DB::rollback();
 
-    //     return back()->with('message', 'Vendor deleted successfully');
+    //         return back()->with('message','Vendor Delete error: '.$e->getMessage());
+    //     }
     // }
+
+    public function destroy($id)
+    {
+        DB::transaction(function () use ($id) {
+            $vendor = Vendor::findOrFail($id);
+
+            $purchases = Purchase::where('vendor_id', $id)->get();
+            $purchaseIds = $purchases->pluck('id');
+
+            PurchaseDuePay::whereIn('purchase_id', $purchaseIds)->delete();
+            $purchases->each->delete();
+
+            VendorPay::where('vendor_id', $id)->delete();
+
+            $vendor->delete();
+        });
+
+        return back()->with('message', 'Vendor deleted successfully');
+    }
 
     public function restore($id)
     {

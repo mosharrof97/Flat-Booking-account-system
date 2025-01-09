@@ -19,7 +19,7 @@ class ProjectReturnPurchaseController extends Controller
     //    // $this->middleware('permission:show return purchase', ['only' => ['show']]);
     // }
     public function index(){
-        $purchases = ReturnPurchase::where('project_id',$projectId)->orderBy('id','desc')->paginate(15);
+        $purchases = ReturnPurchase::orderBy('id','desc')->paginate(15);
 
         return view('Admin-Panel.page.Purchase.Purchase_Return.Return_Purchase_List', compact('purchases' ));        
     }
@@ -44,10 +44,9 @@ class ProjectReturnPurchaseController extends Controller
 
         $purchase = Purchase::orderBy('id', 'desc')->first();
         $lastInvoice = ReturnPurchase::orderBy('id', 'desc')->first();
-        $invoiceNumber = $lastInvoice ? ++$lastInvoice->invoice_no : 1;
+        $invoiceNumber = $lastInvoice ? ++$lastInvoice->id : 1;
 
         $purchasesData = [
-            'project_id' => $projectId,
             'vendor_id' => $purchase->vendor_id,
             'memo_no' => $purchase->memo_no,
             'date' => $request->date,
@@ -75,6 +74,11 @@ class ProjectReturnPurchaseController extends Controller
             //--------Use implode Method-------//
         ];
         $purchases = ReturnPurchase::create($purchasesData);
+        $vendor = Vendor::find($purchase->vendor_id);
+
+        $vendor->update([
+            'due' => $vendor->due - $request->due,
+        ]);
         return redirect()->route('project.return.purchase.list')-> with('success','Purchase Add Successful.');        
     }
 
