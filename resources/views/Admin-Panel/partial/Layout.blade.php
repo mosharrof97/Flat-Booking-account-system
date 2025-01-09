@@ -19,22 +19,22 @@
     <link href="{{ asset('asset/css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('asset/css/custom-style.css') }}" rel="stylesheet">
 
-    {{---- Datatable ----}}
-        {{-- CSS --}}
-        <link href="{{ asset('asset/DataTable/css/dataTables.dataTables.css') }}" rel="stylesheet">
-        <link href="{{ asset('asset/DataTable/css/buttons.dataTables.css') }}" rel="stylesheet">
+    {{-- -- Datatable -- --}}
+    {{-- CSS --}}
+    <link href="{{ asset('asset/DataTable/css/dataTables.dataTables.css') }}" rel="stylesheet">
+    <link href="{{ asset('asset/DataTable/css/buttons.dataTables.css') }}" rel="stylesheet">
 
-        {{-- Javascript --}}
-        <script src="{{ asset('asset/js/jquery.min.js') }}"></script>
-        <script src="{{ asset('asset/DataTable/js/datatable.js') }}"></script>
-        <script src="{{ asset('asset/DataTable/js/buttons.js') }}"></script>
-        <script src="{{ asset('asset/DataTable/js/buttons.dataTables.js') }}"></script>
-        <script src="{{ asset('asset/DataTable/js/jszip.min.js') }}"></script>
-        <script src="{{ asset('asset/DataTable/js/pdfmake.min.js') }}"></script>
-        <script src="{{ asset('asset/DataTable/js/vfs_fonts.js') }}"></script>
-        <script src="{{ asset('asset/DataTable/js/buttons.html5.min.js') }}"></script>
-        <script src="{{ asset('asset/DataTable/js/buttons.print.min.js') }}"></script>
-    {{---- Datatable ----}}
+    {{-- Javascript --}}
+    <script src="{{ asset('asset/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('asset/DataTable/js/datatable.js') }}"></script>
+    <script src="{{ asset('asset/DataTable/js/buttons.js') }}"></script>
+    <script src="{{ asset('asset/DataTable/js/buttons.dataTables.js') }}"></script>
+    <script src="{{ asset('asset/DataTable/js/jszip.min.js') }}"></script>
+    <script src="{{ asset('asset/DataTable/js/pdfmake.min.js') }}"></script>
+    <script src="{{ asset('asset/DataTable/js/vfs_fonts.js') }}"></script>
+    <script src="{{ asset('asset/DataTable/js/buttons.html5.min.js') }}"></script>
+    <script src="{{ asset('asset/DataTable/js/buttons.print.min.js') }}"></script>
+    {{-- -- Datatable -- --}}
 
 
 
@@ -70,7 +70,8 @@
             <a href="" class="brand-logo">
                 {{-- <img class="logo-abbr" style="max-width: 52px;" src="{{ asset('images/logo.png') }}" alt="">
                 <img class="logo-compact" src="{{ asset('images/logo-text.png') }}" alt=""> --}}
-                <img src="{{ asset('upload/CompanyInfo/'.logo()) }}" class="brand-title" style="max-width:100px" src=""  alt="">
+                <img src="{{ asset('upload/CompanyInfo/' . logo()) }}" class="brand-title" style="max-width:100px"
+                    src="" alt="">
             </a>
 
             <div class="nav-control">
@@ -172,9 +173,9 @@
         {{-- --**********************************
             Sidebar start
         ***********************************-- --}}
-        <div class="quixnav" >
+        <div class="quixnav">
 
-            <div class="quixnav-scroll" style="overflow-y: scroll; " >
+            <div class="quixnav-scroll" style="overflow-y: scroll; ">
                 <ul class="metismenu" id="menu">
 
                     <li class="nav-label first">Main Menu</li>
@@ -186,36 +187,77 @@
                         </a>
                     </li>
                     {{-- @can('list project') --}}
-                        <li>
-                            <a class="has-arrow" href="{{ route('list.project') }}" aria-expanded="false">
-                                <i class="fa-solid fa-diagram-project"></i>
-                                <span class="nav-text">Project</span>
-                            </a>
-                        </li>
+                    <li>
+                        <a class="has-arrow" href="{{ route('list.project') }}" aria-expanded="false">
+                            <i class="fa-solid fa-diagram-project"></i>
+                            <span class="nav-text">Project</span>
+                        </a>
+                    </li>
                     {{-- @endcan --}}
 
+                    <li>
+                        <div class="accordion accordion-flush" id="vendor_accordion">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <a class="accordion-button has-arrow {{ request()->routeIs('vendor.list', 'project.purchase.list', 'project.return.purchase.list') ? '' : 'collapsed' }}"
+                                        type="button"
+                                        style="background-color: #343957; color: #bdbdc7; padding-left: 28px;"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#vendor-collapse"
+                                        aria-expanded="{{ request()->routeIs('vendor.list', 'project.purchase.list', 'project.return.purchase.list') ? 'true' : 'false' }}"
+                                        aria-controls="vendor-collapse">
+                                        <div class="d-flex justify-content-between">
+                                            <div>
+                                                <i class="fas fa-user-friends"></i>
+                                                <span>Vendor</span>
+                                            </div>
+                                            <i class="fas fa-angle-down"></i>
+                                        </div>
+                                    </a>
+                                </h2>
+                                <div id="vendor-collapse" class="accordion-collapse collapse {{ request()->routeIs('vendor.list', 'project.purchase.list', 'project.return.purchase.list') ? 'show' : '' }}"
+                                    data-bs-parent="#vendor_accordion">
+                                    <div class="accordion-body" style="background-color: #1c0f54;">
+                                        <style>
+                                            .is-active{
+                                                text-decoration: none !important;
+                                                color: #60d0fd !important;
+                                            }
+                                        </style>
+                                        <ul>
+                                            <li>
+                                                <a class="has-arrow {{ request()->routeIs('vendor.list') ? 'is-active' : '' }}" 
+                                                    href="{{ route('vendor.list') }}"
+                                                    style="padding-left: 20px;">
+                                                    <i class="fas fa-user-friends"></i>
+                                                    <span class="nav-text">Vendor</span>
+                                                </a>
+                                            </li>
                     
-
-                    <li>
-                        <a class="has-arrow" href="{{ route('project.purchase.list') }}">
-                            <i class="fa-solid fa-store"></i>
-                            <span class="nav-text">Purchase</span>
-                        </a>
+                                            <li>
+                                                <a class="has-arrow {{ request()->routeIs('project.purchase.list') ? 'is-active' : '' }}" 
+                                                    href="{{ route('project.purchase.list') }}"
+                                                    style="padding-left: 20px;">
+                                                    <i class="fas fa-shopping-cart"></i>
+                                                    <span class="nav-text">Purchase</span>
+                                                </a>
+                                            </li>
+                    
+                                            <li>
+                                                <a class="has-arrow {{ request()->routeIs('project.return.purchase.list') ? 'is-active' : '' }}" 
+                                                    href="{{ route('project.return.purchase.list') }}"
+                                                    style="padding-left: 20px;">
+                                                    <i class="fas fa-undo-alt"></i>
+                                                    <span class="nav-text">Purchase Return</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </li>
-
-                    <li>
-                        <a class="has-arrow" href="{{ route('project.return.purchase.list') }}">
-                            <i class="fa-solid fa-store"></i>
-                            <span class="nav-text">Purchase Return</span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a class="has-arrow" href="{{ route('vendor.list') }}" aria-expanded="false">
-                            <i class="fa-solid fa-store"></i>
-                            <span class="nav-text">Vandor</span>
-                        </a>
-                    </li>
+                    
 
                     {{-- ====== Employee ======= --}}
                     {{-- @can('view employee') --}}
@@ -226,9 +268,9 @@
                         </a>
                     </li>
                     {{-- @endcan --}}
-                    {{--======= Employee End =======--}}
+                    {{-- ======= Employee End ======= --}}
 
-                    {{--========= Customer ===========--}}
+                    {{-- ========= Customer =========== --}}
                     {{-- @can('list customer') --}}
                     <li id="client-parent">
                         <a class="has-arrow" href="{{ route('client.list') }}" aria-expanded="false">
@@ -237,7 +279,7 @@
                         </a>
                     </li>
                     {{-- @endcan --}}
-                    {{--========= Customer End ===========--}}
+                    {{-- ========= Customer End =========== --}}
 
                     {{-- Expanse --}}
                     <li id="expanse-parent">

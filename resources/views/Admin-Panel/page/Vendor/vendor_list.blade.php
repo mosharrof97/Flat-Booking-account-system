@@ -31,8 +31,8 @@
                                     <th scope="col" class="text-wrap">Address</th>
                                     <th scope="col" class="text-wrap">Total Purchase</th>
                                     <th scope="col" class="text-wrap">Total Pay</th>
-                                    <th scope="col" class="text-wrap">Total Due</th>re_purchase
-                                    <th scope="col" class="text-wrap">Total Return</th>re_purchase
+                                    <th scope="col" class="text-wrap">Total Due</th>
+                                    <th scope="col" class="text-wrap">Total Return</th>
                                     <th scope="col" class="text-wrap">Action</th>
                                 </tr>
                             </thead>
